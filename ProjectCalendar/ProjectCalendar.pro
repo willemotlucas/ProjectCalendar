@@ -16,11 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     duree.cpp \
     tache.cpp \
-    programmation.cpp
+    programmation.cpp \
+    programmationmanager.cpp \
+    tachemanager.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
     tache.h \
-    programmation.h
+    programmation.h \
+    calendarexception.h \
+    programmationmanager.h \
+    tachemanager.h
 
 FORMS    += mainwindow.ui
