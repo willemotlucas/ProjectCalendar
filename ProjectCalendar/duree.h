@@ -2,6 +2,7 @@
 #define DUREE_H
 
 #include <QTextStream>
+
 #include "calendarexception.h"
 
 /*! \class Duree
