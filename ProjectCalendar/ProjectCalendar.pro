@@ -14,12 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    tachemanager.cpp \
-    programmationmanager.cpp
+    duree.cpp \
+    tache.cpp \
+    programmation.cpp
 
 HEADERS  += mainwindow.h \
-    calendarexception.h \
-    tachemanager.h \
-    programmationmanager.h
+    duree.h \
+    tache.h \
+    programmation.h
 
 FORMS    += mainwindow.ui
