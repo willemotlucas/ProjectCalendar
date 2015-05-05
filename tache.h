@@ -6,6 +6,7 @@
 #include <QTextStream>
 
 #include "calendarexception.h"
+#include "duree.h"
 
 class Tache {
     QString identificateur;
