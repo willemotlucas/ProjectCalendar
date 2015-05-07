@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     programmation.cpp \
     programmationmanager.cpp \
     tachemanager.cpp \
-    iterator.cpp
+    iterator.cpp \
+    evenement.cpp \
+    evenementduree.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -30,6 +32,8 @@ HEADERS  += mainwindow.h \
     calendarexception.h \
     programmationmanager.h \
     tachemanager.h \
-    iterator.h
+    iterator.h \
+    evenement.h \
+    evenementduree.h
 
 FORMS    += mainwindow.ui
