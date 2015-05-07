@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui xml
+QT += xml
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,7 +20,8 @@ SOURCES += main.cpp\
     tache.cpp \
     programmation.cpp \
     programmationmanager.cpp \
-    tachemanager.cpp
+    tachemanager.cpp \
+    iterator.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -26,6 +29,7 @@ HEADERS  += mainwindow.h \
     programmation.h \
     calendarexception.h \
     programmationmanager.h \
-    tachemanager.h
+    tachemanager.h \
+    iterator.h
 
 FORMS    += mainwindow.ui
