@@ -25,7 +25,7 @@ SOURCES += main.cpp\
     evenement.cpp \
     evenementduree.cpp \
     projet.cpp \
-    projetmanager.cpp
+    projetmanager.cpp \
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -38,6 +38,6 @@ HEADERS  += mainwindow.h \
     evenement.h \
     evenementduree.h \
     projet.h \
-    projetmanager.h
+    projetmanager.h \
 
 FORMS    += mainwindow.ui
