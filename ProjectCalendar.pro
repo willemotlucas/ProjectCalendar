@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     tachemanager.cpp \
     iterator.cpp \
     evenement.cpp \
-    evenementduree.cpp
+    evenementduree.cpp \
+    projet.cpp \
+    projetmanager.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -34,6 +36,8 @@ HEADERS  += mainwindow.h \
     tachemanager.h \
     iterator.h \
     evenement.h \
-    evenementduree.h
+    evenementduree.h \
+    projet.h \
+    projetmanager.h
 
 FORMS    += mainwindow.ui

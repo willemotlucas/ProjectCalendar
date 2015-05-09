@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projets>
+    <projet>
+        <nom>Projet1</nom>
+        <description>Test création projet</description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet2</nom>
+        <description>Test création projet</description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet3</nom>
+        <description>Test création projet</description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet4</nom>
+        <description>Test création projet</description>
+        <disponibilite></disponibilite>
+    </projet>
+</projets>

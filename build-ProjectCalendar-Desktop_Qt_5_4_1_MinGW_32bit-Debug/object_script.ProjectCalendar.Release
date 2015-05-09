@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\duree.o
+./release\tache.o
+./release\programmation.o
+./release\programmationmanager.o
+./release\tachemanager.o
+./release\iterator.o
+./release\evenement.o
+./release\evenementduree.o
+./release\projet.o
+./release\projetmanager.o
+./release\moc_mainwindow.o
+);

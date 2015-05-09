@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\duree.o
+./debug\tache.o
+./debug\programmation.o
+./debug\programmationmanager.o
+./debug\tachemanager.o
+./debug\iterator.o
+./debug\evenement.o
+./debug\evenementduree.o
+./debug\projet.o
+./debug\projetmanager.o
+./debug\moc_mainwindow.o
+);

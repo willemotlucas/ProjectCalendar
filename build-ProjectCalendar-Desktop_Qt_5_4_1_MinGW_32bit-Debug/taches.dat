@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taches>
+    <tache preemptive="false">
+        <identificateur>AW1</identificateur>
+        <titre>Partage des scenarii</titre>
+        <disponibilite></disponibilite>
+        <echeance></echeance>
+        <duree>90</duree>
+    </tache>
+    <tache preemptive="false">
+        <identificateur>AW2</identificateur>
+        <titre>Identification des competences</titre>
+        <disponibilite></disponibilite>
+        <echeance></echeance>
+        <duree>150</duree>
+    </tache>
+</taches>
