@@ -1,8 +1,9 @@
-#include "newprojectwindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFormLayout>
 #include <QLabel>
+#include <QMessageBox>
+#include "newprojectwindow.h"
 #include "global.h"
 
 NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
@@ -43,12 +44,16 @@ NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
     connect(ok,SIGNAL(clicked()),this,SLOT(creationNouveauProjet()));
     connect(ok, SIGNAL(clicked()), this, SLOT(close()));
-
 }
 
 void NewProjectWindow::creationNouveauProjet(){
     ProjetManager& pm = ProjetManager::getInstance();
-    pm.ajouterProjet(nom->text(), description->toPlainText(), dateDispo->date());
+    try{
+        pm.ajouterProjet(nom->text(), description->toPlainText(), dateDispo->date());
+    }catch(CalendarException e){
+        QMessageBox::warning(this, "Attention", e.getInfo());
+    }
+
     pm.save(fileXML);
 }
 

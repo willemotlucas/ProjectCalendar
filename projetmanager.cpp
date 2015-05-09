@@ -25,7 +25,13 @@ ProjetManager::~ProjetManager(){
 }
 
 Projet& ProjetManager::ajouterProjet(const QString &nom, const QString &desc, const QDate &dispo){
-    if (trouverProjet(nom)) throw CalendarException("erreur, ProjetManager, projet deja existant");
+    if (trouverProjet(nom)){
+        qDebug()<<"projet deja existant\n";
+        throw CalendarException("Le projet " + nom + " existe déjà.");
+    }
+    if(nom.isEmpty()){
+        throw CalendarException("Attention, le nom de projet ne peut pas être vide.");
+    }
     qDebug()<<"dispo = "<<dispo.toString();
     Projet* newp=new Projet(nom,desc,dispo);
     addItem(newp);
@@ -37,13 +43,18 @@ void ProjetManager::addItem(Projet* p){
 }
 
 Projet* ProjetManager::trouverProjet(const QString& nom)const{
-    for(unsigned int i=0; i<projets.size(); i++)
-        if (nom==projets[i]->getNom()) return projets[i];
+    qDebug()<<"size = "<<projets.size();
+    for(unsigned int i=0; i<projets.size(); i++){
+        qDebug()<<"nom = "<<projets[i]->getNom();
+        if (nom==projets[i]->getNom()){
+            return projets[i];
+        }
+    }
     return 0;
 }
 
 void ProjetManager::load(const QString& f){
-    //qDebug()<<"debut load\n";
+    qDebug()<<"debut load\n";
     //this->~ProjetManager();
     //for(unsigned int i=0; i<nb; i++) delete projets[i];
 
@@ -101,6 +112,7 @@ void ProjetManager::load(const QString& f){
                         // We've found disponibilite
                         if(xml.name() == "disponibilite") {
                             xml.readNext();
+                            qDebug()<<"date5 = "<<xml.text().toString();
                             disponibilite=QDate::fromString(xml.text().toString(),Qt::ISODate);
                             //qDebug()<<"disp="<<disponibilite.toString()<<"\n";
                         }
@@ -142,8 +154,8 @@ void  ProjetManager::save(const QString& f){
         stream.writeStartElement("projet");
         stream.writeTextElement("nom",projets[i]->getNom());
         stream.writeTextElement("description",projets[i]->getDescription());
-        stream.writeTextElement("disponibilite",projets[i]->getDisponibilite().toString("dd.MM.yyyy"));
-        qDebug()<<projets[i]->getDisponibilite().toString("dd.MM.yyyy")<<"\n";
+        qDebug()<<"save date = "<<projets[i]->getDisponibilite().toString(Qt::ISODate);
+        stream.writeTextElement("disponibilite",projets[i]->getDisponibilite().toString(Qt::ISODate));
 //        stream.writeTextElement("echeance",projets[i]->getDateEcheance().toString(Qt::ISODate));
         stream.writeEndElement();
     }

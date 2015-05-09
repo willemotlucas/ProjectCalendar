@@ -3,6 +3,36 @@
     <projet>
         <nom>Projet1</nom>
         <description>test</description>
-        <disponibilite>09.05.2015</disponibilite>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet2</nom>
+        <description></description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Proejt3</nom>
+        <description></description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet4</nom>
+        <description></description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet5</nom>
+        <description></description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet6</nom>
+        <description></description>
+        <disponibilite></disponibilite>
+    </projet>
+    <projet>
+        <nom>Projet7</nom>
+        <description></description>
+        <disponibilite>2015-05-07</disponibilite>
     </projet>
 </projets>

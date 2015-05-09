@@ -2,6 +2,8 @@
 #include "newprojectwindow.h"
 #include "addtachewindow.h"
 #include "modtachewindow.h"
+#include "projetmanager.h"
+#include "global.h"
 #include <QToolBar>
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)

@@ -1,10 +1,12 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include "ui_mainwindow.h"
+#include "mainwindow.h"
+#include "projetmanager.h"
+#include "global.h"
 
 ProjectWindow* MainWindow::projet= 0;
 
@@ -29,6 +31,15 @@ MainWindow::MainWindow(QWidget *parent) :
     //Definition de quelques proprietes de le fenetre
     setMinimumSize(500,350);
     setWindowTitle("Project_Calendar");
+
+    //Lire le fichier XML à chaque chargement de l'application
+    //Debugger la lecture du fichier
+    try{
+        ProjetManager& m = ProjetManager::getInstance();
+        m.load(fileXML);
+    }catch(CalendarException e){
+        QMessageBox::warning(this, "Erreur", e.getInfo());
+    }
 
 }
 

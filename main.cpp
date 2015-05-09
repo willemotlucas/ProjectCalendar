@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
 //    system("pause");
 //    return 0;
 
-
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
