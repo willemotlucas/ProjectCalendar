@@ -48,6 +48,7 @@ HEADERS  += mainwindow.h \
     agendawindow.h \
     modtachewindow.h \
     newprojectwindow.h \
-    projectwindow.h
+    projectwindow.h \
+    global.h
 
 FORMS    += mainwindow.ui

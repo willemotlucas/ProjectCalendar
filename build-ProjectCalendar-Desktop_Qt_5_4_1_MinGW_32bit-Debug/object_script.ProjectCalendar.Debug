@@ -11,5 +11,14 @@ INPUT(
 ./debug\evenementduree.o
 ./debug\projet.o
 ./debug\projetmanager.o
+./debug\addtachewindow.o
+./debug\agendawindow.o
+./debug\modtachewindow.o
+./debug\newprojectwindow.o
+./debug\projectwindow.o
 ./debug\moc_mainwindow.o
+./debug\moc_agendawindow.o
+./debug\moc_modtachewindow.o
+./debug\moc_newprojectwindow.o
+./debug\moc_projectwindow.o
 );

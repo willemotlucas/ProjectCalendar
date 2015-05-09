@@ -2,22 +2,7 @@
 <projets>
     <projet>
         <nom>Projet1</nom>
-        <description>Test création projet</description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet2</nom>
-        <description>Test création projet</description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet3</nom>
-        <description>Test création projet</description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet4</nom>
-        <description>Test création projet</description>
-        <disponibilite></disponibilite>
+        <description>test</description>
+        <disponibilite>09.05.2015</disponibilite>
     </projet>
 </projets>

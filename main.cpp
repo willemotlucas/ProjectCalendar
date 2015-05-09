@@ -24,23 +24,23 @@ int main(int argc, char *argv[])
 //        cout<<e.getInfo().toStdString()<<endl;
 //    }
 
-    try {
-        ProjetManager& m = ProjetManager::getInstance();
-        //m.load("projets.dat");
-        m.ajouterProjet("Projet4", "Test création projet", QDate(1,9,2015));
-        m.save("projets.dat");
-    }catch(CalendarException e){
-        cout<<e.getInfo().toStdString()<<endl;
-    }
+//    try {
+//        ProjetManager& m = ProjetManager::getInstance();
+//        m.load("projets.dat");
+//        m.ajouterProjet("Projet4", "Test création projet", QDate(1,9,2015));
+//        m.save("projets.dat");
+//    }catch(CalendarException e){
+//        cout<<e.getInfo().toStdString()<<endl;
+//    }
 
-    system("pause");
-    return 0;
+//    system("pause");
+//    return 0;
 
 
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
-    return a.exec();*/
+    return a.exec();
 
 }

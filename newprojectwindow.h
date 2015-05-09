@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTextEdit>
+#include "projetmanager.h"
 
 class NewProjectWindow : public QDialog
 {

@@ -11,5 +11,14 @@ INPUT(
 ./release\evenementduree.o
 ./release\projet.o
 ./release\projetmanager.o
+./release\addtachewindow.o
+./release\agendawindow.o
+./release\modtachewindow.o
+./release\newprojectwindow.o
+./release\projectwindow.o
 ./release\moc_mainwindow.o
+./release\moc_agendawindow.o
+./release\moc_modtachewindow.o
+./release\moc_newprojectwindow.o
+./release\moc_projectwindow.o
 );

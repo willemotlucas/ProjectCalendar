@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QFormLayout>
 #include <QLabel>
+#include "global.h"
 
 NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
 {
@@ -41,11 +42,14 @@ NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
     //connection des boutons
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
     connect(ok,SIGNAL(clicked()),this,SLOT(creationNouveauProjet()));
+    connect(ok, SIGNAL(clicked()), this, SLOT(close()));
 
 }
 
 void NewProjectWindow::creationNouveauProjet(){
-
+    ProjetManager& pm = ProjetManager::getInstance();
+    pm.ajouterProjet(nom->text(), description->toPlainText(), dateDispo->date());
+    pm.save(fileXML);
 }
 
 
