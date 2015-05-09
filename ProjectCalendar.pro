@@ -26,6 +26,11 @@ SOURCES += main.cpp\
     evenementduree.cpp \
     projet.cpp \
     projetmanager.cpp \
+    addtachewindow.cpp \
+    agendawindow.cpp \
+    modtachewindow.cpp \
+    newprojectwindow.cpp \
+    projectwindow.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -39,5 +44,10 @@ HEADERS  += mainwindow.h \
     evenementduree.h \
     projet.h \
     projetmanager.h \
+    addtachewindow.h \
+    agendawindow.h \
+    modtachewindow.h \
+    newprojectwindow.h \
+    projectwindow.h
 
 FORMS    += mainwindow.ui

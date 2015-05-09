@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     try {
         ProjetManager& m = ProjetManager::getInstance();
-        //m.load("projets.dat");
+        m.load("projets.dat");
         m.ajouterProjet("Projet4", "Test création projet", QDate(1,9,2015));
         m.save("projets.dat");
     }catch(CalendarException e){
