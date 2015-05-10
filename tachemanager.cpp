@@ -24,11 +24,11 @@ Tache* TacheManager::trouverTache(const QString& id)const{
     return 0;
 }
 
-Tache& TacheManager::ajouterTache(const QString& id, const QString& t, const Duree& dur, const QDate& dispo, const QDate& deadline, bool preempt){
-    if (trouverTache(id)) throw CalendarException("erreur, TacheManager, tache deja existante");
-    Tache* newt=new Tache(id,t,dur,dispo,deadline,preempt);
-    addItem(newt);
-    return *newt;
+Tache& TacheManager::ajouterTache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline){
+//    if (trouverTache(id)) throw CalendarException("erreur, TacheManager, tache deja existante");
+//    Tache* newt=new Tache(id,t,dispo,deadline);
+//    addItem(newt);
+//    return *newt;
 }
 
 Tache& TacheManager::getTache(const QString& id){
@@ -131,7 +131,7 @@ void TacheManager::load(const QString& f){
                     xml.readNext();
                 }
                 //qDebug()<<"ajout tache "<<identificateur<<"\n";
-                ajouterTache(identificateur,titre,duree,disponibilite,echeance,preemptive);
+                ajouterTache(identificateur,titre,disponibilite,echeance);
 
             }
         }
@@ -156,14 +156,11 @@ void  TacheManager::save(const QString& f){
     stream.writeStartElement("taches");
     for(unsigned int i=0; i<nb; i++){
         stream.writeStartElement("tache");
-        stream.writeAttribute("preemptive", (taches[i]->isPreemptive())?"true":"false");
         stream.writeTextElement("identificateur",taches[i]->getId());
         stream.writeTextElement("titre",taches[i]->getTitre());
         stream.writeTextElement("disponibilite",taches[i]->getDateDisponibilite().toString(Qt::ISODate));
         stream.writeTextElement("echeance",taches[i]->getDateEcheance().toString(Qt::ISODate));
         QString str;
-        str.setNum(taches[i]->getDuree().getDureeEnMinutes());
-        stream.writeTextElement("duree",str);
         stream.writeEndElement();
     }
     stream.writeEndElement();

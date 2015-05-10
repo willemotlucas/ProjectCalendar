@@ -16,6 +16,9 @@ INPUT(
 ./debug\modtachewindow.o
 ./debug\newprojectwindow.o
 ./debug\projectwindow.o
+./debug\tacheunitairepreemptive.o
+./debug\tacheunitaire.o
+./debug\tachecomposite.o
 ./debug\moc_mainwindow.o
 ./debug\moc_agendawindow.o
 ./debug\moc_modtachewindow.o

@@ -18,6 +18,9 @@ class Projet
 
     Projet(const Projet& p);
     Projet& operator=(const Projet&);
+
+    //Appelé par la méthode ajouterTache seulement
+    void setDateEcheance(const QDate& d);
 public:
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
     ~Projet();
@@ -26,10 +29,7 @@ public:
     const QDate& getDisponibilite() const { return disponibilite; }
     const QDate& getEcheance() const { return echeance; }
 
-    //+Calcul date echance
-    //+AjouterTacheProjet()
-    //+
-
+    void ajouterTache(const Tache& t);
 };
 
 #endif // PROJET_H

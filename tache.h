@@ -9,33 +9,50 @@
 #include "duree.h"
 
 class Tache {
-    QString identificateur;
-    QString titre;
-    Duree duree;
-    QDate disponibilite;
-    QDate echeance;
-    bool preemptive;
-    Tache(const QString& id, const QString& t, const Duree& dur, const QDate& dispo, const QDate& deadline, bool preempt=false):
-            identificateur(id),titre(t),duree(dur),disponibilite(dispo),echeance(deadline),preemptive(preempt){}
+
     Tache(const Tache& t);
     Tache& operator=(const Tache&);
     friend class TacheManager;
+
+protected:
+    QString identificateur;
+    QString titre;
+    QDate disponibilite;
+    QDate echeance;
+//    std::vector<Tache*> precedence;
+
+    Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline):
+            identificateur(id),titre(t),disponibilite(dispo),echeance(deadline){}
+
+    //Constructeur de tache sans deadline pour les taches composites : la deadline est la borne supérieur des sous-tâches de la tache composite.
+    Tache(const QString& id, const QString& t, const QDate& dispo):
+            identificateur(id),titre(t),disponibilite(dispo){}
+
 public:
+    //DESTRUCTOR
+    virtual ~Tache(){}
+
+    //GETTERS et SETTERS
     QString getId() const { return identificateur; }
     void setId(const QString& str);
     QString getTitre() const { return titre; }
     void setTitre(const QString& str) { titre=str; }
-    Duree getDuree() const { return duree; }
-    void setDuree(const Duree& d) { duree=d; }
     QDate getDateDisponibilite() const {  return disponibilite; }
+    void setDateDisponibiltie(QDate dispo) { disponibilite = dispo; }
     QDate getDateEcheance() const {  return echeance; }
-    void setDatesDisponibiliteEcheance(const QDate& disp, const QDate& e) {
-        if (e<disp) throw CalendarException("erreur T�che : date ech�ance < date disponibilit�");
-        disponibilite=disp; echeance=e;
-    }
-    bool isPreemptive() const { return preemptive; }
-    void setPreemptive() { preemptive=true; }
-    void setNonPreemptive() { preemptive=false; }
+
+
+    //ABSTRACT METHODS
+    virtual bool isCommencee() const = 0;
+    virtual bool isTerminee() const = 0;
+
+    //Peut-être mettre en privée pour que seul le TacheManager puisse gérer la date d'échéance d'une tache composite en fonction
+    //De ses sous-taches. Mettre en abstrait pour changer le fonctionnement en fonction de la classe fille
+//        if (e<disp) throw CalendarException("erreur T�che : date ech�ance < date disponibilit�");
+//        disponibilite=disp; echeance=e;
+    virtual void setDateEcheance(const QDate& e) = 0;
+
+
 };
 
 QTextStream& operator<<(QTextStream& f, const Tache& t);

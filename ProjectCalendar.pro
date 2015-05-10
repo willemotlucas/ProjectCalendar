@@ -30,7 +30,10 @@ SOURCES += main.cpp\
     agendawindow.cpp \
     modtachewindow.cpp \
     newprojectwindow.cpp \
-    projectwindow.cpp
+    projectwindow.cpp \
+    tacheunitairepreemptive.cpp \
+    tacheunitaire.cpp \
+    tachecomposite.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -49,6 +52,9 @@ HEADERS  += mainwindow.h \
     modtachewindow.h \
     newprojectwindow.h \
     projectwindow.h \
-    global.h
+    global.h \
+    tacheunitairepreemptive.h \
+    tacheunitaire.h \
+    tachecomposite.h
 
 FORMS    += mainwindow.ui

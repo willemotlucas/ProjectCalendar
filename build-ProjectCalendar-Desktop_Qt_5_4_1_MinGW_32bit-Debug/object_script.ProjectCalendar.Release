@@ -16,6 +16,9 @@ INPUT(
 ./release\modtachewindow.o
 ./release\newprojectwindow.o
 ./release\projectwindow.o
+./release\tacheunitairepreemptive.o
+./release\tacheunitaire.o
+./release\tachecomposite.o
 ./release\moc_mainwindow.o
 ./release\moc_agendawindow.o
 ./release\moc_modtachewindow.o
