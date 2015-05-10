@@ -17,8 +17,7 @@ public:
         TERMINEE
     };
 
-    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur):
-            Tache(id, t, dispo, deadline), duree(dur){ etat = NON_COMMENCEE; }
+
     ~TacheUnitairePreemptive(){}
 
     //STATES METHODS
@@ -41,6 +40,10 @@ public:
 private:
     QTime duree;
     Etat etat;
+
+    friend class TacheManager;
+    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur):
+            Tache(id, t, dispo, deadline), duree(dur){ etat = NON_COMMENCEE; }
 
     //Une tache préemptive peut être effectuée en plusieurs fois. Les découpages de la tache seront donc
     //enregistrée dans le vector de préemption et ajouté au fur et à mesure de l'avancée de la tâche
