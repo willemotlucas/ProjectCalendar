@@ -3,6 +3,13 @@
 
 #include <QMainWindow>
 #include <QAction>
+#include <QTreeWidget>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPlainTextEdit>
+#include <QDateEdit>
+#include <QGroupBox>
 
 
 class ProjectWindow : public QMainWindow
@@ -16,6 +23,7 @@ public:
 private:
     void creerBarreOutils();
     void creerActions();
+    void creerAffichageProjet();
 
 private:
     QAction* actionNouveauProjet;
@@ -27,6 +35,22 @@ private:
     QAction* actionImprimer;
     QAction* actionPrecedent;
     QAction* actionSuivant;
+
+    QGroupBox* gestionDuProjet;
+    QTreeWidget* projectTree;
+    QPushButton* addTacheComposite;
+    QPushButton* addTacheUnitaire;
+    QPushButton* addTacheUnitairePreemptive;
+    QGroupBox* detailsProjet;
+    QLabel* nomProjet;
+    QLineEdit* nomProjetEdit;
+    QLabel* descriptionProjet;
+    QPlainTextEdit* descriptionProjetEdit;
+    QLabel* dateDispoProjet;
+    QDateEdit* dateDispoProjetEdit;
+    QLabel* dateEcheanceProjet;
+    QDateEdit* dateEcheanceProjetEdit;
+
 
 signals:
 

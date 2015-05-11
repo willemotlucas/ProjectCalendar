@@ -11,7 +11,7 @@ NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
     //Declaration des elements
     QFormLayout* form = new QFormLayout;
     nom = new QLineEdit;
-    form->addRow("&Nom de la classe",nom);
+    form->addRow("Nom du projet",nom);
 
     dateDispo = new QDateEdit;
     dateDispo->setDate(QDate::currentDate());

@@ -51,7 +51,6 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(LoadProjectWindow);
-        QObject::connect(LoadButton, SIGNAL(accepted()), LoadProjectWindow, SLOT(accept()));
         QObject::connect(LoadButton, SIGNAL(rejected()), LoadProjectWindow, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(LoadProjectWindow);

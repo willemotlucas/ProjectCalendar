@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("Project_Calendar");
 
     //Lire le fichier XML à chaque chargement de l'application
-    //Debugger la lecture du fichier
     try{
         ProjetManager& m = ProjetManager::getInstance();
         m.load(fileXML);

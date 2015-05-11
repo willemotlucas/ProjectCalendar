@@ -15,6 +15,8 @@ class MainWindow : public QMainWindow
 
     public:
         explicit MainWindow(QWidget *parent = 0);
+        static ProjectWindow& getInstanceProjet();
+        static void libererInstanceProjet();
 
     private:
         void creerMenus();
@@ -40,8 +42,6 @@ class MainWindow : public QMainWindow
         QAction* actionPrecedente;
         QAction* actionSuivante;
 
-        static ProjectWindow& getInstanceProjet();
-        static void libererInstanceProjet();
 
 
     private slots:

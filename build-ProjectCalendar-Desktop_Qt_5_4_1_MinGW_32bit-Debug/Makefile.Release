@@ -312,6 +312,49 @@ release/moc_mainwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow 
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcalendarwidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		../projectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
 		../mainwindow.h
 	P:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IP:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -ID:/Lucas/Documents/GitHub/LO21/ProjectCalendar -IP:/Qt/5.4/mingw491_32/include -IP:/Qt/5.4/mingw491_32/include/QtWidgets -IP:/Qt/5.4/mingw491_32/include/QtGui -IP:/Qt/5.4/mingw491_32/include/QtXml -IP:/Qt/5.4/mingw491_32/include/QtCore -I. ..\mainwindow.h -o release\moc_mainwindow.cpp
 
@@ -804,6 +847,50 @@ release/moc_projectwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWind
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
 		../projectwindow.h
 	P:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IP:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -ID:/Lucas/Documents/GitHub/LO21/ProjectCalendar -IP:/Qt/5.4/mingw491_32/include -IP:/Qt/5.4/mingw491_32/include/QtWidgets -IP:/Qt/5.4/mingw491_32/include/QtGui -IP:/Qt/5.4/mingw491_32/include/QtXml -IP:/Qt/5.4/mingw491_32/include/QtCore -I. ..\projectwindow.h -o release\moc_projectwindow.cpp
 
@@ -1053,6 +1140,49 @@ release/main.o: ../main.cpp ../mainwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcalendarwidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		../projectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
 		../calendarexception.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		../tachemanager.h \
@@ -1240,6 +1370,31 @@ release/mainwindow.o: ../mainwindow.cpp P:/Qt/5.4/mingw491_32/include/QtCore/QDe
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcalendarwidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		../projectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
 		../projetmanager.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -2949,30 +3104,55 @@ release/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
-		../newprojectwindow.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDialog \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
+		../newprojectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDialog \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTextEdit \
 		../projetmanager.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -2990,7 +3170,13 @@ release/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		../loadprojectwindow.h \
 		../global.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QToolBar \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtoolbar.h
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qboxlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlayoutitem.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\projectwindow.o ..\projectwindow.cpp
 
 release/tacheunitairepreemptive.o: ../tacheunitairepreemptive.cpp ../tacheunitairepreemptive.h \
@@ -3328,6 +3514,49 @@ release/loadprojectwindow.o: ../loadprojectwindow.cpp ../loadprojectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		ui_loadprojectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QVariant \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qeventloop.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qguiapplication.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDialogButtonBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdialogbuttonbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QHeaderView \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QListWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlistwidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlistview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qboxlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlayoutitem.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
 		../projetmanager.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -3336,7 +3565,44 @@ release/loadprojectwindow.o: ../loadprojectwindow.cpp ../loadprojectwindow.h \
 		../tache.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QTextStream \
 		../calendarexception.h \
-		../duree.h
+		../duree.h \
+		../mainwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmainwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/QKeySequence \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTabWidget \
+		../agendawindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCalendarWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcalendarwidget.h \
+		../projectwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPlainTextEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qplaintextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qabstracttextdocumentlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qtextlayout.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qglyphrun.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qrawfont.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/qfontdatabase.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QDateEdit \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\loadprojectwindow.o ..\loadprojectwindow.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 

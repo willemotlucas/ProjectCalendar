@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::LoadProjectWindow *ui;
+
+private slots:
 };
 
 #endif // LOADPROJECTWINDOW_H
