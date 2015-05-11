@@ -32,6 +32,7 @@ signals:
 
 private slots:
     void nouveauProjet();
+    void chargerProjet();
     void ajouterTache();
     void modifierTache();
 };

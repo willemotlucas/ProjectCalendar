@@ -8,7 +8,20 @@
 
 class ProjetManager
 {
-    std::vector<Projet*> projets;
+public:
+    typedef std::vector<Projet*> contProjet;
+    Projet& ajouterProjet(const QString& nom, const QString& desc, const QDate& dispo);
+    Projet& getProjet(const QString& nom);
+    const Projet& getProjet(const QString& nom) const;
+    const contProjet& getProjets() const { return projets;}
+    bool isProjetExistante(const QString& nom) const { return trouverProjet(nom)!=0; }
+    void load(const QString& f);
+    void save(const QString& f);
+    static ProjetManager& getInstance();
+    static void libererInstance();
+
+private:
+    contProjet projets;
     void addItem(Projet* p);
     Projet* trouverProjet(const QString& nom) const;
     QString file;
@@ -23,16 +36,6 @@ class ProjetManager
         ~Handler(){ if (instance) delete instance; }
     };
     static Handler handler;
-
-public:
-    Projet& ajouterProjet(const QString& nom, const QString& desc, const QDate& dispo);
-    Projet& getProjet(const QString& nom);
-    const Projet& getProjet(const QString& nom) const;
-    bool isProjetExistante(const QString& nom) const { return trouverProjet(nom)!=0; }
-    void load(const QString& f);
-    void save(const QString& f);
-    static ProjetManager& getInstance();
-    static void libererInstance();
 
 };
 

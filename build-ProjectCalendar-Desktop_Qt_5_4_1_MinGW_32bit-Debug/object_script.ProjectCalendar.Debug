@@ -19,9 +19,11 @@ INPUT(
 ./debug\tacheunitairepreemptive.o
 ./debug\tacheunitaire.o
 ./debug\tachecomposite.o
+./debug\loadprojectwindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_agendawindow.o
 ./debug\moc_modtachewindow.o
 ./debug\moc_newprojectwindow.o
 ./debug\moc_projectwindow.o
+./debug\moc_loadprojectwindow.o
 );

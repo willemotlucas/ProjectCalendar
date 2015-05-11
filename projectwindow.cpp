@@ -2,6 +2,7 @@
 #include "newprojectwindow.h"
 #include "addtachewindow.h"
 #include "modtachewindow.h"
+#include "loadprojectwindow.h"
 #include "projetmanager.h"
 #include "global.h"
 #include <QToolBar>
@@ -19,6 +20,7 @@ void ProjectWindow::creerActions(){
     connect(actionNouveauProjet,SIGNAL(triggered()),this,SLOT(nouveauProjet()));
 
     actionChargerProjet = new QAction("Charger",this);
+    connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
     actionAjouterTache = new QAction("Ajouter Tache",this);
     connect(actionAjouterTache,SIGNAL(triggered()),this,SLOT(ajouterTache()));
@@ -59,6 +61,11 @@ void ProjectWindow::creerBarreOutils(){
 void ProjectWindow::nouveauProjet(){
     NewProjectWindow *newProjet = new NewProjectWindow(this);
     newProjet->exec();
+}
+
+void ProjectWindow::chargerProjet(){
+    LoadProjectWindow* loadedProject = new LoadProjectWindow(this);
+    loadedProject->exec();
 }
 
 void ProjectWindow::ajouterTache(){

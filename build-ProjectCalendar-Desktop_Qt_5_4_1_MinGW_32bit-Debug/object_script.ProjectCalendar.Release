@@ -19,9 +19,11 @@ INPUT(
 ./release\tacheunitairepreemptive.o
 ./release\tacheunitaire.o
 ./release\tachecomposite.o
+./release\loadprojectwindow.o
 ./release\moc_mainwindow.o
 ./release\moc_agendawindow.o
 ./release\moc_modtachewindow.o
 ./release\moc_newprojectwindow.o
 ./release\moc_projectwindow.o
+./release\moc_loadprojectwindow.o
 );
