@@ -8,6 +8,7 @@
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QDebug>
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -141,6 +142,10 @@ void ProjectWindow::nouveauProjet(){
 void ProjectWindow::chargerProjet(){
     LoadProjectWindow* loadedProject = new LoadProjectWindow(this);
     loadedProject->exec();
+}
+
+void ProjectWindow::chargerDetailsProjet(){
+    qDebug()<<"signal envoyé\n";
 }
 
 /*void ProjectWindow::ajouterTache(){

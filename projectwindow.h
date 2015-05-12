@@ -57,6 +57,9 @@ private slots:
     void ajouterTacheUnitaire(){}
     void ajouterTacheUnitairePreemptive(){}
     void modifierTache();
+
+public slots:
+    void chargerDetailsProjet();
 };
 
 #endif // PROJECTWINDOW_H

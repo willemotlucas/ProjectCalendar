@@ -42,10 +42,18 @@ void ProjetManager::addItem(Projet* p){
     projets.push_back(p);
 }
 
+const Projet& ProjetManager::getProjet(const QString& nom) const{
+    for(unsigned int i=0; i<projets.size(); i++){
+        if (nom==projets[i]->getNom()){
+            return *projets[i];
+        }
+    }
+}
+
+
 Projet* ProjetManager::trouverProjet(const QString& nom)const{
     qDebug()<<"size = "<<projets.size();
     for(unsigned int i=0; i<projets.size(); i++){
-        qDebug()<<"nom = "<<projets[i]->getNom();
         if (nom==projets[i]->getNom()){
             return projets[i];
         }

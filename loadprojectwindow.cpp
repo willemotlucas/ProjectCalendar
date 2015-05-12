@@ -2,6 +2,9 @@
 #include "ui_loadprojectwindow.h"
 #include "projetmanager.h"
 #include "mainwindow.h"
+#include "projectwindow.h"
+#include "projet.h"
+#include <QDebug>
 
 LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
     QDialog(parent),
@@ -12,7 +15,7 @@ LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
     for(ProjetManager::contProjet::const_iterator it = m.getProjets().begin(); it != m.getProjets().end(); ++it){
         ui->ProjectList->addItem((*it)->getNom());
     }
-    connect(ui->LoadButton, SIGNAL(accepted()), this, SLOT(afficherProjet()));
+    connect(ui->LoadButton, SIGNAL(accepted()), &MainWindow::getInstanceProjet(), SLOT(chargerDetailsProjet()));
 }
 
 LoadProjectWindow::~LoadProjectWindow()
