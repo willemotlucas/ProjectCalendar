@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-#include <QPlainTextEdit>
+#include <QTextEdit>
 #include <QDateEdit>
 #include <QGroupBox>
 
@@ -26,30 +26,26 @@ private:
     void creerAffichageProjet();
 
 private:
+    //boutons barre outils
     QAction* actionNouveauProjet;
     QAction* actionChargerProjet;
     QAction* actionFermerProjet;
-    QAction* actionAjouterTache;
-    QAction* actionModifierTache;
-    QAction* actionAnnulerTache;
     QAction* actionImprimer;
     QAction* actionPrecedent;
     QAction* actionSuivant;
 
-    QGroupBox* gestionDuProjet;
+
+    //Arbre view et bouton d'ajout de taches
     QTreeWidget* projectTree;
     QPushButton* addTacheComposite;
     QPushButton* addTacheUnitaire;
     QPushButton* addTacheUnitairePreemptive;
-    QGroupBox* detailsProjet;
-    QLabel* nomProjet;
-    QLineEdit* nomProjetEdit;
-    QLabel* descriptionProjet;
-    QPlainTextEdit* descriptionProjetEdit;
-    QLabel* dateDispoProjet;
-    QDateEdit* dateDispoProjetEdit;
-    QLabel* dateEcheanceProjet;
-    QDateEdit* dateEcheanceProjetEdit;
+
+    //Description de notre tache
+    QLineEdit* nom;
+    QTextEdit* description;
+    QDateEdit* dateDispo;
+    QDateEdit* dateEcheance;
 
 
 signals:
@@ -57,7 +53,9 @@ signals:
 private slots:
     void nouveauProjet();
     void chargerProjet();
-    void ajouterTache();
+    void ajouterTacheComposite(){}
+    void ajouterTacheUnitaire(){}
+    void ajouterTacheUnitairePreemptive(){}
     void modifierTache();
 };
 

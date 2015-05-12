@@ -14,7 +14,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     //Generation des widgets de la fenetre agenda
     creerActions();
     creerBarreOutils();
-//    creerAffichageProjet();
+    creerAffichageProjet();
 }
 
 
@@ -25,11 +25,11 @@ void ProjectWindow::creerActions(){
     actionChargerProjet = new QAction("Charger",this);
     connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
-    actionAjouterTache = new QAction("Ajouter Tache",this);
+    /*actionAjouterTache = new QAction("Ajouter Tache",this);
     connect(actionAjouterTache,SIGNAL(triggered()),this,SLOT(ajouterTache()));
     actionModifierTache = new QAction("Modifier Tache",this);
     connect(actionModifierTache,SIGNAL(triggered()),this,SLOT(modifierTache()));
-    actionAnnulerTache = new QAction("Annuler",this);
+    actionAnnulerTache = new QAction("Annuler",this);*/
     actionImprimer = new QAction("Imprimer",this);
 
 
@@ -47,12 +47,6 @@ void ProjectWindow::creerBarreOutils(){
     menuAgenda->addSeparator();
     menuAgenda->addAction(actionFermerProjet);
     menuAgenda->addSeparator();
-    menuAgenda->addAction(actionAjouterTache);
-    menuAgenda->addSeparator();
-    menuAgenda->addAction(actionModifierTache);
-    menuAgenda->addSeparator();
-    menuAgenda->addAction(actionAnnulerTache);
-    menuAgenda->addSeparator();
     menuAgenda->addAction(actionImprimer);
     menuAgenda->addSeparator();
     menuAgenda->addAction(actionPrecedent);
@@ -62,69 +56,81 @@ void ProjectWindow::creerBarreOutils(){
 }
 
 void ProjectWindow::creerAffichageProjet(){
-    //Creation du premier groupbox avec les boutons d'ajout de taches
-    gestionDuProjet = new QGroupBox("Gestion du projet");
-    QHBoxLayout* gestion = new QHBoxLayout;
-    addTacheComposite = new QPushButton("Ajouter tache composite");
-    addTacheComposite->setEnabled(false);
-    addTacheUnitaire = new QPushButton("Ajouter tache unitaire");
-    addTacheUnitaire->setEnabled(false);
-    addTacheUnitairePreemptive = new QPushButton("Ajotuer tache unitaire préemptive");
-    addTacheUnitairePreemptive->setEnabled(false);
-    gestion->addWidget(addTacheComposite);
-    gestion->addWidget(addTacheUnitaire);
-    gestion->addWidget(addTacheUnitairePreemptive);
-    gestionDuProjet->setLayout(gestion);
-
-    //Creation du deuxième groupbox d'affichage des détails du projet chargé
-    //L'affichage est vide au départ et se complètera lorsque l'utilisateur aura chargé un projet
-    //Les boutons et les edit sont donc désactivés au début.
-    detailsProjet = new QGroupBox("Détails du projet", this);
-    QHBoxLayout* nom = new QHBoxLayout;
-    QHBoxLayout* desc = new QHBoxLayout;
-    QHBoxLayout* dispo = new QHBoxLayout;
-    QHBoxLayout* echeance = new QHBoxLayout;
-    QVBoxLayout* details = new QVBoxLayout;
-
-    nomProjet = new QLabel("Nom");
-    nomProjetEdit = new QLineEdit;
-    nomProjetEdit->setReadOnly(true);
-    nom->addWidget(nomProjet);
-    nom->addWidget(nomProjetEdit);
-
-    descriptionProjet = new QLabel("Description");
-    descriptionProjetEdit = new QPlainTextEdit;
-    descriptionProjetEdit->setReadOnly(true);
-    desc->addWidget(descriptionProjet);
-    desc->addWidget(descriptionProjetEdit);
-
-    dateDispoProjet = new QLabel("Date de disponibilité");
-    dateDispoProjetEdit = new QDateEdit;
-    dateDispoProjetEdit->setReadOnly(true);
-    dispo->addWidget(dateDispoProjet);
-    dispo->addWidget(dateDispoProjetEdit);
-
-    dateEcheanceProjet= new QLabel("Date d'échéance");
-    dateEcheanceProjetEdit = new QDateEdit;
-    dateEcheanceProjetEdit->setReadOnly(true);
-    echeance->addWidget(dateEcheanceProjet);
-    echeance->addWidget(dateEcheanceProjetEdit);
-
-    details->addLayout(nom);
-    details->addLayout(desc);
-    details->addLayout(dispo);
-    details->addLayout(echeance);
-    detailsProjet->setLayout(details);
-
+    //1ere colonne de notre fenetre gestion projet :
     projectTree = new QTreeWidget;
+    projectTree->setFixedWidth(150);
+    QVBoxLayout* partieGauche = new QVBoxLayout;
+    partieGauche->addWidget(projectTree);
+
+    //2ieme colonne de notre fenetre gestion projet ;
+        //1er groupbox permettant l'affichage des données du projet chargé
+    //L'affichage est vide au départ et se complètera lorsque l'utilisateur aura chargé un projet
+    nom = new QLineEdit;
+    QLabel* labelNom = new QLabel("Nom:");
+    QHBoxLayout* N = new QHBoxLayout;
+    N->addWidget(labelNom);
+    N->addWidget(nom);
+
+    description =new QTextEdit;
+    QLabel* labelDescription = new QLabel("Description:");
+    QHBoxLayout* D = new QHBoxLayout;
+    D->addWidget(labelDescription);
+    D->addWidget(description);
+
+
+    dateDispo = new QDateEdit;
+    QLabel* labelDispo = new QLabel("Date Début :");
+    QHBoxLayout* Disp = new QHBoxLayout;
+    Disp->addWidget(labelDispo);
+    Disp->addWidget(dateDispo);
+
+
+    dateEcheance = new QDateEdit;
+    QLabel* labelEcheance = new QLabel("Date Echeance :");
+    QHBoxLayout* E = new QHBoxLayout;
+    E->addWidget(labelEcheance);
+    E->addWidget(dateEcheance);
+
+    QVBoxLayout* detProjet = new QVBoxLayout;
+    detProjet->addLayout(N);
+    detProjet->addLayout(D);
+    detProjet->addLayout(Disp);
+    detProjet->addLayout(E);
+
+    QGroupBox* detailsProjet = new QGroupBox("Détails du projet");
+    detailsProjet->setLayout(detProjet);
+
+        //2ieme groupbox permettant l'ajout de tache dans notre projet
+    addTacheComposite = new QPushButton("Composite");
+    addTacheUnitaire = new QPushButton("Unitaire");
+    addTacheUnitairePreemptive = new QPushButton("Unitaire Preemptive");
+
+    QHBoxLayout* addT = new QHBoxLayout;
+    addT->addWidget(addTacheUnitaire);
+    addT->addWidget(addTacheUnitairePreemptive);
+    addT->addWidget(addTacheComposite);
+
+    QGroupBox* addTache = new QGroupBox("Ajout d'une tache au projet");
+    addTache->setLayout(addT);
+
+    //Assemblage partie droite
+    QVBoxLayout* partieDroite = new QVBoxLayout;
+    partieDroite->addWidget(detailsProjet);
+    partieDroite->addWidget(addTache);
 
     //Affichage dans la fenêtre
-    QVBoxLayout* partieDroite = new QVBoxLayout;
-    partieDroite->addWidget(gestionDuProjet);
-    partieDroite->addWidget(detailsProjet);
-    QHBoxLayout* fenetre = new QHBoxLayout(this);
-    fenetre->addWidget(projectTree);
+    //Attention, on est dans une fenetre centrale du coup on doit TOUT mettre dans un widget principale
+    //et ENSUITE declarer ce widget comme CentralWidget de notre fenetre
+
+    QHBoxLayout* fenetre = new QHBoxLayout;
+    fenetre->addLayout(partieGauche);
     fenetre->addLayout(partieDroite);
+
+
+    QWidget* fenetreWidget = new QWidget;
+    fenetreWidget->setLayout(fenetre);
+    fenetreWidget->setDisabled(true);
+    setCentralWidget(fenetreWidget);
 }
 
 void ProjectWindow::nouveauProjet(){
@@ -137,10 +143,10 @@ void ProjectWindow::chargerProjet(){
     loadedProject->exec();
 }
 
-void ProjectWindow::ajouterTache(){
+/*void ProjectWindow::ajouterTache(){
     AddTacheWindow *newTache = new AddTacheWindow(this);
     newTache->exec();
-}
+}*/
 
 void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
