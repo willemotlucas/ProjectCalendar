@@ -9,7 +9,9 @@ AgendaWindow::AgendaWindow(QWidget *parent) : QMainWindow(parent)
     creerBarreOutils();
 
     //Affichage du calendrier
-    calendrier = new QCalendarWidget;
+    calendrier = new QTableWidget(24,7,this);
+    //calendrier->alternatingRowColors(true);
+    //calendrier->selectionMode(SingleSelection);
     setCentralWidget(calendrier);
 
 }

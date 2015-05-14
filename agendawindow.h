@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QAction>
 #include <QCalendarWidget>
+#include <QTableWidget>
 
 
 class AgendaWindow : public QMainWindow
@@ -19,7 +20,7 @@ private:
 
 
 private:
-    QCalendarWidget* calendrier;
+    QTableWidget* calendrier;
 
     QAction* actionAjouterTache;
     QAction* actionAnnulerTache;

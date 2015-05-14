@@ -6,6 +6,7 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
+#include "calendarwindow.h"
 #include "global.h"
 
 ProjectWindow* MainWindow::projet= 0;
@@ -99,11 +100,16 @@ void MainWindow::creerBarreNavigation(){
     //Generation des onglets et chargement de la page d'accueil
     onglets = new QTabWidget(this);
 
-    pageAgenda = new QWidget;
+    /*pageAgenda = new QWidget;
     QVBoxLayout* pAgenda = new QVBoxLayout;
     AgendaWindow* agendaWindow = new AgendaWindow;
     pAgenda->addWidget(agendaWindow);
-    pageAgenda->setLayout(pAgenda);
+    pageAgenda->setLayout(pAgenda);*/
+    pageCalendar = new QWidget;
+    QVBoxLayout* pCalendar = new QVBoxLayout;
+    CalendarWindow* calendarWindow = new CalendarWindow;
+    pCalendar->addWidget(calendarWindow);
+    pageCalendar->setLayout(pCalendar);
 
     pageProjet = new QWidget;
     QVBoxLayout* pProjet = new QVBoxLayout;
@@ -112,7 +118,7 @@ void MainWindow::creerBarreNavigation(){
     pageProjet->setLayout(pProjet);
 
 
-    onglets->addTab(pageAgenda,"Agenda");
+    onglets->addTab(pageCalendar,"Agenda");
     onglets->addTab(pageProjet,"Gestion Projet");
     setCentralWidget(onglets);
 }

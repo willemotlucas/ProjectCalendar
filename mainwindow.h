@@ -23,7 +23,7 @@ class MainWindow : public QMainWindow
         void creerActions();
         void creerBarreNavigation();
         static ProjectWindow* projet;
-        QWidget* pageAgenda;
+        QWidget* pageCalendar;
         QWidget* pageProjet;
 
 
