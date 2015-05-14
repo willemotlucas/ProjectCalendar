@@ -58,8 +58,8 @@ private slots:
     void ajouterTacheUnitairePreemptive(){}
     void modifierTache();
 
-public slots:
-    void chargerDetailsProjet();
+public:
+    void chargerDetailsProjet(QString nomProjet);
 };
 
 #endif // PROJECTWINDOW_H

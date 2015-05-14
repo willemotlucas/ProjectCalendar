@@ -144,8 +144,9 @@ void ProjectWindow::chargerProjet(){
     loadedProject->exec();
 }
 
-void ProjectWindow::chargerDetailsProjet(){
+void ProjectWindow::chargerDetailsProjet(QString nomProjet){
     qDebug()<<"signal envoyé\n";
+    qDebug()<<nomProjet;
 }
 
 /*void ProjectWindow::ajouterTache(){
@@ -157,5 +158,6 @@ void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
     modTache->exec();
 }
+
 
 

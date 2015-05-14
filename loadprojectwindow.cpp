@@ -15,8 +15,22 @@ LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
     for(ProjetManager::contProjet::const_iterator it = m.getProjets().begin(); it != m.getProjets().end(); ++it){
         ui->ProjectList->addItem((*it)->getNom());
     }
-    connect(ui->LoadButton, SIGNAL(accepted()), &MainWindow::getInstanceProjet(), SLOT(chargerDetailsProjet()));
+    connect(ui->LoadButton, SIGNAL(accepted()),this, SLOT(envoiNomProjet()));
+    //connect(ui->LoadButton,SIGNAL(accepted()),&MainWindow::getInstanceProjet(),SLOT(chargerDetailsProjet(ui->ProjectList->currentItem()->text())));
 }
+/*
+ * Au final faire ce slot ne sert absolument a rien
+ * On veut pouvoir savoir quel projet charge alors pk ne
+ * pas tout simplement modifier la fonction
+ * getinstanceprojet(), en getinstanceprojet(Qstring nomProjet)
+ * Ainsi il sera quel projet charge au clic du bouton ok !*/
+
+void LoadProjectWindow::envoiNomProjet(){
+    qDebug()<<ui->ProjectList->currentItem()->text();
+    MainWindow::getInstanceProjet().chargerDetailsProjet(ui->ProjectList->currentItem()->text());
+}
+
+
 
 LoadProjectWindow::~LoadProjectWindow()
 {
