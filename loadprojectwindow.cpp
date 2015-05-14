@@ -16,7 +16,8 @@ LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
         ui->ProjectList->addItem((*it)->getNom());
     }
     connect(ui->LoadButton, SIGNAL(accepted()),this, SLOT(envoiNomProjet()));
-    //connect(ui->LoadButton,SIGNAL(accepted()),&MainWindow::getInstanceProjet(),SLOT(chargerDetailsProjet(ui->ProjectList->currentItem()->text())));
+    connect(ui->LoadButton, SIGNAL(accepted()),this, SLOT(close()));
+
 }
 /*
  * Au final faire ce slot ne sert absolument a rien

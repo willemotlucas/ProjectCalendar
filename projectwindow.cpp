@@ -144,9 +144,13 @@ void ProjectWindow::chargerProjet(){
     loadedProject->exec();
 }
 
-void ProjectWindow::chargerDetailsProjet(QString nomProjet){
-    qDebug()<<"signal envoyé\n";
-    qDebug()<<nomProjet;
+void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
+    ProjetManager& m = ProjetManager::getInstance();
+    Projet* p = m.getProjet(nomProjet);
+    nom->setText(p->getNom());
+    description->setPlainText(p->getDescription());
+    dateDispo->setDate(p->getDisponibilite());
+    dateEcheance->setDate(p->getEcheance());
 }
 
 /*void ProjectWindow::ajouterTache(){

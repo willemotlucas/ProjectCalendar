@@ -59,7 +59,7 @@ private slots:
     void modifierTache();
 
 public:
-    void chargerDetailsProjet(QString nomProjet);
+    void chargerDetailsProjet(const QString& nomProjet);
 };
 
 #endif // PROJECTWINDOW_H
