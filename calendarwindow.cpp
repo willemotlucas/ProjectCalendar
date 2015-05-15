@@ -15,7 +15,7 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
 
     QString formatter = QString("d MMM yyyy");
     for (int i = -500; i < 500; i++) {
-        ui->choose_week->addItem(today.addDays(i*7 - (today.dayOfWeek()-1)).toString(formatter)+" - "+today.addDays(i*7 - (today.dayOfWeek()-1) + 6).toString(formatter));
+        ui->choose_week->addItem(today.addDays(i*7 - (today.dayOfWeek()-1)).toString(Qt::TextDate)+" - "+today.addDays(i*7 - (today.dayOfWeek()-1) + 6).toString(Qt::TextDate));
     }
     ui->choose_week->setCurrentIndex(500);
 
@@ -37,7 +37,7 @@ void CalendarWindow::changeCurrentWeek(QDate* date, bool isCurrentDay){
     for (int i = 0 ; i<7; i++) {
         counter++;
         QString toShow;
-        ui->agenda_widget->horizontalHeaderItem(i)->setText(date->addDays(counter).toString(formatter));
+        ui->agenda_widget->horizontalHeaderItem(i)->setText(date->addDays(counter).toString(Qt::TextDate));
     }
     QFont font;
     if (isCurrentDay)

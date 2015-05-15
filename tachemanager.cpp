@@ -111,13 +111,13 @@ void TacheManager::load(const QString& f){
                         // We've found disponibilite
                         if(xml.name() == "disponibilite") {
                             xml.readNext();
-                            disponibilite=QDate::fromString(xml.text().toString(),Qt::ISODate);
+                            disponibilite=QDate::fromString(xml.text().toString(),Qt::TextDate);
                             //qDebug()<<"disp="<<disponibilite.toString()<<"\n";
                         }
                         // We've found echeance
                         if(xml.name() == "echeance") {
                             xml.readNext();
-                            echeance=QDate::fromString(xml.text().toString(),Qt::ISODate);
+                            echeance=QDate::fromString(xml.text().toString(),Qt::TextDate);
                             //qDebug()<<"echeance="<<echeance.toString()<<"\n";
                         }
                         // We've found duree
@@ -158,8 +158,8 @@ void  TacheManager::save(const QString& f){
         stream.writeStartElement("tache");
         stream.writeTextElement("identificateur",taches[i]->getId());
         stream.writeTextElement("titre",taches[i]->getTitre());
-        stream.writeTextElement("disponibilite",taches[i]->getDateDisponibilite().toString(Qt::ISODate));
-        stream.writeTextElement("echeance",taches[i]->getDateEcheance().toString(Qt::ISODate));
+        stream.writeTextElement("disponibilite",taches[i]->getDateDisponibilite().toString(Qt::TextDate));
+        stream.writeTextElement("echeance",taches[i]->getDateEcheance().toString(Qt::TextDate));
         QString str;
         stream.writeEndElement();
     }

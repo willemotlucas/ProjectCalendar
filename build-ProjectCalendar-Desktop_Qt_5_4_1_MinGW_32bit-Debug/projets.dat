@@ -2,37 +2,14 @@
 <projets>
     <projet>
         <nom>Projet1</nom>
-        <description>test</description>
-        <disponibilite></disponibilite>
+        <description>Test du projet 1</description>
+        <disponibilite>mer. mai 13 2015</disponibilite>
+        <echeance></echeance>
     </projet>
     <projet>
         <nom>Projet2</nom>
-        <description></description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Proejt3</nom>
-        <description></description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet4</nom>
-        <description></description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet5</nom>
-        <description></description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet6</nom>
-        <description></description>
-        <disponibilite></disponibilite>
-    </projet>
-    <projet>
-        <nom>Projet7</nom>
-        <description></description>
-        <disponibilite>2015-05-07</disponibilite>
+        <description>Test date projet 2</description>
+        <disponibilite>mar. mai 19 2015</disponibilite>
+        <echeance></echeance>
     </projet>
 </projets>

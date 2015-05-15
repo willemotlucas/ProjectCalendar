@@ -63,10 +63,11 @@ void ProjectWindow::creerBarreOutils(){
 void ProjectWindow::creerAffichageProjet(){
     //1ere colonne de notre fenetre gestion projet :
     projectTree = new QTreeWidget;
-    projectTree->setFixedWidth(150);
+    projectTree->setFixedWidth(225);
     QVBoxLayout* partieGauche = new QVBoxLayout;
     partieGauche->addWidget(projectTree);
     projectTree->setDisabled(true);
+    projectTree->setHeaderLabel("Arborescence du projet");
 
     //2ieme colonne de notre fenetre gestion projet ;
         //1er groupbox permettant l'affichage des données du projet chargé
@@ -164,6 +165,11 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     addTacheUnitairePreemptive->setEnabled(true);
     addTacheComposite->setEnabled(true);
     projectTree->setEnabled(true);
+
+    //Construction de l'arborescence du projet
+    QTreeWidgetItem* root = new QTreeWidgetItem(projectTree);
+    //Ajout de la racine
+    root->setText(0,p->getNom());
 }
 void ProjectWindow::fermerProjet(){
     //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
@@ -191,7 +197,6 @@ void ProjectWindow::fermerProjet(){
             addTacheUnitaire->setDisabled(true);
             addTacheUnitairePreemptive->setDisabled(true);
         }
-
 }
 
 /*void ProjectWindow::ajouterTache(){
