@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     creerBarreNavigation();
 
     //Definition de quelques proprietes de le fenetre
-    setMinimumSize(500,350);
+    setMinimumSize(1015,650);
     setWindowTitle("Project_Calendar");
 
     //Lire le fichier XML à chaque chargement de l'application

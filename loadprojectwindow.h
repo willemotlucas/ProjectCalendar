@@ -16,15 +16,11 @@ class LoadProjectWindow : public QDialog
 public:
     explicit LoadProjectWindow(QWidget *parent = 0);
     ~LoadProjectWindow();
-    //const Projet& getLoadedProject();
 private:
     Ui::LoadProjectWindow *ui;
 
 private slots:
     void envoiNomProjet();
-
-
-
 };
 
 #endif // LOADPROJECTWINDOW_H
