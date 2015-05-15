@@ -57,6 +57,7 @@ private slots:
     void ajouterTacheUnitaire(){}
     void ajouterTacheUnitairePreemptive(){}
     void modifierTache();
+    void fermerProjet();
 
 public:
     void chargerDetailsProjet(const QString& nomProjet);
