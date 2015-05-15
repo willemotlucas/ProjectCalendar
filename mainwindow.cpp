@@ -100,11 +100,6 @@ void MainWindow::creerBarreNavigation(){
     //Generation des onglets et chargement de la page d'accueil
     onglets = new QTabWidget(this);
 
-    /*pageAgenda = new QWidget;
-    QVBoxLayout* pAgenda = new QVBoxLayout;
-    AgendaWindow* agendaWindow = new AgendaWindow;
-    pAgenda->addWidget(agendaWindow);
-    pageAgenda->setLayout(pAgenda);*/
     pageCalendar = new QWidget;
     QVBoxLayout* pCalendar = new QVBoxLayout;
     CalendarWindow* calendarWindow = new CalendarWindow;
@@ -113,7 +108,6 @@ void MainWindow::creerBarreNavigation(){
 
     pageProjet = new QWidget;
     QVBoxLayout* pProjet = new QVBoxLayout;
-    //ProjectWindow* projectWindow = new ProjectWindow;
     pProjet->addWidget(projet);
     pageProjet->setLayout(pProjet);
 
@@ -122,6 +116,7 @@ void MainWindow::creerBarreNavigation(){
     onglets->addTab(pageProjet,"Gestion Projet");
     setCentralWidget(onglets);
 }
+
 
 
 void MainWindow::aPropos(){

@@ -174,8 +174,22 @@ void ProjectWindow::fermerProjet(){
 
         if (reponse == QMessageBox::Yes)
         {
-            MainWindow::libererInstanceProjet();
-            MainWindow::getInstanceProjet();
+            //MainWindow::libererInstanceProjet();
+            /* J'arrive pas a trouver une solution en utilisant
+             * libererinstanceProjet bien que je pense que ce soit la facon la plus propre de le faire
+             * l'astuce que j'utilise c'est de remettre tous les champs a 0 au niveau de notre
+             * projectWindow !
+             *
+             */
+            projectTree->clear();
+            projectTree->setDisabled(true);
+            nom->clear();
+            description->clear();
+            dateDispo->clear();
+            dateEcheance->clear();
+            addTacheComposite->setDisabled(true);
+            addTacheUnitaire->setDisabled(true);
+            addTacheUnitairePreemptive->setDisabled(true);
         }
 
 }

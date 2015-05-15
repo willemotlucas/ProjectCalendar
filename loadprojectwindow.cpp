@@ -2,6 +2,7 @@
 #include "ui_loadprojectwindow.h"
 #include "projetmanager.h"
 #include "mainwindow.h"
+#include <QMessageBox>
 
 LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
     QDialog(parent),
@@ -22,5 +23,11 @@ LoadProjectWindow::~LoadProjectWindow()
 }
 
 void LoadProjectWindow::envoiNomProjet(){
-    MainWindow::getInstanceProjet().chargerDetailsProjet(ui->ProjectList->currentItem()->text());
+    ProjectWindow& m = MainWindow::getInstanceProjet();
+    if (m.getNomProjet().isEmpty()){
+        m.chargerDetailsProjet(ui->ProjectList->currentItem()->text());
+    }
+    else {
+        QMessageBox::information(this,"Information","Veuillez fermer le projet actuel si vous voulez ouvrir un autre projet");
+    }
 }
