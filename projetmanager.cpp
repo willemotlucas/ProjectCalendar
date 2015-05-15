@@ -56,6 +56,7 @@ Projet* ProjetManager::getProjet(const QString& nom) const{
             return projets[i];
         }
     }
+    return NULL;
 }
 
 

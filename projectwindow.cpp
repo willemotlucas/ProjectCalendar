@@ -3,12 +3,15 @@
 #include "addtachewindow.h"
 #include "modtachewindow.h"
 #include "loadprojectwindow.h"
+#include "mainwindow.h"
+#include "closeprojectwindow.h"
 #include "projetmanager.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
+#include <QMessageBox>
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -26,6 +29,7 @@ void ProjectWindow::creerActions(){
     actionChargerProjet = new QAction("Charger",this);
     connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
+    connect(actionFermerProjet,SIGNAL(triggered()),this,SLOT(fermerProjet()));
     /*actionAjouterTache = new QAction("Ajouter Tache",this);
     connect(actionAjouterTache,SIGNAL(triggered()),this,SLOT(ajouterTache()));
     actionModifierTache = new QAction("Modifier Tache",this);
@@ -62,6 +66,7 @@ void ProjectWindow::creerAffichageProjet(){
     projectTree->setFixedWidth(150);
     QVBoxLayout* partieGauche = new QVBoxLayout;
     partieGauche->addWidget(projectTree);
+    projectTree->setDisabled(true);
 
     //2ieme colonne de notre fenetre gestion projet ;
         //1er groupbox permettant l'affichage des données du projet chargé
@@ -100,11 +105,15 @@ void ProjectWindow::creerAffichageProjet(){
 
     QGroupBox* detailsProjet = new QGroupBox("Détails du projet");
     detailsProjet->setLayout(detProjet);
+    detailsProjet->setDisabled(true);
 
         //2ieme groupbox permettant l'ajout de tache dans notre projet
     addTacheComposite = new QPushButton("Composite");
+    addTacheComposite->setDisabled(true);
     addTacheUnitaire = new QPushButton("Unitaire");
+    addTacheUnitaire->setDisabled(true);
     addTacheUnitairePreemptive = new QPushButton("Unitaire Preemptive");
+    addTacheUnitairePreemptive->setDisabled(true);
 
     QHBoxLayout* addT = new QHBoxLayout;
     addT->addWidget(addTacheUnitaire);
@@ -130,7 +139,6 @@ void ProjectWindow::creerAffichageProjet(){
 
     QWidget* fenetreWidget = new QWidget;
     fenetreWidget->setLayout(fenetre);
-    fenetreWidget->setDisabled(true);
     setCentralWidget(fenetreWidget);
 }
 
@@ -151,6 +159,25 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     description->setPlainText(p->getDescription());
     dateDispo->setDate(p->getDisponibilite());
     dateEcheance->setDate(p->getEcheance());
+    //Arbre et ajout de tache disponibles dorenavant !
+    addTacheUnitaire->setEnabled(true);
+    addTacheUnitairePreemptive->setEnabled(true);
+    addTacheComposite->setEnabled(true);
+    projectTree->setEnabled(true);
+}
+void ProjectWindow::fermerProjet(){
+    //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
+    //l'utilisateur qu'il va quitter la gestion du projet en cours
+    //CloseProjectWindow *closeProject = new CloseProjectWindow(this);
+    //closeProject->exec();
+    int reponse = QMessageBox::question(this, "Fermer Projet", "Etes vous sur de vouloir quitter la gestion de ce projet ?", QMessageBox ::Yes | QMessageBox::No);
+
+        if (reponse == QMessageBox::Yes)
+        {
+            MainWindow::libererInstanceProjet();
+            MainWindow::getInstanceProjet();
+        }
+
 }
 
 /*void ProjectWindow::ajouterTache(){
