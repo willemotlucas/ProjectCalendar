@@ -123,7 +123,8 @@ DIST          =  ..\mainwindow.h \
 		..\tacheunitaire.h \
 		..\tachecomposite.h \
 		..\loadprojectwindow.h \
-		..\calendarwindow.h ..\main.cpp \
+		..\calendarwindow.h \
+		..\closeprojectwindow.h ..\main.cpp \
 		..\mainwindow.cpp \
 		..\duree.cpp \
 		..\tache.cpp \
@@ -1012,14 +1013,6 @@ debug/moc_loadprojectwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QDialog
 		P:/Qt/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
-		../projet.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
-		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
-		../tache.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QTextStream \
-		../calendarexception.h \
-		../duree.h \
 		../loadprojectwindow.h
 	P:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IP:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -ID:/Lucas/Documents/GitHub/LO21/ProjectCalendar -IP:/Qt/5.4/mingw491_32/include -IP:/Qt/5.4/mingw491_32/include/QtWidgets -IP:/Qt/5.4/mingw491_32/include/QtGui -IP:/Qt/5.4/mingw491_32/include/QtXml -IP:/Qt/5.4/mingw491_32/include/QtCore -I. ..\loadprojectwindow.h -o debug\moc_loadprojectwindow.cpp
 
@@ -1128,6 +1121,8 @@ debug/moc_calendarwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindo
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		../calendarwindow.h
 	P:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IP:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -ID:/Lucas/Documents/GitHub/LO21/ProjectCalendar -IP:/Qt/5.4/mingw491_32/include -IP:/Qt/5.4/mingw491_32/include/QtWidgets -IP:/Qt/5.4/mingw491_32/include/QtGui -IP:/Qt/5.4/mingw491_32/include/QtXml -IP:/Qt/5.4/mingw491_32/include/QtCore -I. ..\calendarwindow.h -o debug\moc_calendarwindow.cpp
 
@@ -3308,6 +3303,16 @@ debug/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
 		../modtachewindow.h \
 		../loadprojectwindow.h \
+		../mainwindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtGui/QKeySequence \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTabWidget \
+		../agendawindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCalendarWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcalendarwidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTableWidget \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtablewidget.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtableview.h \
+		../closeprojectwindow.h \
 		../global.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QToolBar \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
@@ -3317,7 +3322,9 @@ debug/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qlayoutitem.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QHBoxLayout \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QDebug
+		P:/Qt/5.4/mingw491_32/include/QtCore/QDebug \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMessageBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\projectwindow.o ..\projectwindow.cpp
 
 debug/tacheunitairepreemptive.o: ../tacheunitairepreemptive.cpp ../tacheunitairepreemptive.h \
@@ -3654,14 +3661,6 @@ debug/loadprojectwindow.o: ../loadprojectwindow.cpp ../loadprojectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
-		../projet.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
-		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
-		../tache.h \
-		P:/Qt/5.4/mingw491_32/include/QtCore/QTextStream \
-		../calendarexception.h \
-		../duree.h \
 		ui_loadprojectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QVariant \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -3707,6 +3706,14 @@ debug/loadprojectwindow.o: ../loadprojectwindow.cpp ../loadprojectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
 		../projetmanager.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
+		../projet.h \
+		../tache.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QTextStream \
+		../calendarexception.h \
+		../duree.h \
 		../mainwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmainwindow.h \
@@ -3849,6 +3856,8 @@ debug/calendarwindow.o: ../calendarwindow.cpp ../calendarwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
+		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		ui_calendarwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QVariant \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -3887,20 +3896,20 @@ debug/calendarwindow.o: ../calendarwindow.cpp ../calendarwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMenuBar \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmenu.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QPushButton \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpacerItem \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QStatusBar \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qstatusbar.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QTableWidget \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtablewidget.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtableview.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QToolBar \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
+		P:/Qt/5.4/mingw491_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\calendarwindow.o ..\calendarwindow.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 

@@ -106,10 +106,10 @@ void MainWindow::creerBarreNavigation(){
     pAgenda->addWidget(agendaWindow);
     pageAgenda->setLayout(pAgenda);*/
     pageCalendar = new QWidget;
-    /*QVBoxLayout* pCalendar = new QVBoxLayout;
+    QVBoxLayout* pCalendar = new QVBoxLayout;
     CalendarWindow* calendarWindow = new CalendarWindow;
     pCalendar->addWidget(calendarWindow);
-    pageCalendar->setLayout(pCalendar);*/
+    pageCalendar->setLayout(pCalendar);
 
     pageProjet = new QWidget;
     QVBoxLayout* pProjet = new QVBoxLayout;

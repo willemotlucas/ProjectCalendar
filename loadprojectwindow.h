@@ -14,10 +14,7 @@ class LoadProjectWindow : public QDialog
 public:
     explicit LoadProjectWindow(QWidget *parent = 0);
     ~LoadProjectWindow();
-<<<<<<< HEAD
-=======
 
->>>>>>> 853b5e1a054e66e3f789551a22caf38ac12e530d
 private:
     Ui::LoadProjectWindow *ui;
 
