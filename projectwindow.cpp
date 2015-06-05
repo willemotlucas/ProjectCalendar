@@ -19,6 +19,9 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     creerActions();
     creerBarreOutils();
     creerAffichageProjet();
+    projetOuvert = NULL;
+
+    connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(ajouterTacheUnitaire()));
 }
 
 
@@ -30,9 +33,7 @@ void ProjectWindow::creerActions(){
     connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
     connect(actionFermerProjet,SIGNAL(triggered()),this,SLOT(fermerProjet()));
-    /*actionAjouterTache = new QAction("Ajouter Tache",this);
-    connect(actionAjouterTache,SIGNAL(triggered()),this,SLOT(ajouterTache()));
-    actionModifierTache = new QAction("Modifier Tache",this);
+    /*actionModifierTache = new QAction("Modifier Tache",this);
     connect(actionModifierTache,SIGNAL(triggered()),this,SLOT(modifierTache()));
     actionAnnulerTache = new QAction("Annuler",this);*/
     actionImprimer = new QAction("Imprimer",this);
@@ -155,7 +156,11 @@ void ProjectWindow::chargerProjet(){
 
 void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     ProjetManager& m = ProjetManager::getInstance();
-    Projet* p = m.getProjet(nomProjet);
+
+    //On garde le projet ouvert en mémoire grâce à un attribut de la projectWindow
+    //Afin de retrouver facilement le projet en cours de modification pour lui ajouter des tâches
+    projetOuvert = m.getProjet(nomProjet);
+
     nom->setText(p->getNom());
     description->setPlainText(p->getDescription());
     dateDispo->setDate(p->getDisponibilite());
@@ -167,9 +172,9 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     projectTree->setEnabled(true);
 
     //Construction de l'arborescence du projet
-    QTreeWidgetItem* root = new QTreeWidgetItem(projectTree);
+    rootTree = new QTreeWidgetItem(projectTree);
     //Ajout de la racine
-    root->setText(0,p->getNom());
+    rootTree->setText(0,p->getNom());
 }
 void ProjectWindow::fermerProjet(){
     //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
@@ -196,18 +201,28 @@ void ProjectWindow::fermerProjet(){
             addTacheComposite->setDisabled(true);
             addTacheUnitaire->setDisabled(true);
             addTacheUnitairePreemptive->setDisabled(true);
+            projetOuvert = NULL;
         }
 }
 
-/*void ProjectWindow::ajouterTache(){
+void ProjectWindow::fenetreAjouterTacheUnitaire(){
     AddTacheWindow *newTache = new AddTacheWindow(this);
     newTache->exec();
-}*/
+}
 
 void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
     modTache->exec();
 }
+
+void ProjectWindow::ajouterTache(const Tache &t){
+    ProjetManager& m = ProjetManager::getInstance();
+    m.getProjet(projetOuvert)->ajouterTache(t);
+    QTreeWidgetItem* tacheTree = new QTreeWidgetItem(t.getTitre());
+    rootTree->addChild(tacheTree);
+}
+
+
 
 
 

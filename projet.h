@@ -34,7 +34,7 @@ class Projet
     QDate echeance;
 
     //+Liste des taches du projet
-    //std::vector<Tache> taches;
+    std::vector<Tache*> taches;
 
     Projet(const Projet& p);
     Projet& operator=(const Projet&);

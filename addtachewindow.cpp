@@ -1,8 +1,16 @@
 #include "addtachewindow.h"
+#include "tache.h"
+#include "tacheunitaire.h"
+#include "tachemanager.h"
+#include "projectwindow.h"
+#include "mainwindow.h"
+
 #include <QLabel>
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QTime>
+#include <QMessageBox>
 
 AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     this->setWindowTitle("Nouvelle Tache");
@@ -14,7 +22,6 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     QLabel* dureeLabel= new QLabel("Durée",this);
     identificateur=new QLineEdit;
     titre= new QTextEdit;
-    preemptive= new QCheckBox("preemptive",this);
     disponibilite= new QDateEdit;
     disponibilite->setDate(QDate::currentDate());
     echeance = new QDateEdit;
@@ -29,7 +36,6 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     QHBoxLayout* coucheH1= new QHBoxLayout;
     coucheH1->addWidget(idLabel);
     coucheH1->addWidget(identificateur);
-    coucheH1->addWidget(preemptive);
 
     QHBoxLayout* coucheH2= new QHBoxLayout;
     coucheH2->addWidget(titreLabel);
@@ -56,12 +62,22 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
 
     setLayout(couche);
 
-    connect(ok,SIGNAL(clicked()),this,SLOT(ajouterTache()));
+    connect(ok,SIGNAL(clicked()),this,SLOT(envoiTacheUnitaire()));
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-void AddTacheWindow::ajouterTache(){
+void AddTacheWindow::envoiTacheUnitaire(){
+    try{
+        ProjectWindow& pwm = MainWindow::getInstanceProjet();
+        TacheManager& tm = TacheManager::getInstance();
+        TacheUnitaire* t = tm.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value()));
+        pwm.ajouterTacheUnitaire(t);
+    }catch(CalendarException e){
+        QMessageBox::information(this,"Information",e.getInfo());
 
+    }
+
+))
 }
 
 

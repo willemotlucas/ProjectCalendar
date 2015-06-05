@@ -11,6 +11,7 @@
 #include <QDateEdit>
 #include <QGroupBox>
 
+#include "projet.h"
 
 class ProjectWindow : public QMainWindow
 {
@@ -38,9 +39,9 @@ private:
     QAction* actionPrecedent;
     QAction* actionSuivant;
 
-
     //Arbre view et bouton d'ajout de taches
     QTreeWidget* projectTree;
+    QTreeWidgetItem* rootTree;
     QPushButton* addTacheComposite;
     QPushButton* addTacheUnitaire;
     QPushButton* addTacheUnitairePreemptive;
@@ -51,15 +52,16 @@ private:
     QDateEdit* dateDispo;
     QDateEdit* dateEcheance;
 
-
+    Projet* projetOuvert;
 signals:
 
 private slots:
     void nouveauProjet();
     void chargerProjet();
-    void ajouterTacheComposite(){}
-    void ajouterTacheUnitaire(){}
-    void ajouterTacheUnitairePreemptive(){}
+    void fenetreAjouterTacheComposite(){}
+    void fenetreAjouterTacheUnitaire();
+    void fenetreAjouterTacheUnitairePreemptive(){}
+    void ajouterTache(const Tache& t);
     void modifierTache();
     void fermerProjet();
 

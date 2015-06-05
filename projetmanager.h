@@ -13,7 +13,6 @@ public:
     Projet& ajouterProjet(const QString& nom, const QString& desc, const QDate& dispo);
     Projet* getProjet(const QString& nom) const;
     const Projet& getProjetConst(const QString& nom) const;
-    const contProjet& getProjets() const { return projets;}
     bool isProjetExistante(const QString& nom) const { return trouverProjet(nom)!=0; }
     void load(const QString& f);
     void save(const QString& f);

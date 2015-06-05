@@ -18,7 +18,6 @@ class TacheComposite : public Tache
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
 
-
 public:
     //La destruction d'une tache composite entraîne la destruction de ses sous-tâches
     ~TacheComposite(){ soustaches.clear(); }

@@ -2,7 +2,9 @@
 #include <QTextCodec>
 #include <QtXml>
 #include <QMessageBox>
+
 #include "tachemanager.h"
+#include "tacheunitaire.h"
 
 TacheManager::TacheManager():taches(0){}
 
@@ -16,11 +18,16 @@ Tache* TacheManager::trouverTache(const QString& id)const{
     return 0;
 }
 
-Tache& TacheManager::ajouterTache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline){
+/*Tache& TacheManager::ajouterTache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline){
 //    if (trouverTache(id)) throw CalendarException("erreur, TacheManager, tache deja existante");
 //    Tache* newt=new Tache(id,t,dispo,deadline);
 //    addItem(newt);
 //    return *newt;
+}*/
+
+Tache& TacheManager::creerTacheUnitaire(const QString &id, const QString &t, const QDate &dispo, const QDate &echeance, const QTime &duree){
+    TacheUnitaire* t = new TacheUnitaire(id,t,dispo,echeance,duree);
+    return *t;
 }
 
 Tache& TacheManager::getTache(const QString& id){
@@ -122,7 +129,7 @@ void TacheManager::load(const QString& f){
                     xml.readNext();
                 }
                 //qDebug()<<"ajout tache "<<identificateur<<"\n";
-                ajouterTache(identificateur,titre,disponibilite,echeance);
+                //ajouterTache(identificateur,titre,disponibilite,echeance);
 
             }
         }

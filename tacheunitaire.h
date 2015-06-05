@@ -39,7 +39,7 @@ private:
 
     friend class TacheManager;
     TacheUnitaire(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur):
-        Tache(id, t, dispo, deadline){ etat = NON_COMMENCEE; if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée de la tâche ne peut être supérieur à 12h."); }
+        Tache(id, t, dispo, deadline),etat(NON_COMMENCEE){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
     TacheUnitaire(const TacheUnitaire& t);
     const TacheUnitaire& operator=(const TacheUnitaire& f);
 };

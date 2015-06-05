@@ -20,7 +20,6 @@ public:
 private:
     QLineEdit* identificateur;
     QTextEdit* titre;
-    QCheckBox* preemptive;
     QDateEdit* disponibilite;
     QDateEdit* echeance;
     QSpinBox* hDuree;
@@ -29,7 +28,7 @@ private:
     QPushButton* annuler;
 
 private slots:
-    void ajouterTache();
+    void envoiTacheUnitaire();
 
 };
 
