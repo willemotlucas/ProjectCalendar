@@ -10,7 +10,7 @@ LoadProjectWindow::LoadProjectWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ProjetManager& m = ProjetManager::getInstance();
-    for(ProjetManager::contProjet::const_iterator it = m.getProjets().begin(); it != m.getProjets().end(); ++it){
+    for(ProjetManager::contProjet::const_iterator it = m.begin(); it != m.end(); ++it){
         ui->ProjectList->addItem((*it)->getNom());
     }
     connect(ui->LoadButton, SIGNAL(accepted()), this, SLOT(envoiNomProjet()));

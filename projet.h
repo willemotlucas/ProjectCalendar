@@ -6,11 +6,31 @@
 #include <vector>
 #include "tache.h"
 
+/**
+ * @brief Classe Projet
+ * Représente un projet
+ */
 class Projet
 {
+    /**
+     * @brief nom
+     * nom du projet
+     */
     QString nom;
+    /**
+     * @brief description
+     * description du projet
+     */
     QString description;
+    /**
+     * @brief disponibilite
+     * date de disponibilite du projet
+     */
     QDate disponibilite;
+    /**
+     * @brief echeance
+     * date d'échéance du projet
+     */
     QDate echeance;
 
     //+Liste des taches du projet

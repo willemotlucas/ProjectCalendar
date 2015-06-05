@@ -20,6 +20,9 @@ public:
     static ProjetManager& getInstance();
     static void libererInstance();
 
+    contProjet::iterator begin(){return projets.begin();}
+    contProjet::iterator end(){return projets.end();}
+
 private:
     contProjet projets;
     void addItem(Projet* p);
