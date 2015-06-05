@@ -4,22 +4,14 @@
 #include <QMessageBox>
 #include "tachemanager.h"
 
-TacheManager::TacheManager():taches(0),nb(0),nbMax(0){}
+TacheManager::TacheManager():taches(0){}
+
 void TacheManager::addItem(Tache* t){
-    if (nb==nbMax){
-        Tache** newtab=new Tache*[nbMax+10];
-        for(unsigned int i=0; i<nb; i++) newtab[i]=taches[i];
-        // ou memcpy(newtab,taches,nb*sizeof(Tache*));
-        nbMax+=10;
-        Tache** old=taches;
-        taches=newtab;
-        delete[] old;
-    }
-    taches[nb++]=t;
+    taches.push_back(t->clone());
 }
 
 Tache* TacheManager::trouverTache(const QString& id)const{
-    for(unsigned int i=0; i<nb; i++)
+    for(unsigned int i=0; i<taches.size(); i++)
         if (id==taches[i]->getId()) return taches[i];
     return 0;
 }
@@ -43,16 +35,15 @@ const Tache& TacheManager::getTache(const QString& id)const{
 
 TacheManager::~TacheManager(){
     if (file!="") save(file);
-    for(unsigned int i=0; i<nb; i++) delete taches[i];
-    delete[] taches;
+    taches.clear();
     file="";
 }
 
 void TacheManager::load(const QString& f){
     //qDebug()<<"debut load\n";
     //this->~TacheManager();
-    for(unsigned int i=0; i<nb; i++) delete taches[i];
-    delete[] taches;
+    taches.clear();
+//    delete[] taches;
     file=f;
     QFile fin(file);
     // If we can't open it, let's show an error message.
@@ -154,7 +145,7 @@ void  TacheManager::save(const QString& f){
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
     stream.writeStartElement("taches");
-    for(unsigned int i=0; i<nb; i++){
+    for(unsigned int i=0; i<taches.size(); i++){
         stream.writeStartElement("tache");
         stream.writeTextElement("identificateur",taches[i]->getId());
         stream.writeTextElement("titre",taches[i]->getTitre());

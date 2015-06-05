@@ -27,6 +27,7 @@ public:
     bool isCommencee() const { return etat == EN_COURS; }
     bool isTerminee() const { return etat == TERMINEE; }
     bool isProgrammee() const { return etat == PROGRAMMEE; }
+    TacheUnitaire* clone() const {return new TacheUnitaire(*this);}
 
     void setDateEcheance(const QDate& e);
 
@@ -39,6 +40,8 @@ private:
     friend class TacheManager;
     TacheUnitaire(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur):
         Tache(id, t, dispo, deadline){ etat = NON_COMMENCEE; if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée de la tâche ne peut être supérieur à 12h."); }
+    TacheUnitaire(const TacheUnitaire& t);
+    const TacheUnitaire& operator=(const TacheUnitaire& f);
 };
 
 #endif // TACHEUNITAIRE_H

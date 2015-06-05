@@ -10,9 +10,8 @@
 
 class TacheManager {
 private:
-    Tache** taches;
-    unsigned int nb;
-    unsigned int nbMax;
+    typedef std::vector<Tache*> contTache;
+    contTache taches;
     void addItem(Tache* t);
     Tache* trouverTache(const QString& id) const;
     QString file;
@@ -36,6 +35,8 @@ public:
     void save(const QString& f);
     static TacheManager& getInstance();
     static void libererInstance();
+    contTache::iterator begin(){return taches.begin();}
+    contTache::iterator end(){return taches.end();}
 
 /*
     Iterator getIterator() {

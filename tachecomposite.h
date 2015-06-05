@@ -15,6 +15,8 @@ class TacheComposite : public Tache
 
     friend class TacheManager;
     TacheComposite(const QString& id, const QString& t, const QDate& dispo):Tache(id, t, dispo){}
+    TacheComposite(const TacheComposite& t);
+    const TacheComposite& operator=(const TacheComposite& t);
 
 
 public:
@@ -23,6 +25,7 @@ public:
 
     bool isCommencee() const;
     bool isTerminee() const;
+    TacheComposite* clone() const {return new TacheComposite(*this);}
 
     //SOUSTACHE METHODS
     void ajouterSousTache(Tache& tache);
