@@ -59,8 +59,7 @@ HEADERS  += mainwindow.h \
     tacheunitaire.h \
     tachecomposite.h \
     loadprojectwindow.h \
-    calendarwindow.h \
-    closeprojectwindow.h
+    calendarwindow.h
 
 FORMS    += mainwindow.ui \
     loadprojectwindow.ui \
