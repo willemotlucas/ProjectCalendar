@@ -4,7 +4,6 @@
 #include "modtachewindow.h"
 #include "loadprojectwindow.h"
 #include "mainwindow.h"
-#include "closeprojectwindow.h"
 #include "projetmanager.h"
 #include "global.h"
 #include <QToolBar>
