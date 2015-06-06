@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ProjectWindow_t {
-    QByteArrayData data[9];
-    char stringdata[144];
+    QByteArrayData data[11];
+    char stringdata[158];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,17 +33,20 @@ QT_MOC_LITERAL(0, 0, 13), // "ProjectWindow"
 QT_MOC_LITERAL(1, 14, 13), // "nouveauProjet"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 13), // "chargerProjet"
-QT_MOC_LITERAL(4, 43, 21), // "ajouterTacheComposite"
-QT_MOC_LITERAL(5, 65, 20), // "ajouterTacheUnitaire"
-QT_MOC_LITERAL(6, 86, 30), // "ajouterTacheUnitairePreemptive"
-QT_MOC_LITERAL(7, 117, 13), // "modifierTache"
-QT_MOC_LITERAL(8, 131, 12) // "fermerProjet"
+QT_MOC_LITERAL(4, 43, 28), // "fenetreAjouterTacheComposite"
+QT_MOC_LITERAL(5, 72, 37), // "fenetreAjouterTacheUnitairePr..."
+QT_MOC_LITERAL(6, 110, 12), // "ajouterTache"
+QT_MOC_LITERAL(7, 123, 5), // "Tache"
+QT_MOC_LITERAL(8, 129, 1), // "t"
+QT_MOC_LITERAL(9, 131, 13), // "modifierTache"
+QT_MOC_LITERAL(10, 145, 12) // "fermerProjet"
 
     },
     "ProjectWindow\0nouveauProjet\0\0chargerProjet\0"
-    "ajouterTacheComposite\0ajouterTacheUnitaire\0"
-    "ajouterTacheUnitairePreemptive\0"
-    "modifierTache\0fermerProjet"
+    "fenetreAjouterTacheComposite\0"
+    "fenetreAjouterTacheUnitairePreemptive\0"
+    "ajouterTache\0Tache\0t\0modifierTache\0"
+    "fermerProjet"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,16 +68,16 @@ static const uint qt_meta_data_ProjectWindow[] = {
        3,    0,   50,    2, 0x08 /* Private */,
        4,    0,   51,    2, 0x08 /* Private */,
        5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    0,   55,    2, 0x08 /* Private */,
+       6,    1,   53,    2, 0x08 /* Private */,
+       9,    0,   56,    2, 0x08 /* Private */,
+      10,    0,   57,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -88,15 +91,14 @@ void ProjectWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         switch (_id) {
         case 0: _t->nouveauProjet(); break;
         case 1: _t->chargerProjet(); break;
-        case 2: _t->ajouterTacheComposite(); break;
-        case 3: _t->ajouterTacheUnitaire(); break;
-        case 4: _t->ajouterTacheUnitairePreemptive(); break;
+        case 2: _t->fenetreAjouterTacheComposite(); break;
+        case 3: _t->fenetreAjouterTacheUnitairePreemptive(); break;
+        case 4: _t->ajouterTache((*reinterpret_cast< const Tache(*)>(_a[1]))); break;
         case 5: _t->modifierTache(); break;
         case 6: _t->fermerProjet(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject ProjectWindow::staticMetaObject = {

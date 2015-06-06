@@ -61,12 +61,12 @@ private slots:
     void fenetreAjouterTacheComposite(){}
     void fenetreAjouterTacheUnitaire();
     void fenetreAjouterTacheUnitairePreemptive(){}
-    void ajouterTache(const Tache& t);
     void modifierTache();
     void fermerProjet();
 
 public:
     void chargerDetailsProjet(const QString& nomProjet);
+    void ajouterTache(const Tache& t);
 };
 
 #endif // PROJECTWINDOW_H

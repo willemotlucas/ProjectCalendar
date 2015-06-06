@@ -10,11 +10,8 @@
 
 class Tache {
 
-    Tache(const Tache& t);
-    Tache& operator=(const Tache&);
-    friend class TacheManager;
-
 protected:
+    friend class TacheManager;
     QString identificateur;
     QString titre;
     QDate disponibilite;
@@ -27,6 +24,8 @@ protected:
     //Constructeur de tache sans deadline pour les taches composites : la deadline est la borne supérieur des sous-tâches de la tache composite.
     Tache(const QString& id, const QString& t, const QDate& dispo):
             identificateur(id),titre(t),disponibilite(dispo){}
+//    Tache(const Tache& t);
+    Tache& operator=(const Tache&);
 
 public:
     //DESTRUCTOR

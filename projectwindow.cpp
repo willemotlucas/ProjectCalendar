@@ -21,7 +21,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     creerAffichageProjet();
     projetOuvert = NULL;
 
-    connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(ajouterTacheUnitaire()));
+    connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
 }
 
 
@@ -161,10 +161,10 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     //Afin de retrouver facilement le projet en cours de modification pour lui ajouter des tâches
     projetOuvert = m.getProjet(nomProjet);
 
-    nom->setText(p->getNom());
-    description->setPlainText(p->getDescription());
-    dateDispo->setDate(p->getDisponibilite());
-    dateEcheance->setDate(p->getEcheance());
+    nom->setText(projetOuvert->getNom());
+    description->setPlainText(projetOuvert->getDescription());
+    dateDispo->setDate(projetOuvert->getDisponibilite());
+    dateEcheance->setDate(projetOuvert->getEcheance());
     //Arbre et ajout de tache disponibles dorenavant !
     addTacheUnitaire->setEnabled(true);
     addTacheUnitairePreemptive->setEnabled(true);
@@ -174,7 +174,7 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     //Construction de l'arborescence du projet
     rootTree = new QTreeWidgetItem(projectTree);
     //Ajout de la racine
-    rootTree->setText(0,p->getNom());
+    rootTree->setText(0,projetOuvert->getNom());
 }
 void ProjectWindow::fermerProjet(){
     //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
@@ -217,9 +217,10 @@ void ProjectWindow::modifierTache(){
 
 void ProjectWindow::ajouterTache(const Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
-    m.getProjet(projetOuvert)->ajouterTache(t);
-    QTreeWidgetItem* tacheTree = new QTreeWidgetItem(t.getTitre());
-    rootTree->addChild(tacheTree);
+    m.getProjet(projetOuvert->getNom())->ajouterTache(t);
+    qDebug()<<"tache ajouté au projet "<<t.getTitre()<<"\n";
+    //QTreeWidgetItem* tacheTree = new QTreeWidgetItem(t.getTitre());
+    //rootTree->addChild(tacheTree);
 }
 
 

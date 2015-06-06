@@ -9,7 +9,7 @@
 TacheManager::TacheManager():taches(0){}
 
 void TacheManager::addItem(Tache* t){
-    taches.push_back(t->clone());
+    taches.push_back(t);
 }
 
 Tache* TacheManager::trouverTache(const QString& id)const{
@@ -25,8 +25,8 @@ Tache* TacheManager::trouverTache(const QString& id)const{
 //    return *newt;
 }*/
 
-Tache& TacheManager::creerTacheUnitaire(const QString &id, const QString &t, const QDate &dispo, const QDate &echeance, const QTime &duree){
-    TacheUnitaire* t = new TacheUnitaire(id,t,dispo,echeance,duree);
+Tache& TacheManager::creerTacheUnitaire(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree){
+    Tache* t = new TacheUnitaire(id,desc,dispo,echeance,duree);
     return *t;
 }
 

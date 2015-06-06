@@ -70,14 +70,11 @@ void AddTacheWindow::envoiTacheUnitaire(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
         TacheManager& tm = TacheManager::getInstance();
-        TacheUnitaire* t = tm.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value()));
-        pwm.ajouterTacheUnitaire(t);
+        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+        pwm.ajouterTache(t);
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
-
     }
-
-))
 }
 
 
