@@ -1,15 +1,31 @@
 #ifndef PROJETMANAGER_H
 #define PROJETMANAGER_H
 
+/*!
+ * \file ProjetManager.h
+ * \brief Singleton permettant de s'occuper des projets
+ * \author Lucas WILLEMOT et Valentin PAUL
+ * \version 0.1
+ */
+
 #include <QString>
 #include <QDate>
 #include <vector>
 #include "projet.h"
 
+/*! \class ProjetManager
+   * \brief Classe Singleton Projet Manager
+   *
+   *  La classe Projet Manager s'occupe de gerer
+   *  les projets que ce soit au niveau de la sauvegarde XML
+   *  qu'au niveau de leur creation
+   */
 class ProjetManager
 {
 public:
     typedef std::vector<Projet*> contProjet;
+
+
     Projet& ajouterProjet(const QString& nom, const QString& desc, const QDate& dispo);
     Projet* getProjet(const QString& nom) const;
     const Projet& getProjetConst(const QString& nom) const;
