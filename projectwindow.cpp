@@ -5,6 +5,7 @@
 #include "loadprojectwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
+#include "tachemanager.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -216,10 +217,16 @@ void ProjectWindow::modifierTache(){
 
 void ProjectWindow::ajouterTache(const Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
-    m.getProjet(projetOuvert->getNom())->ajouterTache(t);
-    qDebug()<<"tache ajouté au projet "<<t.getTitre()<<"\n";
-    //QTreeWidgetItem* tacheTree = new QTreeWidgetItem(t.getTitre());
-    //rootTree->addChild(tacheTree);
+    TacheManager &tm = TacheManager::getInstance();
+    Projet* p = m.getProjet(projetOuvert->getNom());
+    p->ajouterTache(t);
+    QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+    tacheTree->setText(0, t.getId());
+    rootTree->addChild(tacheTree);
+    for(Projet::contTache::iterator it = p->begin(); it != p->end(); ++it){
+        qDebug()<<"=============\n"<<(*it)->getId()<<"\n"<<(*it)->getTitre()<<"\n"<<(*it)->getDateDisponibilite()<<"\n"<<(*it)->getDateEcheance();
+    }
+    tm.save(projetOuvert->getNom(), t);
 }
 
 

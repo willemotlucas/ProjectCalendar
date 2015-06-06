@@ -13,6 +13,8 @@
 
 class AddTacheWindow : public QDialog
 {
+    Q_OBJECT
+
 public:
     explicit AddTacheWindow(QWidget *parent=0);
     ~AddTacheWindow(){}

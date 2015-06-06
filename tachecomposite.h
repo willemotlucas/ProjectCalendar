@@ -17,6 +17,7 @@ class TacheComposite : public Tache
     TacheComposite(const QString& id, const QString& t, const QDate& dispo):Tache(id, t, dispo){}
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
+    void write(const QString &projet) const{}
 
 public:
     //La destruction d'une tache composite entraîne la destruction de ses sous-tâches

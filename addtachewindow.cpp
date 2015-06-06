@@ -72,6 +72,7 @@ void AddTacheWindow::envoiTacheUnitaire(){
         TacheManager& tm = TacheManager::getInstance();
         Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
         pwm.ajouterTache(t);
+        this->close();
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }

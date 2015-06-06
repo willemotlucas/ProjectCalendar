@@ -20,12 +20,14 @@ protected:
 
     Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline):
             identificateur(id),titre(t),disponibilite(dispo),echeance(deadline){}
-
     //Constructeur de tache sans deadline pour les taches composites : la deadline est la borne supérieur des sous-tâches de la tache composite.
     Tache(const QString& id, const QString& t, const QDate& dispo):
             identificateur(id),titre(t),disponibilite(dispo){}
 //    Tache(const Tache& t);
     Tache& operator=(const Tache&);
+
+    void save(const QString& projet) const {write(projet);}
+    virtual void write(const QString& projet) const  = 0;
 
 public:
     //DESTRUCTOR
@@ -45,6 +47,7 @@ public:
     virtual bool isCommencee() const = 0;
     virtual bool isTerminee() const = 0;
     virtual Tache* clone() const = 0;
+
     //Peut-être mettre en privée pour que seul le TacheManager puisse gérer la date d'échéance d'une tache composite en fonction
     //De ses sous-taches. Mettre en abstrait pour changer le fonctionnement en fonction de la classe fille
 //        if (e<disp) throw CalendarException("erreur T�che : date ech�ance < date disponibilit�");

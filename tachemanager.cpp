@@ -5,6 +5,8 @@
 
 #include "tachemanager.h"
 #include "tacheunitaire.h"
+#include "projet.h"
+#include "global.h"
 
 TacheManager::TacheManager():taches(0){}
 
@@ -41,9 +43,9 @@ const Tache& TacheManager::getTache(const QString& id)const{
 }
 
 TacheManager::~TacheManager(){
-    if (file!="") save(file);
-    taches.clear();
-    file="";
+    //if (file!="") save(file);
+//    taches.clear();
+//    file="";
 }
 
 void TacheManager::load(const QString& f){
@@ -143,27 +145,8 @@ void TacheManager::load(const QString& f){
     //qDebug()<<"fin load\n";
 }
 
-void  TacheManager::save(const QString& f){
-    file=f;
-    QFile newfile( file);
-    if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-    QXmlStreamWriter stream(&newfile);
-    stream.setAutoFormatting(true);
-    stream.writeStartDocument();
-    stream.writeStartElement("taches");
-    for(unsigned int i=0; i<taches.size(); i++){
-        stream.writeStartElement("tache");
-        stream.writeTextElement("identificateur",taches[i]->getId());
-        stream.writeTextElement("titre",taches[i]->getTitre());
-        stream.writeTextElement("disponibilite",taches[i]->getDateDisponibilite().toString(Qt::TextDate));
-        stream.writeTextElement("echeance",taches[i]->getDateEcheance().toString(Qt::TextDate));
-        QString str;
-        stream.writeEndElement();
-    }
-    stream.writeEndElement();
-    stream.writeEndDocument();
-    newfile.close();
+void  TacheManager::save(const QString& projet, const Tache& t){
+    t.save(projet);
 }
 
 

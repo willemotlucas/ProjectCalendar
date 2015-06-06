@@ -34,7 +34,7 @@ public:
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
     const Tache& getTache(const QString& code) const;
     void load(const QString& f);
-    void save(const QString& f);
+    void save(const QString& projet, const Tache& t);
     static TacheManager& getInstance();
     static void libererInstance();
     contTache::iterator begin(){return taches.begin();}

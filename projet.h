@@ -12,6 +12,20 @@
  */
 class Projet
 {
+public:
+    typedef std::vector<Tache*> contTache;
+    ~Projet();
+    const QString& getNom() const { return nom; }
+    const QString& getDescription() const { return description; }
+    const QDate& getDisponibilite() const { return disponibilite; }
+    const QDate& getEcheance() const { return echeance; }
+
+    void ajouterTache(const Tache& t);
+
+    contTache::iterator begin(){return taches.begin();}
+    contTache::iterator end(){return taches.end();}
+
+private:
     /**
      * @brief nom
      * nom du projet
@@ -34,22 +48,17 @@ class Projet
     QDate echeance;
 
     //+Liste des taches du projet
-    std::vector<Tache*> taches;
+    contTache taches;
 
     Projet(const Projet& p);
     Projet& operator=(const Projet&);
 
     //Appelé par la méthode ajouterTache seulement
     void setDateEcheance(const QDate& d);
-public:
+    friend class ProjetManager;
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
-    ~Projet();
-    const QString& getNom() const { return nom; }
-    const QString& getDescription() const { return description; }
-    const QDate& getDisponibilite() const { return disponibilite; }
-    const QDate& getEcheance() const { return echeance; }
 
-    void ajouterTache(const Tache& t);
+
 };
 
 #endif // PROJET_H

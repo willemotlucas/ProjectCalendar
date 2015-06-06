@@ -83,14 +83,14 @@ void ProjetManager::load(const QString& f){
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&fin);
-    //qDebug()<<"debut fichier\n";
+    qDebug()<<"debut fichier\n";
     // We'll parse the XML until we reach end of it.
     while(!xml.atEnd() && !xml.hasError()) {
         // Read next element.
         QXmlStreamReader::TokenType token = xml.readNext();
         // If token is just StartDocument, we'll go to next.
         if(token == QXmlStreamReader::StartDocument) continue;
-        //qDebug()<<"StartDocument\n";
+        qDebug()<<"StartDocument\n";
         // If token is StartElement, we'll see if we can read it.
         if(token == QXmlStreamReader::StartElement) {
             // If it's named projets, we'll go to the next.

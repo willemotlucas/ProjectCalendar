@@ -20,6 +20,7 @@ public:
 
     ~TacheUnitairePreemptive(){}
     TacheUnitairePreemptive* clone() const {return new TacheUnitairePreemptive(*this);}
+    void write(const QString &projet) const{}
 
     //STATES METHODS
     bool isCommencee() const { return (etat != NON_COMMENCEE && etat != PROGRAMMEE) ; }
