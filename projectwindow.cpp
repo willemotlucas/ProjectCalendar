@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QMessageBox>
 
+
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 {
     //Generation des widgets de la fenetre agenda
