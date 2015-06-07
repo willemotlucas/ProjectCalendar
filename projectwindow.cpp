@@ -110,7 +110,59 @@ void ProjectWindow::creerAffichageProjet(){
     detailsProjet->setLayout(detProjet);
     detailsProjet->setDisabled(true);
 
-        //2ieme groupbox permettant l'ajout de tache dans notre projet
+    //2ieme groupbox permettant de visionner les details d'une tache dans notre projet
+    QLabel* idLabel = new QLabel("Identificateur",this);
+    QLabel* titreLabel =new QLabel("Titre",this);
+    QLabel* preemptiveLabel = new QLabel("Preemptive",this);
+    QLabel* dispoLabel=new QLabel("Disponibilite",this);
+    QLabel* echeanceLabel= new QLabel("Echéance",this);
+    QLabel* dureeLabel= new QLabel("Durée",this);
+    idTache=new QLineEdit;
+    nomTache= new QTextEdit;
+    dateDispoTache= new QDateEdit;
+    dateDispoTache->setDate(QDate::currentDate());
+    dateEcheanceTache = new QDateEdit;
+    dateEcheanceTache->setDate(QDate::currentDate());
+    hDureeTache=new QSpinBox(this);
+    hDureeTache->setRange(0,24);hDureeTache->setSuffix("heure(s)");
+    mDureeTache=new QSpinBox(this);
+    mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
+    modifier= new QPushButton("Modifier",this);
+    tachePreemtive = new QCheckBox;
+
+    QHBoxLayout* coucheH1= new QHBoxLayout;
+    coucheH1->addWidget(idLabel);
+    coucheH1->addWidget(idTache);
+    coucheH1->addWidget(preemptiveLabel);
+    coucheH1->addWidget(tachePreemtive);
+
+    QHBoxLayout* coucheH2= new QHBoxLayout;
+    coucheH2->addWidget(titreLabel);
+    coucheH2->addWidget(nomTache);
+
+    QHBoxLayout* coucheH3= new QHBoxLayout;
+    coucheH3->addWidget(dispoLabel);
+    coucheH3->addWidget(dateDispoTache);
+    coucheH3->addWidget(echeanceLabel);
+    coucheH3->addWidget(dateEcheanceTache);
+    coucheH3->addWidget(dureeLabel);
+    coucheH3->addWidget(hDureeTache);
+    coucheH3->addWidget(mDureeTache);
+
+    QHBoxLayout* coucheH4= new QHBoxLayout;
+    coucheH4->addWidget(modifier);
+
+    QVBoxLayout* couche= new QVBoxLayout;
+    couche->addLayout(coucheH1);
+    couche->addLayout(coucheH2);
+    couche->addLayout(coucheH3);
+    couche->addLayout(coucheH4);
+
+    QGroupBox* detailsTache = new QGroupBox("Details Tache Selectionnée");
+    detailsTache->setLayout(couche);
+    detailsTache->setDisabled(true);
+
+    //3ieme groupbox permettant l'ajout de tache dans notre projet
     addTacheComposite = new QPushButton("Composite");
     addTacheComposite->setDisabled(true);
     addTacheUnitaire = new QPushButton("Unitaire");
@@ -129,6 +181,7 @@ void ProjectWindow::creerAffichageProjet(){
     //Assemblage partie droite
     QVBoxLayout* partieDroite = new QVBoxLayout;
     partieDroite->addWidget(detailsProjet);
+    partieDroite->addWidget(detailsTache);
     partieDroite->addWidget(addTache);
 
     //Affichage dans la fenêtre
@@ -177,6 +230,23 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     //Ajout de la racine
     rootTree->setText(0,projetOuvert->getNom());
 }
+
+void ProjectWindow::chargerDetailsTache(const QString& identifiantTache){
+    //On garde le projet ouvert en mémoire grâce à un attribut de la projectWindow
+    //Afin de retrouver facilement le projet en cours de modification pour lui ajouter des tâches
+//    if(!(projetOuvert->getNom().isEmpty())){
+//        TacheManager& m = TacheManager::getInstance();
+
+//        tacheSelectionne = m.getTache(identifiantTache);
+
+//        //On recherche la tache ayant le meme id dans ce projet
+//        idTache->setText(tacheSelectionne->getNom());
+//        nomTache->setPlainText(tacheSelectionne->getDescription());
+//        dateDispoTache->setDate(tacheSelectionne->getDisponibilite());
+//        dateEcheanceTache->setDate(tacheSelectionne->getEcheance());
+//    }
+}
+
 void ProjectWindow::fermerProjet(){
     //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
     //l'utilisateur qu'il va quitter la gestion du projet en cours
