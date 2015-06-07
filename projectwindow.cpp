@@ -24,12 +24,9 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     projetOuvert = NULL;
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
-<<<<<<< HEAD
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
+    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
 
-=======
-    connect(projectTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
->>>>>>> d74bf4637b8a9824cd5750ddf25a98c75d54a35a
 }
 
 
@@ -135,6 +132,8 @@ void ProjectWindow::creerAffichageProjet(){
     mDureeTache=new QSpinBox(this);
     mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
     modifier= new QPushButton("Modifier",this);
+    programmer= new QPushButton("Programmer",this);
+    ajouterSousTache= new QPushButton("Ajouter Sous Taches",this);
     tachePreemtive = new QCheckBox;
    
 
@@ -159,6 +158,8 @@ void ProjectWindow::creerAffichageProjet(){
 
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(modifier);
+    coucheH4->addWidget(programmer);
+    coucheH4->addWidget(ajouterSousTache);
 
     QVBoxLayout* couche= new QVBoxLayout;
     couche->addLayout(coucheH1);
@@ -250,13 +251,13 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    tacheSelectionne = &(projetOuvert->getTache(item->text(column)));
+    Tache& tacheSelectionne = projetOuvert->getTache(item->text(column));
 
     //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionne->getId());
-    nomTache->setPlainText(tacheSelectionne->getTitre());
-    dateDispoTache->setDate(tacheSelectionne->getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionne->getDateEcheance());
+    idTache->setText(tacheSelectionne.getId());
+    nomTache->setPlainText(tacheSelectionne.getTitre());
+    dateDispoTache->setDate(tacheSelectionne.getDateDisponibilite());
+    dateEcheanceTache->setDate(tacheSelectionne.getDateEcheance());
 }
 
 void ProjectWindow::fermerProjet(){
