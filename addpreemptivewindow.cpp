@@ -62,11 +62,11 @@ AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
 
     setLayout(couche);
 
-    connect(ok,SIGNAL(clicked()),this,SLOT(envoiTachePreemptive()));
+    connect(ok,SIGNAL(clicked()),this,SLOT(envoiTachePreemtive()));
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-void AddPreemptiveWindow::envoiPreemptive(){
+void AddPreemptiveWindow::envoiTachePreemtive(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
         TacheFactory& tf = TacheFactory::getInstance();
@@ -76,7 +76,20 @@ void AddPreemptiveWindow::envoiPreemptive(){
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }
+
 }
+
+//void AddPreemptiveWindow::envoiPreemptive(){
+//    try{
+//        ProjectWindow& pwm = MainWindow::getInstanceProjet();
+//        TacheFactory& tf = TacheFactory::getInstance();
+//        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+//        pwm.ajouterTache(t);
+//        this->close();
+//    }catch(CalendarException e){
+//        QMessageBox::information(this,"Information",e.getInfo());
+//    }
+//}
 
 
 
