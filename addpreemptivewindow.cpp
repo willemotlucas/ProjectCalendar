@@ -1,9 +1,8 @@
 #include "addpreemtivewindow.h"
-#include "tache.h"
-#include "tachefactory.h"
-#include "tacheunitaire.h"
-#include "tachemanager.h"
 #include "projectwindow.h"
+#include "tachefactory.h"
+#include "tache.h"
+#include "tacheunitairepreemptive.h"
 #include "mainwindow.h"
 
 #include <QLabel>
@@ -14,13 +13,13 @@
 #include <QMessageBox>
 
 AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
-    this->setWindowTitle("Nouvelle Tache Unitaire");
+    this->setWindowTitle("Nouvelle Tache Preemptive");
 
     QLabel* idLabel = new QLabel("Identificateur",this);
     QLabel* titreLabel =new QLabel("Titre",this);
     QLabel* dispoLabel=new QLabel("Disponibilite",this);
     QLabel* echeanceLabel= new QLabel("Echéance",this);
-    QLabel* dureeLabel= new QLabel("Durée (inf a 12h)",this);
+    QLabel* dureeLabel= new QLabel("Durée",this);
     identificateur=new QLineEdit;
     titre= new QTextEdit;
     disponibilite= new QDateEdit;
@@ -63,18 +62,21 @@ AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
 
     setLayout(couche);
 
-    connect(ok,SIGNAL(clicked()),this,SLOT(envoiTacheUnitaire()));
+    connect(ok,SIGNAL(clicked()),this,SLOT(envoiTachePreemptive()));
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-void AddPreemptiveWindow::envoiTachePreemtive(){
+void AddPreemptiveWindow::envoiPreemptive(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
-        TacheFactory& tm = TacheFactory::getInstance();
-        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+        TacheFactory& tf = TacheFactory::getInstance();
+        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
         pwm.ajouterTache(t);
         this->close();
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }
 }
+
+
+

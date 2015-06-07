@@ -1,5 +1,5 @@
-#ifndef ADDPREEMTIVEWINDOW_H
-#define ADDPREEMTIVEWINDOW_H
+#ifndef ADDPREEMPTIVEWINDOW_H
+#define ADDPREEMPTIVEWINDOW_H
 
 /*!
  * \file AddPreemptiveWindow.h
@@ -17,7 +17,7 @@
 #include <QTextEdit>
 #include <QSpinBox>
 
-/*! \class AddPreemtiveWindow
+/*! \class AddPreemptiveWindow
    * \brief classe representant la fenetre d'ajout d'une tache preemtive
    *
    *  La classe gere la reception de tous les elements composants
@@ -62,7 +62,7 @@ private slots:
          * composant la nouvelle tache pour que le tache manager puisse ensuite l'enregistrer
          * dans le fichier XML.
          */
-    void envoiTachePreemtive();
+    void envoiPreemptive(){}
 
 };
-#endif // ADDPREEMTIVEWINDOW_H
+#endif // ADDPREEMPTIVEWINDOW_H
