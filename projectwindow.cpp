@@ -298,13 +298,12 @@ void ProjectWindow::modifierTache(){
 
 void ProjectWindow::ajouterTache(const Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
-    TacheManager &tm = TacheManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
     p->ajouterTache(t);
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    tm.save(projetOuvert->getNom(), t);
+    t.save(projetOuvert->getNom());
 }
 
 

@@ -20,6 +20,7 @@ INPUT(
 ./release\tachecomposite.o
 ./release\loadprojectwindow.o
 ./release\calendarwindow.o
+./release\tachefactory.o
 ./release\moc_mainwindow.o
 ./release\moc_addtachewindow.o
 ./release\moc_modtachewindow.o

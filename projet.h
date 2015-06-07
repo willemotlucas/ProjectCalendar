@@ -68,6 +68,7 @@ private:
          */
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
 
+    Tache* trouverTache(const QString& id) const;
 public:
     /*!
          *  \brief Destructeur
@@ -111,7 +112,11 @@ public:
          *
          *  \param t : tache a ajouter au projet
          */
+
     void ajouterTache(const Tache& t);
+    Tache& getTache(const QString& id);
+    bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
+    const Tache& getTache(const QString& code) const;
 
     contTache::iterator begin(){return taches.begin();}
     contTache::iterator end(){return taches.end();}

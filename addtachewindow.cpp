@@ -69,8 +69,8 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
 void AddTacheWindow::envoiTacheUnitaire(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
-        TacheManager& tm = TacheManager::getInstance();
-        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+        TacheFactory& tf = TacheFactory::getInstance();
+        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
         pwm.ajouterTache(t);
         this->close();
     }catch(CalendarException e){
