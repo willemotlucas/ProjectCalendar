@@ -66,6 +66,7 @@ AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
+
 void AddPreemptiveWindow::envoiTachePreemtive(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
@@ -76,7 +77,6 @@ void AddPreemptiveWindow::envoiTachePreemtive(){
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }
-
 }
 
 //void AddPreemptiveWindow::envoiPreemptive(){

@@ -43,13 +43,13 @@ void TacheUnitairePreemptive::write(const QString &projet) const{
     QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
     echeanceTache.appendChild(echeanceTacheText);
 
-    QDomElement dureeTacheInit = dom->createElement("duree initiale");
-    dureeTacheInit.setAttribute("heure", QString::number(this->getDuree().hour()));
-    dureeTacheInit.setAttribute("minute", QString::number(this->getDuree().minute()));
+    QDomElement dureeTacheInit = dom->createElement("dureeInitiale");
+    dureeTacheInit.setAttribute("heure", QString::number(this->getDureeInit().hour()));
+    dureeTacheInit.setAttribute("minute", QString::number(this->getDureeInit().minute()));
 
-    QDomElement dureeTacheRestante = dom->createElement("duree restante");
-    dureeTacheRestante.setAttribute("heure", QString::number(this->getDuree().hour()));
-    dureeTacheRestante.setAttribute("minute", QString::number(this->getDuree().minute()));
+    QDomElement dureeTacheRestante = dom->createElement("dureeRestante");
+    dureeTacheRestante.setAttribute("heure", QString::number(this->getDureeRestante().hour()));
+    dureeTacheRestante.setAttribute("minute", QString::number(this->getDureeRestante().minute()));
 
     //On ajoute au noeau tache tous ses elements
     tache.appendChild(idTache);

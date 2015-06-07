@@ -20,6 +20,14 @@
     <echeance>jeu. juin 11 2015</echeance>
     <duree minute="5" heure="2"/>
    </tache>
+   <tache etat="1" type="preemtive">
+    <identifiant>Preemptive1</identifiant>
+    <titre>Preemptive1 de projet1</titre>
+    <disponibilite>lun. juin 8 2015</disponibilite>
+    <echeance>mar. juin 9 2015</echeance>
+    <dureeInitiale minute="0" heure="6"/>
+    <dureeRestante minute="0" heure="6"/>
+   </tache>
   </taches>
  </projet>
  <projet>

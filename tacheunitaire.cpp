@@ -8,8 +8,6 @@
 #include "global.h"
 
 void TacheUnitaire::write(const QString& projet) const {
-    qDebug()<<"start write tache unitaire\n";
-
     QDomDocument* dom = new QDomDocument("projets");
     QFile newfile(fileXML);
 

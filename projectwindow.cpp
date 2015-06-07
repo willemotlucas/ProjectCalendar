@@ -355,7 +355,7 @@ void ProjectWindow::ajouterTache(Tache &t){
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     ProgrammationManager& pm = ProgrammationManager::getInstance();
-    pm.ajouterProgrammation(*tacheSelectionnee,d,t);
+    pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t);
 }
 
 

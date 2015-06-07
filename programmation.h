@@ -14,7 +14,7 @@
 
 #include "calendarexception.h"
 #include "tache.h"
-
+#include "projet.h"
 
 /*! \class Programmation
    * \brief Classe permettant la programmation des taches dans l'agenda
@@ -24,6 +24,7 @@
    */
 class Programmation {
     const Tache* tache;/*!< Pointeur sur la tache a programmer*/
+    const Projet* projet;/*!< Pointeur sur le projet dont la tache correpond*/
     QDate date;/*!< Date de la programmation*/
     QTime horaire;/*!< Horaire de la programmation*/
 public:
@@ -36,7 +37,7 @@ public:
          *  \param d : date de programmation de la tache
          *  \param h : horaire de programmation de la tache
          */
-    Programmation(const Tache& t, const QDate& d, const QTime& h):tache(&t), date(d), horaire(h){}
+    Programmation(const Projet& p, const Tache& t, const QDate& d, const QTime& h):projet(&p), tache(&t), date(d), horaire(h){}
 
     /*!
          *  \brief getTache
@@ -44,6 +45,13 @@ public:
          *  Accesseur en lecture de la Tache
          */
     const Tache& getTache() const { return *tache; }
+
+    /*!
+         *  \brief getProjet
+         *
+         *  Accesseur en lecture du Projet
+         */
+    const Projet& getProjet() const { return *projet; }
 
     /*!
          *  \brief getDate
