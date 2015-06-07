@@ -29,8 +29,6 @@ private:
     static Handler handler;
 public:
     //Tache& ajouterTache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline);
-    Tache& creerTacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& echeance, const QTime& duree, const int& etat=1);
-    Tache& creerTacheUnitairePreemptive(const QString& id, const QString& desc, const QDate& dispo, const QDate& echeance, const QTime& duree, const int& etat=1);
     Tache& getTache(const QString& id);
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
     const Tache& getTache(const QString& code) const;

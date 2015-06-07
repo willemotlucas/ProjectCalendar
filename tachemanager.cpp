@@ -28,16 +28,6 @@ Tache* TacheManager::trouverTache(const QString& id)const{
 //    return *newt;
 }*/
 
-Tache& TacheManager::creerTacheUnitaire(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat){
-    Tache* t = new TacheUnitaire(id,desc,dispo,echeance,duree, etat);
-    return *t;
-}
-
-Tache& TacheManager::creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat){
-    Tache* t = new TacheUnitairePreemptive(id,desc,dispo,echeance,duree, etat);
-    return *t;
-}
-
 Tache& TacheManager::getTache(const QString& id){
     Tache* t=trouverTache(id);
     if (!t) throw CalendarException("erreur, TacheManager, tache inexistante");
