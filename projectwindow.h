@@ -154,7 +154,7 @@ private slots:
          *
          *  Appel la fenetre d'ajout d'une tache unitaire preemptive
          */
-    void fenetreAjouterTacheUnitairePreemptive(){}
+    void fenetreAjouterTacheUnitairePreemptive();
 
     /*!
          *  \brief modifierTache

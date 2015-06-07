@@ -2,6 +2,7 @@
 #include "newprojectwindow.h"
 #include "addtachewindow.h"
 #include "modtachewindow.h"
+#include "addpreemptivewindow.h"
 #include "loadprojectwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
@@ -23,6 +24,8 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     projetOuvert = NULL;
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
+    connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
+
 }
 
 
@@ -292,6 +295,11 @@ void ProjectWindow::fenetreAjouterTacheUnitaire(){
     newTache->exec();
 }
 
+void ProjectWindow::fenetreAjouterTacheUnitairePreemptive(){
+    AddPreemptiveWindow *newTache = new AddPreemptiveWindow(this);
+    newTache->exec();
+}
+
 void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
     modTache->exec();
@@ -306,6 +314,7 @@ void ProjectWindow::ajouterTache(Tache &t){
     rootTree->addChild(tacheTree);
     t.save(projetOuvert->getNom());
 }
+
 
 
 
