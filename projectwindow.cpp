@@ -233,6 +233,9 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     {
         QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
         qDebug()<<"ajout tache arborescence : "<<(*it)->getId()<<"\n";
+        qDebug()<<"titre = "<<(*it)->getTitre();
+        qDebug()<<"dispo = "<<(*it)->getDateDisponibilite().toString();
+        qDebug()<<"echeance = "<<(*it)->getDateEcheance().toString();
         tacheTree->setText(0, (*it)->getId());
         rootTree->addChild(tacheTree);
     }
