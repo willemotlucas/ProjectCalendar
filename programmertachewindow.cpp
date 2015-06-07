@@ -19,5 +19,6 @@ ProgrammerTache::~ProgrammerTache()
 
 void ProgrammerTache::envoyerProgrammation(){
     ProjectWindow& pw = MainWindow::getInstanceProjet();
+    pw.ajouterProgrammation(ui->date->date(), ui->horaire->time());
     this->close();
 }
