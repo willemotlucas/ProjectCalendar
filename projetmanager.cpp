@@ -120,22 +120,16 @@ void ProjetManager::load(const QString& f){
             for(QDomNode tache = taches.firstChildElement("tache"); !tache.isNull(); tache = tache.nextSiblingElement("tache")){
                 QDomNodeList childrensTache = tache.childNodes();
 
-                QDomNamedNodeMap attributes = tache.attributes();
-                for(int i = 0; attributes.length(); i++)
-                {
-                    qDebug()<<"attribute = "<<attributes.item(i).nodeName();
-                }
-                QString type = attributes.namedItem("type").toElement().text();
-
-                qDebug()<<"type = "<<type<<"\n";
-                int etat = attributes.namedItem("etat").toElement().text().toInt();
-                qDebug()<<"etat = "<<etat<<"\n";
+                QDomElement tacheElement = tache.toElement();
+                QString type = tacheElement.attribute("type");
+                int etat = tacheElement.attribute("etat").toInt();
 
                 QString identifiant;
                 QString titre;
                 QDate dispoTache;
                 QDate echeanceTache;
                 QTime duree;
+                //On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
                 for(unsigned int i = 0; i < childrensTache.length(); i++){
                     QDomNode children = childrensTache.at(i);
                     if(children.nodeName() == "identifiant")
@@ -151,10 +145,16 @@ void ProjetManager::load(const QString& f){
                             QTime tmp = QTime(children.toElement().attribute("heure").toInt(),children.toElement().attribute("minute").toInt());
                             duree = tmp;
                         }
-                        TacheManager& tm = TacheManager::getInstance();
-                        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
-                        p.ajouterTache(t);
                     }
+                }
+
+                //On construit l'objet tache qui convient en fonction du type de la tache
+                //Mais on enregistre une Tache (générale donc) dans le vector taches du projet
+                if(type == "unitaire"){
+                    TacheManager& tm = TacheManager::getInstance();
+                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
+                    //On ajoute la tache au projet que l'on est en train de parcourir
+                    p.ajouterTache(t);
                 }
             }
         }
