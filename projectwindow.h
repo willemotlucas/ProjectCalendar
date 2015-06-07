@@ -107,7 +107,7 @@ private:
     QDateEdit* dateEcheance;/*!< Date Echeance du projet*/
 
     Projet* projetOuvert;/*!< Pointeur sur le projet ouvert*/
-    Tache* tacheSelectionne;/*!< Pointeur sur la tache selectionnée*/
+
     //Description de notre tache
     QLineEdit* idTache;/*!< identificateur de la Tache*/
     QTextEdit* nomTache;/*!< titre de la Tache*/
@@ -117,6 +117,8 @@ private:
     QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
     QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
     QPushButton* modifier;/*!< Bouton de modification de la Tache*/
+    QPushButton* programmer;/*!< Bouton de modification de la Tache*/
+    QPushButton* ajouterSousTache;/*!< Bouton de modification de la Tache*/
 
 signals:
 
@@ -154,7 +156,7 @@ private slots:
          *
          *  Appel la fenetre d'ajout d'une tache unitaire preemptive
          */
-    void fenetreAjouterTacheUnitairePreemptive(){}
+    void fenetreAjouterTacheUnitairePreemptive();
 
     /*!
          *  \brief modifierTache

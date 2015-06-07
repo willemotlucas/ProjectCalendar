@@ -22,7 +22,7 @@ public:
     static TacheFactory& getInstance();
     static void libererInstance();
     Tache& creerTacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& echeance, const QTime& duree, const int& etat=1);
-    Tache& creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat);
+    Tache& creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat=1);
     Tache& creerTacheComposite();
 };
 
