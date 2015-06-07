@@ -1,7 +1,6 @@
 #ifndef PROJECTWINDOW_H
 #define PROJECTWINDOW_H
 
-
 /*!
  * \file ProjectWindow.h
  * \brief Onglet de visionnage de la gestion Projet
@@ -18,8 +17,6 @@
 #include <QTextEdit>
 #include <QDateEdit>
 #include <QGroupBox>
-#include <QSpinBox>
-#include <QCheckBox>
 
 #include "projet.h"
 
@@ -100,24 +97,13 @@ private:
     QPushButton* addTacheUnitaire;/*!< Bouton Tache Unitaire*/
     QPushButton* addTacheUnitairePreemptive;/*!< Bouton Tache Unitaire Preemptive*/
 
-    //Description de notre projet
+    //Description de notre tache
     QLineEdit* nom;/*!< Nom du projet*/
     QTextEdit* description;/*!< Description du projet*/
     QDateEdit* dateDispo;/*!< Date Disponibilite du projet*/
     QDateEdit* dateEcheance;/*!< Date Echeance du projet*/
 
     Projet* projetOuvert;/*!< Pointeur sur le projet ouvert*/
-    Tache* tacheSelectionne;/*!< Pointeur sur la tache selectionnée*/
-    //Description de notre tache
-    QLineEdit* idTache;/*!< identificateur de la Tache*/
-    QTextEdit* nomTache;/*!< titre de la Tache*/
-    QDateEdit* dateDispoTache;/*!< Date de disponibilite de la Tache*/
-    QDateEdit* dateEcheanceTache;/*!< Date d'echeance de la Tache*/
-    QCheckBox* tachePreemtive;/*!< Boolen pour savoir si la tache est preemptive*/
-    QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
-    QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
-    QPushButton* modifier;/*!< Bouton de modification de la Tache*/
-
 signals:
 
 private slots:
@@ -179,15 +165,6 @@ public:
          *  \param nomProjet : nom du projet que l'on veut charger
          */
     void chargerDetailsProjet(const QString& nomProjet);
-
-    /*!
-         *  \brief chargerDetailsTache
-         *
-         *  Permet de charger les details d'une tache du projet
-         *
-         *  \param identifiantTache : nom de la Tache Selectionnée
-         */
-    void chargerDetailsTache(const QString& identifiantTache);
     
     /*!
          *  \brief ajouterTache
