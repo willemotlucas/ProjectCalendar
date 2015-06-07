@@ -12,10 +12,11 @@ void TacheUnitaire::write(const QString& projet) const {
     QDomDocument* dom = new QDomDocument("projets");
     QFile newfile(fileXML);
 
-    if (!newfile.open(QIODevice::ReadWrite | QIODevice::Text))
+    if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
         throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
     if(!dom->setContent(&newfile))
         throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
+    newfile.close();
 
     QDomElement dom_element = dom->documentElement();
 
@@ -46,38 +47,38 @@ void TacheUnitaire::write(const QString& projet) const {
     tache.appendChild(echeanceTache);
     //=============================================================
     QDomElement projectNode = dom_element.firstChildElement("projet");
-    QDomElement child = projectNode.firstChild().toElement();
-    qDebug()<<"projectNode  = "<<projectNode.nodeName()<<"\n";
-    qDebug()<<"projectNode firstChild name = "<<child.nodeName()<<"\n";
-    qDebug()<<"projectNode firstChild value = "<<child.nodeValue()<<"\n";
-    projectNode = projectNode.nextSiblingElement("projet");
-    qDebug()<<"projectNode value2 = "<<projectNode.firstChild().nodeValue()<<"\n";
+    QDomElement projectName = projectNode.firstChild().toElement();
 
-//    while(projectNode.nodeValue() != projet){
-//        qDebug()<<"4\n";
-//        projectNode = dom_element.nextSiblingElement("projet");
-//    }
+    while(projectName.text() != projet){
+        projectNode = projectNode.nextSiblingElement("projet");
+        projectName = projectNode.firstChild().toElement();
+    }
 
     QDomElement node = projectNode.firstChildElement("taches");
-    qDebug()<<"node = "<<node.nodeName()<<"\n";
-
     //Si des taches sont déjà existantes au projet, on rajoute la nouvelle tache à la fin
     if(node.nodeName() == "taches"){
         //On ajoute la tache au noeud <taches>
         node.appendChild(tache);
     }
     //S'il n'y a pas de noeud <taches>
-    else if(node.nodeName() == "nom"){
+    else if(node.nodeName() == ""){
         //on doit le créer pour ajouter la nouvelle tache et les taches futures
         QDomElement taches = dom->createElement("taches");
         taches.appendChild(tache);
         projectNode.appendChild(taches);
     }
 
+    QFile fichier(fileXML);
+    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        fichier.close();
+        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier XML pour écriture."));
+    }
+
     QString write_doc = dom->toString();
-    QTextStream stream(&newfile);
+    QTextStream stream(&fichier);
     stream<<write_doc;
-    newfile.close();
+    fichier.close();
 
 
 

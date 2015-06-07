@@ -1,15 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <projets>
-    <projet>
-        <nom>Projet1</nom>
-        <description>Test du projet 1</description>
-        <disponibilite>mer. mai 13 2015</disponibilite>
-        <echeance></echeance>
-    </projet>
-    <projet>
-        <nom>Projet2</nom>
-        <description>Test date projet 2</description>
-        <disponibilite>mar. mai 19 2015</disponibilite>
-        <echeance></echeance>
-    </projet>
+ <projet>
+  <nom>Projet1</nom>
+  <description>Test du projet 1</description>
+  <disponibilite>mer. mai 13 2015</disponibilite>
+  <echeance/>
+ </projet>
+ <projet>
+  <nom>Projet2</nom>
+  <description>Test date projet 2</description>
+  <disponibilite>mar. mai 19 2015</disponibilite>
+  <echeance/>
+  <taches>
+   <tache>
+    <identifiant>Tache1</identifiant>
+    <titre>Tache1 du projet1</titre>
+    <disponibilite>dim. juin 7 2015</disponibilite>
+    <echeance>lun. juin 8 2015</echeance>
+   </tache>
+  </taches>
+ </projet>
 </projets>

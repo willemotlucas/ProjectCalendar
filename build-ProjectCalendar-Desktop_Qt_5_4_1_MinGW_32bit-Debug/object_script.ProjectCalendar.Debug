@@ -12,7 +12,6 @@ INPUT(
 ./debug\projet.o
 ./debug\projetmanager.o
 ./debug\addtachewindow.o
-./debug\agendawindow.o
 ./debug\modtachewindow.o
 ./debug\newprojectwindow.o
 ./debug\projectwindow.o
@@ -22,7 +21,7 @@ INPUT(
 ./debug\loadprojectwindow.o
 ./debug\calendarwindow.o
 ./debug\moc_mainwindow.o
-./debug\moc_agendawindow.o
+./debug\moc_addtachewindow.o
 ./debug\moc_modtachewindow.o
 ./debug\moc_newprojectwindow.o
 ./debug\moc_projectwindow.o
