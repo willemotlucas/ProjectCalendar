@@ -69,7 +69,6 @@ private:
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
 
     Tache* trouverTache(const QString& id) const;
-
 public:
     /*!
          *  \brief Destructeur

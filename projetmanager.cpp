@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 #include "projetmanager.h"
-#include "tachemanager.h"
+#include "tachefactory.h"
 #include "calendarexception.h"
 
 ProjetManager::Handler ProjetManager::handler=ProjetManager::Handler();
@@ -147,13 +147,13 @@ void ProjetManager::load(const QString& f){
                 //On construit l'objet tache qui convient en fonction du type de la tache
                 //Mais on enregistre une Tache (générale donc) dans le vector taches du projet
                 if(type == "unitaire"){
-                    TacheManager& tm = TacheManager::getInstance();
+                    TacheFactory& tm = TacheFactory::getInstance();
                     Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
                     //On ajoute la tache au projet que l'on est en train de parcourir
                     p.ajouterTache(t);
                 }
                 else if (type == "preemtive"){
-                    TacheManager& tm = TacheManager::getInstance();
+                    TacheFactory& tm = TacheFactory::getInstance();
                     Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identifiant, titre, dispoTache, echeanceTache, duree, etat));
                     //On ajoute la tache au projet que l'on est en train de parcourir
                     p.ajouterTache(t);

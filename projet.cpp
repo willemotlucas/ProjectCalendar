@@ -1,7 +1,8 @@
 #include "projet.h"
 
-void Projet::ajouterTache(const Tache &t){
-    taches.push_back(t);
+void Projet::ajouterTache(const Tache& t){
+    if (trouverTache(t.getId())) throw CalendarException("erreur, TacheManager, tache deja existante");
+    taches.push_back(&t);
 }
 
 Tache* Projet::trouverTache(const QString& id)const{
