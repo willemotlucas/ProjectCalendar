@@ -23,9 +23,7 @@
    */
 class ProgrammationManager {
 private:
-    Programmation** programmations;/*!< Vector des programmations enregistrées*/
-    unsigned int nb;/*!< Nombre de programmations deja enregistrées*/
-    unsigned int nbMax; /*!< A DISPARAITRE*/
+    std::vector<Programmation*> programmations;/*!< Vector des programmations enregistrées*/
 
     /*!
          *  \brief addItem
