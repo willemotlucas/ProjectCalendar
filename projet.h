@@ -22,54 +22,19 @@
    */
 class Projet
 {
-<<<<<<< HEAD
 public:
     typedef std::vector<Tache*> contTache;
-    ~Projet();
-    const QString& getNom() const { return nom; }
-    const QString& getDescription() const { return description; }
-    const QDate& getDisponibilite() const { return disponibilite; }
-    const QDate& getEcheance() const { return echeance; }
-
-    void ajouterTache(const Tache& t);
-
-    contTache::iterator begin(){return taches.begin();}
-    contTache::iterator end(){return taches.end();}
-
 private:
-    /**
-     * @brief nom
-     * nom du projet
-     */
-    QString nom;
-    /**
-     * @brief description
-     * description du projet
-     */
-    QString description;
-    /**
-     * @brief disponibilite
-     * date de disponibilite du projet
-     */
-    QDate disponibilite;
-    /**
-     * @brief echeance
-     * date d'échéance du projet
-     */
-    QDate echeance;
 
-    //+Liste des taches du projet
-    contTache taches;
-=======
     friend class ProjetManager;
+
     QString nom;/*!< Nom du projet*/
     QString description;/*!< Description du projet*/
     QDate disponibilite;/*!< Date de disponibilite du projet*/
     QDate echeance;/*!< Date d'echeance du projet*/
 
     //+Liste des taches du projet
-    std::vector<Tache*> taches;/*!< Vector des taches du projet*/
->>>>>>> 49d0b2809723ee167f5b8507b9834d9ad6f8cb87
+    contTache taches;/*!< Vector des taches du projet*/
 
     /*!
          *  \brief Constructeur de recopie
@@ -90,20 +55,6 @@ private:
     Projet& operator=(const Projet& p);
 
     //Appelé par la méthode ajouterTache seulement
-    /*!
-         *  \brief setDateEcheance
-         *
-         *  Accesseur en ecriture de Date Echeance
-         *
-         *  \param d : date a modifer sur notre projet
-         */
-    void setDateEcheance(const QDate& d);
-<<<<<<< HEAD
-    friend class ProjetManager;
-    Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
-
-
-=======
 
     /*!
          *  \brief Constructeur
@@ -161,7 +112,9 @@ public:
          *  \param t : tache a ajouter au projet
          */
     void ajouterTache(const Tache& t);
->>>>>>> 49d0b2809723ee167f5b8507b9834d9ad6f8cb87
+
+    contTache::iterator begin(){return taches.begin();}
+    contTache::iterator end(){return taches.end();}
 };
 
 #endif // PROJET_H

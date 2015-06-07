@@ -224,9 +224,10 @@ void ProjectWindow::ajouterTache(const Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    for(Projet::contTache::iterator it = p->begin(); it != p->end(); ++it){
-        qDebug()<<"=============\n"<<(*it)->getId()<<"\n"<<(*it)->getTitre()<<"\n"<<(*it)->getDateDisponibilite()<<"\n"<<(*it)->getDateEcheance();
+    for(Projet::contTache::iterator it = p->begin(); it!= p->end();++it){
+            qDebug()<<"=============\n"<<(*it)->getId()<<"\n"<<(*it)->getTitre()<<"\n"<<(*it)->getDateDisponibilite()<<"\n"<<(*it)->getDateEcheance();
     }
+
     tm.save(projetOuvert->getNom(), t);
 }
 

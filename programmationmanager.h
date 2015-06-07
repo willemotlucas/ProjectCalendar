@@ -62,7 +62,7 @@ public:
     /*!
          *  \brief Constructeur de recopie
          *
-         *  Constructeur de la classe ProgrammationManager
+         *  Constructeur de recopie de la classe ProgrammationManager
          *
          *  \param um : ProgrammationManager a recopie
          */
