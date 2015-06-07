@@ -116,7 +116,7 @@ private:
          */
 
 public:
-    void ajouterProgrammation(const Tache& t, const QDate& d, const QTime& h);
+    void ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h);
 
     /*!
          *  \brief getInstance
@@ -132,6 +132,22 @@ public:
          *  Fonction statique permettant de liberer l'instance du projet en cours.
          */
     static void libererInstance();
+
+    /*!
+         *  \brief save
+         *
+         *  Fonction permettant d'enregistrer les programmations dans un fichier XML, à partir du
+         *  vector de programmations
+         */
+    void save();
+
+    /*!
+         *  \brief load
+         *
+         *  Fonction permettant de charger les programmations à partir d'un fichier XML dans le vector
+         *  de programmations
+         */
+    void load();
 };
 
 #endif // PROGRAMMATIONMANAGER_H
