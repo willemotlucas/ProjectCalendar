@@ -42,7 +42,36 @@ private:
          *  \param t : la tache dont on voudrait retrouver la programmation
          */
     Programmation* trouverProgrammation(const Tache& t) const;
-public:
+
+    /*! \class Handler
+       * \brief Classe encapsulant l'instance unique du ProgrammationManager
+       *
+       *  La classe Handler permet de s'occuper automatiquement
+       *  de l'instance unique du programmationManager.
+       *  Ainsi, lors de la fermeture du programme, le destructeur de Handler
+       *  sera appele et celui ci lancera alors la sauvegarde des modifications
+       *  dans le fichier XML.
+       */
+    struct Handler{
+        ProgrammationManager* instance;/*!< Instance unique du projet manager*/
+
+        /*!
+             *  \brief Constructeur
+             *
+             *  Constructeur de la classe Handler
+             */
+        Handler():instance(0){}
+        // destructeur appelé à la fin du programme
+
+        /*!
+             *  \brief Destructeur
+             *
+             *  Destructeur de la classe Handler
+             */
+        ~Handler(){ if (instance) delete instance; }
+    };
+    static Handler handler;/*!< Handler statique permettant notamment la sauvegarde automatique*/
+
     /*!
          *  \brief Constructeur
          *
@@ -85,7 +114,24 @@ public:
          *  \param h : l'heure de programmation de cette tache
          *
          */
+
+public:
     void ajouterProgrammation(const Tache& t, const QDate& d, const QTime& h);
+
+    /*!
+         *  \brief getInstance
+         *
+         *  Fonction statique permettant d'avoir l'instance unique du projet
+         *  a n'importe quel endroit du code.
+         */
+    static ProgrammationManager& getInstance();
+
+    /*!
+         *  \brief libererInstanceProjet
+         *
+         *  Fonction statique permettant de liberer l'instance du projet en cours.
+         */
+    static void libererInstance();
 };
 
 #endif // PROGRAMMATIONMANAGER_H

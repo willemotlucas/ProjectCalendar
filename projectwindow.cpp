@@ -3,6 +3,8 @@
 #include "addtachewindow.h"
 #include "modtachewindow.h"
 #include "addpreemptivewindow.h"
+#include "programmertachewindow.h"
+#include "programmationmanager.h"
 #include "loadprojectwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
@@ -25,8 +27,6 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
-    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
-
 }
 
 
@@ -169,7 +169,16 @@ void ProjectWindow::creerAffichageProjet(){
 
     QGroupBox* detailsTache = new QGroupBox("Details Tache Selectionnée");
     detailsTache->setLayout(couche);
-    detailsTache->setDisabled(true);
+    idTache->setDisabled(true);
+    nomTache->setDisabled(true);
+    dateDispoTache->setDisabled(true);
+    dateEcheanceTache->setDisabled(true);
+    hDureeTache->setDisabled(true);
+    mDureeTache->setDisabled(true);
+    modifier->setDisabled(true);
+    programmer->setDisabled(true);
+    tachePreemtive->setDisabled(true);
+    ajouterSousTache->setDisabled(true);
 
     //3ieme groupbox permettant l'ajout de tache dans notre projet
     addTacheComposite = new QPushButton("Composite");
@@ -241,23 +250,23 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
     {
         QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
-        qDebug()<<"ajout tache arborescence : "<<(*it)->getId()<<"\n";
-        qDebug()<<"titre = "<<(*it)->getTitre();
-        qDebug()<<"dispo = "<<(*it)->getDateDisponibilite().toString();
-        qDebug()<<"echeance = "<<(*it)->getDateEcheance().toString();
         tacheTree->setText(0, (*it)->getId());
         rootTree->addChild(tacheTree);
     }
+    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
+    connect(programmer, SIGNAL(clicked()), this, SLOT(programmerTache()));
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    Tache& tacheSelectionne = projetOuvert->getTache(item->text(column));
+    tacheSelectionnee = projetOuvert->getTache(item->text(column));
 
     //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionne.getId());
-    nomTache->setPlainText(tacheSelectionne.getTitre());
-    dateDispoTache->setDate(tacheSelectionne.getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionne.getDateEcheance());
+    idTache->setText(tacheSelectionnee->getId());
+    nomTache->setPlainText(tacheSelectionnee->getTitre());
+    dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
+    dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
+    programmer->setEnabled(true);
+    modifier->setEnabled(true);
 }
 
 void ProjectWindow::fermerProjet(){
@@ -286,6 +295,8 @@ void ProjectWindow::fermerProjet(){
             addTacheUnitaire->setDisabled(true);
             addTacheUnitairePreemptive->setDisabled(true);
             projetOuvert = NULL;
+            modifier->setDisabled(true);
+            programmer->setDisabled(true);
         }
 }
 
@@ -304,6 +315,11 @@ void ProjectWindow::modifierTache(){
     modTache->exec();
 }
 
+void ProjectWindow::programmerTache(){
+    ProgrammerTache* progTache = new ProgrammerTache(this);
+    progTache->exec();
+}
+
 void ProjectWindow::ajouterTache(Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
@@ -312,6 +328,11 @@ void ProjectWindow::ajouterTache(Tache &t){
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
     t.save(projetOuvert->getNom());
+}
+
+void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
+    ProgrammationManager& pm = ProgrammationManager::getInstance();
+    pm.ajouterProgrammation(*tacheSelectionnee,d,t);
 }
 
 
