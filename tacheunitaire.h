@@ -17,7 +17,7 @@ private:
         TERMINEE
     };
 
-    friend class TacheManager;
+    friend class TacheFactory;
     static const int DUREE_MAX = 12;
     Etat etat;
     void write(const QString& projet) const ;
