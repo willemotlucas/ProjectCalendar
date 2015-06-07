@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     tacheunitaire.cpp \
     tachecomposite.cpp \
     loadprojectwindow.cpp \
-    calendarwindow.cpp
+    calendarwindow.cpp \
+    tachefactory.cpp
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -57,7 +58,8 @@ HEADERS  += mainwindow.h \
     tacheunitaire.h \
     tachecomposite.h \
     loadprojectwindow.h \
-    calendarwindow.h
+    calendarwindow.h \
+    tachefactory.h
 
 FORMS    += mainwindow.ui \
     loadprojectwindow.ui \
