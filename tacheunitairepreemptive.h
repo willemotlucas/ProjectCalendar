@@ -19,8 +19,7 @@ public:
 
 
     ~TacheUnitairePreemptive(){}
-    TacheUnitairePreemptive* clone() const {return new TacheUnitairePreemptive(*this);}
-    void write(const QString &projet) const{}
+    void write(const QString &projet) const;
 
     //STATES METHODS
     bool isCommencee() const { return (etat != NON_COMMENCEE && etat != PROGRAMMEE) ; }
@@ -37,21 +36,19 @@ public:
     void setEtat(const Etat& e){ etat = e; }
     const Etat& getEtat() const { return etat; }
 
-    void setDateEcheance(const QDate& e);
+    void setDateEcheance(const QDate& e){}
 
 private:
-    QTime duree;
+    QTime dureeInitiale;
+    QTime dureeRestante;
     Etat etat;
 
     friend class TacheManager;
-    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur):
-            TacheUnitaire(id, t, dispo, deadline,dur){ etat = NON_COMMENCEE; }
-    TacheUnitairePreemptive(const TacheUnitairePreemptive& t);
+    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur,const int& e=1):
+            TacheUnitaire(id, t, dispo, deadline,QTime(0,0)),etat((Etat)e){dureeInitiale = dur; dureeRestante =dur;}
+    //TacheUnitairePreemptive(const TacheUnitairePreemptive& t){}
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);
 
-    //Une tache préemptive peut être effectuée en plusieurs fois. Les découpages de la tache seront donc
-    //enregistrée dans le vector de préemption et ajouté au fur et à mesure de l'avancée de la tâche
-//    std::vector<Preemption*> preemptions;
 };
 
 #endif // TACHEUNITAIREPREEMPTIVE_H

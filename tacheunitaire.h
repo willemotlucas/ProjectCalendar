@@ -23,7 +23,7 @@ private:
     void write(const QString& projet) const ;
 
 protected :
-        TacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& deadline, const QTime& dur):Tache(id, desc, dispo, deadline),etat(NON_COMMENCEE){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
+            TacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& deadline, const QTime& dur, const int& e = 1):Tache(id, desc, dispo, deadline),etat((Etat)e){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
 //    TacheUnitaire(const TacheUnitaire& t);
         const TacheUnitaire& operator=(const TacheUnitaire& f);
         QTime duree;
