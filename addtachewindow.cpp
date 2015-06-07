@@ -2,7 +2,6 @@
 #include "tachefactory.h"
 #include "tache.h"
 #include "tacheunitaire.h"
-#include "tachefactory.h"
 #include "projectwindow.h"
 #include "mainwindow.h"
 
