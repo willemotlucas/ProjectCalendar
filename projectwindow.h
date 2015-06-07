@@ -170,6 +170,15 @@ private slots:
          */
     void fermerProjet();
 
+    /*!
+         *  \brief chargerDetailsTache
+         *
+         *  Permet de charger les details d'une tache du projet
+         *
+         *  \param identifiantTache : nom de la Tache Selectionnée
+         */
+    void chargerDetailsTache(QTreeWidgetItem* item, int column);
+
 public:
     /*!
          *  \brief chargerDetailsProjet
@@ -179,15 +188,6 @@ public:
          *  \param nomProjet : nom du projet que l'on veut charger
          */
     void chargerDetailsProjet(const QString& nomProjet);
-
-    /*!
-         *  \brief chargerDetailsTache
-         *
-         *  Permet de charger les details d'une tache du projet
-         *
-         *  \param identifiantTache : nom de la Tache Selectionnée
-         */
-    void chargerDetailsTache(const QString& identifiantTache);
 
     /*!
          *  \brief ajouterTache
