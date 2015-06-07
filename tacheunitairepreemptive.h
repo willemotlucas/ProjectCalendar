@@ -32,7 +32,8 @@ public:
     void reprendre();
 
     //GETTERS AND SETTERS
-    const QTime& getDuree() const { return duree; }
+    const QTime& getDureeInit() const { return dureeInitiale; }
+    const QTime& getDureeRestante() const { return dureeRestante; }
     void setEtat(const Etat& e){ etat = e; }
     const Etat& getEtat() const { return etat; }
 
@@ -44,9 +45,9 @@ private:
     Etat etat;
 
     friend class TacheManager;
-    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur,const int& e=1):
-            TacheUnitaire(id, t, dispo, deadline,QTime(0,0)),etat((Etat)e){dureeInitiale = dur; dureeRestante =dur;}
-    //TacheUnitairePreemptive(const TacheUnitairePreemptive& t){}
+    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur, const int& e = 1):
+            TacheUnitaire(id, t, dispo, deadline,QTime(0,0)),etat((Etat)e),dureeInitiale(dur),dureeRestante(dur){}
+    TacheUnitairePreemptive(const TacheUnitairePreemptive& t);
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);
 
 };

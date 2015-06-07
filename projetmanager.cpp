@@ -152,6 +152,12 @@ void ProjetManager::load(const QString& f){
                     //On ajoute la tache au projet que l'on est en train de parcourir
                     p.ajouterTache(t);
                 }
+                else if (type == "preemtive"){
+                    TacheManager& tm = TacheManager::getInstance();
+                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identifiant, titre, dispoTache, echeanceTache, duree, etat));
+                    //On ajoute la tache au projet que l'on est en train de parcourir
+                    p.ajouterTache(t);
+                }
             }
         }
     }

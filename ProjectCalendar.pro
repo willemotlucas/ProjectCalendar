@@ -35,7 +35,11 @@ SOURCES += main.cpp\
     tachecomposite.cpp \
     loadprojectwindow.cpp \
     calendarwindow.cpp \
+<<<<<<< HEAD
     tachefactory.cpp
+=======
+    addpreemtivewindow.cpp
+>>>>>>> cd347f87a419c08f58e28ce81e8b54deae7516bf
 
 HEADERS  += mainwindow.h \
     duree.h \
@@ -59,7 +63,11 @@ HEADERS  += mainwindow.h \
     tachecomposite.h \
     loadprojectwindow.h \
     calendarwindow.h \
+<<<<<<< HEAD
     tachefactory.h
+=======
+    addpreemtivewindow.h
+>>>>>>> cd347f87a419c08f58e28ce81e8b54deae7516bf
 
 FORMS    += mainwindow.ui \
     loadprojectwindow.ui \
