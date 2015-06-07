@@ -1,4 +1,5 @@
 #include "addtachewindow.h"
+#include "tachefactory.h"
 #include "tache.h"
 #include "tacheunitaire.h"
 #include "tachefactory.h"
