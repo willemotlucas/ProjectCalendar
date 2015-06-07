@@ -1,6 +1,7 @@
 #ifndef PROJECTWINDOW_H
 #define PROJECTWINDOW_H
 
+
 /*!
  * \file ProjectWindow.h
  * \brief Onglet de visionnage de la gestion Projet
@@ -17,6 +18,8 @@
 #include <QTextEdit>
 #include <QDateEdit>
 #include <QGroupBox>
+#include <QSpinBox>
+#include <QCheckBox>
 
 #include "projet.h"
 
@@ -40,7 +43,7 @@ public:
          *  \param parent : on renseigne son parent s'il en a un
          */
     explicit ProjectWindow(QWidget *parent = 0);
-
+    
     /*!
          *  \brief getNomProjet
          *
@@ -49,7 +52,7 @@ public:
     QString getNomProjet() const{
         return nom->text();
     }
-
+    
     /*!
          *  \brief Destructeur
          *
@@ -64,7 +67,7 @@ private:
          *  Fonction permettant de creer la barre outils de l'onglet
          */
     void creerBarreOutils();
-
+    
     /*!
          *  \brief creerActions
          *
@@ -72,7 +75,7 @@ private:
          *  d'outils et la fenetre
          */
     void creerActions();
-
+    
     /*!
          *  \brief creerAffichageProjet
          *
@@ -97,13 +100,24 @@ private:
     QPushButton* addTacheUnitaire;/*!< Bouton Tache Unitaire*/
     QPushButton* addTacheUnitairePreemptive;/*!< Bouton Tache Unitaire Preemptive*/
 
-    //Description de notre tache
+    //Description de notre projet
     QLineEdit* nom;/*!< Nom du projet*/
     QTextEdit* description;/*!< Description du projet*/
     QDateEdit* dateDispo;/*!< Date Disponibilite du projet*/
     QDateEdit* dateEcheance;/*!< Date Echeance du projet*/
 
     Projet* projetOuvert;/*!< Pointeur sur le projet ouvert*/
+    Tache* tacheSelectionne;/*!< Pointeur sur la tache selectionnée*/
+    //Description de notre tache
+    QLineEdit* idTache;/*!< identificateur de la Tache*/
+    QTextEdit* nomTache;/*!< titre de la Tache*/
+    QDateEdit* dateDispoTache;/*!< Date de disponibilite de la Tache*/
+    QDateEdit* dateEcheanceTache;/*!< Date d'echeance de la Tache*/
+    QCheckBox* tachePreemtive;/*!< Boolen pour savoir si la tache est preemptive*/
+    QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
+    QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
+    QPushButton* modifier;/*!< Bouton de modification de la Tache*/
+
 signals:
 
 private slots:
@@ -113,42 +127,42 @@ private slots:
          *  Appel de la fenetre de creation d'un projet
          */
     void nouveauProjet();
-
+    
     /*!
          *  \brief chargerProjet
          *
          *  Appel de la fenetre de chargement d'un projet
          */
     void chargerProjet();
-
+    
     /*!
          *  \brief fenetreAjouterTacheComposite
          *
          *  Appel la fenetre d'ajout d'une tache composite
          */
     void fenetreAjouterTacheComposite(){}
-
+    
     /*!
          *  \brief fenetreAjouterTacheUnitaire
          *
          *  Appel la fenetre d'ajout d'une tache unitaire simple
          */
     void fenetreAjouterTacheUnitaire();
-
+    
     /*!
          *  \brief fenetreAjouterTacheUnitairePreemptive
          *
          *  Appel la fenetre d'ajout d'une tache unitaire preemptive
          */
     void fenetreAjouterTacheUnitairePreemptive(){}
-
+    
     /*!
          *  \brief modifierTache
          *
          *  Permet de modifier une tache du projet
          */
     void modifierTache();
-
+    
     /*!
          *  \brief fermetProjet
          *
@@ -166,6 +180,15 @@ public:
          */
     void chargerDetailsProjet(const QString& nomProjet);
 
+    /*!
+         *  \brief chargerDetailsTache
+         *
+         *  Permet de charger les details d'une tache du projet
+         *
+         *  \param identifiantTache : nom de la Tache Selectionnée
+         */
+    void chargerDetailsTache(const QString& identifiantTache);
+    
     /*!
          *  \brief ajouterTache
          *
