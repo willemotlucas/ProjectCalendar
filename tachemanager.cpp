@@ -5,6 +5,7 @@
 
 #include "tachemanager.h"
 #include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
 #include "projet.h"
 #include "global.h"
 
@@ -29,6 +30,11 @@ Tache* TacheManager::trouverTache(const QString& id)const{
 
 Tache& TacheManager::creerTacheUnitaire(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat){
     Tache* t = new TacheUnitaire(id,desc,dispo,echeance,duree, etat);
+    return *t;
+}
+
+Tache& TacheManager::creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat){
+    Tache* t = new TacheUnitairePreemptive(id,desc,dispo,echeance,duree, etat);
     return *t;
 }
 

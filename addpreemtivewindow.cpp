@@ -1,4 +1,4 @@
-#include "addtachewindow.h"
+#include "addpreemtivewindow.h"
 #include "tache.h"
 #include "tacheunitaire.h"
 #include "tachemanager.h"
@@ -12,7 +12,7 @@
 #include <QTime>
 #include <QMessageBox>
 
-AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
+AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
     this->setWindowTitle("Nouvelle Tache Unitaire");
 
     QLabel* idLabel = new QLabel("Identificateur",this);
@@ -66,7 +66,7 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-void AddTacheWindow::envoiTacheUnitaire(){
+void AddPreemptiveWindow::envoiTachePreemtive(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
         TacheManager& tm = TacheManager::getInstance();
@@ -77,6 +77,4 @@ void AddTacheWindow::envoiTacheUnitaire(){
         QMessageBox::information(this,"Information",e.getInfo());
     }
 }
-
-
 

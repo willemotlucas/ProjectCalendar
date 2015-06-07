@@ -6,8 +6,8 @@
 #include "tacheunitairepreemptive.h"
 #include "global.h"
 
-/*void write(const QString &projet) const{
-    qDebug()<<"start write tache unitaire preemtive\n";
+void TacheUnitairePreemptive::write(const QString &projet) const{
+    qDebug()<<"start write tache unitaire preemptive \n";
 
     QDomDocument* dom = new QDomDocument("projets");
     QFile newfile(fileXML);
@@ -23,6 +23,9 @@
     //=============================================================
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement tache = dom->createElement("tache");
+    tache.setAttribute("type", "preemptive");
+    qDebug()<<"etat"<<this->getEtat();
+    tache.setAttribute("etat", (int)this->getEtat());
 
     QDomElement idTache = dom->createElement("identifiant");
     QDomText idTacheText = dom->createTextNode(this->getId());
@@ -40,12 +43,23 @@
     QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
     echeanceTache.appendChild(echeanceTacheText);
 
+    QDomElement dureeTacheInit = dom->createElement("duree initiale");
+    dureeTacheInit.setAttribute("heure", QString::number(this->getDureeInit().hour()));
+    dureeTacheInit.setAttribute("minute", QString::number(this->getDureeInit().minute()));
+
+    QDomElement dureeTacheRestante = dom->createElement("duree restante");
+    dureeTacheRestante.setAttribute("heure", QString::number(this->getDureeRestante().hour()));
+    dureeTacheRestante.setAttribute("minute", QString::number(this->getDureeRestante().minute()));
+
     //On ajoute au noeau tache tous ses elements
     tache.appendChild(idTache);
     tache.appendChild(titreTache);
     tache.appendChild(dispoTache);
     tache.appendChild(echeanceTache);
+    tache.appendChild(dureeTacheInit);
+    tache.appendChild(dureeTacheRestante);
     //=============================================================
+    //
     QDomElement projectNode = dom_element.firstChildElement("projet");
     QDomElement projectName = projectNode.firstChild().toElement();
 
@@ -80,6 +94,6 @@
     stream<<write_doc;
     fichier.close();
     
-}*/
+}
 
 
