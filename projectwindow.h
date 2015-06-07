@@ -196,7 +196,7 @@ public:
          *
          *  \param t : tache que l'on veut ajouter au projet
          */
-    void ajouterTache(const Tache& t);
+    void ajouterTache(Tache& t);
 };
 
 #endif // PROJECTWINDOW_H

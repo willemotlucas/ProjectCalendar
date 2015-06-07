@@ -1,7 +1,7 @@
 #include "addtachewindow.h"
 #include "tache.h"
 #include "tacheunitaire.h"
-#include "tachemanager.h"
+#include "tachefactory.h"
 #include "projectwindow.h"
 #include "mainwindow.h"
 

@@ -296,7 +296,7 @@ void ProjectWindow::modifierTache(){
     modTache->exec();
 }
 
-void ProjectWindow::ajouterTache(const Tache &t){
+void ProjectWindow::ajouterTache(Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
     p->ajouterTache(t);

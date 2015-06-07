@@ -44,7 +44,7 @@ private:
     QTime dureeRestante;
     Etat etat;
 
-    friend class TacheManager;
+    friend class TacheFactory;
     TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& dur, const int& e = 1):
             TacheUnitaire(id, t, dispo, deadline,QTime(0,0)),etat((Etat)e),dureeInitiale(dur),dureeRestante(dur){}
     TacheUnitairePreemptive(const TacheUnitairePreemptive& t);

@@ -26,7 +26,6 @@ protected:
 //    Tache(const Tache& t);
     Tache& operator=(const Tache&);
 
-    void save(const QString& projet) const {write(projet);}
     virtual void write(const QString& projet) const  = 0;
 
 public:
@@ -54,6 +53,7 @@ public:
 //        disponibilite=disp; echeance=e;
     virtual void setDateEcheance(const QDate& e) = 0;
 
+    void save(const QString& projet) const {write(projet);}
 
 };
 

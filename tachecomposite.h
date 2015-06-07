@@ -13,7 +13,7 @@ class TacheComposite : public Tache
     //est supérieur à la date d'echeance actuelle de la tache composite. L'utilisateur ne doit pas pouvoir changer la date d'echeance lui même.
     void setDateEcheance(const QDate& e);
 
-    friend class TacheManager;
+    friend class TacheFactory;
     TacheComposite(const QString& id, const QString& t, const QDate& dispo):Tache(id, t, dispo){}
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);

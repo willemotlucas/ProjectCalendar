@@ -1,4 +1,6 @@
 #include "tachefactory.h"
+#include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
 
 TacheFactory::TacheFactory()
 {
