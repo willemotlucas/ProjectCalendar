@@ -62,7 +62,7 @@ private slots:
          * composant la nouvelle tache pour que le tache manager puisse ensuite l'enregistrer
          * dans le fichier XML.
          */
-    void envoiPreemptive(){}
+    void envoiTachePreemtive();
 
 };
 #endif // ADDPREEMPTIVEWINDOW_H

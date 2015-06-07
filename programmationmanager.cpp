@@ -47,18 +47,18 @@ void ProgrammationManager::save(){
     QDomNode progs = dom->createElement("programmations");
 
     //On parcourt toutes les programmations du vector
-    for(programmations::iterator it = programmations.begin(); i != programmations.end(); ++it){
+    for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++it){
         //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
         QDomElement prog = dom->createElement("programmation");
-        prog.setAttribute("tache", (*it)->getTache()->getId());
+        prog.setAttribute("tache", (*it)->getTache().getId());
 
         QDomElement date = dom->createElement("date");
-        QDomElement dateText = dom->createElement((*it)->getDate()->toString());
+        QDomElement dateText = dom->createElement((*it)->getDate().toString());
         date.appendChild(dateText);
 
         QDomElement horaire = dom->createElement("horaire");
-        horaire.setAttribute("minute", (*it)->getHoraire()->minutes());
-        horaire.setAttribute("heure", (*it)->getHoraire()->hours());
+        horaire.setAttribute("minute", (*it)->getHoraire().minute());
+        horaire.setAttribute("heure", (*it)->getHoraire().hour());
 
         prog.appendChild(date);
         prog.appendChild(horaire);

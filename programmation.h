@@ -51,7 +51,7 @@ public:
          *
          *  Accesseur en lecture du Projet
          */
-    const Tache& getProjet() const { return *projet; }
+    const Projet& getProjet() const { return *projet; }
 
     /*!
          *  \brief getDate
