@@ -176,6 +176,13 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     rootTree = new QTreeWidgetItem(projectTree);
     //Ajout de la racine
     rootTree->setText(0,projetOuvert->getNom());
+    for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
+    {
+        QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+        qDebug()<<"ajout tache arborescence : "<<(*it)->getId()<<"\n";
+        tacheTree->setText(0, (*it)->getId());
+        rootTree->addChild(tacheTree);
+    }
 }
 void ProjectWindow::fermerProjet(){
     //ce slot va alors faire apparaitre une fenetre qui se chargera de prevenir
@@ -224,10 +231,6 @@ void ProjectWindow::ajouterTache(const Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    for(Projet::contTache::iterator it = p->begin(); it!= p->end();++it){
-            qDebug()<<"=============\n"<<(*it)->getId()<<"\n"<<(*it)->getTitre()<<"\n"<<(*it)->getDateDisponibilite()<<"\n"<<(*it)->getDateEcheance();
-    }
-
     tm.save(projetOuvert->getNom(), t);
 }
 

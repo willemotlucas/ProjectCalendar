@@ -2,6 +2,7 @@
 #include <QTextCodec>
 #include <QtXml>
 #include <QDebug>
+#include <QMetaEnum>
 
 #include "tacheunitaire.h"
 #include "global.h"
@@ -23,6 +24,9 @@ void TacheUnitaire::write(const QString& projet) const {
     //=============================================================
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement tache = dom->createElement("tache");
+    tache.setAttribute("type", "unitaire");
+    qDebug()<<"etat"<<this->getEtat();
+    tache.setAttribute("etat", (int)this->getEtat());
 
     QDomElement idTache = dom->createElement("identifiant");
     QDomText idTacheText = dom->createTextNode(this->getId());
@@ -40,12 +44,18 @@ void TacheUnitaire::write(const QString& projet) const {
     QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
     echeanceTache.appendChild(echeanceTacheText);
 
+    QDomElement dureeTache = dom->createElement("duree");
+    dureeTache.setAttribute("heure", QString::number(this->getDuree().hour()));
+    dureeTache.setAttribute("minute", QString::number(this->getDuree().minute()));
+
     //On ajoute au noeau tache tous ses elements
     tache.appendChild(idTache);
     tache.appendChild(titreTache);
     tache.appendChild(dispoTache);
     tache.appendChild(echeanceTache);
+    tache.appendChild(dureeTache);
     //=============================================================
+    //
     QDomElement projectNode = dom_element.firstChildElement("projet");
     QDomElement projectName = projectNode.firstChild().toElement();
 
