@@ -117,7 +117,7 @@ void ProjectWindow::creerAffichageProjet(){
     QLabel* dispoLabel=new QLabel("Disponibilite",this);
     QLabel* echeanceLabel= new QLabel("Echéance",this);
     QLabel* dureeLabel= new QLabel("Durée",this);
-    /*idTache=new QLineEdit;
+    idTache=new QLineEdit;
     nomTache= new QTextEdit;
     dateDispoTache= new QDateEdit;
     dateDispoTache->setDate(QDate::currentDate());
@@ -128,30 +128,30 @@ void ProjectWindow::creerAffichageProjet(){
     mDureeTache=new QSpinBox(this);
     mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
     modifier= new QPushButton("Modifier",this);
-    tachePreemtive = new QCheckBox;*/
+    tachePreemtive = new QCheckBox;
    
 
     QHBoxLayout* coucheH1= new QHBoxLayout;
     coucheH1->addWidget(idLabel);
-//    coucheH1->addWidget(idTache);
+    coucheH1->addWidget(idTache);
     coucheH1->addWidget(preemptiveLabel);
-//    coucheH1->addWidget(tachePreemtive);
+    coucheH1->addWidget(tachePreemtive);
 
     QHBoxLayout* coucheH2= new QHBoxLayout;
     coucheH2->addWidget(titreLabel);
-//    coucheH2->addWidget(nomTache);
+    coucheH2->addWidget(nomTache);
 
     QHBoxLayout* coucheH3= new QHBoxLayout;
     coucheH3->addWidget(dispoLabel);
-//    coucheH3->addWidget(dateDispoTache);
+    coucheH3->addWidget(dateDispoTache);
     coucheH3->addWidget(echeanceLabel);
-//    coucheH3->addWidget(dateEcheanceTache);
+    coucheH3->addWidget(dateEcheanceTache);
     coucheH3->addWidget(dureeLabel);
-//    coucheH3->addWidget(hDureeTache);
-//    coucheH3->addWidget(mDureeTache);
+    coucheH3->addWidget(hDureeTache);
+    coucheH3->addWidget(mDureeTache);
 
     QHBoxLayout* coucheH4= new QHBoxLayout;
-//    coucheH4->addWidget(modifier);
+    coucheH4->addWidget(modifier);
 
     QVBoxLayout* couche= new QVBoxLayout;
     couche->addLayout(coucheH1);
