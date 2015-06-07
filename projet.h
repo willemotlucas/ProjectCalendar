@@ -113,7 +113,7 @@ public:
          *  \param t : tache a ajouter au projet
          */
 
-    void ajouterTache(const Tache& t);
+    void ajouterTache(Tache& t);
     Tache& getTache(const QString& id);
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
     const Tache& getTache(const QString& code) const;
