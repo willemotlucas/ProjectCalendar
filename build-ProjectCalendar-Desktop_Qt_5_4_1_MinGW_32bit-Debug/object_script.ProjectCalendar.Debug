@@ -21,6 +21,8 @@ INPUT(
 ./debug\loadprojectwindow.o
 ./debug\calendarwindow.o
 ./debug\tachefactory.o
+./debug\addpreemptivewindow.o
+./debug\programmertachewindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addtachewindow.o
 ./debug\moc_modtachewindow.o
@@ -28,4 +30,6 @@ INPUT(
 ./debug\moc_projectwindow.o
 ./debug\moc_loadprojectwindow.o
 ./debug\moc_calendarwindow.o
+./debug\moc_addpreemptivewindow.o
+./debug\moc_programmertachewindow.o
 );

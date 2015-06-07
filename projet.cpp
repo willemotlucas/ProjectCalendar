@@ -11,13 +11,19 @@ Tache* Projet::trouverTache(const QString& id)const{
     return 0;
 }
 
-Tache& Projet::getTache(const QString& id){
-    Tache* t=trouverTache(id);
-    if (!t) throw CalendarException("La tache " + id + " est inexistante.");
-    return *t;
-}
+//Tache& Projet::getTache(const QString& id){
+//    Tache* t=trouverTache(id);
+//    if (!t) throw CalendarException("La tache " + id + " est inexistante.");
+//    return *t;
+//}
 
-const Tache& Projet::getTache(const QString& id)const{
-    return const_cast<Projet*>(this)->getTache(id);
+//const Tache& Projet::getTache(const QString& id)const{
+//    return const_cast<Projet*>(this)->getTache(id);
+//}
+
+Tache* Projet::getTache(const QString &id){
+    Tache* t=trouverTache(id);
+    if(!t) throw CalendarException("La tache " + id + " est inexistante.");
+    return t;
 }
 

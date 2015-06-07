@@ -107,6 +107,7 @@ private:
     QDateEdit* dateEcheance;/*!< Date Echeance du projet*/
 
     Projet* projetOuvert;/*!< Pointeur sur le projet ouvert*/
+    Tache* tacheSelectionnee;
 
     //Description de notre tache
     QLineEdit* idTache;/*!< identificateur de la Tache*/
@@ -179,9 +180,17 @@ private slots:
          *
          *  Permet de charger les details d'une tache du projet
          *
-         *  \param identifiantTache : nom de la Tache Selectionnée
+         *  \param QTreeWidgetItem : item sélectionné dans l'arbre
+         *  \param column : la column de l'arbre à prendre en compte
          */
     void chargerDetailsTache(QTreeWidgetItem* item, int column);
+
+    /*!
+         *  \brief programmerTache
+         *
+         *  Permet de programmer une tache sur l'agenda
+         */
+    void programmerTache();
 
 public:
     /*!
@@ -201,6 +210,16 @@ public:
          *  \param t : tache que l'on veut ajouter au projet
          */
     void ajouterTache(Tache& t);
+
+    /*!
+         *  \brief ajouterProgrammation
+         *
+         *  Permet d'appeler le programmation manager pour ajouter la programmation d'une tache
+         *
+         *  \param d : date de la programmation reçue par la fenêtre ProgrammerTache
+         *  \param t : horaire de la programmation reçue par la fenêtre ProgrammerTache
+         */
+    void ajouterProgrammation(const QDate& d, const QTime& t);
 };
 
 #endif // PROJECTWINDOW_H

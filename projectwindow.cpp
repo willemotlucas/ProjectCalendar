@@ -3,20 +3,18 @@
 #include "addtachewindow.h"
 #include "modtachewindow.h"
 #include "addpreemptivewindow.h"
+#include "programmertachewindow.h"
+#include "programmationmanager.h"
 #include "loadprojectwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
 #include "tachemanager.h"
-#include "tachecomposite.h"
-#include "tacheunitaire.h"
-#include "tacheunitairepreemptive.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
 #include <QMessageBox>
-#include <typeinfo>
 
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
@@ -29,8 +27,6 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
-    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
-
 }
 
 
@@ -126,27 +122,19 @@ void ProjectWindow::creerAffichageProjet(){
     QLabel* echeanceLabel= new QLabel("Echéance",this);
     QLabel* dureeLabel= new QLabel("Durée",this);
     idTache=new QLineEdit;
-    idTache->setDisabled(true);
     nomTache= new QTextEdit;
-    nomTache->setDisabled(true);
     dateDispoTache= new QDateEdit;
     dateDispoTache->setDate(QDate::currentDate());
-    dateDispoTache->setDisabled(true);
     dateEcheanceTache = new QDateEdit;
     dateEcheanceTache->setDate(QDate::currentDate());
-    dateEcheanceTache->setDisabled(true);
     hDureeTache=new QSpinBox(this);
     hDureeTache->setRange(0,24);hDureeTache->setSuffix("heure(s)");
-    hDureeTache->setDisabled(true);
     mDureeTache=new QSpinBox(this);
     mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
-    mDureeTache->setDisabled(true);
     modifier= new QPushButton("Modifier",this);
-    modifier->setDisabled(true);
     programmer= new QPushButton("Programmer",this);
-    programmer->setDisabled(true);
+    ajouterSousTache= new QPushButton("Ajouter Sous Taches",this);
     tachePreemtive = new QCheckBox;
-    tachePreemtive->setDisabled(true);
    
 
     QHBoxLayout* coucheH1= new QHBoxLayout;
@@ -171,28 +159,26 @@ void ProjectWindow::creerAffichageProjet(){
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(modifier);
     coucheH4->addWidget(programmer);
-
-    ajouterSousTacheUnitaire = new QPushButton("Sous-Tache Unitaire");
-    ajouterSousTacheUnitaire->setDisabled(true);
-    ajouterSousTachePreemptive = new QPushButton("Sous-Tache Preemptive");
-    ajouterSousTachePreemptive->setDisabled(true);
-    ajouterSousTacheComposite = new QPushButton("Sous-Tache Composite");
-    ajouterSousTacheComposite->setDisabled(true);
-
-    QHBoxLayout* addSousT = new QHBoxLayout;
-    addSousT->addWidget(ajouterSousTacheUnitaire);
-    addSousT->addWidget(ajouterSousTachePreemptive);
-    addSousT->addWidget(ajouterSousTacheComposite);
+    coucheH4->addWidget(ajouterSousTache);
 
     QVBoxLayout* couche= new QVBoxLayout;
     couche->addLayout(coucheH1);
     couche->addLayout(coucheH2);
     couche->addLayout(coucheH3);
     couche->addLayout(coucheH4);
-    couche->addLayout(addSousT);
 
     QGroupBox* detailsTache = new QGroupBox("Details Tache Selectionnée");
     detailsTache->setLayout(couche);
+    idTache->setDisabled(true);
+    nomTache->setDisabled(true);
+    dateDispoTache->setDisabled(true);
+    dateEcheanceTache->setDisabled(true);
+    hDureeTache->setDisabled(true);
+    mDureeTache->setDisabled(true);
+    modifier->setDisabled(true);
+    programmer->setDisabled(true);
+    tachePreemtive->setDisabled(true);
+    ajouterSousTache->setDisabled(true);
 
     //3ieme groupbox permettant l'ajout de tache dans notre projet
     addTacheComposite = new QPushButton("Composite");
@@ -264,34 +250,23 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
     {
         QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
-        qDebug()<<"ajout tache arborescence : "<<(*it)->getId()<<"\n";
-        qDebug()<<"titre = "<<(*it)->getTitre();
-        qDebug()<<"dispo = "<<(*it)->getDateDisponibilite().toString();
-        qDebug()<<"echeance = "<<(*it)->getDateEcheance().toString();
         tacheTree->setText(0, (*it)->getId());
         rootTree->addChild(tacheTree);
     }
+    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
+    connect(programmer, SIGNAL(clicked()), this, SLOT(programmerTache()));
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    Tache& tacheSelectionne = projetOuvert->getTache(item->text(column));
+    tacheSelectionnee = projetOuvert->getTache(item->text(column));
 
     //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionne.getId());
-    nomTache->setPlainText(tacheSelectionne.getTitre());
-    dateDispoTache->setDate(tacheSelectionne.getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionne.getDateEcheance());
+    idTache->setText(tacheSelectionnee->getId());
+    nomTache->setPlainText(tacheSelectionnee->getTitre());
+    dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
+    dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
+    programmer->setEnabled(true);
     modifier->setEnabled(true);
-    programmer->setEnabled(true);//Pour le moment
-
-    if(typeid(tacheSelectionne)==typeid(TacheUnitairePreemptive)){
-        tachePreemtive->setChecked(true);
-    }
-    else if(typeid(tacheSelectionne)==typeid(TacheComposite)){
-        ajouterSousTacheComposite->setEnabled(true);
-        ajouterSousTachePreemptive->setEnabled(true);
-        ajouterSousTacheUnitaire->setEnabled(true);
-    }
 }
 
 void ProjectWindow::fermerProjet(){
@@ -320,6 +295,8 @@ void ProjectWindow::fermerProjet(){
             addTacheUnitaire->setDisabled(true);
             addTacheUnitairePreemptive->setDisabled(true);
             projetOuvert = NULL;
+            modifier->setDisabled(true);
+            programmer->setDisabled(true);
         }
 }
 
@@ -338,6 +315,11 @@ void ProjectWindow::modifierTache(){
     modTache->exec();
 }
 
+void ProjectWindow::programmerTache(){
+    ProgrammerTache* progTache = new ProgrammerTache(this);
+    progTache->exec();
+}
+
 void ProjectWindow::ajouterTache(Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
@@ -346,6 +328,11 @@ void ProjectWindow::ajouterTache(Tache &t){
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
     t.save(projetOuvert->getNom());
+}
+
+void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
+    ProgrammationManager& pm = ProgrammationManager::getInstance();
+    pm.ajouterProgrammation(*tacheSelectionnee,d,t);
 }
 
 

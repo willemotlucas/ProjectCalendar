@@ -114,9 +114,10 @@ public:
          */
 
     void ajouterTache(Tache& t);
-    Tache& getTache(const QString& id);
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
-    const Tache& getTache(const QString& code) const;
+//    const Tache& getTache(const QString& code) const;
+//    Tache& getTache(const QString& id);
+    Tache* getTache(const QString& id);
 
     contTache::iterator begin(){return taches.begin();}
     contTache::iterator end(){return taches.end();}
