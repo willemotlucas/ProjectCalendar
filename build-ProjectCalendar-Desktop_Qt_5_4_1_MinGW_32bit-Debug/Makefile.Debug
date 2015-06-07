@@ -352,10 +352,6 @@ debug/moc_mainwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		../projet.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -911,10 +907,6 @@ debug/moc_projectwindow.cpp: P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		../projet.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -1318,10 +1310,6 @@ debug/main.o: ../main.cpp ../mainwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		../projet.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -1525,10 +1513,6 @@ debug/mainwindow.o: ../mainwindow.cpp P:/Qt/5.4/mingw491_32/include/QtCore/QDebu
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		../projet.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -2720,6 +2704,7 @@ debug/addtachewindow.o: ../addtachewindow.cpp ../addtachewindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtGui/qtextdocument.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
+		../tachefactory.h \
 		../tache.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
@@ -2729,8 +2714,6 @@ debug/addtachewindow.o: ../addtachewindow.cpp ../addtachewindow.h \
 		../tacheunitaire.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QTime \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDebug \
-		../tachemanager.h \
-		../iterator.h \
 		../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmainwindow.h \
@@ -3207,10 +3190,6 @@ debug/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		../projet.h \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QString \
 		P:/Qt/5.4/mingw491_32/include/QtCore/QDate \
@@ -3224,6 +3203,10 @@ debug/projectwindow.o: ../projectwindow.cpp ../projectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h \
 		../projetmanager.h \
 		../addtachewindow.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
+		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
 		../modtachewindow.h \
 		../loadprojectwindow.h \
 		../mainwindow.h \
@@ -3918,10 +3901,6 @@ debug/loadprojectwindow.o: ../loadprojectwindow.cpp ../loadprojectwindow.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qdatetimeedit.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QSpinBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/QCheckBox \
-		P:/Qt/5.4/mingw491_32/include/QtWidgets/qcheckbox.h \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/QMessageBox \
 		P:/Qt/5.4/mingw491_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\loadprojectwindow.o ..\loadprojectwindow.cpp
