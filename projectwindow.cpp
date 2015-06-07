@@ -66,6 +66,7 @@ void ProjectWindow::creerAffichageProjet(){
     //1ere colonne de notre fenetre gestion projet :
     projectTree = new QTreeWidget;
     projectTree->setFixedWidth(225);
+    //connect(projectTree,SIGNAL(itemChanged()),this,SLOT(chargerDetailsTache(projectTree->is))
     QVBoxLayout* partieGauche = new QVBoxLayout;
     partieGauche->addWidget(projectTree);
     projectTree->setDisabled(true);
@@ -242,19 +243,18 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
 }
 
 void ProjectWindow::chargerDetailsTache(const QString& identifiantTache){
-    //On garde le projet ouvert en mémoire grâce à un attribut de la projectWindow
-    //Afin de retrouver facilement le projet en cours de modification pour lui ajouter des tâches
-//    if(!(projetOuvert->getNom().isEmpty())){
-//        TacheManager& m = TacheManager::getInstance();
+//    On garde le projet ouvert en mémoire grâce à un attribut de la projectWindow
+//    Afin de retrouver facilement le projet en cours de modification pour lui ajouter des tâches
+    if(!(projetOuvert->getNom().isEmpty())){
 
-//        tacheSelectionne = m.getTache(identifiantTache);
+        tacheSelectionne = &(projetOuvert->getTache(identifiantTache));
 
-//        //On recherche la tache ayant le meme id dans ce projet
-//        idTache->setText(tacheSelectionne->getNom());
-//        nomTache->setPlainText(tacheSelectionne->getDescription());
-//        dateDispoTache->setDate(tacheSelectionne->getDisponibilite());
-//        dateEcheanceTache->setDate(tacheSelectionne->getEcheance());
-//    }
+        //On recherche la tache ayant le meme id dans ce projet
+        idTache->setText(tacheSelectionne->getId());
+        nomTache->setPlainText(tacheSelectionne->getTitre());
+        dateDispoTache->setDate(tacheSelectionne->getDateDisponibilite());
+        dateEcheanceTache->setDate(tacheSelectionne->getDateEcheance());
+    }
 }
 
 void ProjectWindow::fermerProjet(){
