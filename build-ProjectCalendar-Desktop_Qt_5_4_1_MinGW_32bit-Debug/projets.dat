@@ -6,14 +6,14 @@
   <disponibilite>mer. mai 13 2015</disponibilite>
   <echeance/>
   <taches>
-   <tache type="unitaire" etat="1">
+   <tache etat="1" type="unitaire">
     <identifiant>Tache3</identifiant>
     <titre>Tache3 du projet1</titre>
     <disponibilite>mar. juin 9 2015</disponibilite>
     <echeance>jeu. juin 11 2015</echeance>
     <duree minute="5" heure="2"/>
    </tache>
-   <tache type="unitaire" etat="1">
+   <tache etat="1" type="unitaire">
     <identifiant>Tache4</identifiant>
     <titre>Tache4 du projet1</titre>
     <disponibilite>mar. juin 9 2015</disponibilite>
