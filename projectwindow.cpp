@@ -23,7 +23,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     projetOuvert = NULL;
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
-    connect(projectTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
+    connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
 }
 
 
@@ -234,23 +234,19 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
     {
         QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
-        qDebug()<<"ajout tache arborescence : "<<(*it)->getId()<<"\n";
-        qDebug()<<"titre = "<<(*it)->getTitre();
-        qDebug()<<"dispo = "<<(*it)->getDateDisponibilite().toString();
-        qDebug()<<"echeance = "<<(*it)->getDateEcheance().toString();
         tacheTree->setText(0, (*it)->getId());
         rootTree->addChild(tacheTree);
     }
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    tacheSelectionne = &(projetOuvert->getTache(item->text(column)));
+    const Tache& tache = projetOuvert->getTache(item->text(column));
 
     //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionne->getId());
-    nomTache->setPlainText(tacheSelectionne->getTitre());
-    dateDispoTache->setDate(tacheSelectionne->getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionne->getDateEcheance());
+    idTache->setText(tache.getId());
+    nomTache->setPlainText(tache.getTitre());
+    dateDispoTache->setDate(tache.getDateDisponibilite());
+    dateEcheanceTache->setDate(tache.getDateEcheance());
 }
 
 void ProjectWindow::fermerProjet(){
