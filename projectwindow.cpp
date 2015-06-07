@@ -7,12 +7,16 @@
 #include "mainwindow.h"
 #include "projetmanager.h"
 #include "tachemanager.h"
+#include "tachecomposite.h"
+#include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
 #include <QMessageBox>
+#include <typeinfo>
 
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
@@ -122,19 +126,27 @@ void ProjectWindow::creerAffichageProjet(){
     QLabel* echeanceLabel= new QLabel("Echéance",this);
     QLabel* dureeLabel= new QLabel("Durée",this);
     idTache=new QLineEdit;
+    idTache->setDisabled(true);
     nomTache= new QTextEdit;
+    nomTache->setDisabled(true);
     dateDispoTache= new QDateEdit;
     dateDispoTache->setDate(QDate::currentDate());
+    dateDispoTache->setDisabled(true);
     dateEcheanceTache = new QDateEdit;
     dateEcheanceTache->setDate(QDate::currentDate());
+    dateEcheanceTache->setDisabled(true);
     hDureeTache=new QSpinBox(this);
     hDureeTache->setRange(0,24);hDureeTache->setSuffix("heure(s)");
+    hDureeTache->setDisabled(true);
     mDureeTache=new QSpinBox(this);
     mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
+    mDureeTache->setDisabled(true);
     modifier= new QPushButton("Modifier",this);
+    modifier->setDisabled(true);
     programmer= new QPushButton("Programmer",this);
-    ajouterSousTache= new QPushButton("Ajouter Sous Taches",this);
+    programmer->setDisabled(true);
     tachePreemtive = new QCheckBox;
+    tachePreemtive->setDisabled(true);
    
 
     QHBoxLayout* coucheH1= new QHBoxLayout;
@@ -159,17 +171,28 @@ void ProjectWindow::creerAffichageProjet(){
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(modifier);
     coucheH4->addWidget(programmer);
-    coucheH4->addWidget(ajouterSousTache);
+
+    ajouterSousTacheUnitaire = new QPushButton("Sous-Tache Unitaire");
+    ajouterSousTacheUnitaire->setDisabled(true);
+    ajouterSousTachePreemptive = new QPushButton("Sous-Tache Preemptive");
+    ajouterSousTachePreemptive->setDisabled(true);
+    ajouterSousTacheComposite = new QPushButton("Sous-Tache Composite");
+    ajouterSousTacheComposite->setDisabled(true);
+
+    QHBoxLayout* addSousT = new QHBoxLayout;
+    addSousT->addWidget(ajouterSousTacheUnitaire);
+    addSousT->addWidget(ajouterSousTachePreemptive);
+    addSousT->addWidget(ajouterSousTacheComposite);
 
     QVBoxLayout* couche= new QVBoxLayout;
     couche->addLayout(coucheH1);
     couche->addLayout(coucheH2);
     couche->addLayout(coucheH3);
     couche->addLayout(coucheH4);
+    couche->addLayout(addSousT);
 
     QGroupBox* detailsTache = new QGroupBox("Details Tache Selectionnée");
     detailsTache->setLayout(couche);
-    detailsTache->setDisabled(true);
 
     //3ieme groupbox permettant l'ajout de tache dans notre projet
     addTacheComposite = new QPushButton("Composite");
@@ -258,6 +281,17 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     nomTache->setPlainText(tacheSelectionne.getTitre());
     dateDispoTache->setDate(tacheSelectionne.getDateDisponibilite());
     dateEcheanceTache->setDate(tacheSelectionne.getDateEcheance());
+    modifier->setEnabled(true);
+    programmer->setEnabled(true);//Pour le moment
+
+    if(typeid(tacheSelectionne)==typeid(TacheUnitairePreemptive)){
+        tachePreemtive->setChecked(true);
+    }
+    else if(typeid(tacheSelectionne)==typeid(TacheComposite)){
+        ajouterSousTacheComposite->setEnabled(true);
+        ajouterSousTachePreemptive->setEnabled(true);
+        ajouterSousTacheUnitaire->setEnabled(true);
+    }
 }
 
 void ProjectWindow::fermerProjet(){

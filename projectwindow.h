@@ -117,8 +117,10 @@ private:
     QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
     QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
     QPushButton* modifier;/*!< Bouton de modification de la Tache*/
-    QPushButton* programmer;/*!< Bouton de modification de la Tache*/
-    QPushButton* ajouterSousTache;/*!< Bouton de modification de la Tache*/
+    QPushButton* programmer;/*!< Bouton de programmation de la Tache*/
+    QPushButton* ajouterSousTacheUnitaire;/*!< Bouton d'ajout sous tache unitaire*/
+    QPushButton* ajouterSousTachePreemptive;/*!< Bouton d'ajout sous tache preemptive*/
+    QPushButton* ajouterSousTacheComposite;/*!< Bouton d'ajout sous tache composite*/
 
 signals:
 
