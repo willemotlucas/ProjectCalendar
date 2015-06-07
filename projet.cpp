@@ -1,7 +1,11 @@
 #include "projet.h"
 
 void Projet::ajouterTache(Tache& t){
+<<<<<<< HEAD
     if (trouverTache(t.getId())) throw CalendarException("erreur, Projet, tache deja existante");
+=======
+    if (trouverTache(t.getId())) throw CalendarException("erreur, TacheManager, tache deja existante");
+>>>>>>> ff4a73f4bdcfdc55aab6dc59de6614efa8f439aa
     taches.push_back(&t);
 }
 
