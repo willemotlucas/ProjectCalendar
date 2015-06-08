@@ -43,6 +43,8 @@ private:
          */
     Programmation* trouverProgrammation(const Tache& t) const;
 
+    bool ajoutPossible(const Tache& t, const QDate& d, const QTime& h);
+
     /*! \class Handler
        * \brief Classe encapsulant l'instance unique du ProgrammationManager
        *
