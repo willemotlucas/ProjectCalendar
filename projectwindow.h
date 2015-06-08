@@ -24,6 +24,7 @@
 
 #include "projet.h"
 #include "programmationmanager.h"
+#include "projetmanager.h"
 
 /*! \class ProjectWindow
    * \brief Classe representant la fenetre de vue de Gestion de Projet
@@ -60,7 +61,10 @@ public:
          *
          *  Destructeur de la classe ProjectWindow
          */
-    ~ProjectWindow(){ProgrammationManager& pm = ProgrammationManager::getInstance(); pm.save();}
+    ~ProjectWindow(){
+        ProgrammationManager& pm = ProgrammationManager::getInstance(); pm.save();
+        ProjetManager& p = ProjetManager::getInstance();p.save();
+    }
 
 private:
     /*!

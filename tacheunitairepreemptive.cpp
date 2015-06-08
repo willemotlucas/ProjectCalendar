@@ -6,26 +6,12 @@
 #include "tacheunitairepreemptive.h"
 #include "global.h"
 
-QDomNode& TacheUnitairePreemptive::write(const QString& type, const QString &id,QDomDocument* dom){
-//    qDebug()<<"start write tache preemtive\n";
-
-//    QDomDocument* dom = new QDomDocument("projets");
-//    QFile newfile(fileXML);
-
-//    if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
-//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-//    if(!dom->setContent(&newfile))
-//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
-//    newfile.close();
-
-//    QDomElement dom_element = dom->documentElement();
-
-//    //=============================================================
+QDomElement& TacheUnitairePreemptive::write(const QString& type, const QString &id,QDomDocument* dom){
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
-    QDomElement tache = dom->createElement("tache");
-    tache.setAttribute("type", "preemtive");
+    QDomElement* tache = new QDomElement(dom->createElement("tache"));
+    tache->setAttribute("type", "preemtive");
     qDebug()<<"etat"<<this->getEtat();
-    tache.setAttribute("etat", (int)this->getEtat());
+    tache->setAttribute("etat", (int)this->getEtat());
 
     QDomElement idTache = dom->createElement("identifiant");
     QDomText idTacheText = dom->createTextNode(this->getId());
@@ -52,49 +38,15 @@ QDomNode& TacheUnitairePreemptive::write(const QString& type, const QString &id,
     dureeTacheRestante.setAttribute("minute", QString::number(this->getDureeRestante().minute()));
 
     //On ajoute au noeau tache tous ses elements
-    tache.appendChild(idTache);
-    tache.appendChild(titreTache);
-    tache.appendChild(dispoTache);
-    tache.appendChild(echeanceTache);
-    tache.appendChild(dureeTacheInit);
-    tache.appendChild(dureeTacheRestante);
+    tache->appendChild(idTache);
+    tache->appendChild(titreTache);
+    tache->appendChild(dispoTache);
+    tache->appendChild(echeanceTache);
+    tache->appendChild(dureeTacheInit);
+    tache->appendChild(dureeTacheRestante);
 
-    return tache;
+    return *tache;
 }
-//    //=============================================================
-//    //
-//    QDomElement projectNode = dom_element.firstChildElement(type);
-//    QDomElement projectName = projectNode.firstChild().toElement();
 
-//    while(projectName.text() != id){
-//        projectNode = projectNode.nextSiblingElement(type);
-//        projectName = projectNode.firstChild().toElement();
-//    }
-
-//    if(type == "projet")
-//    {
-//        QDomElement node = projectNode.firstChildElement("taches");
-//        node.appendChild(tache);
-//    }
-//    else if(type == "tache")
-//    {
-//        QDomElement node = projectNode.firstChildElement("soustaches");
-//        node.appendChild(tache);
-//    }
-//    QDomElement node = projectNode.firstChildElement("taches");
-
-//    QFile fichier(fileXML);
-//    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
-//    {
-//        fichier.close();
-//        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier XML pour écriture."));
-//    }
-
-//    QString write_doc = dom->toString();
-//    QTextStream stream(&fichier);
-//    stream<<write_doc;
-//    fichier.close();
-    
-//}
 
 

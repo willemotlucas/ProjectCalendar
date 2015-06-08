@@ -79,7 +79,7 @@ public:
          *
          *  \param f : nom du fichier XML
          */
-    void save(const QString& f);
+    void save();
 
     /*!
          *  \brief getInstance

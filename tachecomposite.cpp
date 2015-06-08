@@ -51,7 +51,7 @@ bool TacheComposite::trouverTache(const Tache& tache){
     return false;
 }
 
-QDomNode& TacheComposite::write(const QString& type, const QString& id,QDomDocument* dom) {}
+QDomElement& TacheComposite::write(const QString& type, const QString& id,QDomDocument* dom) {}
 //    QDomDocument* dom = new QDomDocument("projets");
 //    QFile newfile(fileXML);
 

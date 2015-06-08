@@ -53,8 +53,6 @@ void NewProjectWindow::creationNouveauProjet(){
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }
-
-    pm.save(fileXML);
 }
 
 

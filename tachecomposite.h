@@ -17,7 +17,7 @@ class TacheComposite : public Tache
     TacheComposite(const QString& id, const QString& t, const QDate& dispo):Tache(id, t, dispo){}
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
-    QDomNode& write(const QString& type, const QString& id,QDomDocument* dom);
+    QDomElement& write(const QString& type, const QString& id,QDomDocument* dom);
 
 
 public:

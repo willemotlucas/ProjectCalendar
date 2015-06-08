@@ -168,9 +168,8 @@ void ProjetManager::load(const QString& f){
     fin.close();
 }
 
-void  ProjetManager::save(const QString& f){
+void  ProjetManager::save(){
     qDebug()<<"Debut save projetManager";
-    file=f;
 
     QDomDocument* dom = new QDomDocument("projets");
     QDomElement dom_element = dom->documentElement();
@@ -202,7 +201,10 @@ void  ProjetManager::save(const QString& f){
 
         QDomElement taches = dom->createElement("taches");
         for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
-            taches.appendChild((*i)->save("projet",(*it)->getNom(),dom));
+            QDomElement m = (*i)->save("projet",(*it)->getNom(),dom);
+            qDebug()<<"tache reçue : "<<m.nodeName();
+            qDebug()<<"id tache recue : "<<m.firstChild().toElement().nodeName();
+            taches.appendChild(m);
         }
 
 
