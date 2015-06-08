@@ -69,7 +69,6 @@ Projet* ProjetManager::trouverProjet(const QString& nom)const{
 }
 
 void ProjetManager::load(const QString& f){
-    qDebug()<<"debut load projetmanager";
     //Utilisation de la STL
     projets.clear();
     //delete[] projets;

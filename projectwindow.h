@@ -60,7 +60,7 @@ public:
          *
          *  Destructeur de la classe ProjectWindow
          */
-    ~ProjectWindow(){ProgrammationManager& pm = ProgrammationManager::getInstance(); pm.save(); qDebug()<<"sauvegarde progs";}
+    ~ProjectWindow(){ProgrammationManager& pm = ProgrammationManager::getInstance(); pm.save();}
 
 private:
     /*!

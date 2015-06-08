@@ -1,10 +1,12 @@
 #include "programmationmanager.h"
 #include "projetmanager.h"
+#include "mainwindow.h"
 #include "tache.h"
 #include "global.h"
 #include <QDebug>
 #include <QtXml>
 #include <typeinfo>
+#include <QMessageBox>
 
 ProgrammationManager::Handler ProgrammationManager::handler=ProgrammationManager::Handler();
 
@@ -25,8 +27,11 @@ void ProgrammationManager::addItem(Programmation* prog){
 }
 
 Programmation* ProgrammationManager::trouverProgrammation(const Tache& t)const{
-    for(unsigned int i=0; i<programmations.size(); i++)
-        if (&t==&programmations[i]->getTache()) return programmations[i];
+    for(std::vector<Programmation*>::const_iterator it = programmations.begin(); it != programmations.end(); ++it){
+        if((*it)->getTache().getId() == t.getId()){
+            return (*it);
+        }
+    }
     return 0;
 }
 
@@ -79,7 +84,6 @@ void ProgrammationManager::save(){
 
     //Ecriture de l'arbre DOM dans le fichier XML
     QString write_doc = dom->toString();
-    qDebug()<<"write_doc : "<<write_doc;
     QTextStream stream(&fichier);
     stream<<write_doc;
     fichier.close();
@@ -96,18 +100,17 @@ void ProgrammationManager::load(){
     newfile.close();
 
     QDomElement dom_element = dom->documentElement();
-    QDomNode progs = dom_element.firstChildElement("programmations");
+    QDomNode progs = dom_element.firstChild();
 
-    //Si le fichier ne contient aucune programmation, on ne fait rien
-    if(progs.isNull()){
-        return;
-    }
     //Sinon on parcout l'arbre DOM pour recréer le vector de programmations
-    else{
+    if(progs.hasChildNodes()){
         ProjetManager& pm = ProjetManager::getInstance();
         //Pour recréer l'objet Tache, on a juste son identifiant, on doit donc charger sa tache grâce au projet
         //On parcourt tous les noeuds <programmation>
-        for(QDomNode prog = progs.firstChildElement("programmation"); !prog.isNull(); prog.nextSiblingElement("programmation")){
+        QDomNodeList nl = progs.childNodes();
+        QDomNode n = nl.at(0);
+
+        for(QDomNode prog = dom_element.firstChildElement("programmation"); !prog.isNull(); prog = prog.nextSiblingElement("programmation")){
             //On recrée tous les objets nécessaires à la construction d'un objet programmation
             Projet* p = pm.getProjet(prog.toElement().attribute("projet"));
             Tache* t = p->getTache(prog.toElement().attribute("tache"));
@@ -117,7 +120,7 @@ void ProgrammationManager::load(){
             QTime horaire(heure,minute);
 
             //On ajoute la programmation dans le vector
-            ajouterProgrammation(*p,*t,date,horaire);
+            addItem(new Programmation(*p,*t,date,horaire));
         }
     }
 }
