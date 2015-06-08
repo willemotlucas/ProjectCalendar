@@ -22,9 +22,9 @@ INPUT(
 ./debug\addpreemptivewindow.o
 ./debug\programmertachewindow.o
 ./debug\addcompositewindow.o
-./debug\addsouscomposotewindow.o
 ./debug\addsouspreemptivewindow.o
 ./debug\addsoustachewindow.o
+./debug\addsouscompositewindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addtachewindow.o
 ./debug\moc_modtachewindow.o
@@ -35,7 +35,7 @@ INPUT(
 ./debug\moc_addpreemptivewindow.o
 ./debug\moc_programmertachewindow.o
 ./debug\moc_addcompositewindow.o
-./debug\moc_addsouscomposotewindow.o
 ./debug\moc_addsouspreemptivewindow.o
 ./debug\moc_addsoustachewindow.o
+./debug\moc_addsouscompositewindow.o
 );

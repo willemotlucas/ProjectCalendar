@@ -150,6 +150,22 @@ public:
          *  de programmations
          */
     void load();
+
+    /*!
+         *  \brief begin
+         *
+         *  Permet d'itérer sur le vector de programmations en dehors de la tache
+         * ProgrammationManager
+         */
+    std::vector<Programmation*>::iterator begin(){return programmations.begin();}
+
+    /*!
+         *  \brief end
+         *
+         *  Permet d'itérer sur le vector de programmations en dehors de la tache
+         * ProgrammationManager
+         */
+    std::vector<Programmation*>::iterator end(){return programmations.end();}
 };
 
 #endif // PROGRAMMATIONMANAGER_H
