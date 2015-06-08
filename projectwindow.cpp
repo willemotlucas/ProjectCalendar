@@ -367,7 +367,11 @@ void ProjectWindow::ajouterTache(Tache &t){
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     ProgrammationManager& pm = ProgrammationManager::getInstance();
-    pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t);
+    try{
+        pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t);
+    }catch(CalendarException e){
+        QMessageBox::warning(this, "Attention", e.getInfo());
+    }
 }
 
 

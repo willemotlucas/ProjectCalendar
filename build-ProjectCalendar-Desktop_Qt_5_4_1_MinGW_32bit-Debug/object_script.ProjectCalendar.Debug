@@ -23,6 +23,7 @@ INPUT(
 ./debug\tachefactory.o
 ./debug\addpreemptivewindow.o
 ./debug\programmertachewindow.o
+./debug\addcompositewindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addtachewindow.o
 ./debug\moc_modtachewindow.o
@@ -32,4 +33,5 @@ INPUT(
 ./debug\moc_calendarwindow.o
 ./debug\moc_addpreemptivewindow.o
 ./debug\moc_programmertachewindow.o
+./debug\moc_addcompositewindow.o
 );
