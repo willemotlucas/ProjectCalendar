@@ -291,11 +291,8 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTacheUnitaire->setEnabled(false);
 
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
-<<<<<<< HEAD
         TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
         if(tmp == NULL) qDebug()<<"tmp is null";
-=======
->>>>>>> ba613aba3388165ccdba1633ed813d78e8585abf
         tachePreemtive->setChecked(true);
         qDebug()<<"hour: "<<tmp->getDureeInit().hour();
         hDureeTache->setValue(tmp->getDureeInit().hour());
