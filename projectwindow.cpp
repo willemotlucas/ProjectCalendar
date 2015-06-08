@@ -294,7 +294,19 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTacheUnitaire->setEnabled(false);
 
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+        TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
+        if(tmp == NULL) qDebug()<<"tmp is null";
         tachePreemtive->setChecked(true);
+        qDebug()<<"hour: "<<tmp->getDureeInit().hour();
+        qDebug()<<"minute: "<<tmp->getDureeInit().minute();
+
+        hDureeTache->setValue(tmp->getDureeInit().hour());
+        mDureeTache->setValue(tmp->getDureeInit().minute());
+    }
+    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
+        TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
+        hDureeTache->setValue(tmp->getDuree().hour());
+        mDureeTache->setValue(tmp->getDuree().minute());
     }
     else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
         ajouterSousTacheComposite->setEnabled(true);

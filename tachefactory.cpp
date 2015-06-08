@@ -18,8 +18,8 @@ Tache& TacheFactory::creerTacheUnitaire(const QString &id, const QString &desc, 
     return *t;
 }
 
-Tache& TacheFactory::creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime &duree, const int& etat){
-    Tache* t = new TacheUnitairePreemptive(id,desc,dispo,echeance,duree, etat);
+Tache& TacheFactory::creerTacheUnitairePreemptive(const QString &id, const QString &desc, const QDate &dispo, const QDate &echeance, const QTime& dureeInit, const QTime &dureeRest, const int& etat){
+    Tache* t = new TacheUnitairePreemptive(id,desc,dispo,echeance,dureeInit, dureeRest, etat);
     return *t;
 }
 
