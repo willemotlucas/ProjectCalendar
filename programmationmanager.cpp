@@ -1,4 +1,6 @@
 #include "programmationmanager.h"
+#include "projetmanager.h"
+#include "tache.h"
 #include "global.h"
 #include <QDebug>
 #include <QtXml>
@@ -52,6 +54,7 @@ void ProgrammationManager::save(){
         //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
         QDomElement prog = dom->createElement("programmation");
         prog.setAttribute("tache", (*it)->getTache().getId());
+        prog.setAttribute("projet", (*it)->getProjet().getNom());
 
         QDomElement date = dom->createElement("date");
         QDomElement dateText = dom->createElement((*it)->getDate().toString());
@@ -85,9 +88,9 @@ void ProgrammationManager::load(){
     QFile newfile(progXML);
 
     if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
+        throw CalendarException(QString("Erreur. Chargement du fichier " + progXML + " impossible"));
     if(!dom->setContent(&newfile))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
+        throw CalendarException(QString("Erreur. Impossible de créer l'arbre DOM pour le fichier " + progXML));
     newfile.close();
 
     QDomElement dom_element = dom->documentElement();
@@ -99,6 +102,20 @@ void ProgrammationManager::load(){
     }
     //Sinon on parcout l'arbre DOM pour recréer le vector de programmations
     else{
+        ProjetManager& pm = ProjetManager::getInstance();
         //Pour recréer l'objet Tache, on a juste son identifiant, on doit donc charger sa tache grâce au projet
+        //On parcourt tous les noeuds <programmation>
+        for(QDomNode prog = progs.firstChildElement("programmation"); !prog.isNull(); prog.nextSiblingElement("programmation")){
+            //On recrée tous les objets nécessaires à la construction d'un objet programmation
+            Projet* p = pm.getProjet(prog.toElement().attribute("projet"));
+            Tache* t = p->getTache(prog.toElement().attribute("tache"));
+            QDate date = QDate::fromString(prog.firstChildElement("date").toElement().text(), Qt::TextDate);
+            int heure = prog.firstChildElement("horaire").toElement().attribute("heure").toInt();
+            int minute = prog.firstChildElement("horaire").toElement().attribute("minute").toInt();
+            QTime horaire(heure,minute);
+
+            //On ajoute la programmation dans le vector
+            ajouterProgrammation(*p,*t,date,horaire);
+        }
     }
 }
