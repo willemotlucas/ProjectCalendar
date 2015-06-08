@@ -71,7 +71,7 @@ void AddSousPreemptiveWindow::envoiSousTachePreemtive(){
     try{
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
         TacheFactory& tf = TacheFactory::getInstance();
-        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value()),QTime(hDuree->value(), mDuree->value())));
         pwm.ajouterSousTache(t);
         this->close();
     }catch(CalendarException e){
@@ -79,15 +79,5 @@ void AddSousPreemptiveWindow::envoiSousTachePreemtive(){
     }
 }
 
-//void AddPreemptiveWindow::envoiPreemptive(){
-//    try{
-//        ProjectWindow& pwm = MainWindow::getInstanceProjet();
-//        TacheFactory& tf = TacheFactory::getInstance();
-//        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitairePreemptive(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
-//        pwm.ajouterTache(t);
-//        this->close();
-//    }catch(CalendarException e){
-//        QMessageBox::information(this,"Information",e.getInfo());
-//    }
-//}
+
 
