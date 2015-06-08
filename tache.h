@@ -30,7 +30,7 @@ protected:
     virtual void write(const QString& projet) const  = 0;
 
 public:
-        void save(const QString& projet) const {write(projet);}
+    void save(const QString& projet) const {write(projet);}
     //DESTRUCTOR
     virtual ~Tache(){}
 
