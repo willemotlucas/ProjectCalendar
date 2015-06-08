@@ -282,7 +282,8 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     programmer->setEnabled(true);
     modifier->setEnabled(true);
 
-    if(typeid(tacheSelectionnee).name() == "13TacheUnitaire"){
+    if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+        qDebug()<<"check preemptive";
         tachePreemtive->setChecked(true);
     }
     else if(typeid(tacheSelectionnee).name() == "23TacheComposite"){
