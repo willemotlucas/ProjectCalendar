@@ -281,12 +281,16 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
     programmer->setEnabled(true);
     modifier->setEnabled(true);
+    tachePreemtive->setChecked(false);
+    ajouterSousTacheComposite->setEnabled(false);
+    ajouterSousTachePreemptive->setEnabled(false);
+    ajouterSousTacheUnitaire->setEnabled(false);
 
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
         qDebug()<<"check preemptive";
         tachePreemtive->setChecked(true);
     }
-    else if(typeid(tacheSelectionnee).name() == "23TacheComposite"){
+    else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
         ajouterSousTacheComposite->setEnabled(true);
         ajouterSousTachePreemptive->setEnabled(true);
         ajouterSousTacheUnitaire->setEnabled(true);

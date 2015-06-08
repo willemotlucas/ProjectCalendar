@@ -80,8 +80,9 @@ void ProjetManager::load(const QString& f){
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
         throw CalendarException("Erreur ouverture fichier projets");
     }
-    if(!dom->setContent(&fin))
+    if(!dom->setContent(&fin)){
         throw CalendarException(QString("erreur ouverture projet : ouverture objet dom"));
+    }
 
     QDomElement dom_element = dom->documentElement();
 
