@@ -176,6 +176,12 @@ void ProjetManager::load(const QString& f){
                     //On ajoute la tache au projet que l'on est en train de parcourir
                     p.ajouterTache(t);
                 }
+                else if (type == "composite"){
+                    TacheFactory& tm = TacheFactory::getInstance();
+                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
+                    //On ajoute la tache au projet que l'on est en train de parcourir
+                    p.ajouterTache(t);
+                }
             }
         }
     }
@@ -184,7 +190,6 @@ void ProjetManager::load(const QString& f){
 }
 
 void  ProjetManager::save(){
-    qDebug()<<"Debut save projetManager";
 
     QDomDocument* dom = new QDomDocument("projets");
     QDomElement dom_element = dom->documentElement();
@@ -216,9 +221,8 @@ void  ProjetManager::save(){
 
         QDomElement taches = dom->createElement("taches");
         for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
-            QDomElement m = (*i)->save("projet",(*it)->getNom(),dom);
-            qDebug()<<"tache reçue : "<<m.nodeName();
-            qDebug()<<"id tache recue : "<<m.firstChild().toElement().nodeName();
+            QDomElement m = (*i)->save(dom);
+            qDebug()<<"etat"<<m.nodeName();
             taches.appendChild(m);
         }
 
@@ -244,40 +248,10 @@ void  ProjetManager::save(){
 
     //Ecriture de l'arbre DOM dans le fichier XML
     QString write_doc = dom->toString();
-    qDebug()<<"write_doc : "<<write_doc;
     QTextStream stream(&fichier);
     stream<<write_doc;
     fichier.close();
-
-
-
 }
 
-//    qDebug()<<"debut save projetManager";
-//    file=f;
-//    QFile newfile( file);
-//    if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-//    QXmlStreamWriter stream(&newfile);
-//    stream.setAutoFormatting(true);
-//    stream.writeStartDocument();
-//    stream.writeStartElement("projets");
-//    for(unsigned int i=0; i<projets.size(); i++){
-//        stream.writeStartElement("projet");
-//        stream.writeTextElement("nom",projets[i]->getNom());
-//        qDebug()<<"nom ="<<projets[i]->getNom();
-//        stream.writeTextElement("description",projets[i]->getDescription());
-//        qDebug()<<"description ="<<projets[i]->getDescription();
-//        stream.writeTextElement("disponibilite",projets[i]->getDisponibilite().toString(Qt::TextDate));
-//        qDebug()<<"dispo = "<<projets[i]->getDisponibilite().toString(Qt::TextDate);
-//        stream.writeTextElement("echeance",projets[i]->getEcheance().toString(Qt::TextDate));
-//        qDebug()<<"echeance = "<<projets[i]->getEcheance().toString(Qt::TextDate);
-//        stream.writeStartElement("taches");
-//        stream.writeEndElement();
-//        stream.writeEndElement();
-//    }
-//    stream.writeEndElement();
-//    stream.writeEndDocument();
-//    newfile.close();
-//}
+
 

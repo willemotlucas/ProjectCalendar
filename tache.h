@@ -28,10 +28,10 @@ protected:
     Tache& operator=(const Tache&);
 
 
-    virtual QDomElement& write(const QString& type, const QString& id,QDomDocument* dom)= 0;
+    virtual QDomElement& write(QDomDocument* dom)= 0;
 
 public:
-        QDomElement& save(const QString& type, const QString& id,QDomDocument* dom) {return write(type, id,dom);}
+        QDomElement& save(QDomDocument* dom) {return write(dom);}
     //DESTRUCTOR
     virtual ~Tache(){}
 

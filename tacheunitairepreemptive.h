@@ -19,7 +19,7 @@ public:
 
 
     ~TacheUnitairePreemptive(){}
-    QDomElement& write(const QString& type, const QString& id,QDomDocument* dom);
+    QDomElement& write(QDomDocument* dom);
 
 
     //STATES METHODS

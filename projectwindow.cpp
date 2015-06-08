@@ -12,7 +12,6 @@
 #include "tacheunitaire.h"
 #include "tacheunitairepreemptive.h"
 #include "projetmanager.h"
-#include "tachemanager.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -33,6 +32,9 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
     connect(addTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
+    connect(ajouterSousTacheUnitaire,SIGNAL(clicked),this,SLOT(fenetreAjouterTacheUnitaire()));
+    connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
+    connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
 }
 
 
@@ -289,8 +291,11 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTacheUnitaire->setEnabled(false);
 
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+<<<<<<< HEAD
         TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
         if(tmp == NULL) qDebug()<<"tmp is null";
+=======
+>>>>>>> ba613aba3388165ccdba1633ed813d78e8585abf
         tachePreemtive->setChecked(true);
         qDebug()<<"hour: "<<tmp->getDureeInit().hour();
         hDureeTache->setValue(tmp->getDureeInit().hour());
@@ -366,7 +371,10 @@ void ProjectWindow::ajouterTache(Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    //t.save("projet",projetOuvert->getNom());
+}
+
+void ProjectWindow::ajouterSousTache(Tache &t){
+    //tacheSelectionnee->ajouterSousTache(t);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){

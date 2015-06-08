@@ -20,8 +20,6 @@ SOURCES += main.cpp\
     tache.cpp \
     programmation.cpp \
     programmationmanager.cpp \
-    tachemanager.cpp \
-    iterator.cpp \
     evenement.cpp \
     evenementduree.cpp \
     projet.cpp \
@@ -38,7 +36,10 @@ SOURCES += main.cpp\
     tachefactory.cpp \
     addpreemptivewindow.cpp \
     programmertachewindow.cpp \
-    addcompositewindow.cpp
+    addcompositewindow.cpp \
+    addsouscomposotewindow.cpp \
+    addsouspreemptivewindow.cpp \
+    addsoustachewindow.cpp
     addpreemtivewindow.cpp
 
 HEADERS  += mainwindow.h \
@@ -47,8 +48,6 @@ HEADERS  += mainwindow.h \
     programmation.h \
     calendarexception.h \
     programmationmanager.h \
-    tachemanager.h \
-    iterator.h \
     evenement.h \
     evenementduree.h \
     projet.h \
@@ -66,7 +65,10 @@ HEADERS  += mainwindow.h \
     tachefactory.h \
     addpreemptivewindow.h \
     programmertachewindow.h \
-    addcompositewindow.h
+    addcompositewindow.h \
+    addsouscomposotewindow.h \
+    addsouspreemptivewindow.h \
+    addsoustachewindow.h
     addpreemtivewindow.h
 
 FORMS    += mainwindow.ui \

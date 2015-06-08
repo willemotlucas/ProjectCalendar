@@ -5,7 +5,6 @@
 #include <QMetaEnum>
 
 #include "tachecomposite.h"
-#include "tachemanager.h"
 #include "global.h"
 #include "tache.h"
 
@@ -51,84 +50,41 @@ bool TacheComposite::trouverTache(const Tache& tache){
     return false;
 }
 
-QDomElement& TacheComposite::write(const QString& type, const QString& id,QDomDocument* dom) {}
-//    QDomDocument* dom = new QDomDocument("projets");
-//    QFile newfile(fileXML);
+QDomElement& TacheComposite::write(QDomDocument* dom) {
 
-//    if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
-//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-//    if(!dom->setContent(&newfile))
-//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
-//    newfile.close();
+    //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
+    QDomElement* tache = new QDomElement(dom->createElement("tache"));
+    tache->setAttribute("type", "composite");
+    qDebug()<<"etat preemtive"<<this->getId();
 
-//    QDomElement dom_element = dom->documentElement();
+    QDomElement idTache = dom->createElement("identifiant");
+    QDomText idTacheText = dom->createTextNode(this->getId());
+    idTache.appendChild(idTacheText);
 
-//    //=============================================================
-//    //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
-//    QDomElement tache = dom->createElement("tache");
-//    tache.setAttribute("type", "composite");
-////    qDebug()<<"etat"<<this->getEtat();
-////    tache.setAttribute("etat", (int)this->getEtat());
+    QDomElement titreTache = dom->createElement("titre");
+    QDomText titreTacheText = dom->createTextNode(this->titre);
+    titreTache.appendChild(titreTacheText);
 
-//    QDomElement idTache = dom->createElement("identifiant");
-//    QDomText idTacheText = dom->createTextNode(this->getId());
-//    idTache.appendChild(idTacheText);
+    QDomElement dispoTache = dom->createElement("disponibilite");
+    QDomText dispoTacheText = dom->createTextNode(this->getDateDisponibilite().toString(Qt::TextDate));
+    dispoTache.appendChild(dispoTacheText);
 
-//    QDomElement titreTache = dom->createElement("titre");
-//    QDomText titreTacheText = dom->createTextNode(this->titre);
-//    titreTache.appendChild(titreTacheText);
+    QDomElement echeanceTache = dom->createElement("echeance");
+    QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
+    echeanceTache.appendChild(echeanceTacheText);
 
-//    QDomElement dispoTache = dom->createElement("disponibilite");
-//    QDomText dispoTacheText = dom->createTextNode(this->getDateDisponibilite().toString(Qt::TextDate));
-//    dispoTache.appendChild(dispoTacheText);
-
-//    QDomElement echeanceTache = dom->createElement("echeance");
-//    QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
-//    echeanceTache.appendChild(echeanceTacheText);
-
-//    QDomElement sousTache = dom->createElement("soustaches") ;
-
-
-//    //On ajoute au noeau tache tous ses elements
-//    tache.appendChild(idTache);
-//    tache.appendChild(titreTache);
-//    tache.appendChild(dispoTache);
-//    tache.appendChild(echeanceTache);
-//    tache.appendChild(sousTache);
-//    //=============================================================
-//    //
-//    QDomElement projectNode = dom_element.firstChildElement("projet");
-//    QDomElement projectName = projectNode.firstChild().toElement();
-
-//    while(projectName.text() != projet){
-//        projectNode = projectNode.nextSiblingElement("projet");
-//        projectName = projectNode.firstChild().toElement();
+    QDomElement sousTache = dom->createElement("soustaches");
+//    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+//        QDomElement m = (*it)->save(dom);
+//        sousTache.appendChild(m);
 //    }
 
-//    QDomElement node = projectNode.firstChildElement("taches");
-//    //Si des taches sont déjà existantes au projet, on rajoute la nouvelle tache à la fin
-//    if(node.nodeName() == "taches"){
-//        //On ajoute la tache au noeud <taches>
-//        node.appendChild(tache);
-//    }
-//    //S'il n'y a pas de noeud <taches>
-//    else if(node.nodeName() == ""){
-//        //on doit le créer pour ajouter la nouvelle tache et les taches futures
-//        QDomElement taches = dom->createElement("taches");
-//        taches.appendChild(tache);
-//        projectNode.appendChild(taches);
-//    }
 
-//    QFile fichier(fileXML);
-//    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
-//    {
-//        fichier.close();
-//        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier XML pour écriture."));
-//    }
-
-//    QString write_doc = dom->toString();
-//    QTextStream stream(&fichier);
-//    stream<<write_doc;
-//    fichier.close();
-//}
-
+    //On ajoute au noeau tache tous ses elements
+    tache->appendChild(idTache);
+    tache->appendChild(titreTache);
+    tache->appendChild(dispoTache);
+    //tache->appendChild(echeanceTache);
+    tache->appendChild(sousTache);
+    return *tache;
+}

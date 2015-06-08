@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "calendarexception.h"
-#include "tachemanager.h"
 #include "duree.h"
 #include "programmationmanager.h"
 #include "projetmanager.h"
