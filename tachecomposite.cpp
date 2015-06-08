@@ -74,17 +74,17 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     echeanceTache.appendChild(echeanceTacheText);
 
     QDomElement sousTache = dom->createElement("soustaches");
-//    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
-//        QDomElement m = (*it)->save(dom);
-//        sousTache.appendChild(m);
-//    }
+    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+        QDomElement m = (*it)->save(dom);
+        sousTache.appendChild(m);
+    }
 
 
     //On ajoute au noeau tache tous ses elements
     tache->appendChild(idTache);
     tache->appendChild(titreTache);
     tache->appendChild(dispoTache);
-    //tache->appendChild(echeanceTache);
+    tache->appendChild(echeanceTache);
     tache->appendChild(sousTache);
     return *tache;
 }

@@ -1,4 +1,4 @@
-#include "addsouscomposotewindow.h"
+#include "addsouscompositewindow.h"
 #include "tachefactory.h"
 #include "tache.h"
 #include "tachecomposite.h"
@@ -13,7 +13,7 @@
 #include <QMessageBox>
 
 AddSousCompositeWindow::AddSousCompositeWindow(QWidget* parent):QDialog(parent){
-    this->setWindowTitle("Nouvelle Tache Composite");
+    this->setWindowTitle("Nouvelle Sous-Tache Composite");
 
     QLabel* idLabel = new QLabel("Identificateur",this);
     QLabel* titreLabel =new QLabel("Titre",this);
@@ -63,7 +63,7 @@ void AddSousCompositeWindow::envoiSousTacheComposite(){
         ProjectWindow& pwm = MainWindow::getInstanceProjet();
         TacheFactory& tf = TacheFactory::getInstance();
         Tache& t = dynamic_cast<Tache&>(tf.creerTacheComposite(identificateur->text(), titre->toPlainText(), disponibilite->date()));
-        pwm.ajouterTache(t);
+        pwm.ajouterSousTache(t);
         this->close();
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());

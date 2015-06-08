@@ -37,9 +37,9 @@ SOURCES += main.cpp\
     addpreemptivewindow.cpp \
     programmertachewindow.cpp \
     addcompositewindow.cpp \
-    addsouscomposotewindow.cpp \
     addsouspreemptivewindow.cpp \
-    addsoustachewindow.cpp
+    addsoustachewindow.cpp \
+    addsouscompositewindow.cpp
     addpreemtivewindow.cpp
 
 HEADERS  += mainwindow.h \
@@ -66,9 +66,9 @@ HEADERS  += mainwindow.h \
     addpreemptivewindow.h \
     programmertachewindow.h \
     addcompositewindow.h \
-    addsouscomposotewindow.h \
     addsouspreemptivewindow.h \
-    addsoustachewindow.h
+    addsoustachewindow.h \
+    addsouscompositewindow.h
     addpreemtivewindow.h
 
 FORMS    += mainwindow.ui \

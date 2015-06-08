@@ -59,7 +59,7 @@ private slots:
          *  \brief Envoi d'une sous-tache unitaire non preemptive
          *
          *  Le slot permet de recuperer tous les diffs elements
-         * composant la nouvelle tache pour que le tache manager puisse ensuite l'enregistrer
+         * composant la nouvelle sous-tache pour que le tache manager puisse ensuite l'enregistrer
          * dans le fichier XML.
          */
     void envoiSousTacheUnitaire();

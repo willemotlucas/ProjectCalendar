@@ -7,6 +7,9 @@
 #include "programmertachewindow.h"
 #include "programmationmanager.h"
 #include "loadprojectwindow.h"
+#include "addsouscompositewindow.h"
+#include "addsouspreemptivewindow.h"
+#include "addsoustachewindow.h"
 #include "mainwindow.h"
 #include "tachecomposite.h"
 #include "tacheunitaire.h"
@@ -32,9 +35,9 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
     connect(addTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
-    connect(ajouterSousTacheUnitaire,SIGNAL(clicked),this,SLOT(fenetreAjouterTacheUnitaire()));
-    connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
-    connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
+    connect(ajouterSousTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitaire()));
+    connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitairePreemptive()));
+    connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheComposite()));
 }
 
 
@@ -346,6 +349,21 @@ void ProjectWindow::fenetreAjouterTacheComposite(){
     newTache->exec();
 }
 
+void ProjectWindow::fenetreAjouterSousTacheUnitaire(){
+    AddSousTacheWindow *newTache = new AddSousTacheWindow(this);
+    newTache->exec();
+}
+
+void ProjectWindow::fenetreAjouterSousTacheUnitairePreemptive(){
+    AddSousPreemptiveWindow *newTache = new AddSousPreemptiveWindow(this);
+    newTache->exec();
+}
+
+void ProjectWindow::fenetreAjouterSousTacheComposite(){
+    AddSousCompositeWindow *newTache = new AddSousCompositeWindow(this);
+    newTache->exec();
+}
+
 void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
     modTache->exec();
@@ -366,7 +384,8 @@ void ProjectWindow::ajouterTache(Tache &t){
 }
 
 void ProjectWindow::ajouterSousTache(Tache &t){
-    //tacheSelectionnee->ajouterSousTache(t);
+    TacheComposite* tmp = dynamic_cast<TacheComposite*>(tacheSelectionnee);
+    tmp->ajouterSousTache(t);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){

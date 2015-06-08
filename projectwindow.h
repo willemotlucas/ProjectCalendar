@@ -168,6 +168,27 @@ private slots:
     void fenetreAjouterTacheUnitairePreemptive();
 
     /*!
+         *  \brief fenetreAjouterSousTacheComposite
+         *
+         *  Appel la fenetre d'ajout d'une sous-tache composite
+         */
+    void fenetreAjouterSousTacheComposite();
+
+    /*!
+         *  \brief fenetreSousAjouterTacheUnitaire
+         *
+         *  Appel la fenetre d'ajout d'une sous-tache unitaire simple
+         */
+    void fenetreAjouterSousTacheUnitaire();
+
+    /*!
+         *  \brief fenetreAjouterTacheSousUnitairePreemptive
+         *
+         *  Appel la fenetre d'ajout d'une sous-tache unitaire preemptive
+         */
+    void fenetreAjouterSousTacheUnitairePreemptive();
+
+    /*!
          *  \brief modifierTache
          *
          *  Permet de modifier une tache du projet
