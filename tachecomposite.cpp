@@ -55,6 +55,7 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement* tache = new QDomElement(dom->createElement("tache"));
     tache->setAttribute("type", "composite");
+    qDebug()<<"etat preemtive"<<this->getId();
 
     QDomElement idTache = dom->createElement("identifiant");
     QDomText idTacheText = dom->createTextNode(this->getId());
@@ -72,7 +73,7 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     QDomText echeanceTacheText = dom->createTextNode(this->getDateEcheance().toString(Qt::TextDate));
     echeanceTache.appendChild(echeanceTacheText);
 
-    QDomElement sousTache = dom->createElement("soustaches") ;
+    QDomElement sousTache = dom->createElement("soustaches");
 //    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
 //        QDomElement m = (*it)->save(dom);
 //        sousTache.appendChild(m);
@@ -83,7 +84,7 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     tache->appendChild(idTache);
     tache->appendChild(titreTache);
     tache->appendChild(dispoTache);
-    tache->appendChild(echeanceTache);
+    //tache->appendChild(echeanceTache);
     tache->appendChild(sousTache);
     return *tache;
 }

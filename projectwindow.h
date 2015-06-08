@@ -218,6 +218,15 @@ public:
     void ajouterTache(Tache& t);
 
     /*!
+         *  \brief ajouterTache
+         *
+         *  Permet d'ajouter une tache dans le projet actuel
+         *
+         *  \param t : tache que l'on veut ajouter au projet
+         */
+    void ajouterSousTache(Tache& t);
+
+    /*!
          *  \brief ajouterProgrammation
          *
          *  Permet d'appeler le programmation manager pour ajouter la programmation d'une tache

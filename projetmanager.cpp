@@ -161,6 +161,12 @@ void ProjetManager::load(const QString& f){
                     //On ajoute la tache au projet que l'on est en train de parcourir
                     p.ajouterTache(t);
                 }
+                else if (type == "composite"){
+                    TacheFactory& tm = TacheFactory::getInstance();
+                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
+                    //On ajoute la tache au projet que l'on est en train de parcourir
+                    p.ajouterTache(t);
+                }
             }
         }
     }
@@ -201,6 +207,7 @@ void  ProjetManager::save(){
         QDomElement taches = dom->createElement("taches");
         for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
             QDomElement m = (*i)->save(dom);
+            qDebug()<<"etat"<<m.nodeName();
             taches.appendChild(m);
         }
 

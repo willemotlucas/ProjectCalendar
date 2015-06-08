@@ -32,6 +32,9 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
     connect(addTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
+    connect(ajouterSousTacheUnitaire,SIGNAL(clicked),this,SLOT(fenetreAjouterTacheUnitaire()));
+    connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
+    connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
 }
 
 
@@ -288,7 +291,6 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTacheUnitaire->setEnabled(false);
 
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
-        qDebug()<<"check preemptive";
         tachePreemtive->setChecked(true);
     }
     else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
@@ -361,6 +363,10 @@ void ProjectWindow::ajouterTache(Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
+}
+
+void ProjectWindow::ajouterSousTache(Tache &t){
+    //tacheSelectionnee->ajouterSousTache(t);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
