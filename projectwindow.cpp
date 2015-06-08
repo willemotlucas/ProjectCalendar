@@ -12,13 +12,13 @@
 #include "tacheunitairepreemptive.h"
 #include "projetmanager.h"
 #include "tachemanager.h"
-#include <typeinfo>
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
 #include <QMessageBox>
+#include <typeinfo>
 
 
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
@@ -282,10 +282,10 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     programmer->setEnabled(true);
     modifier->setEnabled(true);
 
-    if(typeid(tacheSelectionnee)==typeid(TacheUnitairePreemptive)){
+    if(typeid(tacheSelectionnee).name() == "13TacheUnitaire"){
         tachePreemtive->setChecked(true);
     }
-    else if(typeid(tacheSelectionnee)==typeid(TacheComposite)){
+    else if(typeid(tacheSelectionnee).name() == "23TacheComposite"){
         ajouterSousTacheComposite->setEnabled(true);
         ajouterSousTachePreemptive->setEnabled(true);
         ajouterSousTacheUnitaire->setEnabled(true);

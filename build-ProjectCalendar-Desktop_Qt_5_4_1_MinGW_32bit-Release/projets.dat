@@ -1,16 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <projets>
-    <projet>
-        <nom>Projet1</nom>
-        <description>Test du projet 1</description>
-        <disponibilite>mer. mai 13 2015</disponibilite>
-        <echeance></echeance>
-    </projet>
-    <projet>
-        <nom>Projet2</nom>
-        <description>Test date projet 2</description>
-        <disponibilite>mar. mai 19 2015</disponibilite>
-        <echeance></echeance>
-    </projet>
+ <projet>
+  <nom>Projet1</nom>
+  <description>Test du projet 1</description>
+  <disponibilite>mer. mai 13 2015</disponibilite>
+  <echeance/>
+  <taches>
+   <tache etat="1" type="unitaire">
+    <identifiant>Tache3</identifiant>
+    <titre>Tache3 du projet1</titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>jeu. juin 11 2015</echeance>
+    <duree minute="5" heure="2"/>
+   </tache>
+   <tache etat="1" type="unitaire">
+    <identifiant>Tache4</identifiant>
+    <titre>Tache4 du projet1</titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>jeu. juin 11 2015</echeance>
+    <duree minute="5" heure="2"/>
+   </tache>
+   <tache etat="1" type="preemtive">
+    <identifiant>Preemptive1</identifiant>
+    <titre>Preemptive1 de projet1</titre>
+    <disponibilite>lun. juin 8 2015</disponibilite>
+    <echeance>mar. juin 9 2015</echeance>
+    <dureeInitiale minute="0" heure="6"/>
+    <dureeRestante minute="0" heure="6"/>
+   </tache>
+  </taches>
+ </projet>
+ <projet>
+  <nom>Projet2</nom>
+  <description>Test date projet 2</description>
+  <disponibilite>mar. mai 19 2015</disponibilite>
+  <echeance/>
+ </projet>
 </projets>
-

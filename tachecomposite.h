@@ -25,7 +25,6 @@ public:
 
     bool isCommencee() const;
     bool isTerminee() const;
-    TacheComposite* clone() const {return new TacheComposite(*this);}
 
     //SOUSTACHE METHODS
     void ajouterSousTache(Tache& tache);

@@ -19,7 +19,7 @@ bool TacheComposite::isTerminee() const {
 
 void TacheComposite::ajouterSousTache(Tache& tache){
     if(!trouverTache(tache)){
-        soustaches.push_back(tache.clone());
+        soustaches.push_back(&tache);
         if(tache.getDateEcheance() > echeance)
             setDateEcheance(tache.getDateEcheance());
     }
