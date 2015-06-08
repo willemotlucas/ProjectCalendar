@@ -20,8 +20,6 @@ SOURCES += main.cpp\
     tache.cpp \
     programmation.cpp \
     programmationmanager.cpp \
-    tachemanager.cpp \
-    iterator.cpp \
     evenement.cpp \
     evenementduree.cpp \
     projet.cpp \
@@ -47,8 +45,6 @@ HEADERS  += mainwindow.h \
     programmation.h \
     calendarexception.h \
     programmationmanager.h \
-    tachemanager.h \
-    iterator.h \
     evenement.h \
     evenementduree.h \
     projet.h \

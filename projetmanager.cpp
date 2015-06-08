@@ -200,7 +200,7 @@ void  ProjetManager::save(){
 
         QDomElement taches = dom->createElement("taches");
         for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
-            QDomElement m = (*i)->save("projet",(*it)->getNom(),dom);
+            QDomElement m = (*i)->save(dom);
             taches.appendChild(m);
         }
 

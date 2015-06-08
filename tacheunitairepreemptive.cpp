@@ -6,11 +6,11 @@
 #include "tacheunitairepreemptive.h"
 #include "global.h"
 
-QDomElement& TacheUnitairePreemptive::write(const QString& type, const QString &id,QDomDocument* dom){
+QDomElement& TacheUnitairePreemptive::write(QDomDocument* dom){
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement* tache = new QDomElement(dom->createElement("tache"));
     tache->setAttribute("type", "preemtive");
-    qDebug()<<"etat"<<this->getEtat();
+    qDebug()<<"etat preemtive"<<this->getEtat();
     tache->setAttribute("etat", (int)this->getEtat());
 
     QDomElement idTache = dom->createElement("identifiant");

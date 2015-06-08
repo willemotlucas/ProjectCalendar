@@ -7,11 +7,10 @@
 #include "tacheunitaire.h"
 #include "global.h"
 
-QDomElement& TacheUnitaire::write(const QString& type, const QString& id,QDomDocument* dom) {
+QDomElement& TacheUnitaire::write(QDomDocument* dom) {
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement* tache = new QDomElement(dom->createElement("tache"));
     tache->setAttribute("type", "unitaire");
-    qDebug()<<"etat"<<this->getEtat();
     tache->setAttribute("etat", (int)this->getEtat());
 
     QDomElement idTache = dom->createElement("identifiant");

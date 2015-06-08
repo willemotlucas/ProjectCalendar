@@ -12,7 +12,6 @@
 #include "tacheunitaire.h"
 #include "tacheunitairepreemptive.h"
 #include "projetmanager.h"
-#include "tachemanager.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -362,7 +361,6 @@ void ProjectWindow::ajouterTache(Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    //t.save("projet",projetOuvert->getNom());
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
