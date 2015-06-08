@@ -43,16 +43,6 @@ ProgrammationManager::~ProgrammationManager(){
 void ProgrammationManager::save(){
     //On créé l'arbre DOM
     QDomDocument* dom = new QDomDocument("programmations");
-//    QFile file(progXML);
-
-//    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-//        throw new CalendarException(QString("Impossible d'ouvrir le fichier " + progXML + " pour l'enregistrement des programmations."));
-//    }
-//    if(!dom->setContent(&file)){
-//        throw CalendarException(QString("Erreur. Impossible de créer l'arbre DOM pour le fichier " + progXML));
-//    }
-//    file.close();
-
     QDomElement dom_element = dom->documentElement();
 
     //On créé le noeud <programmations> qui contiendra toutes les programmations
@@ -66,7 +56,7 @@ void ProgrammationManager::save(){
         prog.setAttribute("projet", (*it)->getProjet().getNom());
 
         QDomElement date = dom->createElement("date");
-        QDomElement dateText = dom->createElement((*it)->getDate().toString());
+        QDomText dateText = dom->createTextNode((*it)->getDate().toString());
         date.appendChild(dateText);
 
         QDomElement horaire = dom->createElement("horaire");
@@ -78,6 +68,8 @@ void ProgrammationManager::save(){
         progs.appendChild(prog);
     }
 
+    dom->appendChild(progs);
+
     QFile fichier(progXML);
     if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -87,6 +79,7 @@ void ProgrammationManager::save(){
 
     //Ecriture de l'arbre DOM dans le fichier XML
     QString write_doc = dom->toString();
+    qDebug()<<"write_doc : "<<write_doc;
     QTextStream stream(&fichier);
     stream<<write_doc;
     fichier.close();

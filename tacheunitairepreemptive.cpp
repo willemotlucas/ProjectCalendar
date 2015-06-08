@@ -6,7 +6,7 @@
 #include "tacheunitairepreemptive.h"
 #include "global.h"
 
-void TacheUnitairePreemptive::write(const QString &projet) const{
+void TacheUnitairePreemptive::write(const QString& type, const QString &id) const{
     qDebug()<<"start write tache preemtive\n";
 
     QDomDocument* dom = new QDomDocument("projets");
@@ -60,27 +60,25 @@ void TacheUnitairePreemptive::write(const QString &projet) const{
     tache.appendChild(dureeTacheRestante);
     //=============================================================
     //
-    QDomElement projectNode = dom_element.firstChildElement("projet");
+    QDomElement projectNode = dom_element.firstChildElement(type);
     QDomElement projectName = projectNode.firstChild().toElement();
 
-    while(projectName.text() != projet){
-        projectNode = projectNode.nextSiblingElement("projet");
+    while(projectName.text() != id){
+        projectNode = projectNode.nextSiblingElement(type);
         projectName = projectNode.firstChild().toElement();
     }
 
-    QDomElement node = projectNode.firstChildElement("taches");
-    //Si des taches sont déjà existantes au projet, on rajoute la nouvelle tache à la fin
-    if(node.nodeName() == "taches"){
-        //On ajoute la tache au noeud <taches>
+    if(type == "projet")
+    {
+        QDomElement node = projectNode.firstChildElement("taches");
         node.appendChild(tache);
     }
-    //S'il n'y a pas de noeud <taches>
-    else if(node.nodeName() == ""){
-        //on doit le créer pour ajouter la nouvelle tache et les taches futures
-        QDomElement taches = dom->createElement("taches");
-        taches.appendChild(tache);
-        projectNode.appendChild(taches);
+    else if(type == "tache")
+    {
+        QDomElement node = projectNode.firstChildElement("soustaches");
+        node.appendChild(tache);
     }
+    QDomElement node = projectNode.firstChildElement("taches");
 
     QFile fichier(fileXML);
     if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))

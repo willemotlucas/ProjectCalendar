@@ -355,7 +355,7 @@ void ProjectWindow::ajouterTache(Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    t.save(projetOuvert->getNom());
+    t.save("projet",projetOuvert->getNom());
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){

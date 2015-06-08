@@ -19,7 +19,7 @@ public:
 
 
     ~TacheUnitairePreemptive(){}
-    void write(const QString &projet) const;
+    void write(const QString& type, const QString &id) const;
 
     //STATES METHODS
     bool isCommencee() const { return (etat != NON_COMMENCEE && etat != PROGRAMMEE) ; }

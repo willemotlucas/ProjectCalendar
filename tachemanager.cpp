@@ -142,7 +142,7 @@ void TacheManager::load(const QString& f){
 }
 
 void  TacheManager::save(const QString& projet, const Tache& t){
-    t.save(projet);
+//    t.save(projet);
 }
 
 

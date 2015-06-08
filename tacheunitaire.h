@@ -20,7 +20,7 @@ private:
     friend class TacheFactory;
     static const int DUREE_MAX = 12;
     Etat etat;
-    void write(const QString& projet) const ;
+    void write(const QString& type, const QString& id) const ;
 
 protected :
             TacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& deadline, const QTime& dur, const int& e = 1):Tache(id, desc, dispo, deadline),etat((Etat)e){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
@@ -40,7 +40,6 @@ public:
     virtual bool isCommencee() const { return etat == EN_COURS; }
     virtual bool isTerminee() const { return etat == TERMINEE; }
     virtual bool isProgrammee() const { return etat == PROGRAMMEE; }
-    virtual TacheUnitaire* clone() const {return new TacheUnitaire(*this);}
 
     virtual void setDateEcheance(const QDate& e){}
 

@@ -186,6 +186,8 @@ void  ProjetManager::save(const QString& f){
         qDebug()<<"dispo = "<<projets[i]->getDisponibilite().toString(Qt::TextDate);
         stream.writeTextElement("echeance",projets[i]->getEcheance().toString(Qt::TextDate));
         qDebug()<<"echeance = "<<projets[i]->getEcheance().toString(Qt::TextDate);
+        stream.writeStartElement("taches");
+        stream.writeEndElement();
         stream.writeEndElement();
     }
     stream.writeEndElement();
