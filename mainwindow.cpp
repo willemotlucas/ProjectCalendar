@@ -8,6 +8,7 @@
 #include "projetmanager.h"
 #include "calendarwindow.h"
 #include "global.h"
+#include "programmationmanager.h"
 
 ProjectWindow* MainWindow::projet= 0;
 
@@ -36,7 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //Lire le fichier XML à chaque chargement de l'application
     try{
         ProjetManager& m = ProjetManager::getInstance();
+        ProgrammationManager& progm = ProgrammationManager::getInstance();
         m.load(fileXML);
+        progm.load();
     }catch(CalendarException e){
         QMessageBox::warning(this, "Erreur", e.getInfo());
     }

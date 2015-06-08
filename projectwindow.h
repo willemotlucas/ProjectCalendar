@@ -20,8 +20,10 @@
 #include <QGroupBox>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QDebug>
 
 #include "projet.h"
+#include "programmationmanager.h"
 
 /*! \class ProjectWindow
    * \brief Classe representant la fenetre de vue de Gestion de Projet
@@ -58,7 +60,7 @@ public:
          *
          *  Destructeur de la classe ProjectWindow
          */
-    ~ProjectWindow(){}
+    ~ProjectWindow(){ProgrammationManager& pm = ProgrammationManager::getInstance(); pm.save(); qDebug()<<"sauvegarde progs";}
 
 private:
     /*!
