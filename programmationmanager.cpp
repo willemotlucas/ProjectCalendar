@@ -2,6 +2,7 @@
 #include "global.h"
 #include <QDebug>
 #include <QtXml>
+#include <typeinfo>
 
 ProgrammationManager::Handler ProgrammationManager::handler=ProgrammationManager::Handler();
 
@@ -30,7 +31,7 @@ Programmation* ProgrammationManager::trouverProgrammation(const Tache& t)const{
 void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h){
     if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
     Programmation* newt=new Programmation(p,t,d,h);
-    qDebug()<<"date = "<<d<<" | horaire = "<<h;
+    qDebug()<<"type id="<<typeid(t).name();
     addItem(newt);
 }
 

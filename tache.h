@@ -47,7 +47,6 @@ public:
     //ABSTRACT METHODS
     virtual bool isCommencee() const = 0;
     virtual bool isTerminee() const = 0;
-    virtual Tache* clone() const = 0;
 
     //Peut-être mettre en privée pour que seul le TacheManager puisse gérer la date d'échéance d'une tache composite en fonction
     //De ses sous-taches. Mettre en abstrait pour changer le fonctionnement en fonction de la classe fille

@@ -39,20 +39,6 @@ public:
     contTache::iterator begin(){return taches.begin();}
     contTache::iterator end(){return taches.end();}
 
-/*
-    Iterator getIterator() {
-        return Iterator(taches,nb);
-    }
-    ConstIterator getIterator() const{
-        return ConstIterator(taches,nb);
-    }    
-    iterator begin() { return iterator(taches); }
-    iterator end() { return iterator(taches+nb); }    
-    const_iterator begin() const { return const_iterator(taches); }
-    const_iterator end() const { return const_iterator(taches+nb); }    
-    DisponibiliteFilterIterator getDisponibiliteFilterIterator(const QDate& d) {
-        return DisponibiliteFilterIterator(taches,nb,d);
-    }*/
 };
 
 #endif // TACHEMANAGER_H
