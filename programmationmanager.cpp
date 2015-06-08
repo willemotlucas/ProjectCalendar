@@ -33,7 +33,6 @@ Programmation* ProgrammationManager::trouverProgrammation(const Tache& t)const{
 void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h){
     if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
     Programmation* newt=new Programmation(p,t,d,h);
-    qDebug()<<"type id="<<typeid(t).name();
     addItem(newt);
 }
 
@@ -44,6 +43,16 @@ ProgrammationManager::~ProgrammationManager(){
 void ProgrammationManager::save(){
     //On créé l'arbre DOM
     QDomDocument* dom = new QDomDocument("programmations");
+//    QFile file(progXML);
+
+//    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+//        throw new CalendarException(QString("Impossible d'ouvrir le fichier " + progXML + " pour l'enregistrement des programmations."));
+//    }
+//    if(!dom->setContent(&file)){
+//        throw CalendarException(QString("Erreur. Impossible de créer l'arbre DOM pour le fichier " + progXML));
+//    }
+//    file.close();
+
     QDomElement dom_element = dom->documentElement();
 
     //On créé le noeud <programmations> qui contiendra toutes les programmations
