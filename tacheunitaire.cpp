@@ -7,17 +7,17 @@
 #include "tacheunitaire.h"
 #include "global.h"
 
-void TacheUnitaire::write(const QString& type, const QString& id) const {
-    QDomDocument* dom = new QDomDocument("projets");
-    QFile newfile(fileXML);
+QDomNode& TacheUnitaire::write(const QString& type, const QString& id,QDomDocument* dom) {
+//    QDomDocument* dom = new QDomDocument("projets");
+//    QFile newfile(fileXML);
 
-    if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-    if(!dom->setContent(&newfile))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
-    newfile.close();
+//    if (!newfile.open(QIODevice::ReadOnly | QIODevice::Text))
+//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
+//    if(!dom->setContent(&newfile))
+//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture objet dom"));
+//    newfile.close();
 
-    QDomElement dom_element = dom->documentElement();
+//    QDomElement dom_element = dom->documentElement();
 
     //=============================================================
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
@@ -52,38 +52,42 @@ void TacheUnitaire::write(const QString& type, const QString& id) const {
     tache.appendChild(dispoTache);
     tache.appendChild(echeanceTache);
     tache.appendChild(dureeTache);
+
+    return tache;
+}
     //=============================================================
     //
-    QDomElement projectNode = dom_element.firstChildElement(type);
-    QDomElement projectName = projectNode.firstChild().toElement();
+//    QDomElement projectNode = dom_element.firstChildElement(type);
+//    QDomElement projectName = projectNode.firstChild().toElement();
 
-    while(projectName.text() != id){
-        projectNode = projectNode.nextSiblingElement(type);
-        projectName = projectNode.firstChild().toElement();
-    }
+//    while(projectName.text() != id){
+//        projectNode = projectNode.nextSiblingElement(type);
+//        projectName = projectNode.firstChild().toElement();
+//    }
 
-    if(type == "tache")
-    {
-        QDomElement node = projectNode.firstChildElement("soustaches");
-        node.appendChild(tache);
-    }
-    else if(type == "projet")
-    {
-        QDomElement node = projectNode.firstChildElement("taches");
-        node.appendChild(tache);
-    }
+//    if(type == "tache")
+//    {
+//        QDomElement node = projectNode.firstChildElement("soustaches");
+//        node.appendChild(tache);
+//    }
+//    else if(type == "projet")
+//    {
+//        QDomElement node = projectNode.firstChildElement("taches");
+//        node.appendChild(tache);
+//    }
 
-    QFile fichier(fileXML);
-    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        fichier.close();
-        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier XML pour écriture."));
-    }
+//    QFile fichier(fileXML);
+//    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
+//    {
+//        fichier.close();
+//        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier XML pour écriture."));
+//    }
 
-    QString write_doc = dom->toString();
-    QTextStream stream(&fichier);
-    stream<<write_doc;
-    fichier.close();
+//    QString write_doc = dom->toString();
+//    QTextStream stream(&fichier);
+//    stream<<write_doc;
+//    fichier.close();
+//}
 
 
 
@@ -138,5 +142,5 @@ void TacheUnitaire::write(const QString& type, const QString& id) const {
     }*/
 //    stream.writeEndDocument();
 //    newfile.close();
-}
+//}
 

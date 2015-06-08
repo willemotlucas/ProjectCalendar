@@ -147,7 +147,7 @@ private slots:
          *
          *  Appel la fenetre d'ajout d'une tache composite
          */
-    void fenetreAjouterTacheComposite(){}
+    void fenetreAjouterTacheComposite();
 
     /*!
          *  \brief fenetreAjouterTacheUnitaire

@@ -2,8 +2,11 @@
 #include <QTextCodec>
 #include <QtXml>
 #include <QMessageBox>
+#include <QDebug>
+#include "global.h"
 
 #include "projetmanager.h"
+#include "projet.h"
 #include "tachefactory.h"
 #include "calendarexception.h"
 
@@ -167,31 +170,98 @@ void ProjetManager::load(const QString& f){
 }
 
 void  ProjetManager::save(const QString& f){
-    qDebug()<<"debut save projetManager";
+    qDebug()<<"Debut save projetManager";
     file=f;
-    QFile newfile( file);
-    if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
-    QXmlStreamWriter stream(&newfile);
-    stream.setAutoFormatting(true);
-    stream.writeStartDocument();
-    stream.writeStartElement("projets");
-    for(unsigned int i=0; i<projets.size(); i++){
-        stream.writeStartElement("projet");
-        stream.writeTextElement("nom",projets[i]->getNom());
-        qDebug()<<"nom ="<<projets[i]->getNom();
-        stream.writeTextElement("description",projets[i]->getDescription());
-        qDebug()<<"description ="<<projets[i]->getDescription();
-        stream.writeTextElement("disponibilite",projets[i]->getDisponibilite().toString(Qt::TextDate));
-        qDebug()<<"dispo = "<<projets[i]->getDisponibilite().toString(Qt::TextDate);
-        stream.writeTextElement("echeance",projets[i]->getEcheance().toString(Qt::TextDate));
-        qDebug()<<"echeance = "<<projets[i]->getEcheance().toString(Qt::TextDate);
-        stream.writeStartElement("taches");
-        stream.writeEndElement();
-        stream.writeEndElement();
+
+    QDomDocument* dom = new QDomDocument("projets");
+    QDomElement dom_element = dom->documentElement();
+
+    //On créé le noeud <projets> qui contiendra tous les projets
+    QDomNode projets = dom->createElement("projets");
+
+    //On parcourt toutes les programmations du vector
+    for(contProjet::iterator it = ProjetManager::begin(); it != ProjetManager::end(); ++it){
+        //A chaque projet, on créé un noeud <projet> contenant le projet crée, son titre, description, etc...
+        QDomElement projet = dom->createElement("projet");
+
+
+        QDomElement nom = dom->createElement("nom");
+        QDomText nomText = dom->createTextNode((*it)->getNom());
+        nom.appendChild(nomText);
+
+        QDomElement desc = dom->createElement("description");
+        QDomText descText = dom->createTextNode((*it)->getDescription());
+        desc.appendChild(descText);
+
+        QDomElement dateDebut = dom->createElement("dateDebut");
+        QDomText dateDebText = dom->createTextNode((*it)->getDisponibilite().toString(Qt::TextDate));
+        dateDebut.appendChild(dateDebText);
+
+        QDomElement dateEcheance = dom->createElement("dateEcheance");
+        QDomText dateEchText = dom->createTextNode((*it)->getEcheance().toString(Qt::TextDate));
+        dateEcheance.appendChild(dateEchText);
+
+        QDomElement taches = dom->createElement("taches");
+        for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
+            taches.appendChild((*i)->save("projet",(*it)->getNom(),dom));
+        }
+
+
+        projet.appendChild(nom);
+        projet.appendChild(desc);
+        projet.appendChild(dateDebut);
+        projet.appendChild(dateEcheance);
+        projet.appendChild(taches);
+
+        //Ajout du projet dans projetS !
+        projets.appendChild(projet);
     }
-    stream.writeEndElement();
-    stream.writeEndDocument();
-    newfile.close();
+
+    dom->appendChild(projets);
+
+    QFile fichier(fileXML);
+    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        fichier.close();
+        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier " + fileXML + " pour écriture."));
+    }
+
+    //Ecriture de l'arbre DOM dans le fichier XML
+    QString write_doc = dom->toString();
+    qDebug()<<"write_doc : "<<write_doc;
+    QTextStream stream(&fichier);
+    stream<<write_doc;
+    fichier.close();
+
+
+
 }
+
+//    qDebug()<<"debut save projetManager";
+//    file=f;
+//    QFile newfile( file);
+//    if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
+//        throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
+//    QXmlStreamWriter stream(&newfile);
+//    stream.setAutoFormatting(true);
+//    stream.writeStartDocument();
+//    stream.writeStartElement("projets");
+//    for(unsigned int i=0; i<projets.size(); i++){
+//        stream.writeStartElement("projet");
+//        stream.writeTextElement("nom",projets[i]->getNom());
+//        qDebug()<<"nom ="<<projets[i]->getNom();
+//        stream.writeTextElement("description",projets[i]->getDescription());
+//        qDebug()<<"description ="<<projets[i]->getDescription();
+//        stream.writeTextElement("disponibilite",projets[i]->getDisponibilite().toString(Qt::TextDate));
+//        qDebug()<<"dispo = "<<projets[i]->getDisponibilite().toString(Qt::TextDate);
+//        stream.writeTextElement("echeance",projets[i]->getEcheance().toString(Qt::TextDate));
+//        qDebug()<<"echeance = "<<projets[i]->getEcheance().toString(Qt::TextDate);
+//        stream.writeStartElement("taches");
+//        stream.writeEndElement();
+//        stream.writeEndElement();
+//    }
+//    stream.writeEndElement();
+//    stream.writeEndDocument();
+//    newfile.close();
+//}
 

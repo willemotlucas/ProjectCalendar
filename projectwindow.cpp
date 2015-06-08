@@ -1,6 +1,7 @@
 #include "projectwindow.h"
 #include "newprojectwindow.h"
 #include "addtachewindow.h"
+#include "addcompositewindow.h"
 #include "modtachewindow.h"
 #include "addpreemptivewindow.h"
 #include "programmertachewindow.h"
@@ -31,6 +32,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(addTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitaire()));
     connect(addTacheUnitairePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheUnitairePreemptive()));
+    connect(addTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterTacheComposite()));
 }
 
 
@@ -338,6 +340,11 @@ void ProjectWindow::fenetreAjouterTacheUnitairePreemptive(){
     newTache->exec();
 }
 
+void ProjectWindow::fenetreAjouterTacheComposite(){
+    AddCompositeWindow *newTache = new AddCompositeWindow(this);
+    newTache->exec();
+}
+
 void ProjectWindow::modifierTache(){
     ModTacheWindow *modTache = new ModTacheWindow(this);
     modTache->exec();
@@ -355,7 +362,7 @@ void ProjectWindow::ajouterTache(Tache &t){
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
-    t.save("projet",projetOuvert->getNom());
+    //t.save("projet",projetOuvert->getNom());
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){

@@ -4,6 +4,7 @@
 #include <QDate>
 #include <QString>
 #include <QTextStream>
+#include <QDomDocument>
 
 #include "calendarexception.h"
 #include "duree.h"
@@ -27,10 +28,10 @@ protected:
     Tache& operator=(const Tache&);
 
 
-    virtual void write(const QString& type, const QString& id) const  = 0;
+    virtual QDomNode& write(const QString& type, const QString& id,QDomDocument* dom)= 0;
 
 public:
-        void save(const QString& type, const QString& id) const {write(type, id);}
+        QDomNode& save(const QString& type, const QString& id,QDomDocument* dom) {return write(type, id,dom);}
     //DESTRUCTOR
     virtual ~Tache(){}
 
