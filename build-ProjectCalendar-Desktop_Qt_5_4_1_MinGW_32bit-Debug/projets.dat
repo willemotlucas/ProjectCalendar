@@ -64,6 +64,14 @@
   <description>Test date projet 2</description>
   <dateDebut></dateDebut>
   <dateEcheance></dateEcheance>
-  <taches/>
+  <taches>
+   <tache etat="1" type="unitaire">
+    <identifiant>TacheDuProjet2</identifiant>
+    <titre>Une nouvelle tache</titre>
+    <disponibilite>jeu. juin 11 2015</disponibilite>
+    <echeance>mar. juin 9 2015</echeance>
+    <duree minute="0" heure="4"/>
+   </tache>
+  </taches>
  </projet>
 </projets>
