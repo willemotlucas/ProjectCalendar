@@ -33,6 +33,7 @@ public:
     void ajouterSousTaches(Tache& tache);
     void supprimerSousTache(const Tache& tache);
     bool trouverTache(const Tache& tache);
+    Tache* getSousTache(const QString& tache);
 };
 
 #endif // TACHECOMPOSITE_H
