@@ -5,7 +5,68 @@
   <description>Projet de test</description>
   <dateDebut></dateDebut>
   <dateEcheance></dateEcheance>
-  <taches/>
+  <taches>
+   <tache type="unitaire" etat="1">
+    <identifiant>TacheUnitaire</identifiant>
+    <titre>Test</titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>mar. juin 9 2015</echeance>
+    <duree minute="0" heure="6"/>
+   </tache>
+   <tache type="preemtive" etat="1">
+    <identifiant>TacheUnitairePreemptive</identifiant>
+    <titre></titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>mar. juin 16 2015</echeance>
+    <dureeInitiale minute="0" heure="10"/>
+    <dureeRestante minute="0" heure="7"/>
+   </tache>
+   <tache type="composite">
+    <identifiant>Compo1</identifiant>
+    <titre></titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>mar. juin 9 2015</echeance>
+    <soustaches>
+     <tache type="unitaire" etat="1">
+      <identifiant>SousTacheUnitaire</identifiant>
+      <titre></titre>
+      <disponibilite>mar. juin 9 2015</disponibilite>
+      <echeance>mar. juin 16 2015</echeance>
+      <duree minute="0" heure="4"/>
+     </tache>
+    </soustaches>
+   </tache>
+   <tache type="unitaire" etat="1">
+    <identifiant>TacheUnitaire2</identifiant>
+    <titre></titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>dim. juin 14 2015</echeance>
+    <duree minute="0" heure="4"/>
+   </tache>
+   <tache type="preemtive" etat="1">
+    <identifiant>Preemptive2</identifiant>
+    <titre>Test</titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>ven. juin 19 2015</echeance>
+    <dureeInitiale minute="0" heure="12"/>
+    <dureeRestante minute="0" heure="0"/>
+   </tache>
+   <tache type="unitaire" etat="1">
+    <identifiant>TacheUnitaire3</identifiant>
+    <titre>test</titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>mar. juin 23 2015</echeance>
+    <duree minute="0" heure="4"/>
+   </tache>
+   <tache type="preemtive" etat="1">
+    <identifiant>Preemptive3</identifiant>
+    <titre></titre>
+    <disponibilite>mar. juin 9 2015</disponibilite>
+    <echeance>jeu. juin 18 2015</echeance>
+    <dureeInitiale minute="0" heure="5"/>
+    <dureeRestante minute="0" heure="5"/>
+   </tache>
+  </taches>
  </projet>
  <projet>
   <nom>Projet2</nom>

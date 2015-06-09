@@ -3,6 +3,8 @@
 #include "ui_ajouterprogpreemptivewindow.h"
 #include "mainwindow.h"
 
+#include <QMessageBox>
+
 AjouterProgPreemptiveWIndow::AjouterProgPreemptiveWIndow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AjouterProgPreemptiveWIndow)
@@ -21,5 +23,6 @@ AjouterProgPreemptiveWIndow::~AjouterProgPreemptiveWIndow()
 void AjouterProgPreemptiveWIndow::envoyerProgrammation(){
     ProjectWindow& pw = MainWindow::getInstanceProjet();
     pw.ajouterProgrammationPreemptive(ui->date->date(), ui->horaire->time(), ui->duree->time());
+
     this->close();
 }

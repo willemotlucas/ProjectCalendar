@@ -1,2 +1,28 @@
 <!DOCTYPE programmations>
-<programmations/>
+<programmations>
+ <programmation projet="Projet1" tache="TacheUnitaire">
+  <date>mar. juin 9 2015</date>
+  <horaire minute="0" heure="11"/>
+  <duree minute="0" heure="6"/>
+ </programmation>
+ <programmation projet="Projet1" tache="TacheUnitairePreemptive">
+  <date>ven. juin 12 2015</date>
+  <horaire minute="0" heure="10"/>
+  <duree minute="0" heure="3"/>
+ </programmation>
+ <programmation projet="Projet1" tache="TacheUnitaire2">
+  <date>mer. juin 10 2015</date>
+  <horaire minute="0" heure="6"/>
+  <duree minute="0" heure="4"/>
+ </programmation>
+ <programmation projet="Projet1" tache="Preemptive2">
+  <date>sam. juin 13 2015</date>
+  <horaire minute="0" heure="13"/>
+  <duree minute="0" heure="4"/>
+ </programmation>
+ <programmation projet="Projet1" tache="Preemptive2">
+  <date>jeu. juin 11 2015</date>
+  <horaire minute="0" heure="8"/>
+  <duree minute="0" heure="3"/>
+ </programmation>
+</programmations>

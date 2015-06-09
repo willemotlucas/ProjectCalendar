@@ -27,6 +27,7 @@ class Programmation {
     const Projet* projet;/*!< Pointeur sur le projet dont la tache correpond*/
     QDate date;/*!< Date de la programmation*/
     QTime horaire;/*!< Horaire de la programmation*/
+    QTime duree;
 public:
     /*!
          *  \brief Constructeur
@@ -37,7 +38,7 @@ public:
          *  \param d : date de programmation de la tache
          *  \param h : horaire de programmation de la tache
          */
-    Programmation(const Projet& p, const Tache& t, const QDate& d, const QTime& h):projet(&p), tache(&t), date(d), horaire(h){}
+    Programmation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& dur):projet(&p), tache(&t), date(d), horaire(h), duree(dur){}
 
     /*!
          *  \brief getTache
@@ -66,6 +67,15 @@ public:
          *  Accesseur en lecture de l'Horaire
          */
     QTime getHoraire() const { return horaire; }
+
+    /*!
+         *  \brief getDuree
+         *
+         *  Accesseur en lecture de l'Horaire
+         */
+    QTime getDuree() const { return duree; }
+
+
 };
 
 #endif // PROGRAMMATION_H

@@ -375,11 +375,11 @@ void ProjectWindow::modifierTache(){
 }
 
 void ProjectWindow::programmerTache(){
-    if(typeid(tacheSelectionnee) == typeid(TacheUnitaire)){
+    if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
         ProgrammerTache* progTache = new ProgrammerTache(this);
         progTache->exec();
     }
-    else if(typeid(tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
         AjouterProgPreemptiveWIndow* progTache = new AjouterProgPreemptiveWIndow(this);
         progTache->exec();
     }
@@ -401,9 +401,10 @@ void ProjectWindow::ajouterSousTache(Tache& t){
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
+    TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
     ProgrammationManager& pm = ProgrammationManager::getInstance();
     try{
-        pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t);
+        pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t,tmp->getDuree());
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
     }catch(CalendarException e){
@@ -411,15 +412,15 @@ void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     }
 }
 
-<<<<<<< HEAD
 void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &t, const QTime& duree){
     TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
     if(duree > tmp->getDureeRestante())
-        throw new CalendarException(QString("La durée de la programmation doit être inférieure à la durée restante."));
+        QMessageBox::warning(this, "Attention", "La durée de programmation doit être inférieur à la durée restante de la tache.");
 
+    qDebug()<<"ajout prog preemptif";
     ProgrammationManager& pm = ProgrammationManager::getInstance();
     try{
-        pm.ajouterProgrammation(*projetOuvert, *tmp, d, t);
+        pm.ajouterProgrammation(*projetOuvert, *tmp, d, t, duree);
         tmp->setDureeRestante(duree);
         qDebug()<<"durée restante ajouterProg projectwindow : "<<tmp->getDureeRestante().hour()<<"h"<<tmp->getDureeRestante().minute();
         for(std::vector<Programmation*>::iterator it = pm.begin(); it != pm.end(); ++it){
@@ -433,10 +434,7 @@ void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &
     }
 }
 
-void ProjectWindow::chargerTreeView(Projet* projetEnCours){
-=======
 void ProjectWindow::chargerTreeView(){
->>>>>>> b3fe064d89010c128692e5d3de0ac4053ddccaff
     // Construction de l'arborescence du projet
         rootTree = new QTreeWidgetItem(projectTree);
         //Ajout de la racine

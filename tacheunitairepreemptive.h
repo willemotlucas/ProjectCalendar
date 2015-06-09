@@ -36,7 +36,11 @@ public:
     //GETTERS AND SETTERS
     const QTime& getDureeInit() const { return dureeInitiale; }
     const QTime& getDureeRestante() const { return dureeRestante; }
-    void setDureeRestante(const QTime& duree){dureeRestante.addSecs(-(duree.hour()*3600+duree.minute()*60));}
+    void setDureeRestante(const QTime& duree){
+        int hour = dureeRestante.hour() - duree.hour();
+        int minute = dureeRestante.minute() - duree.minute();
+        dureeRestante = QTime(hour, minute);
+    }
     void setEtat(const Etat& e){ etat = e; }
     const Etat& getEtat() const { return etat; }
 
