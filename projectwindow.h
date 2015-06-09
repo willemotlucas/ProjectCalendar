@@ -89,6 +89,15 @@ private:
          */
     void creerAffichageProjet();
 
+    /*!
+         *  \brief chargerTreeView
+         *
+         *  Fonction permettant de generer le TreeView
+         *
+         *  \param projetEnCours : projet dont on veut afficher l'arborescence
+         */
+    void chargerTreeView(Projet* projetEnCours);
+
 
 private:
     //boutons barre outils

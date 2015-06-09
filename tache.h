@@ -5,6 +5,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QDomDocument>
+#include <QTreeWidget>
 
 #include "calendarexception.h"
 #include "duree.h"
@@ -29,9 +30,11 @@ protected:
 
 
     virtual QDomElement& write(QDomDocument* dom)= 0;
+    virtual QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree)=0;
 
 public:
-        QDomElement& save(QDomDocument* dom) {return write(dom);}
+    QDomElement& save(QDomDocument* dom) {return write(dom);}
+    QTreeWidgetItem& chargerTree(QTreeWidget* tree){return chargerTreeTache(tree);}
     //DESTRUCTOR
     virtual ~Tache(){}
 

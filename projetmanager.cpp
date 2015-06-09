@@ -8,6 +8,7 @@
 #include "projetmanager.h"
 #include "projet.h"
 #include "tachefactory.h"
+#include "tachecomposite.h"
 #include "calendarexception.h"
 
 ProjetManager::Handler ProjetManager::handler=ProjetManager::Handler();
@@ -116,78 +117,121 @@ void ProjetManager::load(const QString& f){
         //Si il y a des taches dans le projet, on doit les parcourir
         if(!taches.isNull()){
             for(QDomNode tache = taches.firstChildElement("tache"); !tache.isNull(); tache = tache.nextSiblingElement("tache")){
-                QDomNodeList childrensTache = tache.childNodes();
-
-                QDomElement tacheElement = tache.toElement();
-                QString type = tacheElement.attribute("type");
-                int etat = tacheElement.attribute("etat").toInt();
-
-                QString identifiant;
-                QString titre;
-                QDate dispoTache;
-                QDate echeanceTache;
-                //Pour les tâches unitaires et préemptives
-                QTime duree;
-                QTime dureeInit; //Pour les taches preemptives
-                QTime dureeRestante; //Pour les taches preemptives
-
-                //On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
-                for(unsigned int i = 0; i < childrensTache.length(); i++){
-                    QDomNode children = childrensTache.at(i);
-                    if(children.nodeName() == "identifiant")
-                        identifiant = children.toElement().text();
-                    if(children.nodeName() == "titre")
-                        titre = children.toElement().text();
-                    if(children.nodeName() == "disponibilite")
-                        dispoTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
-                    if(children.nodeName() == "echeance")
-                        echeanceTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
-                    if(type == "unitaire"){
-                        if(children.nodeName() == "duree"){
-                            QTime tmp = QTime(children.toElement().attribute("heure").toInt(),children.toElement().attribute("minute").toInt());
-                            duree = tmp;
-                        }
-                    }
-                    if(type == "preemtive")
-                    {
-                        if(children.nodeName() == "dureeInitiale"){
-                            QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
-                            dureeInit = tmp;
-                        }
-
-                        if(children.nodeName() == "dureeRestante"){
-                            QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
-                            dureeRestante = tmp;
-                        }
-                    }
-                }
-
-                //On construit l'objet tache qui convient en fonction du type de la tache
-                //Mais on enregistre une Tache (générale donc) dans le vector taches du projet
-                if(type == "unitaire"){
-                    TacheFactory& tm = TacheFactory::getInstance();
-                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
-                    //On ajoute la tache au projet que l'on est en train de parcourir
-                    p.ajouterTache(t);
-                }
-                else if (type == "preemtive"){
-                    TacheFactory& tm = TacheFactory::getInstance();
-                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identifiant, titre, dispoTache, echeanceTache, dureeInit, dureeRestante, etat));
-                    //On ajoute la tache au projet que l'on est en train de parcourir
-                    p.ajouterTache(t);
-                }
-                else if (type == "composite"){
-                    TacheFactory& tm = TacheFactory::getInstance();
-                    Tache& t = dynamic_cast<Tache&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
-                    //On ajoute la tache au projet que l'on est en train de parcourir
-                    p.ajouterTache(t);
-                }
+                //QDomNodeList childrensTache = tache.childNodes();
+                Tache& t = loadTache(dom, &tache);
+                p.ajouterTache(t);
             }
         }
     }
 
     fin.close();
 }
+
+Tache& ProjetManager::loadTache(QDomDocument* dom ,QDomNode* tache){
+    QDomNodeList childrensTache = tache->childNodes();
+    QDomElement tacheElement = tache->toElement();
+    QString type = tacheElement.attribute("type");
+
+    int etat = tacheElement.attribute("etat").toInt();
+
+    QString identifiant;
+    QString titre;
+    QDate dispoTache;
+    QDate echeanceTache;
+    //Pour les tâches unitaires et préemptives
+    QTime duree;
+    QTime dureeInit; //Pour les taches preemptives
+    QTime dureeRestante; //Pour les taches preemptives
+
+    if(type=="unitaire"){
+        //On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
+        for(int i = 0; i < childrensTache.length(); i++){
+            QDomNode children = childrensTache.at(i);
+            if(children.nodeName() == "identifiant")
+                identifiant = children.toElement().text();
+            if(children.nodeName() == "titre")
+                titre = children.toElement().text();
+            if(children.nodeName() == "disponibilite")
+                dispoTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+            if(children.nodeName() == "echeance")
+                echeanceTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+            if(children.nodeName() == "duree"){
+               QTime tmp = QTime(children.toElement().attribute("heure").toInt(),children.toElement().attribute("minute").toInt());
+               duree = tmp;
+            }
+        }
+        //On cree la tache unitaire
+        TacheFactory& tm = TacheFactory::getInstance();
+        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
+        return t;
+    }
+    else if (type=="preemptive"){
+        //On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
+        for(unsigned int i = 0; i < childrensTache.length(); i++){
+            QDomNode children = childrensTache.at(i);
+            if(children.nodeName() == "identifiant")
+                identifiant = children.toElement().text();
+            if(children.nodeName() == "titre")
+                titre = children.toElement().text();
+            if(children.nodeName() == "disponibilite")
+                dispoTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+            if(children.nodeName() == "echeance")
+                echeanceTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+            if(children.nodeName() == "dureeInitiale"){
+                QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
+                dureeInit = tmp;
+            }
+            if(children.nodeName() == "dureeRestante"){
+                QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
+                dureeRestante = tmp;
+            }
+        }
+
+        //On cree la tache unitaire preemptive
+        TacheFactory& tm = TacheFactory::getInstance();
+        Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identifiant, titre, dispoTache, echeanceTache, dureeInit, dureeRestante, etat));
+        return t;
+
+    }
+    else if (type=="composite"){
+        //On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
+        for(unsigned int i = 0; i < childrensTache.length(); i++){
+            QDomNode children = childrensTache.at(i);
+            if(children.nodeName() == "identifiant")
+                identifiant = children.toElement().text();
+            if(children.nodeName() == "titre")
+                titre = children.toElement().text();
+            if(children.nodeName() == "disponibilite")
+                dispoTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+            if(children.nodeName() == "echeance")
+                echeanceTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+
+        }
+
+        //On cree la tache unitaire composite
+        TacheFactory& tm = TacheFactory::getInstance();
+        TacheComposite& t =dynamic_cast<TacheComposite&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
+        //return t;
+
+        //Lire toutes les soustaches et les ajouter a notre tache composite
+        QDomNode sousTaches = tache->firstChildElement("soustaches");
+
+        if(!sousTaches.isNull()){
+
+            for(QDomNode soustache = sousTaches.firstChildElement("soustaches"); !soustache.isNull(); soustache = soustache.nextSiblingElement("tache")){
+                //QDomNodeList childrensTache = tache.childNodes();
+                Tache& s = loadTache(dom, &sousTaches);
+                t.ajouterSousTache(s);
+            }
+        }
+        Tache& final=dynamic_cast<Tache&>(t);
+        return final;
+
+    }
+}
+
+
+
 
 void  ProjetManager::save(){
 
@@ -222,7 +266,6 @@ void  ProjetManager::save(){
         QDomElement taches = dom->createElement("taches");
         for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
             QDomElement m = (*i)->save(dom);
-            qDebug()<<"etat"<<m.nodeName();
             taches.appendChild(m);
         }
 
@@ -252,6 +295,71 @@ void  ProjetManager::save(){
     stream<<write_doc;
     fichier.close();
 }
+
+//QDomElement tacheElement = tache.toElement();
+//QString type = tacheElement.attribute("type");
+//int etat = tacheElement.attribute("etat").toInt();
+
+//QString identifiant;
+//QString titre;
+//QDate dispoTache;
+//QDate echeanceTache;
+////Pour les tâches unitaires et préemptives
+//QTime duree;
+//QTime dureeInit; //Pour les taches preemptives
+//QTime dureeRestante; //Pour les taches preemptives
+
+////On construit la tache en parcourant tous les noeuds représentants ses caractéristiques
+//for(unsigned int i = 0; i < childrensTache.length(); i++){
+//    QDomNode children = childrensTache.at(i);
+//    if(children.nodeName() == "identifiant")
+//        identifiant = children.toElement().text();
+//    if(children.nodeName() == "titre")
+//        titre = children.toElement().text();
+//    if(children.nodeName() == "disponibilite")
+//        dispoTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+//    if(children.nodeName() == "echeance")
+//        echeanceTache = QDate::fromString(children.toElement().text(),Qt::TextDate);
+//    if(type == "unitaire"){
+//        if(children.nodeName() == "duree"){
+//            QTime tmp = QTime(children.toElement().attribute("heure").toInt(),children.toElement().attribute("minute").toInt());
+//            duree = tmp;
+//        }
+//    }
+//    if(type == "preemtive")
+//    {
+//        if(children.nodeName() == "dureeInitiale"){
+//            QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
+//            dureeInit = tmp;
+//        }
+
+//        if(children.nodeName() == "dureeRestante"){
+//            QTime tmp = QTime(children.toElement().attribute("heure").toInt(), children.toElement().attribute("minute").toInt());
+//            dureeRestante = tmp;
+//        }
+//    }
+//}
+
+////On construit l'objet tache qui convient en fonction du type de la tache
+////Mais on enregistre une Tache (générale donc) dans le vector taches du projet
+//if(type == "unitaire"){
+//    TacheFactory& tm = TacheFactory::getInstance();
+//    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitaire(identifiant, titre, dispoTache, echeanceTache, duree, etat));
+//    //On ajoute la tache au projet que l'on est en train de parcourir
+//    p.ajouterTache(t);
+//}
+//else if (type == "preemtive"){
+//    TacheFactory& tm = TacheFactory::getInstance();
+//    Tache& t = dynamic_cast<Tache&>(tm.creerTacheUnitairePreemptive(identifiant, titre, dispoTache, echeanceTache, dureeInit, dureeRestante, etat));
+//    //On ajoute la tache au projet que l'on est en train de parcourir
+//    p.ajouterTache(t);
+//}
+//else if (type == "composite"){
+//    TacheFactory& tm = TacheFactory::getInstance();
+//    Tache& t = dynamic_cast<Tache&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
+//    //On ajoute la tache au projet que l'on est en train de parcourir
+//    p.ajouterTache(t);
+//}
 
 
 

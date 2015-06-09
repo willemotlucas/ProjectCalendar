@@ -22,6 +22,7 @@ private:
     Etat etat;
     QTime duree;
     QDomElement& write(QDomDocument* dom);
+    QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree){}
 
 protected :
             TacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& deadline, const QTime& dur, const int& e = 1):Tache(id, desc, dispo, deadline),etat((Etat)e){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
