@@ -12,4 +12,8 @@
   <date>ven. juin 12 2015</date>
   <horaire minute="0" heure="10"/>
  </programmation>
+ <programmation tache="Tache2" projet="Projet1">
+  <date>mar. juin 9 2015</date>
+  <horaire minute="0" heure="6"/>
+ </programmation>
 </programmations>

@@ -48,7 +48,6 @@ void CalendarWindow::changeCurrentWeek(QDate* date, bool isCurrentDay){
         font.setBold(true);
 
     ui->agenda_widget->horizontalHeaderItem(dayOfWeek-1)->setFont(font);
-    effacerAffichageTaches();
     displayTasks();
 }
 
@@ -70,6 +69,7 @@ void CalendarWindow::setWeek(int num) {
 }
 
 void CalendarWindow::displayTasks(){
+    effacerAffichageTaches();
     ProgrammationManager& progm = ProgrammationManager::getInstance();
 
     //On enregistre le premier jour et le dernier jour de la semaine affichée
