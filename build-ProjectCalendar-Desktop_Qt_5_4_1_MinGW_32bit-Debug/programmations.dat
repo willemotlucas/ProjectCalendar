@@ -1,15 +1,15 @@
 <!DOCTYPE programmations>
 <programmations>
- <programmation projet="Projet1" tache="Tache3">
+ <programmation tache="Tache3" projet="Projet1">
   <date>mer. juin 10 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
- <programmation projet="Projet1" tache="Tache4">
+ <programmation tache="Tache4" projet="Projet1">
   <date>jeu. juin 11 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
- <programmation projet="Projet1" tache="LongueTache">
+ <programmation tache="LongueTache" projet="Projet1">
   <date>ven. juin 12 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
 </programmations>

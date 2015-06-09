@@ -31,6 +31,7 @@ class CalendarWindow;
    */
 class CalendarWindow : public QMainWindow
 {
+    friend class MainWindow;
     Q_OBJECT
 
 public:
@@ -62,6 +63,8 @@ private:
     Ui::CalendarWindow *ui;/*!< Onglet Agenda*/
     QDate today;/*!< Date courante*/
     QDate currentDate;/*!< Date courante de la semaine en cours*/
+
+    void effacerAffichageTaches();
 
 private slots:
     /*!

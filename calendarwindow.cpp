@@ -21,6 +21,7 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
         ui->choose_week->addItem(today.addDays(i*7 - (today.dayOfWeek()-1)).toString(Qt::TextDate)+" - "+today.addDays(i*7 - (today.dayOfWeek()-1) + 6).toString(Qt::TextDate));
     }
     ui->choose_week->setCurrentIndex(500);
+
     displayTasks();
 
     connect(ui->next_week, SIGNAL(clicked()), this, SLOT(nextWeek()));
@@ -47,6 +48,8 @@ void CalendarWindow::changeCurrentWeek(QDate* date, bool isCurrentDay){
         font.setBold(true);
 
     ui->agenda_widget->horizontalHeaderItem(dayOfWeek-1)->setFont(font);
+    effacerAffichageTaches();
+    displayTasks();
 }
 
 void CalendarWindow::nextWeek() {
@@ -86,8 +89,21 @@ void CalendarWindow::displayTasks(){
                 for(int i = firstLine; i < firstLine+nbLine; i++){
                     ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
                     ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::red);
+                    ui->agenda_widget->item(i, column)->setTextAlignment(Qt::AlignCenter);
                 }
             }
+        }
+    }
+}
+
+void CalendarWindow::effacerAffichageTaches(){
+    for(int i = 0; i < ui->agenda_widget->rowCount(); i++){
+        for(int j = 0; j < ui->agenda_widget->columnCount(); j++){
+            if(ui->agenda_widget->item(i,j) == NULL)
+                ui->agenda_widget->setItem(i,j,new QTableWidgetItem());
+
+            ui->agenda_widget->item(i,j)->setBackgroundColor(Qt::white);
+            ui->agenda_widget->item(i,j)->setText("");
         }
     }
 }

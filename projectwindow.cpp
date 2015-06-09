@@ -15,6 +15,7 @@
 #include "tacheunitaire.h"
 #include "tacheunitairepreemptive.h"
 #include "projetmanager.h"
+#include "calendarwindow.h"
 #include "global.h"
 #include <QToolBar>
 #include <QVBoxLayout>
