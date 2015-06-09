@@ -42,6 +42,8 @@ bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const Q
     if(typeid(t) == typeid(TacheUnitaire)){
         try{
             const TacheUnitaire& tmp = dynamic_cast<const TacheUnitaire&>(t);
+            if(d < tmp.getDateDisponibilite() || d > tmp.getDateEcheance())
+                return false;
 
             for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++ it){
                 //La tache testée est une tache unitaire, on peut maintenant accéder à sa durée
@@ -73,7 +75,7 @@ bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const Q
 
 void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h){
     if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
-    if(!ajoutPossible(t,d,h)) throw CalendarException("Erreur. Une tâche est déjà programmée à ce moment.");
+    if(!ajoutPossible(t,d,h)) throw CalendarException("Erreur. Une tâche est déjà programmée ou la tâche n'est plus disponible à ce moment.");
     Programmation* newt=new Programmation(p,t,d,h);
     addItem(newt);
 }

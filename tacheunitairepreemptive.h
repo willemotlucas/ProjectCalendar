@@ -36,6 +36,7 @@ public:
     //GETTERS AND SETTERS
     const QTime& getDureeInit() const { return dureeInitiale; }
     const QTime& getDureeRestante() const { return dureeRestante; }
+    void setDureeRestante(const QTime& duree){dureeRestante.addSecs(-(duree.hour()*3600+duree.minute()*60));}
     void setEtat(const Etat& e){ etat = e; }
     const Etat& getEtat() const { return etat; }
 
