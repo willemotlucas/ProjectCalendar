@@ -1,4 +1,5 @@
 #include "tache.h"
+#include "tachefactory.h"
 
 QTextStream& operator<<(QTextStream& fout, const Tache& t){
     fout<<t.getId()<<"\n";

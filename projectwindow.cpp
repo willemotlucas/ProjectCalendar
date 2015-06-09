@@ -263,18 +263,11 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     addTacheUnitaire->setEnabled(true);
     addTacheUnitairePreemptive->setEnabled(true);
     addTacheComposite->setEnabled(true);
-    projectTree->setEnabled(true);
+    //projectTree->setEnabled(true);
 
-    //Construction de l'arborescence du projet
-    rootTree = new QTreeWidgetItem(projectTree);
-    //Ajout de la racine
-    rootTree->setText(0,projetOuvert->getNom());
-    for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
-    {
-        QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
-        tacheTree->setText(0, (*it)->getId());
-        rootTree->addChild(tacheTree);
-    }
+    //
+    chargerTreeView(projetOuvert);
+
     connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
     connect(programmer, SIGNAL(clicked()), this, SLOT(programmerTache()));
 }
@@ -410,6 +403,35 @@ void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }
+}
+
+void ProjectWindow::chargerTreeView(Projet* projetEnCours){
+    // Construction de l'arborescence du projet
+        rootTree = new QTreeWidgetItem(projectTree);
+        //Ajout de la racine
+        rootTree->setText(0,projetEnCours->getNom());
+
+    //    //Construction de l'arborescence du projet
+
+    //    for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
+    //    {
+    //        //On cree le noeud de l'arborescence
+    //        QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+    //        tacheTree->setText(0, (*it)->getId());
+
+    //        //Si il est composite on lui ajoute ses sous-taches
+    //        if(dynamic_cast<TacheComposite&>(it)){
+    //            for(TacheComposite::contTache::const_iterator i = it.soustaches.begin();i != it.soustaches.end();++i){
+    //                QTreeWidgetItem* sousTacheTree = new QTreeWidgetItem();
+    //                sousTacheTree->setText(1,(*i)->getId());
+    //                tacheTree->addChild(sousTacheTree);
+    //            }
+
+    //        }
+    //        //On relie le nom a l'arborescence
+    //        rootTree->addChild(tacheTree);
+    //    }
+
 }
 
 

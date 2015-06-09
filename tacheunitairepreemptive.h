@@ -20,6 +20,7 @@ public:
 
     ~TacheUnitairePreemptive(){}
     QDomElement& write(QDomDocument* dom);
+        QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree){}
 
 
     //STATES METHODS

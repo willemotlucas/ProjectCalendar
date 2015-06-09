@@ -73,6 +73,16 @@ public:
     void load(const QString& f);
 
     /*!
+         *  \brief loadTache
+         *
+         *  Chargement d'une tache dans le fichier XML
+         *
+         *  \param dom : arborescence du fichier xml
+         *  \param tache : noeud de la tache a charger
+         */    
+    Tache& loadTache(QDomDocument* dom ,QDomNode* tache);
+
+    /*!
          *  \brief save
          *
          *  Sauvegarde du projet dans le fichier XML

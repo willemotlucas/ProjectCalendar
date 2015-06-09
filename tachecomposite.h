@@ -18,6 +18,7 @@ class TacheComposite : public Tache
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
     QDomElement& write(QDomDocument* dom);
+        QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree){}
 
 
 public:
