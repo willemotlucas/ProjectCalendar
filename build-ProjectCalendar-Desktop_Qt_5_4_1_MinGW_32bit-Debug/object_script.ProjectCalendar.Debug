@@ -25,6 +25,7 @@ INPUT(
 ./debug\addsouspreemptivewindow.o
 ./debug\addsoustachewindow.o
 ./debug\addsouscompositewindow.o
+./debug\ajouterprogpreemptivewindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addtachewindow.o
 ./debug\moc_modtachewindow.o
@@ -38,4 +39,5 @@ INPUT(
 ./debug\moc_addsouspreemptivewindow.o
 ./debug\moc_addsoustachewindow.o
 ./debug\moc_addsouscompositewindow.o
+./debug\moc_ajouterprogpreemptivewindow.o
 );

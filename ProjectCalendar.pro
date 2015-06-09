@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     addcompositewindow.cpp \
     addsouspreemptivewindow.cpp \
     addsoustachewindow.cpp \
-    addsouscompositewindow.cpp
+    addsouscompositewindow.cpp \
+    ajouterprogpreemptivewindow.cpp
     addpreemtivewindow.cpp
 
 HEADERS  += mainwindow.h \
@@ -68,10 +69,12 @@ HEADERS  += mainwindow.h \
     addcompositewindow.h \
     addsouspreemptivewindow.h \
     addsoustachewindow.h \
-    addsouscompositewindow.h
+    addsouscompositewindow.h \
+    ajouterprogpreemptivewindow.h
     addpreemtivewindow.h
 
 FORMS    += mainwindow.ui \
     loadprojectwindow.ui \
     calendarwindow.ui \
-    programmertache.ui
+    programmertache.ui \
+    ajouterprogpreemptivewindow.ui

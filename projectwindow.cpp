@@ -5,6 +5,7 @@
 #include "modtachewindow.h"
 #include "addpreemptivewindow.h"
 #include "programmertachewindow.h"
+#include "ajouterprogpreemptivewindow.h"
 #include "programmationmanager.h"
 #include "loadprojectwindow.h"
 #include "addsouscompositewindow.h"
@@ -392,8 +393,14 @@ void ProjectWindow::modifierTache(){
 }
 
 void ProjectWindow::programmerTache(){
-    ProgrammerTache* progTache = new ProgrammerTache(this);
-    progTache->exec();
+    if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
+        ProgrammerTache* progTache = new ProgrammerTache(this);
+        progTache->exec();
+    }
+    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+        AjouterProgPreemptiveWIndow* progTache = new AjouterProgPreemptiveWIndow(this);
+        progTache->exec();
+    }
 }
 
 void ProjectWindow::ajouterTache(Tache &t){
@@ -417,11 +424,34 @@ void ProjectWindow::ajouterSousTache(Tache& t){
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
+    TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
     ProgrammationManager& pm = ProgrammationManager::getInstance();
     try{
-        pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t);
+        pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t,tmp->getDuree());
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
+    }catch(CalendarException e){
+        QMessageBox::warning(this, "Attention", e.getInfo());
+    }
+}
+
+void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &t, const QTime& duree){
+    TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
+    if(duree > tmp->getDureeRestante())
+        QMessageBox::warning(this, "Attention", "La durée de programmation doit être inférieur à la durée restante de la tache.");
+
+    qDebug()<<"ajout prog preemptif";
+    ProgrammationManager& pm = ProgrammationManager::getInstance();
+    try{
+        pm.ajouterProgrammation(*projetOuvert, *tmp, d, t, duree);
+        tmp->setDureeRestante(duree);
+        qDebug()<<"durée restante ajouterProg projectwindow : "<<tmp->getDureeRestante().hour()<<"h"<<tmp->getDureeRestante().minute();
+        for(std::vector<Programmation*>::iterator it = pm.begin(); it != pm.end(); ++it){
+            if(typeid((*it)->getTache()) == typeid(TacheUnitairePreemptive)){
+                TacheUnitairePreemptive* tmp2 = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
+                qDebug()<<"durée restante tache dans prog : "<<tmp2->getDureeRestante().hour()<<"h"<<tmp2->getDureeRestante().minute();
+            }
+        }
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }

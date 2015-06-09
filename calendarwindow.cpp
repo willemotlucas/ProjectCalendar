@@ -2,6 +2,7 @@
 #include "ui_calendarwindow.h"
 #include "programmationmanager.h"
 #include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
 
 #include <QDebug>
 #include <QDate>
@@ -82,15 +83,16 @@ void CalendarWindow::displayTasks(){
         if((*it)->getDate() >= premierJour && (*it)->getDate() <= dernierJour)
         {
             int column = (*it)->getDate().day() - premierJour.day();
-            if(typeid((*it)->getTache()) == typeid(TacheUnitaire)){
-                const TacheUnitaire& tmp = dynamic_cast<const TacheUnitaire&>((*it)->getTache());
-                int firstLine = (*it)->getHoraire().hour()-6;
-                int nbLine = tmp.getDuree().hour();
-                for(int i = firstLine; i < firstLine+nbLine; i++){
-                    ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
+            int firstLine = (*it)->getHoraire().hour()-6;
+            int nbLine = (*it)->getDuree().hour();
+            for(int i = firstLine; i < firstLine+nbLine; i++){
+                ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
+                ui->agenda_widget->item(i, column)->setTextAlignment(Qt::AlignCenter);
+                if(typeid((*it)->getTache()) == typeid(TacheUnitaire))
                     ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::red);
-                    ui->agenda_widget->item(i, column)->setTextAlignment(Qt::AlignCenter);
-                }
+                if(typeid((*it)->getTache()) == typeid(TacheUnitairePreemptive))
+                    ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::yellow);
+
             }
         }
     }

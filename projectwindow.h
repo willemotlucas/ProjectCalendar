@@ -266,6 +266,17 @@ public:
          *  \param t : horaire de la programmation reçue par la fenêtre ProgrammerTache
          */
     void ajouterProgrammation(const QDate& d, const QTime& t);
+
+
+    /*!
+         *  \brief ajouterProgrammation
+         *
+         *  Permet d'appeler le programmation manager pour ajouter la programmation d'une tache
+         *
+         *  \param d : date de la programmation reçue par la fenêtre ProgrammerTache
+         *  \param t : horaire de la programmation reçue par la fenêtre ProgrammerTache
+         */
+    void ajouterProgrammationPreemptive(const QDate &d, const QTime &t, const QTime& duree);
 };
 
 #endif // PROJECTWINDOW_H

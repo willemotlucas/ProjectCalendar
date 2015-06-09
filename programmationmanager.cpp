@@ -2,6 +2,7 @@
 #include "projetmanager.h"
 #include "tachefactory.h"
 #include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
 #include "mainwindow.h"
 #include "tache.h"
 #include "global.h"
@@ -37,44 +38,39 @@ Programmation* ProgrammationManager::trouverProgrammation(const Tache& t)const{
     return 0;
 }
 
-bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const QTime& h){
-    //Si la tache reçue est une tache unitaire, on la cast pour accéder à sa durée
-    if(typeid(t) == typeid(TacheUnitaire)){
-        try{
-            const TacheUnitaire& tmp = dynamic_cast<const TacheUnitaire&>(t);
+bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const QTime& h, const QTime& dur){
+    if(d < t.getDateDisponibilite() || d > t.getDateEcheance())
+        return false;
 
-            for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++ it){
-                //La tache testée est une tache unitaire, on peut maintenant accéder à sa durée
-                if(typeid((*it)->getTache()) == typeid(TacheUnitaire))
-                {
-                    const TacheUnitaire& tacheprog = dynamic_cast<const TacheUnitaire&>((*it)->getTache());
-                    if((*it)->getDate() == d)
-                    {
-                        if((*it)->getHoraire() == h)
-                            return false;
-                        if( ((h.addSecs(tmp.getDuree().hour()*3600 + tmp.getDuree().minute()*60)) > (*it)->getHoraire())
-                        && ((h.addSecs(tmp.getDuree().hour()*3600 + tmp.getDuree().minute()*60)) < ((*it)->getHoraire().addSecs(tacheprog.getDuree().hour()*3600 + tacheprog.getDuree().minute()*60))) )
-                            return false;
-                        if( (h > (*it)->getHoraire())
-                        && (h < ((*it)->getHoraire().addSecs(tacheprog.getDuree().hour()*3600 + tacheprog.getDuree().minute()*60))) )
-                            return false;
-                        if( ((*it)->getHoraire() > h)
-                        && ((*it)->getHoraire() < (h.addSecs(tmp.getDuree().hour()*3600 + tmp.getDuree().minute()*60)))
-                        && (((*it)->getHoraire().addSecs(tacheprog.getDuree().hour()*3600 + tacheprog.getDuree().minute()*60)) < (h.addSecs(tmp.getDuree().hour()*3600 + tmp.getDuree().minute()*60))) )
-                            return false;
-                    }
-                }
+    for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++ it){
+        //La tache testée est une tache unitaire, on peut maintenant accéder à sa durée
+        if(typeid((*it)->getTache()) == typeid(TacheUnitaire))
+        {
+            if((*it)->getDate() == d)
+            {
+                if((*it)->getHoraire() == h)
+                    return false;
+                if( ((h.addSecs(dur.hour()*3600 + dur.minute()*60)) > (*it)->getHoraire())
+                && ((h.addSecs(dur.hour()*3600 + dur.minute()*60)) < ((*it)->getHoraire().addSecs((*it)->getDuree().hour()*3600 + (*it)->getDuree().minute()*60))) )
+                    return false;
+                if( (h > (*it)->getHoraire())
+                && (h < ((*it)->getHoraire().addSecs((*it)->getDuree().hour()*3600 + (*it)->getDuree().minute()*60))) )
+                    return false;
+                if( ((*it)->getHoraire() > h)
+                && ((*it)->getHoraire() < (h.addSecs(dur.hour()*3600 + dur.minute()*60)))
+                && (((*it)->getHoraire().addSecs((*it)->getDuree().hour()*3600 + (*it)->getDuree().minute()*60)) < (h.addSecs(dur.hour()*3600 + dur.minute()*60))) )
+                    return false;
             }
-            return true;
         }
-        catch(std::bad_cast& bc){qDebug()<<"err:"<<bc.what();}
     }
+    return true;
 }
 
-void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h){
-    if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
-    if(!ajoutPossible(t,d,h)) throw CalendarException("Erreur. Une tâche est déjà programmée à ce moment.");
-    Programmation* newt=new Programmation(p,t,d,h);
+void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& duree){
+    if(typeid(t) == typeid(TacheUnitaire))
+        if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
+    if(!ajoutPossible(t,d,h, duree)) throw CalendarException("Erreur. Une tâche est déjà programmée ou la tâche n'est plus disponible à ce moment.");
+    Programmation* newt=new Programmation(p,t,d,h, duree);
     addItem(newt);
 }
 
@@ -105,8 +101,13 @@ void ProgrammationManager::save(){
         horaire.setAttribute("minute", (*it)->getHoraire().minute());
         horaire.setAttribute("heure", (*it)->getHoraire().hour());
 
+        QDomElement duree = dom->createElement("duree");
+        duree.setAttribute("heure", (*it)->getDuree().hour());
+        duree.setAttribute("minute", (*it)->getDuree().minute());
+
         prog.appendChild(date);
         prog.appendChild(horaire);
+        prog.appendChild(duree);
         progs.appendChild(prog);
     }
 
@@ -155,9 +156,12 @@ void ProgrammationManager::load(){
             int heure = prog.firstChildElement("horaire").toElement().attribute("heure").toInt();
             int minute = prog.firstChildElement("horaire").toElement().attribute("minute").toInt();
             QTime horaire(heure,minute);
+            int hDuree = prog.firstChildElement("duree").toElement().attribute("heure").toInt();
+            int mDuree = prog.firstChildElement("duree").toElement().attribute("minute").toInt();
+            QTime duree(hDuree,mDuree);
 
             //On ajoute la programmation dans le vector
-            addItem(new Programmation(*p,*t,date,horaire));
+            addItem(new Programmation(*p,*t,date,horaire,duree));
         }
     }
 }

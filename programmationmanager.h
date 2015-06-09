@@ -43,7 +43,7 @@ private:
          */
     Programmation* trouverProgrammation(const Tache& t) const;
 
-    bool ajoutPossible(const Tache& t, const QDate& d, const QTime& h);
+    bool ajoutPossible(const Tache& t, const QDate& d, const QTime& h, const QTime& dur);
 
     /*! \class Handler
        * \brief Classe encapsulant l'instance unique du ProgrammationManager
@@ -118,7 +118,7 @@ private:
          */
 
 public:
-    void ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h);
+    void ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& duree);
 
     /*!
          *  \brief getInstance
