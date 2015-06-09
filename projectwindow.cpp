@@ -39,6 +39,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(ajouterSousTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitaire()));
     connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitairePreemptive()));
     connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheComposite()));
+    //connect(modifier,SIGNAL(clicked(),this,SLOT(modifierTache()));
 }
 
 
@@ -399,6 +400,7 @@ void ProjectWindow::ajouterTache(Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
     p->ajouterTache(t);
+
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     rootTree->addChild(tacheTree);
@@ -406,8 +408,12 @@ void ProjectWindow::ajouterTache(Tache &t){
 
 void ProjectWindow::ajouterSousTache(Tache& t){
     TacheComposite* tmp = dynamic_cast<TacheComposite*>(tacheSelectionnee);
-    qDebug()<<"id tache selectionne : "<<t.getId();
     tmp->ajouterSousTaches(t);
+
+
+    QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+    tacheTree->setText(0, t.getId());
+    projectTree->currentItem()->addChild(tacheTree);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
