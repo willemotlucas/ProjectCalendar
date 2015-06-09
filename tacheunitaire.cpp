@@ -41,3 +41,24 @@ QDomElement& TacheUnitaire::write(QDomDocument* dom) {
     tache->appendChild(dureeTache);
     return *tache;
 }
+
+//    //Construction de l'arborescence du projet
+
+//    for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
+//    {
+//        //On cree le noeud de l'arborescence
+//        QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+//        tacheTree->setText(0, (*it)->getId());
+
+//        //Si il est composite on lui ajoute ses sous-taches
+//        if(dynamic_cast<TacheComposite&>(it)){
+//            for(TacheComposite::contTache::const_iterator i = it.soustaches.begin();i != it.soustaches.end();++i){
+//                QTreeWidgetItem* sousTacheTree = new QTreeWidgetItem();
+//                sousTacheTree->setText(1,(*i)->getId());
+//                tacheTree->addChild(sousTacheTree);
+//            }
+
+//        }
+//        //On relie le nom a l'arborescence
+//        rootTree->addChild(tacheTree);
+//    }

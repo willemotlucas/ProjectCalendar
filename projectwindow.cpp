@@ -410,33 +410,10 @@ void ProjectWindow::chargerTreeView(Projet* projetEnCours){
         rootTree = new QTreeWidgetItem(projectTree);
         //Ajout de la racine
         rootTree->setText(0,projetEnCours->getNom());
-//        for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
-//            QDomElement m = (*i)->save(dom);
-//            taches.appendChild(m);
-//        }
-
-
-    //    //Construction de l'arborescence du projet
-
-    //    for(Projet::contTache::iterator it = projetOuvert->begin(); it != projetOuvert->end(); ++it)
-    //    {
-    //        //On cree le noeud de l'arborescence
-    //        QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
-    //        tacheTree->setText(0, (*it)->getId());
-
-    //        //Si il est composite on lui ajoute ses sous-taches
-    //        if(dynamic_cast<TacheComposite&>(it)){
-    //            for(TacheComposite::contTache::const_iterator i = it.soustaches.begin();i != it.soustaches.end();++i){
-    //                QTreeWidgetItem* sousTacheTree = new QTreeWidgetItem();
-    //                sousTacheTree->setText(1,(*i)->getId());
-    //                tacheTree->addChild(sousTacheTree);
-    //            }
-
-    //        }
-    //        //On relie le nom a l'arborescence
-    //        rootTree->addChild(tacheTree);
-    //    }
-
+        for(std::vector<Tache*>::iterator i = projetEnCours->begin(); i != projetEnCours->end(); ++i){
+            QTreeWidgetItem& m = (*i)->chargerTree(projectTree) ;
+            rootTree->addChild(&m);
+        }
 }
 
 

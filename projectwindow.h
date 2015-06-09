@@ -56,6 +56,7 @@ public:
         return nom->text();
     }
 
+
     /*!
          *  \brief Destructeur
          *
