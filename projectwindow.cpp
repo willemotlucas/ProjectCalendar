@@ -410,6 +410,11 @@ void ProjectWindow::chargerTreeView(Projet* projetEnCours){
         rootTree = new QTreeWidgetItem(projectTree);
         //Ajout de la racine
         rootTree->setText(0,projetEnCours->getNom());
+//        for(std::vector<Tache*>::iterator i = (*it)->begin(); i != (*it)->end(); ++i){
+//            QDomElement m = (*i)->save(dom);
+//            taches.appendChild(m);
+//        }
+
 
     //    //Construction de l'arborescence du projet
 
