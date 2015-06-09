@@ -63,6 +63,8 @@ private:
     QDate today;/*!< Date courante*/
     QDate currentDate;/*!< Date courante de la semaine en cours*/
 
+    void effacerAffichageTaches();
+
 private slots:
     /*!
          *  \brief Affichage de la semaine

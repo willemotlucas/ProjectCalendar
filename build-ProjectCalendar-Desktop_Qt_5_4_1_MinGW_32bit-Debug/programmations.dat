@@ -2,14 +2,14 @@
 <programmations>
  <programmation projet="Projet1" tache="Tache3">
   <date>mer. juin 10 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
  <programmation projet="Projet1" tache="Tache4">
   <date>jeu. juin 11 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
  <programmation projet="Projet1" tache="LongueTache">
   <date>ven. juin 12 2015</date>
-  <horaire heure="10" minute="0"/>
+  <horaire minute="0" heure="10"/>
  </programmation>
 </programmations>
