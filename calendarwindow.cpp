@@ -85,10 +85,7 @@ void CalendarWindow::displayTasks(){
             int column = (*it)->getDate().day() - premierJour.day();
             int firstLine = (*it)->getHoraire().hour()-6;
             int nbLine = (*it)->getDuree().hour();
-            qDebug()<<"tache id : "<<(*it)->getTache().getId();
-            qDebug()<<"nbLine : "<<nbLine;
             for(int i = firstLine; i < firstLine+nbLine; i++){
-                qDebug()<<"i = "<<i;
                 ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
                 ui->agenda_widget->item(i, column)->setTextAlignment(Qt::AlignCenter);
                 if(typeid((*it)->getTache()) == typeid(TacheUnitaire))
@@ -97,7 +94,6 @@ void CalendarWindow::displayTasks(){
                     ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::yellow);
 
             }
-            qDebug()<<"========";
         }
     }
 }
