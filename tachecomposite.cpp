@@ -51,6 +51,14 @@ bool TacheComposite::trouverTache(const Tache& tache){
     return false;
 }
 
+Tache* TacheComposite::getSousTache(const QString& tache){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+        if((*it)->getId() == tache)
+            return (*it);
+    }
+    return NULL;
+}
+
 QDomElement& TacheComposite::write(QDomDocument* dom) {
 
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments

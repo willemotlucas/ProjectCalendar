@@ -272,7 +272,24 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    tacheSelectionnee = projetOuvert->getTache(item->text(column));
+    if(item->parent()->text(0)==projetOuvert->getNom())
+        tacheSelectionnee = projetOuvert->getTache(item->text(column));
+    else{
+        QTreeWidgetItem* papa = item->parent();
+        if(papa->parent()->text(0)==projetOuvert->getNom()){
+            TacheComposite* tmp = dynamic_cast<TacheComposite*>(projetOuvert->getTache(papa->text(column)));
+            tacheSelectionnee = tmp->getSousTache(item->text(0));
+        }
+        else {
+            QTreeWidgetItem* Grandpapa = papa->parent();
+            if(Grandpapa->parent()->text(0)==projetOuvert->getNom()){
+                TacheComposite* tmp2 = dynamic_cast<TacheComposite*>(projetOuvert->getTache(Grandpapa->text(0)));
+                TacheComposite* tmp =dynamic_cast<TacheComposite*>(tmp2->getSousTache(papa->text(0)));
+                tacheSelectionnee = tmp->getSousTache(item->text(0));
+           }
+        }
+
+    }
 
     //On recherche la tache ayant le meme id dans ce projet
     idTache->setText(tacheSelectionnee->getId());
