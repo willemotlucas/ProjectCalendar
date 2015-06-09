@@ -83,13 +83,10 @@ void CalendarWindow::displayTasks(){
                 const TacheUnitaire& tmp = dynamic_cast<const TacheUnitaire&>((*it)->getTache());
                 int firstLine = (*it)->getHoraire().hour()-6;
                 int nbLine = tmp.getDuree().hour();
-                qDebug()<<"1ere ligne : "<<firstLine;
-                qDebug()<<"nb ligne : "<<nbLine;
-                qDebug()<<"column :"<<column;
-//                QTableWidgetSelectionRange selection(firstLine, column, firstLine+nbLine, column);
-//                QTableWidget tache = ui->agenda_widget->setRangeSelected(selection, true);
-//                QTableWidgetItem* item = ui->agenda_widget->item(firstLine,column);
-//                item->setText("tache");
+                for(int i = firstLine; i < firstLine+nbLine; i++){
+                    ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
+                    ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::red);
+                }
             }
         }
     }
