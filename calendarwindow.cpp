@@ -1,8 +1,11 @@
 #include "calendarwindow.h"
 #include "ui_calendarwindow.h"
+#include "programmationmanager.h"
+#include "tacheunitaire.h"
 
 #include <QDebug>
 #include <QDate>
+#include "typeinfo"
 
 CalendarWindow::CalendarWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,7 +21,7 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
         ui->choose_week->addItem(today.addDays(i*7 - (today.dayOfWeek()-1)).toString(Qt::TextDate)+" - "+today.addDays(i*7 - (today.dayOfWeek()-1) + 6).toString(Qt::TextDate));
     }
     ui->choose_week->setCurrentIndex(500);
-
+    displayTasks();
 
     connect(ui->next_week, SIGNAL(clicked()), this, SLOT(nextWeek()));
     connect(ui->previous_week, SIGNAL(clicked()), this, SLOT(prevWeek()));
@@ -61,5 +64,34 @@ void CalendarWindow::prevWeek() {
 void CalendarWindow::setWeek(int num) {
     currentDate = today.addDays((num-500)*7);
     changeCurrentWeek(&currentDate, today == currentDate);
+}
+
+void CalendarWindow::displayTasks(){
+    ProgrammationManager& progm = ProgrammationManager::getInstance();
+
+    //On enregistre le premier jour et le dernier jour de la semaine affichée
+    QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
+    QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
+
+    //On parcourt chaque programmation pour choisir lesquelles afficher
+    for(std::vector<Programmation*>::iterator it = progm.begin(); it != progm.end(); ++it){
+        //Si la programmation est comprise dans la semaine
+        if((*it)->getDate() >= premierJour && (*it)->getDate() <= dernierJour)
+        {
+            int column = (*it)->getDate().day() - premierJour.day();
+            if(typeid((*it)->getTache()) == typeid(TacheUnitaire)){
+                const TacheUnitaire& tmp = dynamic_cast<const TacheUnitaire&>((*it)->getTache());
+                int firstLine = (*it)->getHoraire().hour()-6;
+                int nbLine = tmp.getDuree().hour();
+                qDebug()<<"1ere ligne : "<<firstLine;
+                qDebug()<<"nb ligne : "<<nbLine;
+                qDebug()<<"column :"<<column;
+//                QTableWidgetSelectionRange selection(firstLine, column, firstLine+nbLine, column);
+//                QTableWidget tache = ui->agenda_widget->setRangeSelected(selection, true);
+//                QTableWidgetItem* item = ui->agenda_widget->item(firstLine,column);
+//                item->setText("tache");
+            }
+        }
+    }
 }
 

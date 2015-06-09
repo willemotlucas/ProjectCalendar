@@ -30,7 +30,7 @@ class Ui_CalendarWindow
 {
 public:
     QWidget *centralwidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QPushButton *previous_week;
@@ -47,25 +47,25 @@ public:
         CalendarWindow->resize(1006, 605);
         centralwidget = new QWidget(CalendarWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 20, 981, 531));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 20, 981, 531));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        previous_week = new QPushButton(widget);
+        previous_week = new QPushButton(layoutWidget);
         previous_week->setObjectName(QStringLiteral("previous_week"));
 
         horizontalLayout->addWidget(previous_week);
 
-        choose_week = new QComboBox(widget);
+        choose_week = new QComboBox(layoutWidget);
         choose_week->setObjectName(QStringLiteral("choose_week"));
 
         horizontalLayout->addWidget(choose_week);
 
-        next_week = new QPushButton(widget);
+        next_week = new QPushButton(layoutWidget);
         next_week->setObjectName(QStringLiteral("next_week"));
 
         horizontalLayout->addWidget(next_week);
@@ -73,7 +73,7 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        agenda_widget = new QTableWidget(widget);
+        agenda_widget = new QTableWidget(layoutWidget);
         if (agenda_widget->columnCount() < 7)
             agenda_widget->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -138,6 +138,11 @@ public:
         agenda_widget->setVerticalHeaderItem(21, __qtablewidgetitem28);
         QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
         agenda_widget->setVerticalHeaderItem(22, __qtablewidgetitem29);
+        QBrush brush(QColor(255, 0, 0, 255));
+        brush.setStyle(Qt::NoBrush);
+        QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
+        __qtablewidgetitem30->setBackground(brush);
+        agenda_widget->setItem(1, 1, __qtablewidgetitem30);
         agenda_widget->setObjectName(QStringLiteral("agenda_widget"));
         agenda_widget->horizontalHeader()->setDefaultSectionSize(131);
 
@@ -222,6 +227,11 @@ public:
         ___qtablewidgetitem28->setText(QApplication::translate("CalendarWindow", "04h00", 0));
         QTableWidgetItem *___qtablewidgetitem29 = agenda_widget->verticalHeaderItem(22);
         ___qtablewidgetitem29->setText(QApplication::translate("CalendarWindow", "05h00", 0));
+
+        const bool __sortingEnabled = agenda_widget->isSortingEnabled();
+        agenda_widget->setSortingEnabled(false);
+        agenda_widget->setSortingEnabled(__sortingEnabled);
+
     } // retranslateUi
 
 };

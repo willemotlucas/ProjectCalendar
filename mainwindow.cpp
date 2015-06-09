@@ -25,15 +25,6 @@ void MainWindow::libererInstanceProjet(){
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-    //Generation des widgets de la fenetre principale
-    creerActions();
-    creerMenus();
-    creerBarreNavigation();
-
-    //Definition de quelques proprietes de le fenetre
-    setMinimumSize(1015,650);
-    setWindowTitle("Project_Calendar");
-
     //Lire le fichier XML à chaque chargement de l'application
     try{
         ProjetManager& m = ProjetManager::getInstance();
@@ -43,6 +34,14 @@ MainWindow::MainWindow(QWidget *parent) :
     }catch(CalendarException e){
         QMessageBox::warning(this, "Erreur", e.getInfo());
     }
+    //Generation des widgets de la fenetre principale
+    creerActions();
+    creerMenus();
+    creerBarreNavigation();
+
+    //Definition de quelques proprietes de le fenetre
+    setMinimumSize(1015,650);
+    setWindowTitle("Project_Calendar");
 
 }
 

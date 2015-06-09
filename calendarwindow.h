@@ -50,6 +50,14 @@ public:
          */
     ~CalendarWindow();
 
+    /*!
+         *  \brief Affichage des tâches
+         *
+         *  Permet d'afficher les tâches de la semaine
+         *
+         */
+    void displayTasks();
+
 private:
     Ui::CalendarWindow *ui;/*!< Onglet Agenda*/
     QDate today;/*!< Date courante*/
@@ -88,6 +96,7 @@ private slots:
          *
          */
     void setWeek(int num);
+
 };
 
 #endif // CALENDARWINDOW_H
