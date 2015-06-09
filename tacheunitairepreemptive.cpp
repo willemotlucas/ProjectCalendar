@@ -48,5 +48,11 @@ QDomElement& TacheUnitairePreemptive::write(QDomDocument* dom){
     return *tache;
 }
 
+QTreeWidgetItem& TacheUnitairePreemptive::chargerTreeTache(QTreeWidget* tree){
+    QTreeWidgetItem* tache = new QTreeWidgetItem();
+    tache->setText(0,this->getId());
+    return *tache;
+}
+
 
 

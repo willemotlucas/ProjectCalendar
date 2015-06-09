@@ -3,6 +3,7 @@
 #include <QtXml>
 #include <QDebug>
 #include <QMetaEnum>
+#include <typeinfo>
 
 #include "tachecomposite.h"
 #include "global.h"
@@ -10,7 +11,7 @@
 
 bool TacheComposite::isCommencee() const {
     //2 indirections, 1 pour l'itérator et 1 pour l'adresse
-    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         if((*it)->isCommencee())
             return true;
     }
@@ -18,14 +19,14 @@ bool TacheComposite::isCommencee() const {
 }
 
 bool TacheComposite::isTerminee() const {
-    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         if(!(*it)->isTerminee())
             return false;
     }
     return true;
 }
 
-void TacheComposite::ajouterSousTache(Tache& tache){
+void TacheComposite::ajouterSousTaches(Tache& tache){
     if(!trouverTache(tache)){
         soustaches.push_back(&tache);
         if(tache.getDateEcheance() > echeance)
@@ -35,7 +36,7 @@ void TacheComposite::ajouterSousTache(Tache& tache){
 
 void TacheComposite::supprimerSousTache(const Tache &tache){
     int i = 0;
-    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         if((*it)->getId() == tache.getId())
             soustaches.erase(soustaches.begin()+i);
         i++;
@@ -43,7 +44,7 @@ void TacheComposite::supprimerSousTache(const Tache &tache){
 }
 
 bool TacheComposite::trouverTache(const Tache& tache){
-    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         if((*it)->getId() == tache.getId())
             return true;
     }
@@ -55,7 +56,6 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     //On crée le noeud <tache> que l'on veut ajouter et tous ses éléments
     QDomElement* tache = new QDomElement(dom->createElement("tache"));
     tache->setAttribute("type", "composite");
-    qDebug()<<"etat preemtive"<<this->getId();
 
     QDomElement idTache = dom->createElement("identifiant");
     QDomText idTacheText = dom->createTextNode(this->getId());
@@ -74,7 +74,7 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     echeanceTache.appendChild(echeanceTacheText);
 
     QDomElement sousTache = dom->createElement("soustaches");
-    for(contTache::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         QDomElement m = (*it)->save(dom);
         sousTache.appendChild(m);
     }
@@ -86,5 +86,18 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
     tache->appendChild(dispoTache);
     tache->appendChild(echeanceTache);
     tache->appendChild(sousTache);
+    return *tache;
+}
+
+
+QTreeWidgetItem& TacheComposite::chargerTreeTache(QTreeWidget* tree){
+    QTreeWidgetItem* tache = new QTreeWidgetItem();
+    tache->setText(0,this->getId());
+    qDebug()<<"ok";
+
+    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+        QTreeWidgetItem& sousTache = (*it)->chargerTree(tree);
+        tache->addChild(&sousTache);
+    }
     return *tache;
 }
