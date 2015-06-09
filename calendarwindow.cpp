@@ -89,6 +89,7 @@ void CalendarWindow::displayTasks(){
                 for(int i = firstLine; i < firstLine+nbLine; i++){
                     ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
                     ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::red);
+                    ui->agenda_widget->item(i, column)->setTextAlignment(Qt::AlignCenter);
                 }
             }
         }

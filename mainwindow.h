@@ -14,6 +14,7 @@
 #include <QTabWidget>
 #include <QAction>
 #include "projectwindow.h"
+#include "calendarwindow.h"
 
 
 /*! \class MainWindow
@@ -52,6 +53,21 @@ class MainWindow : public QMainWindow
          */
         static void libererInstanceProjet();
 
+
+        /*!
+             *  \brief getInstanceAgenda
+             *
+             *  Fonction statique permettant d'avoir l'instance unique du projet
+             *  a n'importe quel endroit du code.
+             */
+            static CalendarWindow& getInstanceAgenda();
+
+        /*!
+             *  \brief libererInstanceAgenda
+             *
+             *  Fonction statique permettant de liberer l'instance du projet en cours.
+             */
+            static void libererInstanceAgenda();
     private:
         /*!
              *  \brief creerMenus
@@ -76,6 +92,7 @@ class MainWindow : public QMainWindow
         void creerBarreNavigation();
 
         static ProjectWindow* projet;/*!< attribut statique : projet*/
+        static CalendarWindow* calendar;
         QWidget* pageCalendar;/*!< Onglet Agenda*/
         QWidget* pageProjet;/*!< Onglet Gestion de projet*/
 

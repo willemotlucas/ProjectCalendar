@@ -31,6 +31,7 @@ class CalendarWindow;
    */
 class CalendarWindow : public QMainWindow
 {
+    friend class MainWindow;
     Q_OBJECT
 
 public:

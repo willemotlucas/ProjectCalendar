@@ -22,6 +22,18 @@ void MainWindow::libererInstanceProjet(){
     projet = 0;
 }
 
+CalendarWindow* MainWindow::calendar= 0;
+
+CalendarWindow& MainWindow::getInstanceAgenda(){
+    if(calendar == 0) calendar = new CalendarWindow;
+    return *calendar;
+}
+
+void MainWindow::libererInstanceAgenda(){
+    delete calendar;
+    calendar = 0;
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -104,13 +116,12 @@ void MainWindow::creerBarreNavigation(){
 
     pageCalendar = new QWidget;
     QVBoxLayout* pCalendar = new QVBoxLayout;
-    CalendarWindow* calendarWindow = new CalendarWindow;
-    pCalendar->addWidget(calendarWindow);
+    pCalendar->addWidget(&getInstanceAgenda());
     pageCalendar->setLayout(pCalendar);
 
     pageProjet = new QWidget;
     QVBoxLayout* pProjet = new QVBoxLayout;
-    pProjet->addWidget(projet);
+    pProjet->addWidget(&getInstanceProjet());
     pageProjet->setLayout(pProjet);
 
 
