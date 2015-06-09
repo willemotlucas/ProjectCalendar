@@ -97,7 +97,7 @@ private:
          *
          *  \param projetEnCours : projet dont on veut afficher l'arborescence
          */
-    void chargerTreeView(Projet* projetEnCours);
+    void chargerTreeView();
 
 
 private:

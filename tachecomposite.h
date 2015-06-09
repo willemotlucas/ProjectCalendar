@@ -3,11 +3,12 @@
 
 #include <vector>
 #include "tache.h"
+#include <QTreeWidget>
 
 class TacheComposite : public Tache
 {
-    typedef std::vector<Tache*> contTache;
-    contTache soustaches;
+    //typedef std::vector<Tache*> contSousTache;
+    std::vector<Tache*> soustaches;
 
     //Seule la méthode ajouterSousTache aura accès à setDateEcheance. A chaque ajout d'une nouvelle tache, on regarde si la date d'echeance de cette nouvelle tache
     //est supérieur à la date d'echeance actuelle de la tache composite. L'utilisateur ne doit pas pouvoir changer la date d'echeance lui même.
@@ -18,7 +19,7 @@ class TacheComposite : public Tache
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
     QDomElement& write(QDomDocument* dom);
-        QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree){}
+    QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
 
 
 public:
@@ -29,7 +30,7 @@ public:
     bool isTerminee() const;
 
     //SOUSTACHE METHODS
-    void ajouterSousTache(Tache& tache);
+    void ajouterSousTaches(Tache& tache);
     void supprimerSousTache(const Tache& tache);
     bool trouverTache(const Tache& tache);
 };

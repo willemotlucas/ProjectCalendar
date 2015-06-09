@@ -264,10 +264,8 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
     addTacheUnitaire->setEnabled(true);
     addTacheUnitairePreemptive->setEnabled(true);
     addTacheComposite->setEnabled(true);
-    //projectTree->setEnabled(true);
-
-    //
-    chargerTreeView(projetOuvert);
+    projectTree->setEnabled(true);
+    chargerTreeView();
 
     connect(projectTree,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(chargerDetailsTache(QTreeWidgetItem*, int)));
     connect(programmer, SIGNAL(clicked()), this, SLOT(programmerTache()));
@@ -396,9 +394,10 @@ void ProjectWindow::ajouterTache(Tache &t){
     rootTree->addChild(tacheTree);
 }
 
-void ProjectWindow::ajouterSousTache(Tache &t){
+void ProjectWindow::ajouterSousTache(Tache& t){
     TacheComposite* tmp = dynamic_cast<TacheComposite*>(tacheSelectionnee);
-    tmp->ajouterSousTache(t);
+    qDebug()<<"id tache selectionne : "<<t.getId();
+    tmp->ajouterSousTaches(t);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
@@ -412,6 +411,7 @@ void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     }
 }
 
+<<<<<<< HEAD
 void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &t, const QTime& duree){
     TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
     if(duree > tmp->getDureeRestante())
@@ -434,15 +434,22 @@ void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &
 }
 
 void ProjectWindow::chargerTreeView(Projet* projetEnCours){
+=======
+void ProjectWindow::chargerTreeView(){
+>>>>>>> b3fe064d89010c128692e5d3de0ac4053ddccaff
     // Construction de l'arborescence du projet
         rootTree = new QTreeWidgetItem(projectTree);
         //Ajout de la racine
-        rootTree->setText(0,projetEnCours->getNom());
-        for(std::vector<Tache*>::iterator i = projetEnCours->begin(); i != projetEnCours->end(); ++i){
+        rootTree->setText(0,projetOuvert->getNom());
+        qDebug()<<"Debut Load d'une tache";
+        for(std::vector<Tache*>::iterator i = projetOuvert->begin(); i != projetOuvert->end(); ++i){
             QTreeWidgetItem& m = (*i)->chargerTree(projectTree) ;
             rootTree->addChild(&m);
+            qDebug()<<"Fin Chargement d'une tache";
         }
 }
+
+
 
 
 
