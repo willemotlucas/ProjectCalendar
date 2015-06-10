@@ -11,6 +11,7 @@
 
 #include <QMainWindow>
 #include <QDate>
+#include <QFileDialog>
 
 /*! \namespace Ui
  *
@@ -63,6 +64,8 @@ private:
     Ui::CalendarWindow *ui;/*!< Onglet Agenda*/
     QDate today;/*!< Date courante*/
     QDate currentDate;/*!< Date courante de la semaine en cours*/
+    QFileDialog* saveWindow;
+    QAction* actionExporter;
 
     void effacerAffichageTaches();
 
@@ -99,6 +102,8 @@ private slots:
          *
          */
     void setWeek(int num);
+
+    void openQFileDialog();
 
 };
 

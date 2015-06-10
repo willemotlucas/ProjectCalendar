@@ -68,11 +68,15 @@ AddSousTacheWindow::AddSousTacheWindow(QWidget* parent):QDialog(parent){
 
 void AddSousTacheWindow::envoiSousTacheUnitaire(){
     try{
-        ProjectWindow& pwm = MainWindow::getInstanceProjet();
-        TacheFactory& tf = TacheFactory::getInstance();
-        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
-        pwm.ajouterSousTache(t);
-        this->close();
+        if(disponibilite->date() <= echeance->date()){
+            ProjectWindow& pwm = MainWindow::getInstanceProjet();
+            TacheFactory& tf = TacheFactory::getInstance();
+            Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+            pwm.ajouterSousTache(t);
+            this->close();
+        }
+        else
+            QMessageBox::warning(this,"Attention", "La date d'échéance doit être supérieure à la date de disponibilité.");
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }

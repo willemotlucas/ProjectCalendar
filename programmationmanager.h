@@ -11,6 +11,7 @@
 #include "calendarexception.h"
 #include "tache.h"
 #include "programmation.h"
+#include "global.h"
 #include <QTime>
 #include <QDate>
 
@@ -141,7 +142,7 @@ public:
          *  Fonction permettant d'enregistrer les programmations dans un fichier XML, à partir du
          *  vector de programmations
          */
-    void save();
+    void save(const QString& filename = progXML);
 
     /*!
          *  \brief load

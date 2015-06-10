@@ -45,6 +45,11 @@ QDomElement& TacheUnitaire::write(QDomDocument* dom) {
 QTreeWidgetItem& TacheUnitaire::chargerTreeTache(QTreeWidget* tree){
     QTreeWidgetItem* tache = new QTreeWidgetItem();
     tache->setText(0,this->getId());
+    //Si la tache est programmable, on l'affiche en vert pour l'utilisateur
+    if(this->getEtat() == 1)
+        tache->setTextColor(0,Qt::green);
+    if(this->getEtat() == 0)
+        tache->setTextColor(0,Qt::blue);
     return *tache;
 }
 

@@ -1,4 +1,5 @@
 #include "projet.h"
+#include <QDebug>
 
 void Projet::ajouterTache(Tache& t){
     if (trouverTache(t.getId())) throw CalendarException("La tache " + t.getId() + " existe déjà. Veuillez modifier son identificateur.");

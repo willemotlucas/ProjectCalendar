@@ -134,6 +134,7 @@ void ProjectWindow::creerAffichageProjet(){
     QLabel* dispoLabel=new QLabel("Disponibilite",this);
     QLabel* echeanceLabel= new QLabel("Echéance",this);
     QLabel* dureeLabel= new QLabel("Durée",this);
+    QLabel* dureeRestanteLabel = new QLabel("Durée restante", this);
     idTache=new QLineEdit;
     nomTache= new QTextEdit;
     dateDispoTache= new QDateEdit;
@@ -144,6 +145,10 @@ void ProjectWindow::creerAffichageProjet(){
     hDureeTache->setRange(0,24);hDureeTache->setSuffix("heure(s)");
     mDureeTache=new QSpinBox(this);
     mDureeTache->setRange(0,59);mDureeTache->setSuffix("minute(s)");
+    hDureeRestante = new QSpinBox(this);
+    hDureeRestante->setRange(0,24); hDureeRestante->setSuffix("heure(s)");hDureeRestante->setDisabled(true);
+    mDureeRestante = new QSpinBox(this);
+    mDureeRestante->setRange(0,59); mDureeRestante->setSuffix("minute(s)");mDureeRestante->setDisabled(true);
     modifier= new QPushButton("Modifier",this);
     programmer= new QPushButton("Programmer",this);
     tachePreemtive = new QCheckBox;
@@ -167,6 +172,9 @@ void ProjectWindow::creerAffichageProjet(){
     coucheH3->addWidget(dureeLabel);
     coucheH3->addWidget(hDureeTache);
     coucheH3->addWidget(mDureeTache);
+    coucheH3->addWidget(dureeRestanteLabel);
+    coucheH3->addWidget(hDureeRestante);
+    coucheH3->addWidget(mDureeRestante);
 
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(modifier);
@@ -303,20 +311,37 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTachePreemptive->setEnabled(false);
     ajouterSousTacheUnitaire->setEnabled(false);
 
+    if(tacheSelectionnee->getEtat() != 1)
+        programmer->setDisabled(true);
+
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
         TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
-        if(tmp == NULL) qDebug()<<"tmp is null";
         tachePreemtive->setChecked(true);
-        qDebug()<<"hour: "<<tmp->getDureeInit().hour();
-        qDebug()<<"minute: "<<tmp->getDureeInit().minute();
-
         hDureeTache->setValue(tmp->getDureeInit().hour());
         mDureeTache->setValue(tmp->getDureeInit().minute());
+        qDebug()<<"preemptive avant hour:"<<tmp->getDuree().hour();
+        qDebug()<<"preemptive avant minute:"<<tmp->getDuree().minute();
+        hDureeRestante->setValue(tmp->getDureeRestante().hour());
+        mDureeRestante->setValue(tmp->getDureeRestante().minute());
     }
     else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
         TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
+        qDebug()<<"unitaire avant hour:"<<tmp->getDuree().hour();
+        qDebug()<<"unitaire avant minute:"<<tmp->getDuree().minute();
         hDureeTache->setValue(tmp->getDuree().hour());
         mDureeTache->setValue(tmp->getDuree().minute());
+        if(tmp->getEtat() == 1){
+            qDebug()<<"unitaire apres hour:"<<tmp->getDuree().hour();
+            qDebug()<<"unitaire apres minute:"<<tmp->getDuree().minute();
+            hDureeRestante->setValue(tmp->getDuree().hour());
+            mDureeRestante->setValue(tmp->getDuree().minute());
+        }
+        else
+        {
+            hDureeRestante->setValue(0);
+            mDureeRestante->setValue(0);
+        }
+
     }
     else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
         ajouterSousTacheComposite->setEnabled(true);
@@ -408,13 +433,20 @@ void ProjectWindow::ajouterTache(Tache &t){
     p->ajouterTache(t);
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
+    if(typeid(t) == typeid(TacheUnitaire) || typeid(t) == typeid(TacheUnitairePreemptive))
+        tacheTree->setTextColor(0, Qt::green);
     rootTree->addChild(tacheTree);
 }
 
 void ProjectWindow::ajouterSousTache(Tache& t){
     TacheComposite* tmp = dynamic_cast<TacheComposite*>(tacheSelectionnee);
-    qDebug()<<"id tache selectionne : "<<t.getId();
     tmp->ajouterSousTaches(t);
+
+    QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
+    tacheTree->setText(0, t.getId());
+    if(typeid(t) == typeid(TacheUnitaire) || typeid(t) == typeid(TacheUnitairePreemptive))
+        tacheTree->setTextColor(0,Qt::green);
+    projectTree->currentItem()->addChild(tacheTree);
 }
 
 void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
@@ -422,6 +454,8 @@ void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
     ProgrammationManager& pm = ProgrammationManager::getInstance();
     try{
         pm.ajouterProgrammation(*projetOuvert,*tacheSelectionnee,d,t,tmp->getDuree());
+        tmp->setEtat(0);
+        projectTree->currentItem()->setTextColor(0,Qt::blue);
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
     }catch(CalendarException e){
@@ -434,18 +468,13 @@ void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &
     if(duree > tmp->getDureeRestante())
         QMessageBox::warning(this, "Attention", "La durée de programmation doit être inférieur à la durée restante de la tache.");
 
-    qDebug()<<"ajout prog preemptif";
     ProgrammationManager& pm = ProgrammationManager::getInstance();
     try{
         pm.ajouterProgrammation(*projetOuvert, *tmp, d, t, duree);
         tmp->setDureeRestante(duree);
-        qDebug()<<"durée restante ajouterProg projectwindow : "<<tmp->getDureeRestante().hour()<<"h"<<tmp->getDureeRestante().minute();
-        for(std::vector<Programmation*>::iterator it = pm.begin(); it != pm.end(); ++it){
-            if(typeid((*it)->getTache()) == typeid(TacheUnitairePreemptive)){
-                TacheUnitairePreemptive* tmp2 = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
-                qDebug()<<"durée restante tache dans prog : "<<tmp2->getDureeRestante().hour()<<"h"<<tmp2->getDureeRestante().minute();
-            }
-        }
+        projectTree->currentItem()->setTextColor(0,Qt::blue);
+        CalendarWindow& cw = MainWindow::getInstanceAgenda();
+        cw.displayTasks();
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }
@@ -456,11 +485,9 @@ void ProjectWindow::chargerTreeView(){
         rootTree = new QTreeWidgetItem(projectTree);
         //Ajout de la racine
         rootTree->setText(0,projetOuvert->getNom());
-        qDebug()<<"Debut Load d'une tache";
         for(std::vector<Tache*>::iterator i = projetOuvert->begin(); i != projetOuvert->end(); ++i){
             QTreeWidgetItem& m = (*i)->chargerTree(projectTree) ;
             rootTree->addChild(&m);
-            qDebug()<<"Fin Chargement d'une tache";
         }
 }
 

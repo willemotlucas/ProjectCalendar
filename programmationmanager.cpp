@@ -67,9 +67,10 @@ bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const Q
 }
 
 void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& duree){
-    if(typeid(t) == typeid(TacheUnitaire))
-        if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
     if(!ajoutPossible(t,d,h, duree)) throw CalendarException("Erreur. Une tâche est déjà programmée ou la tâche n'est plus disponible à ce moment.");
+    if(typeid(t) == typeid(TacheUnitaire)){
+        if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
+    }
     Programmation* newt=new Programmation(p,t,d,h, duree);
     addItem(newt);
 }
@@ -78,7 +79,7 @@ ProgrammationManager::~ProgrammationManager(){
     programmations.clear();
 }
 
-void ProgrammationManager::save(){
+void ProgrammationManager::save(const QString& filename){
     //On créé l'arbre DOM
     QDomDocument* dom = new QDomDocument("programmations");
     QDomElement dom_element = dom->documentElement();
@@ -113,11 +114,11 @@ void ProgrammationManager::save(){
 
     dom->appendChild(progs);
 
-    QFile fichier(progXML);
+    QFile fichier(filename);
     if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         fichier.close();
-        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier " + progXML + " pour écriture."));
+        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier " + filename + " pour écriture."));
     }
 
     //Ecriture de l'arbre DOM dans le fichier XML

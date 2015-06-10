@@ -13,6 +13,7 @@
 #include <vector>
 #include "projet.h"
 
+
 /*! \class ProjetManager
    * \brief Classe Singleton Projet Manager
    *

@@ -7,31 +7,12 @@
 class TacheUnitairePreemptive : public TacheUnitaire
 {
 public:
-
-    enum Etat {
-        PROGRAMMEE,
-        NON_COMMENCEE,
-        COMMENCEE,
-        INTERROMPUE,
-        REPRISE,
-        TERMINEE
-    };
-
-
     ~TacheUnitairePreemptive(){}
     QDomElement& write(QDomDocument* dom);
     QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
 
-
     //STATES METHODS
-    bool isCommencee() const { return (etat != NON_COMMENCEE && etat != PROGRAMMEE) ; }
-    bool isTerminee() const { return etat == TERMINEE; }
     bool isProgrammee() const { return etat == PROGRAMMEE; }
-    bool isInterrompue() const { return etat == INTERROMPUE; }
-    bool isReprise() const { return etat == REPRISE; }
-
-    void interrompre(); //Enregistrement de la préemption dans le vector
-    void reprendre();
 
     //GETTERS AND SETTERS
     const QTime& getDureeInit() const { return dureeInitiale; }
@@ -40,20 +21,20 @@ public:
         int hour = dureeRestante.hour() - duree.hour();
         int minute = dureeRestante.minute() - duree.minute();
         dureeRestante = QTime(hour, minute);
+        if(hour == 0 && minute == 0)
+            etat = (Etat)2;
     }
-    void setEtat(const Etat& e){ etat = e; }
-    const Etat& getEtat() const { return etat; }
-
+    void setEtat(const int& e){ etat = (Etat)e; }
+    const int& getEtat() const { return (int)etat;}
     void setDateEcheance(const QDate& e){}
 
 private:
     QTime dureeInitiale;
     QTime dureeRestante;
-    Etat etat;
 
     friend class TacheFactory;
     TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& durInit, const QTime& durRest, const int& e = 1):
-            TacheUnitaire(id, t, dispo, deadline,QTime(0,0)),etat((Etat)e),dureeInitiale(durInit),dureeRestante(durRest){}
+            TacheUnitaire(id, t, dispo, deadline,QTime(0,0), e),dureeInitiale(durInit),dureeRestante(durRest){}
     TacheUnitairePreemptive(const TacheUnitairePreemptive& t);
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);
 

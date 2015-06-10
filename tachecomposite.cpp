@@ -9,28 +9,12 @@
 #include "global.h"
 #include "tache.h"
 
-bool TacheComposite::isCommencee() const {
-    //2 indirections, 1 pour l'itérator et 1 pour l'adresse
-    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
-        if((*it)->isCommencee())
-            return true;
-    }
-    return false;
-}
-
-bool TacheComposite::isTerminee() const {
-    for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
-        if(!(*it)->isTerminee())
-            return false;
-    }
-    return true;
-}
-
 void TacheComposite::ajouterSousTaches(Tache& tache){
     if(!trouverTache(tache)){
         soustaches.push_back(&tache);
-        if(tache.getDateEcheance() > echeance)
+        if(tache.getDateEcheance() > echeance){
             setDateEcheance(tache.getDateEcheance());
+        }
     }
 }
 
@@ -101,7 +85,6 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
 QTreeWidgetItem& TacheComposite::chargerTreeTache(QTreeWidget* tree){
     QTreeWidgetItem* tache = new QTreeWidgetItem();
     tache->setText(0,this->getId());
-    qDebug()<<"ok";
 
     for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
         QTreeWidgetItem& sousTache = (*it)->chargerTree(tree);

@@ -23,7 +23,7 @@ Tache& TacheFactory::creerTacheUnitairePreemptive(const QString &id, const QStri
     return *t;
 }
 
-Tache& TacheFactory::creerTacheComposite(const QString& id, const QString& desc, const QDate& dispo){
+Tache& TacheFactory::creerTacheComposite(const QString& id, const QString& desc, const QDate& dispo, const int& etat){
     Tache* t = new TacheComposite(id,desc,dispo);
     return *t;
 }
