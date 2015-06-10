@@ -11,6 +11,7 @@
 #include "calendarexception.h"
 #include "tache.h"
 #include "programmation.h"
+#include "global.h"
 #include <QTime>
 #include <QDate>
 
@@ -135,6 +136,8 @@ public:
          */
     static void libererInstance();
 
+    QDomElement& writeProgrammation(Programmation* p, QDomDocument* dom);
+
     /*!
          *  \brief save
          *
@@ -142,6 +145,8 @@ public:
          *  vector de programmations
          */
     void save();
+
+    void exportWeekXML(const QDate& dateDebut, const QDate& dateFin, const QString& filename);
 
     /*!
          *  \brief load

@@ -133,6 +133,8 @@ private:
     QCheckBox* tachePreemtive;/*!< Boolen pour savoir si la tache est preemptive*/
     QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
     QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
+    QSpinBox* hDureeRestante;
+    QSpinBox* mDureeRestante;
     QPushButton* modifier;/*!< Bouton de modification de la Tache*/
     QPushButton* programmer;/*!< Bouton de programmation de la Tache*/
     QPushButton* ajouterSousTacheUnitaire;/*!< Bouton d'ajout sous tache unitaire*/

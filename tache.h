@@ -13,18 +13,23 @@
 class Tache {
 
 protected:
-    friend class TacheManager;
+    enum Etat{
+        PROGRAMMEE,
+        PROGRAMMABLE,
+        NON_PROGRAMMABLE
+    };
+
     QString identificateur;
     QString titre;
     QDate disponibilite;
     QDate echeance;
-//    std::vector<Tache*> precedence;
+    Etat etat;
 
-    Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline):
-            identificateur(id),titre(t),disponibilite(dispo),echeance(deadline){}
+    Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const int& e):
+            identificateur(id),titre(t),disponibilite(dispo),echeance(deadline),etat((Etat)e){}
     //Constructeur de tache sans deadline pour les taches composites : la deadline est la borne supérieur des sous-tâches de la tache composite.
-    Tache(const QString& id, const QString& t, const QDate& dispo):
-            identificateur(id),titre(t),disponibilite(dispo){}
+    Tache(const QString& id, const QString& t, const QDate& dispo, const int& e):
+            identificateur(id),titre(t),disponibilite(dispo),etat((Etat)e){}
 //    Tache(const Tache& t);
     Tache& operator=(const Tache&);
 
@@ -46,11 +51,10 @@ public:
     QDate getDateDisponibilite() const {  return disponibilite; }
     void setDateDisponibiltie(QDate dispo) { disponibilite = dispo; }
     QDate getDateEcheance() const {  return echeance; }
-
+    virtual void setEtat(const int& e) = 0;
+    virtual const int& getEtat() const = 0;
 
     //ABSTRACT METHODS
-    virtual bool isCommencee() const = 0;
-    virtual bool isTerminee() const = 0;
 
     //Peut-être mettre en privée pour que seul le TacheManager puisse gérer la date d'échéance d'une tache composite en fonction
     //De ses sous-taches. Mettre en abstrait pour changer le fonctionnement en fonction de la classe fille

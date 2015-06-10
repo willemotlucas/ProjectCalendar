@@ -24,10 +24,12 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     titre= new QTextEdit;
     disponibilite= new QDateEdit;
     disponibilite->setDate(QDate::currentDate());
+    disponibilite->setMinimumDate(QDate::currentDate());
     echeance = new QDateEdit;
     echeance->setDate(QDate::currentDate());
+    connect(disponibilite, SIGNAL(dateChanged(QDate)), echeance, SLOT(setDate(QDate)));
     hDuree=new QSpinBox(this);
-    hDuree->setRange(0,24);hDuree->setSuffix("heure(s)");
+    hDuree->setRange(0,12);hDuree->setSuffix("heure(s)");
     mDuree=new QSpinBox(this);
     mDuree->setRange(0,59);mDuree->setSuffix("minute(s)");
     ok= new QPushButton("OK",this);
@@ -62,17 +64,22 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
 
     setLayout(couche);
 
+
     connect(ok,SIGNAL(clicked()),this,SLOT(envoiTacheUnitaire()));
     connect(annuler,SIGNAL(clicked()),this,SLOT(close()));
 }
 
 void AddTacheWindow::envoiTacheUnitaire(){
     try{
-        ProjectWindow& pwm = MainWindow::getInstanceProjet();
-        TacheFactory& tf = TacheFactory::getInstance();
-        Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
-        pwm.ajouterTache(t);
-        this->close();
+        if(disponibilite->date() <= echeance->date()){
+            ProjectWindow& pwm = MainWindow::getInstanceProjet();
+            TacheFactory& tf = TacheFactory::getInstance();
+            Tache& t = dynamic_cast<Tache&>(tf.creerTacheUnitaire(identificateur->text(), titre->toPlainText(), disponibilite->date(), echeance->date(), QTime(hDuree->value(), mDuree->value())));
+            pwm.ajouterTache(t);
+            this->close();
+        }
+        else
+            QMessageBox::warning(this,"Attention", "La date d'échéance doit être supérieure à la date de disponibilité.");
     }catch(CalendarException e){
         QMessageBox::information(this,"Information",e.getInfo());
     }

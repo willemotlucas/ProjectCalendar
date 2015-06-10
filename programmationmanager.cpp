@@ -67,15 +67,73 @@ bool ProgrammationManager::ajoutPossible(const Tache &t, const QDate& d, const Q
 }
 
 void ProgrammationManager::ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& duree){
-    if(typeid(t) == typeid(TacheUnitaire))
-        if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
     if(!ajoutPossible(t,d,h, duree)) throw CalendarException("Erreur. Une tâche est déjà programmée ou la tâche n'est plus disponible à ce moment.");
+    if(typeid(t) == typeid(TacheUnitaire)){
+        if (trouverProgrammation(t)) throw CalendarException("Erreur. La tache " + t.getId() + " est déjà programmée.");
+    }
     Programmation* newt=new Programmation(p,t,d,h, duree);
     addItem(newt);
 }
 
 ProgrammationManager::~ProgrammationManager(){
     programmations.clear();
+}
+
+QDomElement& ProgrammationManager::writeProgrammation(Programmation* p ,QDomDocument* dom){
+    QDomElement* prog = new QDomElement(dom->createElement("programmation"));
+    prog->setAttribute("tache", p->getTache().getId());
+    prog->setAttribute("projet", p->getProjet().getNom());
+
+    QDomElement date = dom->createElement("date");
+    QDomText dateText = dom->createTextNode(p->getDate().toString());
+    date.appendChild(dateText);
+
+    QDomElement horaire = dom->createElement("horaire");
+    horaire.setAttribute("minute", p->getHoraire().minute());
+    horaire.setAttribute("heure", p->getHoraire().hour());
+
+    QDomElement duree = dom->createElement("duree");
+    duree.setAttribute("heure", p->getDuree().hour());
+    duree.setAttribute("minute", p->getDuree().minute());
+
+    prog->appendChild(date);
+    prog->appendChild(horaire);
+    prog->appendChild(duree);
+
+    return *prog;
+}
+
+void ProgrammationManager::exportWeekXML(const QDate& dateDebut, const QDate& dateFin, const QString& filename){
+    //On créé l'arbre DOM
+    QDomDocument* dom = new QDomDocument("programmations");
+    QDomElement dom_element = dom->documentElement();
+
+    //On créé le noeud <programmations> qui contiendra toutes les programmations
+    QDomNode progs = dom->createElement("programmations");
+
+    //On parcourt toutes les programmations du vector
+    for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++it){
+        //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
+        if((*it)->getDate() > dateDebut && (*it)->getDate() < dateFin){
+            QDomElement prog = writeProgrammation((*it), dom);
+            progs.appendChild(prog);
+        }
+    }
+
+    dom->appendChild(progs);
+
+    QFile fichier(filename);
+    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        fichier.close();
+        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier " + filename + " pour écriture."));
+    }
+
+    //Ecriture de l'arbre DOM dans le fichier XML
+    QString write_doc = dom->toString();
+    QTextStream stream(&fichier);
+    stream<<write_doc;
+    fichier.close();
 }
 
 void ProgrammationManager::save(){
@@ -87,27 +145,9 @@ void ProgrammationManager::save(){
     QDomNode progs = dom->createElement("programmations");
 
     //On parcourt toutes les programmations du vector
-    for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++it){
+    for(int i=0; i < programmations.size(); i++){
         //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
-        QDomElement prog = dom->createElement("programmation");
-        prog.setAttribute("tache", (*it)->getTache().getId());
-        prog.setAttribute("projet", (*it)->getProjet().getNom());
-
-        QDomElement date = dom->createElement("date");
-        QDomText dateText = dom->createTextNode((*it)->getDate().toString());
-        date.appendChild(dateText);
-
-        QDomElement horaire = dom->createElement("horaire");
-        horaire.setAttribute("minute", (*it)->getHoraire().minute());
-        horaire.setAttribute("heure", (*it)->getHoraire().hour());
-
-        QDomElement duree = dom->createElement("duree");
-        duree.setAttribute("heure", (*it)->getDuree().hour());
-        duree.setAttribute("minute", (*it)->getDuree().minute());
-
-        prog.appendChild(date);
-        prog.appendChild(horaire);
-        prog.appendChild(duree);
+        QDomElement prog = writeProgrammation(programmations[i],dom);
         progs.appendChild(prog);
     }
 

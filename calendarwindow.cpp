@@ -3,6 +3,7 @@
 #include "programmationmanager.h"
 #include "tacheunitaire.h"
 #include "tacheunitairepreemptive.h"
+#include "programmationmanager.h"
 
 #include <QDebug>
 #include <QDate>
@@ -15,6 +16,11 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
     ui->setupUi(this);
     today = QDate::currentDate();
     currentDate = QDate::currentDate();
+    actionExporter = new QAction("Exporter la semaine en XML", this);
+    connect(actionExporter,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
+    ui->toolBar->addAction(actionExporter);
+    ui->toolBar->setMovable(false);
+
     changeCurrentWeek(&today, true);
 
     QString formatter = QString("d MMM yyyy");
@@ -108,5 +114,15 @@ void CalendarWindow::effacerAffichageTaches(){
             ui->agenda_widget->item(i,j)->setText("");
         }
     }
+}
+
+void CalendarWindow::openQFileDialog(){
+    QString filename = QFileDialog::getSaveFileName(this, "Export en XML","",tr("Fichier XML (*.xml)"));
+    qDebug()<<"filename"<<filename;
+    QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
+    QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
+    ProgrammationManager& pm = ProgrammationManager::getInstance();
+    pm.exportWeekXML(premierJour, dernierJour, filename);
+
 }
 

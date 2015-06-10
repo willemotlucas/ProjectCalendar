@@ -21,6 +21,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -39,6 +40,7 @@ public:
     QTableWidget *agenda_widget;
     QMenuBar *menubar;
     QStatusBar *statusbar;
+    QToolBar *toolBar;
 
     void setupUi(QMainWindow *CalendarWindow)
     {
@@ -49,7 +51,7 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 20, 981, 531));
+        layoutWidget->setGeometry(QRect(10, 50, 981, 501));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -156,6 +158,9 @@ public:
         statusbar = new QStatusBar(CalendarWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
         CalendarWindow->setStatusBar(statusbar);
+        toolBar = new QToolBar(CalendarWindow);
+        toolBar->setObjectName(QStringLiteral("toolBar"));
+        CalendarWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         retranslateUi(CalendarWindow);
 
@@ -232,6 +237,7 @@ public:
         agenda_widget->setSortingEnabled(false);
         agenda_widget->setSortingEnabled(__sortingEnabled);
 
+        toolBar->setWindowTitle(QApplication::translate("CalendarWindow", "toolBar", 0));
     } // retranslateUi
 
 };

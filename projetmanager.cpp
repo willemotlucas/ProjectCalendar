@@ -120,6 +120,7 @@ void ProjetManager::load(const QString& f){
             for(QDomNode tache = taches.firstChildElement("tache"); !tache.isNull(); tache = tache.nextSiblingElement("tache")){
                 //QDomNodeList childrensTache = tache.childNodes();
                 Tache& t = loadTache(dom, &tache);
+                qDebug()<<"tache loadée : "<<t.getId();
                 p.ajouterTache(t);
             }
         }
@@ -211,16 +212,15 @@ Tache& ProjetManager::loadTache(QDomDocument* dom ,QDomNode* tache){
 
         //On cree la tache unitaire composite
         TacheFactory& tm = TacheFactory::getInstance();
-        TacheComposite& t =dynamic_cast<TacheComposite&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
+        TacheComposite& t =dynamic_cast<TacheComposite&>(tm.creerTacheComposite(identifiant, titre, dispoTache, etat));
 
         //Lire toutes les soustaches et les ajouter a notre tache composite
         QDomNode* sousTaches = new QDomNode(tache->firstChildElement("soustaches"));
 
         if(!sousTaches->isNull()){
             for(QDomNode soustache = sousTaches->firstChildElement("tache"); !soustache.isNull(); soustache = soustache.nextSiblingElement("tache")){
-                qDebug()<<"soustache";
                 Tache& s = loadTache(dom, &soustache);
-                qDebug()<<"Load d'une Sous Tache Composite ::"<<typeid(s).name();
+                qDebug()<<"tache loadée : "<<s.getId();
                 t.ajouterSousTaches(s);
             }
         }
@@ -239,7 +239,7 @@ void  ProjetManager::save(){
     //On créé le noeud <projets> qui contiendra tous les projets
     QDomNode projets = dom->createElement("projets");
 
-    //On parcourt toutes les programmations du vector
+    //On parcourt tous les projets du vector
     for(contProjet::iterator it = ProjetManager::begin(); it != ProjetManager::end(); ++it){
         //A chaque projet, on créé un noeud <projet> contenant le projet crée, son titre, description, etc...
         QDomElement projet = dom->createElement("projet");
