@@ -6,21 +6,21 @@
   <dateDebut></dateDebut>
   <dateEcheance></dateEcheance>
   <taches>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire1</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>ven. juin 19 2015</echeance>
     <duree heure="4" minute="0"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire2</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>ven. juin 19 2015</echeance>
     <duree heure="6" minute="0"/>
    </tache>
-   <tache etat="2" type="preemtive">
+   <tache type="preemtive" etat="2">
     <identifiant>TachePreemptive1</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
@@ -28,7 +28,7 @@
     <dureeInitiale heure="10" minute="0"/>
     <dureeRestante heure="0" minute="0"/>
    </tache>
-   <tache etat="1" type="preemtive">
+   <tache type="preemtive" etat="1">
     <identifiant>TachePreemptive2</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
@@ -36,14 +36,14 @@
     <dureeInitiale heure="6" minute="0"/>
     <dureeRestante heure="3" minute="0"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire3</identifiant>
     <titre>Test</titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>lun. juin 15 2015</echeance>
     <duree heure="3" minute="0"/>
    </tache>
-   <tache etat="1" type="unitaire">
+   <tache type="unitaire" etat="1">
     <identifiant>TacheUnitaire4</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
@@ -56,7 +56,7 @@
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>jeu. juin 25 2015</echeance>
     <soustaches>
-     <tache etat="1" type="unitaire">
+     <tache type="unitaire" etat="1">
       <identifiant>SousTacheUnitaire</identifiant>
       <titre></titre>
       <disponibilite>mer. juin 10 2015</disponibilite>
@@ -69,7 +69,7 @@
       <disponibilite>mer. juin 10 2015</disponibilite>
       <echeance>jeu. juin 18 2015</echeance>
       <soustaches>
-       <tache etat="0" type="unitaire">
+       <tache type="unitaire" etat="0">
         <identifiant>SousSousTacheUnitaire</identifiant>
         <titre></titre>
         <disponibilite>mer. juin 10 2015</disponibilite>

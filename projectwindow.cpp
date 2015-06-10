@@ -40,6 +40,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(ajouterSousTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitaire()));
     connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitairePreemptive()));
     connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheComposite()));
+    //connect(modifier,SIGNAL(clicked(),this,SLOT(modifierTache()));
 }
 
 
@@ -431,6 +432,7 @@ void ProjectWindow::ajouterTache(Tache &t){
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
     p->ajouterTache(t);
+
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
     if(typeid(t) == typeid(TacheUnitaire) || typeid(t) == typeid(TacheUnitairePreemptive))
