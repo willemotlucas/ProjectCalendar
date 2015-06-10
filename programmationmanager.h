@@ -136,13 +136,17 @@ public:
          */
     static void libererInstance();
 
+    QDomElement& writeProgrammation(Programmation* p, QDomDocument* dom);
+
     /*!
          *  \brief save
          *
          *  Fonction permettant d'enregistrer les programmations dans un fichier XML, à partir du
          *  vector de programmations
          */
-    void save(const QString& filename = progXML);
+    void save();
+
+    void exportWeekXML(const QDate& dateDebut, const QDate& dateFin, const QString& filename);
 
     /*!
          *  \brief load

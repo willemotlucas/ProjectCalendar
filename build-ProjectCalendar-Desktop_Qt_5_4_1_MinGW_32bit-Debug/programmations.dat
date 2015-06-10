@@ -1,32 +1,37 @@
 <!DOCTYPE programmations>
 <programmations>
- <programmation tache="TacheUnitaire1" projet="Projet1">
+ <programmation projet="Projet1" tache="TacheUnitaire1">
   <date>mer. juin 10 2015</date>
   <horaire heure="10" minute="0"/>
   <duree heure="4" minute="0"/>
  </programmation>
- <programmation tache="TachePreemptive1" projet="Projet1">
+ <programmation projet="Projet1" tache="TachePreemptive1">
   <date>ven. juin 12 2015</date>
   <horaire heure="10" minute="0"/>
   <duree heure="5" minute="0"/>
  </programmation>
- <programmation tache="TachePreemptive1" projet="Projet1">
+ <programmation projet="Projet1" tache="TachePreemptive1">
   <date>mar. juin 16 2015</date>
   <horaire heure="9" minute="0"/>
   <duree heure="5" minute="0"/>
  </programmation>
- <programmation tache="TachePreemptive2" projet="Projet1">
+ <programmation projet="Projet1" tache="TachePreemptive2">
   <date>ven. juin 12 2015</date>
   <horaire heure="8" minute="0"/>
   <duree heure="3" minute="0"/>
  </programmation>
- <programmation tache="TacheUnitaire2" projet="Projet1">
+ <programmation projet="Projet1" tache="TacheUnitaire2">
   <date>jeu. juin 11 2015</date>
   <horaire heure="15" minute="0"/>
   <duree heure="6" minute="0"/>
  </programmation>
- <programmation tache="TacheUnitaire3" projet="Projet1">
+ <programmation projet="Projet1" tache="TacheUnitaire3">
   <date>jeu. juin 11 2015</date>
+  <horaire heure="7" minute="0"/>
+  <duree heure="3" minute="0"/>
+ </programmation>
+ <programmation projet="Projet1" tache="TacheUnitaire4">
+  <date>sam. juin 13 2015</date>
   <horaire heure="7" minute="0"/>
   <duree heure="3" minute="0"/>
  </programmation>

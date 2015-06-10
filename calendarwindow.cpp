@@ -16,7 +16,7 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
     ui->setupUi(this);
     today = QDate::currentDate();
     currentDate = QDate::currentDate();
-    actionExporter = new QAction("Exporter en XML", this);
+    actionExporter = new QAction("Exporter la semaine en XML", this);
     connect(actionExporter,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
     ui->toolBar->addAction(actionExporter);
     ui->toolBar->setMovable(false);
@@ -119,7 +119,10 @@ void CalendarWindow::effacerAffichageTaches(){
 void CalendarWindow::openQFileDialog(){
     QString filename = QFileDialog::getSaveFileName(this, "Export en XML","",tr("Fichier XML (*.xml)"));
     qDebug()<<"filename"<<filename;
+    QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
+    QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
     ProgrammationManager& pm = ProgrammationManager::getInstance();
-//    pm.save(filename);
+    pm.exportWeekXML(premierJour, dernierJour, filename);
+
 }
 
