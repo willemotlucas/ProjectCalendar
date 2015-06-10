@@ -41,7 +41,7 @@ public:
     QDomElement& save(QDomDocument* dom) {return write(dom);}
     QTreeWidgetItem& chargerTree(QTreeWidget* tree){return chargerTreeTache(tree);}
     //DESTRUCTOR
-    virtual ~Tache(){}
+    virtual ~Tache(){};
 
     //GETTERS et SETTERS
     QString getId() const { return identificateur; }

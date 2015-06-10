@@ -40,6 +40,7 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(ajouterSousTacheUnitaire,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitaire()));
     connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitairePreemptive()));
     connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheComposite()));
+    connect(supprimer,SIGNAL(clicked()),this,SLOT(supprimerTache()));
     //connect(modifier,SIGNAL(clicked(),this,SLOT(modifierTache()));
 }
 
@@ -52,16 +53,8 @@ void ProjectWindow::creerActions(){
     connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
     connect(actionFermerProjet,SIGNAL(triggered()),this,SLOT(fermerProjet()));
-    /*actionModifierTache = new QAction("Modifier Tache",this);
-    connect(actionModifierTache,SIGNAL(triggered()),this,SLOT(modifierTache()));
-    actionAnnulerTache = new QAction("Annuler",this);*/
     actionImprimer = new QAction("Imprimer",this);
 
-
-    actionPrecedent = new QAction("Precedent",this);
-    actionPrecedent->setShortcut(QKeySequence::Back);
-    actionSuivant = new QAction("Suivant",this);
-    actionSuivant->setShortcut(QKeySequence::Forward);
 }
 
 void ProjectWindow::creerBarreOutils(){
@@ -74,9 +67,6 @@ void ProjectWindow::creerBarreOutils(){
     menuAgenda->addSeparator();
     menuAgenda->addAction(actionImprimer);
     menuAgenda->addSeparator();
-    menuAgenda->addAction(actionPrecedent);
-    menuAgenda->addSeparator();
-    menuAgenda->addAction(actionSuivant);
     menuAgenda->setMovable(false);
 }
 
@@ -93,12 +83,14 @@ void ProjectWindow::creerAffichageProjet(){
         //1er groupbox permettant l'affichage des données du projet chargé
     //L'affichage est vide au départ et se complètera lorsque l'utilisateur aura chargé un projet
     nom = new QLineEdit;
+    nom->setDisabled(true);
     QLabel* labelNom = new QLabel("Nom:");
     QHBoxLayout* N = new QHBoxLayout;
     N->addWidget(labelNom);
     N->addWidget(nom);
 
     description =new QTextEdit;
+    description->setDisabled(true);
     QLabel* labelDescription = new QLabel("Description:");
     QHBoxLayout* D = new QHBoxLayout;
     D->addWidget(labelDescription);
@@ -106,6 +98,7 @@ void ProjectWindow::creerAffichageProjet(){
 
 
     dateDispo = new QDateEdit;
+    dateDispo->setDisabled(true);
     QLabel* labelDispo = new QLabel("Date Début :");
     QHBoxLayout* Disp = new QHBoxLayout;
     Disp->addWidget(labelDispo);
@@ -113,6 +106,7 @@ void ProjectWindow::creerAffichageProjet(){
 
 
     dateEcheance = new QDateEdit;
+    dateEcheance->setDisabled(true);
     QLabel* labelEcheance = new QLabel("Date Echeance :");
     QHBoxLayout* E = new QHBoxLayout;
     E->addWidget(labelEcheance);
@@ -124,9 +118,27 @@ void ProjectWindow::creerAffichageProjet(){
     detProjet->addLayout(Disp);
     detProjet->addLayout(E);
 
+    //Sous groupbox permettant l'ajout de tache dans notre projet
+    addTacheComposite = new QPushButton("Composite");
+    addTacheComposite->setDisabled(true);
+    addTacheUnitaire = new QPushButton("Unitaire");
+    addTacheUnitaire->setDisabled(true);
+    addTacheUnitairePreemptive = new QPushButton("Unitaire Preemptive");
+    addTacheUnitairePreemptive->setDisabled(true);
+
+    QHBoxLayout* addT = new QHBoxLayout;
+    addT->addWidget(addTacheUnitaire);
+    addT->addWidget(addTacheUnitairePreemptive);
+    addT->addWidget(addTacheComposite);
+
+    QGroupBox* addTache = new QGroupBox("Ajout d'une tache au projet");
+    addTache->setLayout(addT);
+
+    detProjet->addWidget(addTache);
+
+
     QGroupBox* detailsProjet = new QGroupBox("Détails du projet");
     detailsProjet->setLayout(detProjet);
-    detailsProjet->setDisabled(true);
 
     //2ieme groupbox permettant de visionner les details d'une tache dans notre projet
     QLabel* idLabel = new QLabel("Identificateur",this);
@@ -151,6 +163,7 @@ void ProjectWindow::creerAffichageProjet(){
     mDureeRestante = new QSpinBox(this);
     mDureeRestante->setRange(0,59); mDureeRestante->setSuffix("minute(s)");mDureeRestante->setDisabled(true);
     modifier= new QPushButton("Modifier",this);
+    supprimer = new QPushButton("Supprimer",this);
     programmer= new QPushButton("Programmer",this);
     tachePreemtive = new QCheckBox;
    
@@ -180,6 +193,7 @@ void ProjectWindow::creerAffichageProjet(){
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(modifier);
     coucheH4->addWidget(programmer);
+    coucheH4->addWidget(supprimer);
 
     ajouterSousTacheUnitaire = new QPushButton("Sous-Tache Unitaire");
     ajouterSousTacheUnitaire->setDisabled(true);
@@ -209,30 +223,15 @@ void ProjectWindow::creerAffichageProjet(){
     hDureeTache->setDisabled(true);
     mDureeTache->setDisabled(true);
     modifier->setDisabled(true);
+    supprimer->setDisabled(true);
     programmer->setDisabled(true);
     tachePreemtive->setDisabled(true);
 
-    //3ieme groupbox permettant l'ajout de tache dans notre projet
-    addTacheComposite = new QPushButton("Composite");
-    addTacheComposite->setDisabled(true);
-    addTacheUnitaire = new QPushButton("Unitaire");
-    addTacheUnitaire->setDisabled(true);
-    addTacheUnitairePreemptive = new QPushButton("Unitaire Preemptive");
-    addTacheUnitairePreemptive->setDisabled(true);
-
-    QHBoxLayout* addT = new QHBoxLayout;
-    addT->addWidget(addTacheUnitaire);
-    addT->addWidget(addTacheUnitairePreemptive);
-    addT->addWidget(addTacheComposite);
-
-    QGroupBox* addTache = new QGroupBox("Ajout d'une tache au projet");
-    addTache->setLayout(addT);
 
     //Assemblage partie droite
     QVBoxLayout* partieDroite = new QVBoxLayout;
     partieDroite->addWidget(detailsProjet);
     partieDroite->addWidget(detailsTache);
-    partieDroite->addWidget(addTache);
 
     //Affichage dans la fenêtre
     //Attention, on est dans une fenetre centrale du coup on doit TOUT mettre dans un widget principale
@@ -311,6 +310,7 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
     ajouterSousTacheComposite->setEnabled(false);
     ajouterSousTachePreemptive->setEnabled(false);
     ajouterSousTacheUnitaire->setEnabled(false);
+    supprimer->setEnabled(true);
 
     if(tacheSelectionnee->getEtat() != 1)
         programmer->setDisabled(true);
@@ -491,6 +491,16 @@ void ProjectWindow::chargerTreeView(){
             QTreeWidgetItem& m = (*i)->chargerTree(projectTree) ;
             rootTree->addChild(&m);
         }
+}
+
+void ProjectWindow::supprimerTache(){
+    // on appelle le destructeur de notre tache selectionnee
+//    Tache* tmp = tacheSelectionnee;
+//    delete tmp;
+//    projetOuvert->
+//    tacheSelectionnee = NULL;
+//    projectTree->clear();
+//    chargerTreeView();
 }
 
 

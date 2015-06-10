@@ -26,7 +26,7 @@ class CalendarWindow;
    * \brief Classe representant la fenetre de vue de l'agenda
    *
    *  La classe gere la vue sur 7 jours de notre agenda.
-   *  Cette vue sur 7 jours se decompose en plusieurs horraires.
+   *  Cette vue sur 7 jours se decompose en plusieurs horaires.
    *  Chaque tache programmée lors de cette semaine et alors automatiquement
    *  affichée.
    */
@@ -64,9 +64,16 @@ private:
     Ui::CalendarWindow *ui;/*!< Onglet Agenda*/
     QDate today;/*!< Date courante*/
     QDate currentDate;/*!< Date courante de la semaine en cours*/
-    QFileDialog* saveWindow;
-    QAction* actionExporter;
+    QFileDialog* saveWindow;/*!< Fenetre de sauvegarde*/
+    QAction* actionExporterSemaine;/*!< Export des programmations de la semaine*/
+    QAction* actionExporterProjet;/*!< Export des programmations du projet en cours*/
 
+    /*!
+         *  \brief effacerAffichageTaches
+         *
+         *  Permet d'effacer l'affichage des taches
+         *
+         */
     void effacerAffichageTaches();
 
 private slots:
@@ -103,6 +110,12 @@ private slots:
          */
     void setWeek(int num);
 
+    /*!
+         *  \brief openQFileDialog
+         *
+         *  Permet de choisir ou on exportera le fichier XML
+         *
+         */
     void openQFileDialog();
 
 };

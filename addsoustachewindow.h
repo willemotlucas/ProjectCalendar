@@ -18,7 +18,7 @@
 #include <QSpinBox>
 
 /*! \class AddSousTacheWindow
-   * \brief classe representant la fenetre d'ajout d'une sous-tache
+   * \brief classe representant la fenetre d'ajout d'une sous-tache unitaire
    *
    *  La classe gere la reception de tous les elements composants
    *  une sous-tache que ce soit son titre, son identificateur ou autre.
@@ -40,7 +40,7 @@ public:
     /*!
          *  \brief Destructeur
          *
-         *  Destructeur de la classe AddTacheWindow
+         *  Destructeur de la classe AddSousTacheWindow
          */
     ~AddSousTacheWindow(){}
 
@@ -58,7 +58,7 @@ private slots:
     /*!
          *  \brief Envoi d'une sous-tache unitaire non preemptive
          *
-         *  Le slot permet de recuperer tous les diffs elements
+         *  Le slot permet de recuperer tous les differents elements
          * composant la nouvelle sous-tache pour que le tache manager puisse ensuite l'enregistrer
          * dans le fichier XML.
          */

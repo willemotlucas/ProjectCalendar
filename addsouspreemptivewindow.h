@@ -19,7 +19,7 @@
 #include <QSpinBox>
 
 /*! \class AddSousPreemptiveWindow
-   * \brief classe representant la fenetre d'ajout d'une sous-tache preemtive
+   * \brief classe representant la fenetre d'ajout d'une sous-tache preemptive
    *
    *  La classe gere la reception de tous les elements composants
    *  une tache que ce soit son titre, son identificateur ou autre.
@@ -33,7 +33,7 @@ public:
     /*!
          *  \brief Constructeur
          *
-         *  Constructeur de la classe AddSousPreemtiveWindow
+         *  Constructeur de la classe AddSousPreemptiveWindow
          *
          *  \param parent : on renseigne son parent s'il en a un
          */
@@ -41,7 +41,7 @@ public:
     /*!
          *  \brief Destructeur
          *
-         *  Destructeur de la classe AddTacheWindow
+         *  Destructeur de la classe AddSousPreemptiveWindow
          */
     ~AddSousPreemptiveWindow(){}
 

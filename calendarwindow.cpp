@@ -16,9 +16,14 @@ CalendarWindow::CalendarWindow(QWidget *parent) :
     ui->setupUi(this);
     today = QDate::currentDate();
     currentDate = QDate::currentDate();
-    actionExporter = new QAction("Exporter la semaine en XML", this);
-    connect(actionExporter,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
-    ui->toolBar->addAction(actionExporter);
+    actionExporterSemaine = new QAction("Exporter la semaine en XML", this);
+    connect(actionExporterSemaine,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
+    actionExporterProjet = new QAction("Exporter Projet En Cours en XML", this);
+    connect(actionExporterProjet,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
+    ui->toolBar->addAction(actionExporterSemaine);
+    ui->toolBar->addSeparator();
+    ui->toolBar->addAction(actionExporterProjet);
+    ui->toolBar->addSeparator();
     ui->toolBar->setMovable(false);
 
     changeCurrentWeek(&today, true);

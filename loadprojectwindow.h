@@ -24,7 +24,7 @@ class LoadProjectWindow;
    *
    *  La fenetre va proposer a l'utilisateur tous les projets qu'il a pu
    *  deja crée dans le passé et pour qu'il puisse ainsi rajouter des taches
-   *  a l'interieur de celui ci ou en modifier.
+   *  a l'interieur de celui-ci ou en modifier.
    */
 class LoadProjectWindow : public QDialog
 {

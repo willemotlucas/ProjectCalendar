@@ -106,8 +106,6 @@ private:
     QAction* actionChargerProjet;/*!< Action chargement d'un projet*/
     QAction* actionFermerProjet;/*!< Action fermeture d'un projet*/
     QAction* actionImprimer;/*!< Action Imprimer le projet actuel*/
-    QAction* actionPrecedent;/*!< Action retour en arriere*/
-    QAction* actionSuivant;/*!< Action retour en avant*/
 
     //Arbre view et bouton d'ajout de taches
     QTreeWidget* projectTree;/*!< Arborescence du projet*/
@@ -136,6 +134,7 @@ private:
     QSpinBox* hDureeRestante;
     QSpinBox* mDureeRestante;
     QPushButton* modifier;/*!< Bouton de modification de la Tache*/
+    QPushButton* supprimer;/*!< Bouton de suppression de la Tache*/
     QPushButton* programmer;/*!< Bouton de programmation de la Tache*/
     QPushButton* ajouterSousTacheUnitaire;/*!< Bouton d'ajout sous tache unitaire*/
     QPushButton* ajouterSousTachePreemptive;/*!< Bouton d'ajout sous tache preemptive*/
@@ -206,6 +205,13 @@ private slots:
          *  Permet de modifier une tache du projet
          */
     void modifierTache();
+
+    /*!
+         *  \brief supprimerTache
+         *
+         *  Permet de supprimer une tache du projet
+         */
+    void supprimerTache();
 
     /*!
          *  \brief fermetProjet

@@ -4,7 +4,7 @@
 
 /*!
  * \file AddCompositeWindow.h
- * \brief Fenetre d ajout de tache composite
+ * \brief Fenetre d ajout d'une tache composite
  * \author Lucas WILLEMOT et Valentin PAUL
  * \version 0.1
  */
@@ -19,10 +19,10 @@
 #include <QSpinBox>
 
 /*! \class AddCompositeWindow
-   * \brief classe representant la fenetre d'ajout d'une tache
+   * \brief classe representant la fenetre d'ajout d'une tache composite
    *
    *  La classe gere la reception de tous les elements composants
-   *  une tache que ce soit son titre, son identificateur ou autre.
+   *  une tache composite que ce soit son titre, son identificateur ou autre.
    */
 
 class AddCompositeWindow : public QDialog

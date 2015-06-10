@@ -19,7 +19,7 @@
 #include <QSpinBox>
 
 /*! \class AddSousCompositeWindow
-   * \brief classe representant la fenetre d'ajout d'une sous-tache
+   * \brief classe representant la fenetre d'ajout d'une sous-tache composite
    *
    *  La classe gere la reception de tous les elements composants
    *  une sous-tache que ce soit son titre, son identificateur ou autre.
@@ -57,7 +57,7 @@ private slots:
     /*!
          *  \brief Envoi d'une sous-tache composite
          *
-         *  Le slot permet de recuperer tous les diffs elements
+         *  Le slot permet de recuperer tous les differents elements
          * composant la nouvelle sous-tache pour que le tache manager puisse ensuite l'enregistrer
          * dans le fichier XML.
          */

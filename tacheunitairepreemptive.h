@@ -7,7 +7,7 @@
 class TacheUnitairePreemptive : public TacheUnitaire
 {
 public:
-    ~TacheUnitairePreemptive(){}
+    virtual ~TacheUnitairePreemptive(){}
     QDomElement& write(QDomDocument* dom);
     QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
 

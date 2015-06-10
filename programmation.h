@@ -27,7 +27,7 @@ class Programmation {
     const Projet* projet;/*!< Pointeur sur le projet dont la tache correpond*/
     QDate date;/*!< Date de la programmation*/
     QTime horaire;/*!< Horaire de la programmation*/
-    QTime duree;
+    QTime duree;/*!< Duree de la programmation*/
 public:
     /*!
          *  \brief Constructeur
@@ -71,7 +71,7 @@ public:
     /*!
          *  \brief getDuree
          *
-         *  Accesseur en lecture de l'Horaire
+         *  Accesseur en lecture de la duree
          */
     QTime getDuree() const { return duree; }
 

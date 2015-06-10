@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     creerBarreNavigation();
 
     //Definition de quelques proprietes de le fenetre
-    setMinimumSize(1015,650);
+    setMinimumSize(1020,670);
     setWindowTitle("Project_Calendar");
 
 }
@@ -64,14 +64,9 @@ void MainWindow::creerMenus(){
     menuFichier->addAction(actionChargerProjet);
     menuFichier->addAction(actionFermerProjet);
     menuFichier->addAction(actionImprimerProjet);
-    menuFichier->addAction(actionAfficherAgenda);
     menuFichier->addAction(actionImprimerAgenda);
     menuFichier->addAction(actionQuitter);
 
-    QMenu *menuOutils = menuBar()->addMenu("&Outils");
-
-    menuOutils->addAction(actionPrecedente);
-    menuOutils->addAction(actionSuivante);
 
     QMenu *menuAide = menuBar()->addMenu("&Aide");
 
@@ -90,18 +85,12 @@ void MainWindow::creerActions(){
     actionFermerProjet->setShortcut(QKeySequence("Ctrl+W"));
     actionImprimerProjet = new QAction("Imprimer Projet",this);
     actionImprimerProjet->setShortcut(QKeySequence("Ctrl+P"));
-    actionAfficherAgenda = new QAction("Afficher Agenda",this);
     actionImprimerAgenda = new QAction("Imprimer Agenda",this);
     actionImprimerAgenda->setShortcut(QKeySequence("Ctrl+A"));
     actionQuitter = new QAction("Quitter",this);
     actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
     connect(actionQuitter,SIGNAL(triggered()),qApp,SLOT(quit()));
 
-    //Action du bloc outils
-    actionPrecedente = new QAction("Precedent",this);
-    actionPrecedente->setShortcut(QKeySequence::Back);
-    actionSuivante = new QAction("Suivant",this);
-    actionSuivante->setShortcut(QKeySequence::Forward);
 
     //Action du bloc aide
     actionAPropos = new QAction("A propos de ...",this);

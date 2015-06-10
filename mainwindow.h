@@ -57,7 +57,7 @@ class MainWindow : public QMainWindow
         /*!
              *  \brief getInstanceAgenda
              *
-             *  Fonction statique permettant d'avoir l'instance unique du projet
+             *  Fonction statique permettant d'avoir l'instance unique de l'agenda
              *  a n'importe quel endroit du code.
              */
             static CalendarWindow& getInstanceAgenda();
@@ -65,7 +65,7 @@ class MainWindow : public QMainWindow
         /*!
              *  \brief libererInstanceAgenda
              *
-             *  Fonction statique permettant de liberer l'instance du projet en cours.
+             *  Fonction statique permettant de liberer l'instance de l'agenda en cours.
              */
             static void libererInstanceAgenda();
     private:
@@ -92,7 +92,7 @@ class MainWindow : public QMainWindow
         void creerBarreNavigation();
 
         static ProjectWindow* projet;/*!< attribut statique : projet*/
-        static CalendarWindow* calendar;
+        static CalendarWindow* calendar;/*!< attribut statique : calendrier*/
         QWidget* pageCalendar;/*!< Onglet Agenda*/
         QWidget* pageProjet;/*!< Onglet Gestion de projet*/
 
@@ -103,16 +103,11 @@ class MainWindow : public QMainWindow
         QAction* actionNouveauProjet;/*!< Action creation nouveau projet*/
         QAction* actionChargerProjet;/*!< Action chargement projet*/
         QAction* actionFermerProjet;/*!< Action fermer projet*/
-        QAction* actionAfficherAgenda;/*!< Action afficher l'agenda*/
         QAction* actionImprimerProjet;/*!< Action imprimer le projet */
         QAction* actionImprimerAgenda;/*!< Action imprimer la semaine de l'agenda*/
         QAction* actionQuitter;/*!< Action quitter l'application*/
         QAction* actionAPropos;/*!< Action a propos de l'application */
         QAction* actionAProposQt;/*!< Action a propos de Qt*/
-        QAction* actionPrecedente;/*!< Action pour revenir en arriere*/
-        QAction* actionSuivante;/*!< Action pour revenir en avant*/
-
-
 
     private slots:
         /*!

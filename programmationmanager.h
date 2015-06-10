@@ -44,6 +44,16 @@ private:
          */
     Programmation* trouverProgrammation(const Tache& t) const;
 
+    /*!
+         *  \brief ajoutPossible
+         *
+         *  Verification ajout d'une programmation possible
+         *
+         *  \param t : la programmation que l'on veut ajouter au vector
+         *  \param d : date de la programmation souhaitée
+         *  \param h : heure de la programmation souhaitée
+         *  \param dur : durée de la programmation souhaitée
+         */
     bool ajoutPossible(const Tache& t, const QDate& d, const QTime& h, const QTime& dur);
 
     /*! \class Handler
@@ -107,6 +117,10 @@ private:
          */
     ProgrammationManager& operator=(const ProgrammationManager& um);
 
+
+
+public:
+
     /*!
          *  \brief ajouterProgrammation
          *
@@ -115,10 +129,8 @@ private:
          *  \param t : la tache a ajoute dans la programmation
          *  \param d : la date de programmation de cette tache
          *  \param h : l'heure de programmation de cette tache
-         *
+         *  \param duree : duree de la programmation de cette tache
          */
-
-public:
     void ajouterProgrammation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& duree);
 
     /*!
@@ -136,6 +148,14 @@ public:
          */
     static void libererInstance();
 
+    /*!
+         *  \brief writeProgrammation
+         *
+         *  Fonction permettant d'ecrire la programmation
+         *
+         *  \param p : la programmation a ecrire
+         *  \param dom : l'arborescence de nos programmations
+         */
     QDomElement& writeProgrammation(Programmation* p, QDomDocument* dom);
 
     /*!
@@ -146,6 +166,15 @@ public:
          */
     void save();
 
+    /*!
+         *  \brief exportWeekXML
+         *
+         *  Fonction permettant l'export d'une semaine dans un fichier XML
+         *
+         *  \param dateDebut : date du debut de la semaine
+         *  \param dateFin : date de la fin de la semaine
+         *  \param filename : nom du fichier XML
+         */
     void exportWeekXML(const QDate& dateDebut, const QDate& dateFin, const QString& filename);
 
     /*!

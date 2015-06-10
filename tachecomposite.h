@@ -26,7 +26,7 @@ class TacheComposite : public Tache
 
 public:
     //La destruction d'une tache composite entraîne la destruction de ses sous-tâches
-    ~TacheComposite(){ soustaches.clear(); }
+    virtual ~TacheComposite(){ soustaches.clear(); }
 
     //SOUSTACHE METHODS
     void ajouterSousTaches(Tache& tache);

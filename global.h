@@ -6,9 +6,10 @@
  * \brief Fichier XML
  *
  * Le nom du fichier XML dans lequel nous enregistrons
- * tous nos projets et le fichier XML avec
- * toutes les programmations sont gardes en variable globale
- * a l'interieur de ce heade
+ * tous nos projets et le fichier XML dans lequel
+ * toutes les programmations sont gardées.
+ * Ces 2 noms de fichier sont gardés en variable globale
+ * a l'interieur de ce header
  *
  * \author Lucas WILLEMOT et Valentin PAUL
  * \version 0.1
