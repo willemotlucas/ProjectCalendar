@@ -92,8 +92,8 @@ public:
         agenda_widget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         agenda_widget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
-        if (agenda_widget->rowCount() < 23)
-            agenda_widget->setRowCount(23);
+        if (agenda_widget->rowCount() < 24)
+            agenda_widget->setRowCount(24);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         agenda_widget->setVerticalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
@@ -140,12 +140,17 @@ public:
         agenda_widget->setVerticalHeaderItem(21, __qtablewidgetitem28);
         QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
         agenda_widget->setVerticalHeaderItem(22, __qtablewidgetitem29);
+        QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
+        agenda_widget->setVerticalHeaderItem(23, __qtablewidgetitem30);
         QBrush brush(QColor(255, 0, 0, 255));
         brush.setStyle(Qt::NoBrush);
-        QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
-        __qtablewidgetitem30->setBackground(brush);
-        agenda_widget->setItem(1, 1, __qtablewidgetitem30);
+        QTableWidgetItem *__qtablewidgetitem31 = new QTableWidgetItem();
+        __qtablewidgetitem31->setBackground(brush);
+        agenda_widget->setItem(1, 1, __qtablewidgetitem31);
         agenda_widget->setObjectName(QStringLiteral("agenda_widget"));
+        agenda_widget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        agenda_widget->setDragDropOverwriteMode(false);
+        agenda_widget->setShowGrid(true);
         agenda_widget->horizontalHeader()->setDefaultSectionSize(131);
 
         verticalLayout->addWidget(agenda_widget);
@@ -169,7 +174,7 @@ public:
 
     void retranslateUi(QMainWindow *CalendarWindow)
     {
-        CalendarWindow->setWindowTitle(QApplication::translate("CalendarWindow", "MainWindow", 0));
+        CalendarWindow->setWindowTitle(QApplication::translate("CalendarWindow", "Agenda", 0));
         previous_week->setText(QApplication::translate("CalendarWindow", "Pr\303\251c\303\251dent", 0));
         next_week->setText(QApplication::translate("CalendarWindow", "Suivant", 0));
         QTableWidgetItem *___qtablewidgetitem = agenda_widget->horizontalHeaderItem(0);
@@ -187,51 +192,53 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = agenda_widget->horizontalHeaderItem(6);
         ___qtablewidgetitem6->setText(QApplication::translate("CalendarWindow", "Dimanche", 0));
         QTableWidgetItem *___qtablewidgetitem7 = agenda_widget->verticalHeaderItem(0);
-        ___qtablewidgetitem7->setText(QApplication::translate("CalendarWindow", "06h00", 0));
+        ___qtablewidgetitem7->setText(QApplication::translate("CalendarWindow", "00h00", 0));
         QTableWidgetItem *___qtablewidgetitem8 = agenda_widget->verticalHeaderItem(1);
-        ___qtablewidgetitem8->setText(QApplication::translate("CalendarWindow", "07h00", 0));
+        ___qtablewidgetitem8->setText(QApplication::translate("CalendarWindow", "01h00", 0));
         QTableWidgetItem *___qtablewidgetitem9 = agenda_widget->verticalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QApplication::translate("CalendarWindow", "08h00", 0));
+        ___qtablewidgetitem9->setText(QApplication::translate("CalendarWindow", "02h00", 0));
         QTableWidgetItem *___qtablewidgetitem10 = agenda_widget->verticalHeaderItem(3);
-        ___qtablewidgetitem10->setText(QApplication::translate("CalendarWindow", "09h00", 0));
+        ___qtablewidgetitem10->setText(QApplication::translate("CalendarWindow", "03h00", 0));
         QTableWidgetItem *___qtablewidgetitem11 = agenda_widget->verticalHeaderItem(4);
-        ___qtablewidgetitem11->setText(QApplication::translate("CalendarWindow", "10h00", 0));
+        ___qtablewidgetitem11->setText(QApplication::translate("CalendarWindow", "04h00", 0));
         QTableWidgetItem *___qtablewidgetitem12 = agenda_widget->verticalHeaderItem(5);
-        ___qtablewidgetitem12->setText(QApplication::translate("CalendarWindow", "11h00", 0));
+        ___qtablewidgetitem12->setText(QApplication::translate("CalendarWindow", "05h00", 0));
         QTableWidgetItem *___qtablewidgetitem13 = agenda_widget->verticalHeaderItem(6);
-        ___qtablewidgetitem13->setText(QApplication::translate("CalendarWindow", "12h00", 0));
+        ___qtablewidgetitem13->setText(QApplication::translate("CalendarWindow", "06h00", 0));
         QTableWidgetItem *___qtablewidgetitem14 = agenda_widget->verticalHeaderItem(7);
-        ___qtablewidgetitem14->setText(QApplication::translate("CalendarWindow", "13h00", 0));
+        ___qtablewidgetitem14->setText(QApplication::translate("CalendarWindow", "07h00", 0));
         QTableWidgetItem *___qtablewidgetitem15 = agenda_widget->verticalHeaderItem(8);
-        ___qtablewidgetitem15->setText(QApplication::translate("CalendarWindow", "14h00", 0));
+        ___qtablewidgetitem15->setText(QApplication::translate("CalendarWindow", "08h00", 0));
         QTableWidgetItem *___qtablewidgetitem16 = agenda_widget->verticalHeaderItem(9);
-        ___qtablewidgetitem16->setText(QApplication::translate("CalendarWindow", "15h00", 0));
+        ___qtablewidgetitem16->setText(QApplication::translate("CalendarWindow", "09h00", 0));
         QTableWidgetItem *___qtablewidgetitem17 = agenda_widget->verticalHeaderItem(10);
-        ___qtablewidgetitem17->setText(QApplication::translate("CalendarWindow", "16h00", 0));
+        ___qtablewidgetitem17->setText(QApplication::translate("CalendarWindow", "10h00", 0));
         QTableWidgetItem *___qtablewidgetitem18 = agenda_widget->verticalHeaderItem(11);
-        ___qtablewidgetitem18->setText(QApplication::translate("CalendarWindow", "17h00", 0));
+        ___qtablewidgetitem18->setText(QApplication::translate("CalendarWindow", "11h00", 0));
         QTableWidgetItem *___qtablewidgetitem19 = agenda_widget->verticalHeaderItem(12);
-        ___qtablewidgetitem19->setText(QApplication::translate("CalendarWindow", "18h00", 0));
+        ___qtablewidgetitem19->setText(QApplication::translate("CalendarWindow", "12h00", 0));
         QTableWidgetItem *___qtablewidgetitem20 = agenda_widget->verticalHeaderItem(13);
-        ___qtablewidgetitem20->setText(QApplication::translate("CalendarWindow", "19h00", 0));
+        ___qtablewidgetitem20->setText(QApplication::translate("CalendarWindow", "13h00", 0));
         QTableWidgetItem *___qtablewidgetitem21 = agenda_widget->verticalHeaderItem(14);
-        ___qtablewidgetitem21->setText(QApplication::translate("CalendarWindow", "20h00", 0));
+        ___qtablewidgetitem21->setText(QApplication::translate("CalendarWindow", "14h00", 0));
         QTableWidgetItem *___qtablewidgetitem22 = agenda_widget->verticalHeaderItem(15);
-        ___qtablewidgetitem22->setText(QApplication::translate("CalendarWindow", "21h00", 0));
+        ___qtablewidgetitem22->setText(QApplication::translate("CalendarWindow", "15h00", 0));
         QTableWidgetItem *___qtablewidgetitem23 = agenda_widget->verticalHeaderItem(16);
-        ___qtablewidgetitem23->setText(QApplication::translate("CalendarWindow", "22h00", 0));
+        ___qtablewidgetitem23->setText(QApplication::translate("CalendarWindow", "16h00", 0));
         QTableWidgetItem *___qtablewidgetitem24 = agenda_widget->verticalHeaderItem(17);
-        ___qtablewidgetitem24->setText(QApplication::translate("CalendarWindow", "00h00", 0));
+        ___qtablewidgetitem24->setText(QApplication::translate("CalendarWindow", "17h00", 0));
         QTableWidgetItem *___qtablewidgetitem25 = agenda_widget->verticalHeaderItem(18);
-        ___qtablewidgetitem25->setText(QApplication::translate("CalendarWindow", "01h00", 0));
+        ___qtablewidgetitem25->setText(QApplication::translate("CalendarWindow", "18h00", 0));
         QTableWidgetItem *___qtablewidgetitem26 = agenda_widget->verticalHeaderItem(19);
-        ___qtablewidgetitem26->setText(QApplication::translate("CalendarWindow", "02h00", 0));
+        ___qtablewidgetitem26->setText(QApplication::translate("CalendarWindow", "19h00", 0));
         QTableWidgetItem *___qtablewidgetitem27 = agenda_widget->verticalHeaderItem(20);
-        ___qtablewidgetitem27->setText(QApplication::translate("CalendarWindow", "03h00", 0));
+        ___qtablewidgetitem27->setText(QApplication::translate("CalendarWindow", "20h00", 0));
         QTableWidgetItem *___qtablewidgetitem28 = agenda_widget->verticalHeaderItem(21);
-        ___qtablewidgetitem28->setText(QApplication::translate("CalendarWindow", "04h00", 0));
+        ___qtablewidgetitem28->setText(QApplication::translate("CalendarWindow", "21h00", 0));
         QTableWidgetItem *___qtablewidgetitem29 = agenda_widget->verticalHeaderItem(22);
-        ___qtablewidgetitem29->setText(QApplication::translate("CalendarWindow", "05h00", 0));
+        ___qtablewidgetitem29->setText(QApplication::translate("CalendarWindow", "22h00", 0));
+        QTableWidgetItem *___qtablewidgetitem30 = agenda_widget->verticalHeaderItem(23);
+        ___qtablewidgetitem30->setText(QApplication::translate("CalendarWindow", "23h00", 0));
 
         const bool __sortingEnabled = agenda_widget->isSortingEnabled();
         agenda_widget->setSortingEnabled(false);

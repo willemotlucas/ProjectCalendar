@@ -58,7 +58,7 @@ public:
 
     void retranslateUi(QDialog *LoadProjectWindow)
     {
-        LoadProjectWindow->setWindowTitle(QApplication::translate("LoadProjectWindow", "Dialog", 0));
+        LoadProjectWindow->setWindowTitle(QApplication::translate("LoadProjectWindow", "Chargement d'un projet", 0));
     } // retranslateUi
 
 };

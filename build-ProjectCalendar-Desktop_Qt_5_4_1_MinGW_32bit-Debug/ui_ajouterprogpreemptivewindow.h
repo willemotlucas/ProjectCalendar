@@ -28,7 +28,7 @@ QT_BEGIN_NAMESPACE
 class Ui_AjouterProgPreemptiveWIndow
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -48,20 +48,20 @@ public:
         if (AjouterProgPreemptiveWIndow->objectName().isEmpty())
             AjouterProgPreemptiveWIndow->setObjectName(QStringLiteral("AjouterProgPreemptiveWIndow"));
         AjouterProgPreemptiveWIndow->resize(366, 198);
-        widget = new QWidget(AjouterProgPreemptiveWIndow);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 20, 341, 161));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(AjouterProgPreemptiveWIndow);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 20, 341, 161));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout->addWidget(label);
 
-        date = new QDateEdit(widget);
+        date = new QDateEdit(layoutWidget);
         date->setObjectName(QStringLiteral("date"));
 
         horizontalLayout->addWidget(date);
@@ -71,12 +71,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        horaire = new QTimeEdit(widget);
+        horaire = new QTimeEdit(layoutWidget);
         horaire->setObjectName(QStringLiteral("horaire"));
 
         horizontalLayout_2->addWidget(horaire);
@@ -86,12 +86,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         horizontalLayout_3->addWidget(label_3);
 
-        duree = new QTimeEdit(widget);
+        duree = new QTimeEdit(layoutWidget);
         duree->setObjectName(QStringLiteral("duree"));
 
         horizontalLayout_3->addWidget(duree);
@@ -101,12 +101,12 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        ok = new QPushButton(widget);
+        ok = new QPushButton(layoutWidget);
         ok->setObjectName(QStringLiteral("ok"));
 
         horizontalLayout_4->addWidget(ok);
 
-        annuler = new QPushButton(widget);
+        annuler = new QPushButton(layoutWidget);
         annuler->setObjectName(QStringLiteral("annuler"));
 
         horizontalLayout_4->addWidget(annuler);
@@ -122,7 +122,7 @@ public:
 
     void retranslateUi(QDialog *AjouterProgPreemptiveWIndow)
     {
-        AjouterProgPreemptiveWIndow->setWindowTitle(QApplication::translate("AjouterProgPreemptiveWIndow", "Dialog", 0));
+        AjouterProgPreemptiveWIndow->setWindowTitle(QApplication::translate("AjouterProgPreemptiveWIndow", "Programmation d'une tache pr\303\251emptive", 0));
         label->setText(QApplication::translate("AjouterProgPreemptiveWIndow", "Date de la programmation :", 0));
         label_2->setText(QApplication::translate("AjouterProgPreemptiveWIndow", "Heure de d\303\251but :", 0));
         label_3->setText(QApplication::translate("AjouterProgPreemptiveWIndow", "Dur\303\251e du d\303\251coupage de la t\303\242che :", 0));

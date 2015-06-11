@@ -83,6 +83,8 @@ void CalendarWindow::displayTasks(){
     //On enregistre le premier jour et le dernier jour de la semaine affichée
     QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
     QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
+    qDebug()<<"rowcount :"<<ui->agenda_widget->rowCount();
+    qDebug()<<"columncount :"<<ui->agenda_widget->columnCount();
 
     //On parcourt chaque programmation pour choisir lesquelles afficher
     for(std::vector<Programmation*>::iterator it = progm.begin(); it != progm.end(); ++it){
@@ -90,7 +92,7 @@ void CalendarWindow::displayTasks(){
         if((*it)->getDate() >= premierJour && (*it)->getDate() <= dernierJour)
         {
             int column = (*it)->getDate().day() - premierJour.day();
-            int firstLine = (*it)->getHoraire().hour()-6;
+            int firstLine = (*it)->getHoraire().hour();
             int nbLine = (*it)->getDuree().hour();
             for(int i = firstLine; i < firstLine+nbLine; i++){
                 ui->agenda_widget->setItem(i, column, new QTableWidgetItem((*it)->getTache().getId()));
@@ -100,6 +102,19 @@ void CalendarWindow::displayTasks(){
                 if(typeid((*it)->getTache()) == typeid(TacheUnitairePreemptive))
                     ui->agenda_widget->item(i, column)->setBackgroundColor(Qt::yellow);
 
+                if(i == ui->agenda_widget->rowCount()-1 && i < firstLine+nbLine && column < ui->agenda_widget->columnCount()){
+                    int ligneRestante = (firstLine + nbLine)-i;
+                    column++;
+                    for(int j = 0; j < ligneRestante; j++){
+                        ui->agenda_widget->setItem(j, column, new QTableWidgetItem((*it)->getTache().getId()));
+                        ui->agenda_widget->item(j, column)->setTextAlignment(Qt::AlignCenter);
+                        if(typeid((*it)->getTache()) == typeid(TacheUnitaire))
+                            ui->agenda_widget->item(j, column)->setBackgroundColor(Qt::red);
+                        if(typeid((*it)->getTache()) == typeid(TacheUnitairePreemptive))
+                            ui->agenda_widget->item(j, column)->setBackgroundColor(Qt::yellow);
+                    }
+                    break;
+                }
             }
         }
     }

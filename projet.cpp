@@ -3,6 +3,9 @@
 
 void Projet::ajouterTache(Tache& t){
     if (trouverTache(t.getId())) throw CalendarException("La tache " + t.getId() + " existe déjà. Veuillez modifier son identificateur.");
+    //Mise à jour de la date d'échéance du projet
+    if(t.getDateEcheance() > this->echeance)
+        this->echeance = t.getDateEcheance();
     taches.push_back(&t);
 }
 

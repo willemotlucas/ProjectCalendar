@@ -2,42 +2,47 @@
 <programmations>
  <programmation tache="TacheUnitaire1" projet="Projet1">
   <date>mer. juin 10 2015</date>
-  <horaire heure="10" minute="0"/>
-  <duree heure="4" minute="0"/>
+  <horaire minute="0" heure="10"/>
+  <duree minute="0" heure="4"/>
  </programmation>
  <programmation tache="TachePreemptive1" projet="Projet1">
   <date>ven. juin 12 2015</date>
-  <horaire heure="10" minute="0"/>
-  <duree heure="5" minute="0"/>
+  <horaire minute="0" heure="10"/>
+  <duree minute="0" heure="5"/>
  </programmation>
  <programmation tache="TachePreemptive1" projet="Projet1">
   <date>mar. juin 16 2015</date>
-  <horaire heure="9" minute="0"/>
-  <duree heure="5" minute="0"/>
+  <horaire minute="0" heure="9"/>
+  <duree minute="0" heure="5"/>
  </programmation>
  <programmation tache="TachePreemptive2" projet="Projet1">
   <date>ven. juin 12 2015</date>
-  <horaire heure="8" minute="0"/>
-  <duree heure="3" minute="0"/>
+  <horaire minute="0" heure="8"/>
+  <duree minute="0" heure="3"/>
  </programmation>
  <programmation tache="TacheUnitaire2" projet="Projet1">
   <date>jeu. juin 11 2015</date>
-  <horaire heure="15" minute="0"/>
-  <duree heure="6" minute="0"/>
+  <horaire minute="0" heure="15"/>
+  <duree minute="0" heure="6"/>
  </programmation>
  <programmation tache="TacheUnitaire3" projet="Projet1">
   <date>jeu. juin 11 2015</date>
-  <horaire heure="7" minute="0"/>
-  <duree heure="3" minute="0"/>
+  <horaire minute="0" heure="7"/>
+  <duree minute="0" heure="3"/>
  </programmation>
  <programmation tache="TacheUnitaire4" projet="Projet1">
   <date>sam. juin 13 2015</date>
-  <horaire heure="7" minute="0"/>
-  <duree heure="3" minute="0"/>
+  <horaire minute="0" heure="7"/>
+  <duree minute="0" heure="3"/>
  </programmation>
  <programmation tache="TacheU" projet="Projet2">
   <date>jeu. juin 11 2015</date>
-  <horaire heure="10" minute="0"/>
-  <duree heure="4" minute="0"/>
+  <horaire minute="0" heure="10"/>
+  <duree minute="0" heure="4"/>
+ </programmation>
+ <programmation tache="dsfes" projet="Projet3">
+  <date>mer. juin 17 2015</date>
+  <horaire minute="0" heure="22"/>
+  <duree minute="0" heure="6"/>
  </programmation>
 </programmations>

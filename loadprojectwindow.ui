@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Chargement d'un projet</string>
   </property>
   <widget class="QDialogButtonBox" name="LoadButton">
    <property name="geometry">

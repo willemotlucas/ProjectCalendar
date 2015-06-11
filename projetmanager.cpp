@@ -104,11 +104,12 @@ void ProjetManager::load(const QString& f){
                 nom = children.toElement().text();
             if(children.nodeName() == "description")
                 description = children.toElement().text();
-            if(children.nodeName() == "disponibilite")
+            if(children.nodeName() == "dateDebut")
                 dispo = QDate::fromString(children.toElement().text(),Qt::TextDate);
-            if(children.nodeName() == "echeance")
+            if(children.nodeName() == "dateEcheance")
                 echeance = QDate::fromString(children.toElement().text(),Qt::TextDate);
         }
+        qDebug()<<"date dispo = "<<dispo;
         //Ajouter le projet pour récupérer l'objet
         Projet& p = this->ajouterProjet(nom, description, dispo);
 
@@ -120,7 +121,6 @@ void ProjetManager::load(const QString& f){
             for(QDomNode tache = taches.firstChildElement("tache"); !tache.isNull(); tache = tache.nextSiblingElement("tache")){
                 //QDomNodeList childrensTache = tache.childNodes();
                 Tache& t = loadTache(dom, &tache);
-                qDebug()<<"tache loadée : "<<t.getId();
                 p.ajouterTache(t);
             }
         }
@@ -220,7 +220,6 @@ Tache& ProjetManager::loadTache(QDomDocument* dom ,QDomNode* tache){
         if(!sousTaches->isNull()){
             for(QDomNode soustache = sousTaches->firstChildElement("tache"); !soustache.isNull(); soustache = soustache.nextSiblingElement("tache")){
                 Tache& s = loadTache(dom, &soustache);
-                qDebug()<<"tache loadée : "<<s.getId();
                 t.ajouterSousTaches(s);
             }
         }

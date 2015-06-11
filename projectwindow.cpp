@@ -432,6 +432,8 @@ void ProjectWindow::programmerTache(){
 void ProjectWindow::ajouterTache(Tache &t){
     if(t.getId() == "")
         throw CalendarException("L'enregistrement d'une tache avec un id vide est impossible.");
+    if(t.getDateDisponibilite() < projetOuvert->getDisponibilite())
+        throw CalendarException("La date de disponibilité de la tâche est inférieure à la date de disponibilité du projet");
 
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
@@ -439,6 +441,8 @@ void ProjectWindow::ajouterTache(Tache &t){
 
     QTreeWidgetItem* tacheTree = new QTreeWidgetItem();
     tacheTree->setText(0, t.getId());
+    dateEcheance->setDate(p->getEcheance());
+
     if(typeid(t) == typeid(TacheUnitaire) || typeid(t) == typeid(TacheUnitairePreemptive))
         tacheTree->setTextColor(0, Qt::green);
     rootTree->addChild(tacheTree);
@@ -467,6 +471,8 @@ void ProjectWindow::ajouterProgrammation(const QDate &d, const QTime &t){
         projectTree->currentItem()->setTextColor(0,Qt::blue);
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
+        hDureeRestante->setValue(0);
+        mDureeRestante->setValue(0);
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }
@@ -484,6 +490,8 @@ void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &
         projectTree->currentItem()->setTextColor(0,Qt::blue);
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
+        hDureeRestante->setValue(tmp->getDureeRestante().hour());
+        mDureeRestante->setValue(tmp->getDureeRestante().minute());
     }catch(CalendarException e){
         QMessageBox::warning(this, "Attention", e.getInfo());
     }

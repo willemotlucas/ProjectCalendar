@@ -28,7 +28,7 @@ QT_BEGIN_NAMESPACE
 class Ui_ProgrammerTache
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -45,20 +45,20 @@ public:
         if (ProgrammerTache->objectName().isEmpty())
             ProgrammerTache->setObjectName(QStringLiteral("ProgrammerTache"));
         ProgrammerTache->resize(307, 143);
-        widget = new QWidget(ProgrammerTache);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 12, 291, 121));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(ProgrammerTache);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 12, 291, 121));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout->addWidget(label);
 
-        date = new QDateEdit(widget);
+        date = new QDateEdit(layoutWidget);
         date->setObjectName(QStringLiteral("date"));
 
         horizontalLayout->addWidget(date);
@@ -68,12 +68,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        horaire = new QTimeEdit(widget);
+        horaire = new QTimeEdit(layoutWidget);
         horaire->setObjectName(QStringLiteral("horaire"));
 
         horizontalLayout_2->addWidget(horaire);
@@ -83,12 +83,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        annuler = new QPushButton(widget);
+        annuler = new QPushButton(layoutWidget);
         annuler->setObjectName(QStringLiteral("annuler"));
 
         horizontalLayout_3->addWidget(annuler);
 
-        ok = new QPushButton(widget);
+        ok = new QPushButton(layoutWidget);
         ok->setObjectName(QStringLiteral("ok"));
 
         horizontalLayout_3->addWidget(ok);
@@ -104,7 +104,7 @@ public:
 
     void retranslateUi(QDialog *ProgrammerTache)
     {
-        ProgrammerTache->setWindowTitle(QApplication::translate("ProgrammerTache", "Dialog", 0));
+        ProgrammerTache->setWindowTitle(QApplication::translate("ProgrammerTache", "Programmation d'une t\303\242che unitaire", 0));
         label->setText(QApplication::translate("ProgrammerTache", "Date de la programmation :", 0));
         label_2->setText(QApplication::translate("ProgrammerTache", "Heure de d\303\251but :", 0));
         annuler->setText(QApplication::translate("ProgrammerTache", "Annuler", 0));
