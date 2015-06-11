@@ -279,74 +279,76 @@ void ProjectWindow::chargerDetailsProjet(const QString& nomProjet){
 }
 
 void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
-    if(item->parent()->text(0)==projetOuvert->getNom())
-        tacheSelectionnee = projetOuvert->getTache(item->text(column));
-    else{
-        QTreeWidgetItem* papa = item->parent();
-        if(papa->parent()->text(0)==projetOuvert->getNom()){
-            TacheComposite* tmp = dynamic_cast<TacheComposite*>(projetOuvert->getTache(papa->text(column)));
-            tacheSelectionnee = tmp->getSousTache(item->text(0));
-        }
-        else {
-            QTreeWidgetItem* Grandpapa = papa->parent();
-            if(Grandpapa->parent()->text(0)==projetOuvert->getNom()){
-                TacheComposite* tmp2 = dynamic_cast<TacheComposite*>(projetOuvert->getTache(Grandpapa->text(0)));
-                TacheComposite* tmp =dynamic_cast<TacheComposite*>(tmp2->getSousTache(papa->text(0)));
+    if(item->text(0) != projetOuvert->getNom()){
+        if(item->parent()->text(0)==projetOuvert->getNom())
+            tacheSelectionnee = projetOuvert->getTache(item->text(column));
+        else{
+            QTreeWidgetItem* papa = item->parent();
+            if(papa->parent()->text(0)==projetOuvert->getNom()){
+                TacheComposite* tmp = dynamic_cast<TacheComposite*>(projetOuvert->getTache(papa->text(column)));
                 tacheSelectionnee = tmp->getSousTache(item->text(0));
-           }
+            }
+            else {
+                QTreeWidgetItem* Grandpapa = papa->parent();
+                if(Grandpapa->parent()->text(0)==projetOuvert->getNom()){
+                    TacheComposite* tmp2 = dynamic_cast<TacheComposite*>(projetOuvert->getTache(Grandpapa->text(0)));
+                    TacheComposite* tmp =dynamic_cast<TacheComposite*>(tmp2->getSousTache(papa->text(0)));
+                    tacheSelectionnee = tmp->getSousTache(item->text(0));
+               }
+            }
+
         }
 
-    }
+        //On recherche la tache ayant le meme id dans ce projet
+        idTache->setText(tacheSelectionnee->getId());
+        nomTache->setPlainText(tacheSelectionnee->getTitre());
+        dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
+        dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
+        programmer->setEnabled(true);
+        modifier->setEnabled(true);
+        tachePreemtive->setChecked(false);
+        ajouterSousTacheComposite->setEnabled(false);
+        ajouterSousTachePreemptive->setEnabled(false);
+        ajouterSousTacheUnitaire->setEnabled(false);
+        supprimer->setEnabled(true);
 
-    //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionnee->getId());
-    nomTache->setPlainText(tacheSelectionnee->getTitre());
-    dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
-    programmer->setEnabled(true);
-    modifier->setEnabled(true);
-    tachePreemtive->setChecked(false);
-    ajouterSousTacheComposite->setEnabled(false);
-    ajouterSousTachePreemptive->setEnabled(false);
-    ajouterSousTacheUnitaire->setEnabled(false);
-    supprimer->setEnabled(true);
+        if(tacheSelectionnee->getEtat() != 1)
+            programmer->setDisabled(true);
 
-    if(tacheSelectionnee->getEtat() != 1)
-        programmer->setDisabled(true);
-
-    if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
-        TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
-        tachePreemtive->setChecked(true);
-        hDureeTache->setValue(tmp->getDureeInit().hour());
-        mDureeTache->setValue(tmp->getDureeInit().minute());
-        qDebug()<<"preemptive avant hour:"<<tmp->getDuree().hour();
-        qDebug()<<"preemptive avant minute:"<<tmp->getDuree().minute();
-        hDureeRestante->setValue(tmp->getDureeRestante().hour());
-        mDureeRestante->setValue(tmp->getDureeRestante().minute());
-    }
-    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
-        TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
-        qDebug()<<"unitaire avant hour:"<<tmp->getDuree().hour();
-        qDebug()<<"unitaire avant minute:"<<tmp->getDuree().minute();
-        hDureeTache->setValue(tmp->getDuree().hour());
-        mDureeTache->setValue(tmp->getDuree().minute());
-        if(tmp->getEtat() == 1){
-            qDebug()<<"unitaire apres hour:"<<tmp->getDuree().hour();
-            qDebug()<<"unitaire apres minute:"<<tmp->getDuree().minute();
-            hDureeRestante->setValue(tmp->getDuree().hour());
-            mDureeRestante->setValue(tmp->getDuree().minute());
+        if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+            TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
+            tachePreemtive->setChecked(true);
+            hDureeTache->setValue(tmp->getDureeInit().hour());
+            mDureeTache->setValue(tmp->getDureeInit().minute());
+            qDebug()<<"preemptive avant hour:"<<tmp->getDuree().hour();
+            qDebug()<<"preemptive avant minute:"<<tmp->getDuree().minute();
+            hDureeRestante->setValue(tmp->getDureeRestante().hour());
+            mDureeRestante->setValue(tmp->getDureeRestante().minute());
         }
-        else
-        {
-            hDureeRestante->setValue(0);
-            mDureeRestante->setValue(0);
-        }
+        else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
+            TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
+            qDebug()<<"unitaire avant hour:"<<tmp->getDuree().hour();
+            qDebug()<<"unitaire avant minute:"<<tmp->getDuree().minute();
+            hDureeTache->setValue(tmp->getDuree().hour());
+            mDureeTache->setValue(tmp->getDuree().minute());
+            if(tmp->getEtat() == 1){
+                qDebug()<<"unitaire apres hour:"<<tmp->getDuree().hour();
+                qDebug()<<"unitaire apres minute:"<<tmp->getDuree().minute();
+                hDureeRestante->setValue(tmp->getDuree().hour());
+                mDureeRestante->setValue(tmp->getDuree().minute());
+            }
+            else
+            {
+                hDureeRestante->setValue(0);
+                mDureeRestante->setValue(0);
+            }
 
-    }
-    else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
-        ajouterSousTacheComposite->setEnabled(true);
-        ajouterSousTachePreemptive->setEnabled(true);
-        ajouterSousTacheUnitaire->setEnabled(true);
+        }
+        else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
+            ajouterSousTacheComposite->setEnabled(true);
+            ajouterSousTachePreemptive->setEnabled(true);
+            ajouterSousTacheUnitaire->setEnabled(true);
+        }
     }
 }
 
@@ -428,6 +430,9 @@ void ProjectWindow::programmerTache(){
 }
 
 void ProjectWindow::ajouterTache(Tache &t){
+    if(t.getId() == "")
+        throw CalendarException("L'enregistrement d'une tache avec un id vide est impossible.");
+
     ProjetManager& m = ProjetManager::getInstance();
     Projet* p = m.getProjet(projetOuvert->getNom());
     p->ajouterTache(t);
@@ -440,6 +445,9 @@ void ProjectWindow::ajouterTache(Tache &t){
 }
 
 void ProjectWindow::ajouterSousTache(Tache& t){
+    if(t.getId() == "")
+        throw CalendarException("L'enregistrement d'une tache avec un id vide est impossible.");
+
     TacheComposite* tmp = dynamic_cast<TacheComposite*>(tacheSelectionnee);
     tmp->ajouterSousTaches(t);
 
