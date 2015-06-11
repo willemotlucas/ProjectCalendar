@@ -2,7 +2,6 @@
 #include "newprojectwindow.h"
 #include "addtachewindow.h"
 #include "addcompositewindow.h"
-#include "modtachewindow.h"
 #include "addpreemptivewindow.h"
 #include "programmertachewindow.h"
 #include "ajouterprogpreemptivewindow.h"
@@ -25,7 +24,6 @@
 #include <QMessageBox>
 #include <typeinfo>
 
-
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 {
     //Generation des widgets de la fenetre agenda
@@ -41,7 +39,6 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
     connect(ajouterSousTachePreemptive,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheUnitairePreemptive()));
     connect(ajouterSousTacheComposite,SIGNAL(clicked()),this,SLOT(fenetreAjouterSousTacheComposite()));
     connect(supprimer,SIGNAL(clicked()),this,SLOT(supprimerTache()));
-    //connect(modifier,SIGNAL(clicked(),this,SLOT(modifierTache()));
 }
 
 
@@ -161,7 +158,6 @@ void ProjectWindow::creerAffichageProjet(){
     hDureeRestante->setRange(0,24); hDureeRestante->setSuffix("heure(s)");hDureeRestante->setDisabled(true);
     mDureeRestante = new QSpinBox(this);
     mDureeRestante->setRange(0,59); mDureeRestante->setSuffix("minute(s)");mDureeRestante->setDisabled(true);
-    modifier= new QPushButton("Modifier",this);
     supprimer = new QPushButton("Supprimer",this);
     programmer= new QPushButton("Programmer",this);
     tachePreemtive = new QCheckBox;
@@ -190,7 +186,6 @@ void ProjectWindow::creerAffichageProjet(){
     coucheH3->addWidget(mDureeRestante);
 
     QHBoxLayout* coucheH4= new QHBoxLayout;
-    coucheH4->addWidget(modifier);
     coucheH4->addWidget(programmer);
     coucheH4->addWidget(supprimer);
 
@@ -221,7 +216,6 @@ void ProjectWindow::creerAffichageProjet(){
     dateEcheanceTache->setDisabled(true);
     hDureeTache->setDisabled(true);
     mDureeTache->setDisabled(true);
-    modifier->setDisabled(true);
     supprimer->setDisabled(true);
     programmer->setDisabled(true);
     tachePreemtive->setDisabled(true);
@@ -315,6 +309,7 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
         if(tacheSelectionnee->getEtat() != 1)
             programmer->setDisabled(true);
 
+<<<<<<< HEAD
         if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
             TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
             tachePreemtive->setChecked(true);
@@ -324,6 +319,43 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
             qDebug()<<"preemptive avant minute:"<<tmp->getDuree().minute();
             hDureeRestante->setValue(tmp->getDureeRestante().hour());
             mDureeRestante->setValue(tmp->getDureeRestante().minute());
+=======
+    //On recherche la tache ayant le meme id dans ce projet
+    idTache->setText(tacheSelectionnee->getId());
+    nomTache->setPlainText(tacheSelectionnee->getTitre());
+    dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
+    dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
+    programmer->setEnabled(true);
+    tachePreemtive->setChecked(false);
+    ajouterSousTacheComposite->setEnabled(false);
+    ajouterSousTachePreemptive->setEnabled(false);
+    ajouterSousTacheUnitaire->setEnabled(false);
+    supprimer->setEnabled(true);
+
+    if(tacheSelectionnee->getEtat() != 1)
+        programmer->setDisabled(true);
+
+    if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
+        TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
+        tachePreemtive->setChecked(true);
+        hDureeTache->setValue(tmp->getDureeInit().hour());
+        mDureeTache->setValue(tmp->getDureeInit().minute());
+        hDureeRestante->setValue(tmp->getDureeRestante().hour());
+        mDureeRestante->setValue(tmp->getDureeRestante().minute());
+    }
+    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
+        TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
+        hDureeTache->setValue(tmp->getDuree().hour());
+        mDureeTache->setValue(tmp->getDuree().minute());
+        if(tmp->getEtat() == 1){
+            hDureeRestante->setValue(tmp->getDuree().hour());
+            mDureeRestante->setValue(tmp->getDuree().minute());
+        }
+        else
+        {
+            hDureeRestante->setValue(0);
+            mDureeRestante->setValue(0);
+>>>>>>> 7174b3a64e96493e7d145aee7d60abc387e8eafe
         }
         else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
             TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
@@ -378,7 +410,6 @@ void ProjectWindow::fermerProjet(){
             addTacheUnitaire->setDisabled(true);
             addTacheUnitairePreemptive->setDisabled(true);
             projetOuvert = NULL;
-            modifier->setDisabled(true);
             programmer->setDisabled(true);
         }
 }
@@ -413,10 +444,6 @@ void ProjectWindow::fenetreAjouterSousTacheComposite(){
     newTache->exec();
 }
 
-void ProjectWindow::modifierTache(){
-    ModTacheWindow *modTache = new ModTacheWindow(this);
-    modTache->exec();
-}
 
 void ProjectWindow::programmerTache(){
     if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
@@ -492,7 +519,10 @@ void ProjectWindow::ajouterProgrammationPreemptive(const QDate &d, const QTime &
     try{
         pm.ajouterProgrammation(*projetOuvert, *tmp, d, t, duree);
         tmp->setDureeRestante(duree);
-        projectTree->currentItem()->setTextColor(0,Qt::blue);
+        if(tmp->getDureeRestante().hour()==0&&tmp->getDureeRestante().minute()==0)
+            projectTree->currentItem()->setTextColor(0,Qt::blue);
+        else
+            projectTree->currentItem()->setTextColor(0,Qt::green);
         CalendarWindow& cw = MainWindow::getInstanceAgenda();
         cw.displayTasks();
         hDureeRestante->setValue(tmp->getDureeRestante().hour());
@@ -514,13 +544,33 @@ void ProjectWindow::chargerTreeView(){
 }
 
 void ProjectWindow::supprimerTache(){
-    // on appelle le destructeur de notre tache selectionnee
-//    Tache* tmp = tacheSelectionnee;
-//    delete tmp;
-//    projetOuvert->
-//    tacheSelectionnee = NULL;
-//    projectTree->clear();
-//    chargerTreeView();
+    ProgrammationManager& pm= ProgrammationManager::getInstance();
+    pm.supprimerProgrammation(*tacheSelectionnee);
+
+
+    QTreeWidgetItem* item = projectTree->currentItem();
+    if(item->parent()->text(0)==projetOuvert->getNom()){
+        projetOuvert->supprimerTache(*tacheSelectionnee);
+    }
+    else{
+        QTreeWidgetItem* papa = item->parent();
+        if(papa->parent()->text(0)==projetOuvert->getNom()){
+            TacheComposite* tmp = dynamic_cast<TacheComposite*>(projetOuvert->getTache(papa->text(0)));
+            tmp->supprimerSousTache(*tacheSelectionnee);
+        }
+        else {
+            QTreeWidgetItem* Grandpapa = papa->parent();
+            if(Grandpapa->parent()->text(0)==projetOuvert->getNom()){
+                TacheComposite* tmp2 = dynamic_cast<TacheComposite*>(projetOuvert->getTache(Grandpapa->text(0)));
+                TacheComposite* tmp =dynamic_cast<TacheComposite*>(tmp2->getSousTache(papa->text(0)));
+                tmp->supprimerSousTache(*tacheSelectionnee);
+           }
+        }
+
+    }
+    tacheSelectionnee = NULL;
+    projectTree->clear();
+    chargerTreeView();
 }
 
 void ProjectWindow::openQFileDialog(){

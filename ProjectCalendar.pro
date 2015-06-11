@@ -25,7 +25,6 @@ SOURCES += main.cpp\
     projet.cpp \
     projetmanager.cpp \
     addtachewindow.cpp \
-    modtachewindow.cpp \
     newprojectwindow.cpp \
     projectwindow.cpp \
     tacheunitairepreemptive.cpp \
@@ -54,7 +53,6 @@ HEADERS  += mainwindow.h \
     projet.h \
     projetmanager.h \
     addtachewindow.h \
-    modtachewindow.h \
     newprojectwindow.h \
     projectwindow.h \
     global.h \

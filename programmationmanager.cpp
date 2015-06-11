@@ -10,6 +10,7 @@
 #include <QtXml>
 #include <typeinfo>
 #include <QMessageBox>
+#include <algorithm>
 
 ProgrammationManager::Handler ProgrammationManager::handler=ProgrammationManager::Handler();
 
@@ -237,4 +238,17 @@ void ProgrammationManager::load(){
             addItem(new Programmation(*p,*t,date,horaire,duree));
         }
     }
+}
+
+void ProgrammationManager::supprimerProgrammation(const Tache& t){
+
+    std::vector<Programmation*>::iterator it = programmations.begin();
+    while (it != programmations.end()) {
+        if((*it)->getTache().getId() == t.getId())
+            programmations.erase(it);
+        else // <---- THIS IS IMPORTANT
+            ++it;
+    }
+    CalendarWindow& cw = MainWindow::getInstanceAgenda();
+    cw.displayTasks();
 }

@@ -30,7 +30,7 @@
    * \brief Classe representant la fenetre de vue de Gestion de Projet
    *
    *  La classe gere l'onglet de gestion de projet.
-   *  Celui ci se compose d'un tree view pour voir l'arborescence du projet,
+   *  Celui-ci se compose d'un tree view pour voir l'arborescence du projet,
    *  de la description du projet en cours ainsi que des boutons d'ajouts de taches
    */
 class ProjectWindow : public QMainWindow
@@ -121,7 +121,7 @@ private:
     QDateEdit* dateEcheance;/*!< Date Echeance du projet*/
 
     Projet* projetOuvert;/*!< Pointeur sur le projet ouvert*/
-    Tache* tacheSelectionnee;
+    Tache* tacheSelectionnee;/*!< Pointeur sur la tache selectionnée*/
 
     //Description de notre tache
     QLineEdit* idTache;/*!< identificateur de la Tache*/
@@ -131,8 +131,8 @@ private:
     QCheckBox* tachePreemtive;/*!< Boolen pour savoir si la tache est preemptive*/
     QSpinBox* hDureeTache;/*!< Duree en Heure de la Tache*/
     QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
-    QSpinBox* hDureeRestante;
-    QSpinBox* mDureeRestante;
+    QSpinBox* hDureeRestante;/*!< Duree Restante en Minute de la Tache*/
+    QSpinBox* mDureeRestante;/*!< Duree Restante en Minute de la Tache*/
     QPushButton* modifier;/*!< Bouton de modification de la Tache*/
     QPushButton* supprimer;/*!< Bouton de suppression de la Tache*/
     QPushButton* programmer;/*!< Bouton de programmation de la Tache*/
@@ -198,13 +198,6 @@ private slots:
          *  Appel la fenetre d'ajout d'une sous-tache unitaire preemptive
          */
     void fenetreAjouterSousTacheUnitairePreemptive();
-
-    /*!
-         *  \brief modifierTache
-         *
-         *  Permet de modifier une tache du projet
-         */
-    void modifierTache();
 
     /*!
          *  \brief supprimerTache
@@ -278,12 +271,14 @@ public:
 
 
     /*!
-         *  \brief ajouterProgrammation
+         *  \brief ajouterProgrammationPreemptive
          *
-         *  Permet d'appeler le programmation manager pour ajouter la programmation d'une tache
+         *  Permet d'appeler le programmation manager pour ajouter la programmation
+         *  partielle d'une tache preemptive
          *
          *  \param d : date de la programmation reçue par la fenêtre ProgrammerTache
          *  \param t : horaire de la programmation reçue par la fenêtre ProgrammerTache
+         *  \param duree : duree de la programmation reçue par la fenetre ProgrammerTache
          */
     void ajouterProgrammationPreemptive(const QDate &d, const QTime &t, const QTime& duree);
 };
