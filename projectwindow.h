@@ -200,13 +200,6 @@ private slots:
     void fenetreAjouterSousTacheUnitairePreemptive();
 
     /*!
-         *  \brief modifierTache
-         *
-         *  Permet de modifier une tache du projet
-         */
-    void modifierTache();
-
-    /*!
          *  \brief supprimerTache
          *
          *  Permet de supprimer une tache du projet

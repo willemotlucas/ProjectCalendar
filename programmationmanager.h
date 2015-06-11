@@ -56,6 +56,8 @@ private:
          */
     bool ajoutPossible(const Tache& t, const QDate& d, const QTime& h, const QTime& dur);
 
+
+
     /*! \class Handler
        * \brief Classe encapsulant l'instance unique du ProgrammationManager
        *
@@ -120,6 +122,7 @@ private:
 
 
 public:
+        void supprimerProgrammation(const Tache& t);
 
     /*!
          *  \brief ajouterProgrammation

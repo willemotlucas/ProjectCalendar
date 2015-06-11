@@ -82,7 +82,7 @@ public:
         int minute = dureeRestante.minute() - duree.minute();
         dureeRestante = QTime(hour, minute);
         if(hour == 0 && minute == 0)
-            etat = (Etat)2;
+            etat = (Etat)1;
     }
     void setEtat(const int& e){ etat = (Etat)e; }
     const int& getEtat() const { return (int)etat;}

@@ -75,6 +75,8 @@ public:
          */
     QTime getDuree() const { return duree; }
 
+    ~Programmation(){}
+
 
 };
 
