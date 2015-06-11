@@ -459,6 +459,11 @@ void ProjectWindow::ajouterSousTache(Tache& t){
     tacheTree->setText(0, t.getId());
     if(typeid(t) == typeid(TacheUnitaire) || typeid(t) == typeid(TacheUnitairePreemptive))
         tacheTree->setTextColor(0,Qt::green);
+    if(t.getDateEcheance() == tmp->getDateEcheance()){
+        dateEcheanceTache->setDate(tmp->getDateEcheance());
+        dateEcheance->setDate(tmp->getDateEcheance());
+    }
+
     projectTree->currentItem()->addChild(tacheTree);
 }
 
