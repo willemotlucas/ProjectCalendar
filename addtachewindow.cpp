@@ -27,6 +27,7 @@ AddTacheWindow::AddTacheWindow(QWidget* parent):QDialog(parent){
     disponibilite->setMinimumDate(QDate::currentDate());
     echeance = new QDateEdit;
     echeance->setDate(QDate::currentDate());
+    echeance->setMinimumDate(QDate::currentDate());
     connect(disponibilite, SIGNAL(dateChanged(QDate)), echeance, SLOT(setDate(QDate)));
     hDuree=new QSpinBox(this);
     hDuree->setRange(0,12);hDuree->setSuffix("heure(s)");

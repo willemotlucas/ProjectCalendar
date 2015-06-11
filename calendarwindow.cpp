@@ -83,8 +83,6 @@ void CalendarWindow::displayTasks(){
     //On enregistre le premier jour et le dernier jour de la semaine affichée
     QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
     QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
-    qDebug()<<"rowcount :"<<ui->agenda_widget->rowCount();
-    qDebug()<<"columncount :"<<ui->agenda_widget->columnCount();
 
     //On parcourt chaque programmation pour choisir lesquelles afficher
     for(std::vector<Programmation*>::iterator it = progm.begin(); it != progm.end(); ++it){
@@ -134,10 +132,11 @@ void CalendarWindow::effacerAffichageTaches(){
 
 void CalendarWindow::openQFileDialog(){
     QString filename = QFileDialog::getSaveFileName(this, "Export en XML","",tr("Fichier XML (*.xml)"));
-    QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
-    QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
-    ProgrammationManager& pm = ProgrammationManager::getInstance();
-    pm.exportWeekXML(premierJour, dernierJour, filename);
-
+    if(!filename.isEmpty()){
+        QDate premierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(0)->text(), Qt::TextDate);
+        QDate dernierJour = QDate::fromString(ui->agenda_widget->horizontalHeaderItem(6)->text(), Qt::TextDate);
+        ProgrammationManager& pm = ProgrammationManager::getInstance();
+        pm.exportWeekXML(premierJour, dernierJour, filename);
+    }
 }
 

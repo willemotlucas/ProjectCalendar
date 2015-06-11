@@ -24,8 +24,10 @@ AddPreemptiveWindow::AddPreemptiveWindow(QWidget* parent):QDialog(parent){
     titre= new QTextEdit;
     disponibilite= new QDateEdit;
     disponibilite->setDate(QDate::currentDate());
+    disponibilite->setMinimumDate(QDate::currentDate());
     echeance = new QDateEdit;
     echeance->setDate(QDate::currentDate());
+    echeance->setMinimumDate(QDate::currentDate());
     hDuree=new QSpinBox(this);
     hDuree->setRange(0,24);hDuree->setSuffix("heure(s)");
     mDuree=new QSpinBox(this);

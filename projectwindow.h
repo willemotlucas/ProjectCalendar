@@ -133,7 +133,6 @@ private:
     QSpinBox* mDureeTache;/*!< Duree en Minute de la Tache*/
     QSpinBox* hDureeRestante;/*!< Duree Restante en Minute de la Tache*/
     QSpinBox* mDureeRestante;/*!< Duree Restante en Minute de la Tache*/
-    QPushButton* modifier;/*!< Bouton de modification de la Tache*/
     QPushButton* supprimer;/*!< Bouton de suppression de la Tache*/
     QPushButton* programmer;/*!< Bouton de programmation de la Tache*/
     QPushButton* ajouterSousTacheUnitaire;/*!< Bouton d'ajout sous tache unitaire*/

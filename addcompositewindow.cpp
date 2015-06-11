@@ -18,13 +18,11 @@ AddCompositeWindow::AddCompositeWindow(QWidget* parent):QDialog(parent){
     QLabel* idLabel = new QLabel("Identificateur",this);
     QLabel* titreLabel =new QLabel("Titre",this);
     QLabel* dispoLabel=new QLabel("Disponibilite",this);
-    QLabel* echeanceLabel= new QLabel("Echéance",this);
     identificateur=new QLineEdit;
     titre= new QTextEdit;
     disponibilite= new QDateEdit;
     disponibilite->setDate(QDate::currentDate());
-    echeance = new QDateEdit;
-    echeance->setDate(QDate::currentDate());
+    disponibilite->setMinimumDate(QDate::currentDate());
     ok= new QPushButton("OK",this);
     annuler= new QPushButton("Annuler",this);
 
@@ -39,8 +37,6 @@ AddCompositeWindow::AddCompositeWindow(QWidget* parent):QDialog(parent){
     QHBoxLayout* coucheH3= new QHBoxLayout;
     coucheH3->addWidget(dispoLabel);
     coucheH3->addWidget(disponibilite);
-    coucheH3->addWidget(echeanceLabel);
-    coucheH3->addWidget(echeance);
 
     QHBoxLayout* coucheH4= new QHBoxLayout;
     coucheH4->addWidget(ok);

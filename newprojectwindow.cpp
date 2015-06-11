@@ -17,6 +17,7 @@ NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
 
     dateDispo = new QDateEdit;
     dateDispo->setDate(QDate::currentDate());
+    dateDispo->setMinimumDate(QDate::currentDate());
     QLabel* dispo = new QLabel("Date disponibilite");
 
     QHBoxLayout* date= new QHBoxLayout;

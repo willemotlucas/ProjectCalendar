@@ -4,46 +4,23 @@
   <nom>Projet1</nom>
   <description>Projet de test</description>
   <dateDebut>mer. juin 10 2015</dateDebut>
-  <dateEcheance>jeu. juin 25 2015</dateEcheance>
+  <dateEcheance>ven. juin 19 2015</dateEcheance>
   <taches>
-   <tache etat="0" type="unitaire">
-    <identifiant>TacheUnitaire1</identifiant>
-    <titre></titre>
-    <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>ven. juin 19 2015</echeance>
-    <duree minute="0" heure="4"/>
-   </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire2</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>ven. juin 19 2015</echeance>
     <duree minute="0" heure="6"/>
    </tache>
-   <tache etat="2" type="preemtive">
-    <identifiant>TachePreemptive1</identifiant>
-    <titre></titre>
-    <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>sam. juin 20 2015</echeance>
-    <dureeInitiale minute="0" heure="10"/>
-    <dureeRestante minute="0" heure="0"/>
-   </tache>
-   <tache etat="1" type="preemtive">
-    <identifiant>TachePreemptive2</identifiant>
-    <titre></titre>
-    <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>jeu. juin 18 2015</echeance>
-    <dureeInitiale minute="0" heure="6"/>
-    <dureeRestante minute="0" heure="3"/>
-   </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire3</identifiant>
     <titre>Test</titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>lun. juin 15 2015</echeance>
     <duree minute="0" heure="3"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire4</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
@@ -51,56 +28,19 @@
     <duree minute="0" heure="3"/>
    </tache>
    <tache type="composite">
-    <identifiant>TacheComposite1</identifiant>
-    <titre>Test</titre>
-    <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>jeu. juin 25 2015</echeance>
-    <soustaches>
-     <tache etat="1" type="unitaire">
-      <identifiant>SousTacheUnitaire</identifiant>
-      <titre></titre>
-      <disponibilite>mer. juin 10 2015</disponibilite>
-      <echeance>jeu. juin 25 2015</echeance>
-      <duree minute="0" heure="5"/>
-     </tache>
-     <tache type="composite">
-      <identifiant>SousTacheComposite</identifiant>
-      <titre>test</titre>
-      <disponibilite>mer. juin 10 2015</disponibilite>
-      <echeance>jeu. juin 18 2015</echeance>
-      <soustaches>
-       <tache etat="0" type="unitaire">
-        <identifiant>SousSousTacheUnitaire</identifiant>
-        <titre></titre>
-        <disponibilite>mer. juin 10 2015</disponibilite>
-        <echeance>jeu. juin 18 2015</echeance>
-        <duree minute="0" heure="6"/>
-       </tache>
-       <tache type="composite">
-        <identifiant>SouuuuuuusTacheCompo</identifiant>
-        <titre>grege</titre>
-        <disponibilite>jeu. juin 11 2015</disponibilite>
-        <echeance>mer. juin 17 2015</echeance>
-        <soustaches>
-         <tache etat="1" type="unitaire">
-          <identifiant>Souuuuuustu</identifiant>
-          <titre>ezrg</titre>
-          <disponibilite>jeu. juin 11 2015</disponibilite>
-          <echeance>mer. juin 17 2015</echeance>
-          <duree minute="0" heure="5"/>
-         </tache>
-        </soustaches>
-       </tache>
-      </soustaches>
-     </tache>
-    </soustaches>
-   </tache>
-   <tache type="composite">
     <identifiant>TacheComposite2</identifiant>
     <titre>Test</titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>mer. juin 10 2015</echeance>
-    <soustaches/>
+    <echeance>jeu. juin 11 2015</echeance>
+    <soustaches>
+     <tache type="unitaire" etat="1">
+      <identifiant>body</identifiant>
+      <titre></titre>
+      <disponibilite>jeu. juin 11 2015</disponibilite>
+      <echeance>jeu. juin 11 2015</echeance>
+      <duree minute="0" heure="2"/>
+     </tache>
+    </soustaches>
    </tache>
   </taches>
  </projet>
@@ -110,7 +50,7 @@
   <dateDebut></dateDebut>
   <dateEcheance>lun. juin 15 2015</dateEcheance>
   <taches>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheU</identifiant>
     <titre></titre>
     <disponibilite>jeu. juin 11 2015</disponibilite>
@@ -125,7 +65,7 @@
   <dateDebut></dateDebut>
   <dateEcheance>ven. juin 19 2015</dateEcheance>
   <taches>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>dsfes</identifiant>
     <titre>gezgez</titre>
     <disponibilite>jeu. juin 11 2015</disponibilite>
@@ -138,9 +78,9 @@
   <nom>Projet4</nom>
   <description></description>
   <dateDebut>jeu. juin 11 2015</dateDebut>
-  <dateEcheance>jeu. juin 18 2015</dateEcheance>
+  <dateEcheance>mar. juin 16 2015</dateEcheance>
   <taches>
-   <tache etat="1" type="unitaire">
+   <tache type="unitaire" etat="1">
     <identifiant>fzegzeg</identifiant>
     <titre>gzegze</titre>
     <disponibilite>jeu. juin 11 2015</disponibilite>
@@ -151,38 +91,8 @@
     <identifiant>gzerg</identifiant>
     <titre>gezg</titre>
     <disponibilite>jeu. juin 11 2015</disponibilite>
-    <echeance>sam. juin 20 2015</echeance>
-    <soustaches>
-     <tache etat="1" type="unitaire">
-      <identifiant>gezgfezgf</identifiant>
-      <titre>gezgze</titre>
-      <disponibilite>jeu. juin 11 2015</disponibilite>
-      <echeance>jeu. juin 18 2015</echeance>
-      <duree minute="0" heure="0"/>
-     </tache>
-     <tache etat="1" type="unitaire">
-      <identifiant>hytjytj</identifiant>
-      <titre>jytj</titre>
-      <disponibilite>jeu. juin 11 2015</disponibilite>
-      <echeance>sam. juin 20 2015</echeance>
-      <duree minute="0" heure="2"/>
-     </tache>
-     <tache type="composite">
-      <identifiant>grg</identifiant>
-      <titre>greg</titre>
-      <disponibilite>jeu. juin 11 2015</disponibilite>
-      <echeance>mer. juin 24 2015</echeance>
-      <soustaches>
-       <tache etat="1" type="unitaire">
-        <identifiant>rgreg</identifiant>
-        <titre></titre>
-        <disponibilite>jeu. juin 11 2015</disponibilite>
-        <echeance>mer. juin 24 2015</echeance>
-        <duree minute="0" heure="3"/>
-       </tache>
-      </soustaches>
-     </tache>
-    </soustaches>
+    <echeance>jeu. juin 11 2015</echeance>
+    <soustaches/>
    </tache>
   </taches>
  </projet>

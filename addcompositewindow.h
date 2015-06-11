@@ -49,7 +49,6 @@ private:
     QLineEdit* identificateur;/*!< Identificateur de la Tache*/
     QTextEdit* titre;/*!< Titre de la Tache*/
     QDateEdit* disponibilite;/*!< Disponibilite de la Tache*/
-    QDateEdit* echeance;/*!< Echeance de la Tache*/
     QPushButton* ok;/*!< Bouton de validation*/
     QPushButton* annuler;/*!< Bouton d'annulation*/
 

@@ -109,7 +109,6 @@ void ProjetManager::load(const QString& f){
             if(children.nodeName() == "dateEcheance")
                 echeance = QDate::fromString(children.toElement().text(),Qt::TextDate);
         }
-        qDebug()<<"date dispo = "<<dispo;
         //Ajouter le projet pour récupérer l'objet
         Projet& p = this->ajouterProjet(nom, description, dispo);
 

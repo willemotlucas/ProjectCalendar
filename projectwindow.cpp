@@ -299,7 +299,6 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
         dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
         dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
         programmer->setEnabled(true);
-        modifier->setEnabled(true);
         tachePreemtive->setChecked(false);
         ajouterSousTacheComposite->setEnabled(false);
         ajouterSousTachePreemptive->setEnabled(false);
@@ -309,63 +308,19 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
         if(tacheSelectionnee->getEtat() != 1)
             programmer->setDisabled(true);
 
-<<<<<<< HEAD
         if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
             TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
             tachePreemtive->setChecked(true);
             hDureeTache->setValue(tmp->getDureeInit().hour());
             mDureeTache->setValue(tmp->getDureeInit().minute());
-            qDebug()<<"preemptive avant hour:"<<tmp->getDuree().hour();
-            qDebug()<<"preemptive avant minute:"<<tmp->getDuree().minute();
             hDureeRestante->setValue(tmp->getDureeRestante().hour());
             mDureeRestante->setValue(tmp->getDureeRestante().minute());
-=======
-    //On recherche la tache ayant le meme id dans ce projet
-    idTache->setText(tacheSelectionnee->getId());
-    nomTache->setPlainText(tacheSelectionnee->getTitre());
-    dateDispoTache->setDate(tacheSelectionnee->getDateDisponibilite());
-    dateEcheanceTache->setDate(tacheSelectionnee->getDateEcheance());
-    programmer->setEnabled(true);
-    tachePreemtive->setChecked(false);
-    ajouterSousTacheComposite->setEnabled(false);
-    ajouterSousTachePreemptive->setEnabled(false);
-    ajouterSousTacheUnitaire->setEnabled(false);
-    supprimer->setEnabled(true);
-
-    if(tacheSelectionnee->getEtat() != 1)
-        programmer->setDisabled(true);
-
-    if(typeid(*tacheSelectionnee) == typeid(TacheUnitairePreemptive)){
-        TacheUnitairePreemptive* tmp = dynamic_cast<TacheUnitairePreemptive*>(tacheSelectionnee);
-        tachePreemtive->setChecked(true);
-        hDureeTache->setValue(tmp->getDureeInit().hour());
-        mDureeTache->setValue(tmp->getDureeInit().minute());
-        hDureeRestante->setValue(tmp->getDureeRestante().hour());
-        mDureeRestante->setValue(tmp->getDureeRestante().minute());
-    }
-    else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
-        TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
-        hDureeTache->setValue(tmp->getDuree().hour());
-        mDureeTache->setValue(tmp->getDuree().minute());
-        if(tmp->getEtat() == 1){
-            hDureeRestante->setValue(tmp->getDuree().hour());
-            mDureeRestante->setValue(tmp->getDuree().minute());
-        }
-        else
-        {
-            hDureeRestante->setValue(0);
-            mDureeRestante->setValue(0);
->>>>>>> 7174b3a64e96493e7d145aee7d60abc387e8eafe
         }
         else if(typeid(*tacheSelectionnee) == typeid(TacheUnitaire)){
             TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(tacheSelectionnee);
-            qDebug()<<"unitaire avant hour:"<<tmp->getDuree().hour();
-            qDebug()<<"unitaire avant minute:"<<tmp->getDuree().minute();
             hDureeTache->setValue(tmp->getDuree().hour());
             mDureeTache->setValue(tmp->getDuree().minute());
             if(tmp->getEtat() == 1){
-                qDebug()<<"unitaire apres hour:"<<tmp->getDuree().hour();
-                qDebug()<<"unitaire apres minute:"<<tmp->getDuree().minute();
                 hDureeRestante->setValue(tmp->getDuree().hour());
                 mDureeRestante->setValue(tmp->getDuree().minute());
             }
@@ -374,7 +329,6 @@ void ProjectWindow::chargerDetailsTache(QTreeWidgetItem* item, int column){
                 hDureeRestante->setValue(0);
                 mDureeRestante->setValue(0);
             }
-
         }
         else if(typeid(*tacheSelectionnee) == typeid(TacheComposite)){
             ajouterSousTacheComposite->setEnabled(true);
@@ -578,8 +532,10 @@ void ProjectWindow::openQFileDialog(){
         QMessageBox::warning(this, "Attention", "Veuillez ouvrir un projet avant d'exporter en XML");
     else{
         QString filename = QFileDialog::getSaveFileName(this, "Export en XML","",tr("Fichier XML (*.xml)"));
-        ProgrammationManager& pm = ProgrammationManager::getInstance();
-        pm.exportProjectXML(projetOuvert->getNom() ,filename);
+        if(!filename.isEmpty()){
+            ProgrammationManager& pm = ProgrammationManager::getInstance();
+            pm.exportProjectXML(projetOuvert->getNom() ,filename);
+        }
     }
 }
 

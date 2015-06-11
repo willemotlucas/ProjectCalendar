@@ -85,10 +85,13 @@ void MainWindow::creerActions(){
     actionFermerProjet = new QAction("Fermer Projet",this);
     actionFermerProjet->setShortcut(QKeySequence("Ctrl+W"));
     connect(actionFermerProjet,SIGNAL(triggered()),this->getInstanceProjet().actionFermerProjet,SLOT(trigger()));
+
     actionImprimerProjet = new QAction("Imprimer Projet",this);
     actionImprimerProjet->setShortcut(QKeySequence("Ctrl+P"));
+    connect(actionImprimerProjet,SIGNAL(triggered()),this->getInstanceProjet().actionImprimer,SLOT(trigger()));
     actionImprimerAgenda = new QAction("Imprimer Agenda",this);
     actionImprimerAgenda->setShortcut(QKeySequence("Ctrl+A"));
+    connect(actionImprimerAgenda,SIGNAL(triggered()),this->getInstanceAgenda().actionExporterSemaine,SLOT(trigger()));
     actionQuitter = new QAction("Quitter",this);
     actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
     connect(actionQuitter,SIGNAL(triggered()),qApp,SLOT(quit()));

@@ -29,6 +29,8 @@ void TacheComposite::supprimerSousTache(const Tache &tache){
 
 bool TacheComposite::trouverTache(const Tache& tache){
     for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
+        qDebug()<<"id tache ajoutée:"<<tache.getId();
+        qDebug()<<"id tache parcourue:"<<(*it)->getId();
         if((*it)->getId() == tache.getId())
             return true;
     }
