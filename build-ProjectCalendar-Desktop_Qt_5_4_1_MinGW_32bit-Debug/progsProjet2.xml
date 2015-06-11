@@ -1,0 +1,8 @@
+<!DOCTYPE programmations>
+<programmations>
+ <programmation tache="TacheU" projet="Projet2">
+  <date>jeu. juin 11 2015</date>
+  <horaire minute="0" heure="10"/>
+  <duree minute="0" heure="4"/>
+ </programmation>
+</programmations>

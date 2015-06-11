@@ -25,10 +25,10 @@ protected:
     QDate echeance;
     Etat etat;
 
-    Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const int& e):
+    Tache(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, unsigned int e):
             identificateur(id),titre(t),disponibilite(dispo),echeance(deadline),etat((Etat)e){}
     //Constructeur de tache sans deadline pour les taches composites : la deadline est la borne supérieur des sous-tâches de la tache composite.
-    Tache(const QString& id, const QString& t, const QDate& dispo, const int& e):
+    Tache(const QString& id, const QString& t, const QDate& dispo, unsigned int e):
             identificateur(id),titre(t),disponibilite(dispo),etat((Etat)e){}
 //    Tache(const Tache& t);
     Tache& operator=(const Tache&);
@@ -51,8 +51,8 @@ public:
     QDate getDateDisponibilite() const {  return disponibilite; }
     void setDateDisponibiltie(QDate dispo) { disponibilite = dispo; }
     QDate getDateEcheance() const {  return echeance; }
-    virtual void setEtat(const int& e) = 0;
-    virtual const int& getEtat() const = 0;
+    virtual void setEtat(unsigned int e) = 0;
+    virtual unsigned int getEtat() const = 0;
 
     //ABSTRACT METHODS
 

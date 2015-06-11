@@ -15,13 +15,13 @@ class TacheComposite : public Tache
     void setDateEcheance(const QDate& e){echeance=e;}
 
     friend class TacheFactory;
-    TacheComposite(const QString& id, const QString& t, const QDate& dispo, const int& e=2):Tache(id, t, dispo,e){echeance=dispo;}
+    TacheComposite(const QString& id, const QString& t, const QDate& dispo):Tache(id, t, dispo,2){echeance=dispo;}
     TacheComposite(const TacheComposite& t);
     const TacheComposite& operator=(const TacheComposite& t);
     QDomElement& write(QDomDocument* dom);
     QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
-    void setEtat(const int &e){}
-    const int& getEtat() const{return (int)etat;}
+    void setEtat(unsigned int e){}
+    unsigned int getEtat() const{return (unsigned int)etat;}
 
 
 public:

@@ -136,6 +136,39 @@ void ProgrammationManager::exportWeekXML(const QDate& dateDebut, const QDate& da
     fichier.close();
 }
 
+void ProgrammationManager::exportProjectXML(const QString& projectname, const QString& filename){
+    //On créé l'arbre DOM
+    QDomDocument* dom = new QDomDocument("programmations");
+    QDomElement dom_element = dom->documentElement();
+
+    //On créé le noeud <programmations> qui contiendra toutes les programmations
+    QDomNode progs = dom->createElement("programmations");
+
+    //On parcourt toutes les programmations du vector
+    for(std::vector<Programmation*>::iterator it = programmations.begin(); it != programmations.end(); ++it){
+        //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
+        if((*it)->getProjet().getNom() == projectname){
+            QDomElement prog = writeProgrammation((*it), dom);
+            progs.appendChild(prog);
+        }
+    }
+
+    dom->appendChild(progs);
+
+    QFile fichier(filename);
+    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        fichier.close();
+        throw new CalendarException(QString("Erreur lors de l'ouverture du fichier " + filename + " pour écriture."));
+    }
+
+    //Ecriture de l'arbre DOM dans le fichier XML
+    QString write_doc = dom->toString();
+    QTextStream stream(&fichier);
+    stream<<write_doc;
+    fichier.close();
+}
+
 void ProgrammationManager::save(){
     //On créé l'arbre DOM
     QDomDocument* dom = new QDomDocument("programmations");

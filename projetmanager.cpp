@@ -212,7 +212,7 @@ Tache& ProjetManager::loadTache(QDomDocument* dom ,QDomNode* tache){
 
         //On cree la tache unitaire composite
         TacheFactory& tm = TacheFactory::getInstance();
-        TacheComposite& t =dynamic_cast<TacheComposite&>(tm.creerTacheComposite(identifiant, titre, dispoTache, etat));
+        TacheComposite& t =dynamic_cast<TacheComposite&>(tm.creerTacheComposite(identifiant, titre, dispoTache));
 
         //Lire toutes les soustaches et les ajouter a notre tache composite
         QDomNode* sousTaches = new QDomNode(tache->firstChildElement("soustaches"));

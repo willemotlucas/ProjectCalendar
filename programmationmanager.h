@@ -178,6 +178,17 @@ public:
     void exportWeekXML(const QDate& dateDebut, const QDate& dateFin, const QString& filename);
 
     /*!
+         *  \brief exportProjectXML
+         *
+         *  Fonction permettant l'export des programmatiosn d'un projet
+         *
+         *  \param dateDebut : date du debut de la semaine
+         *  \param dateFin : date de la fin de la semaine
+         *  \param filename : nom du fichier XML
+         */
+    void exportProjectXML(const QString& projectname, const QString& filename);
+
+    /*!
          *  \brief load
          *
          *  Fonction permettant de charger les programmations à partir d'un fichier XML dans le vector

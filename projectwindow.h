@@ -237,6 +237,7 @@ private slots:
          */
     void programmerTache();
 
+    void openQFileDialog();
 public:
     /*!
          *  \brief chargerDetailsProjet

@@ -6,49 +6,49 @@
   <dateDebut></dateDebut>
   <dateEcheance></dateEcheance>
   <taches>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire1</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>ven. juin 19 2015</echeance>
-    <duree heure="4" minute="0"/>
+    <duree minute="0" heure="4"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire2</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>ven. juin 19 2015</echeance>
-    <duree heure="6" minute="0"/>
+    <duree minute="0" heure="6"/>
    </tache>
-   <tache etat="2" type="preemtive">
+   <tache type="preemtive" etat="2">
     <identifiant>TachePreemptive1</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>sam. juin 20 2015</echeance>
-    <dureeInitiale heure="10" minute="0"/>
-    <dureeRestante heure="0" minute="0"/>
+    <dureeInitiale minute="0" heure="10"/>
+    <dureeRestante minute="0" heure="0"/>
    </tache>
-   <tache etat="1" type="preemtive">
+   <tache type="preemtive" etat="1">
     <identifiant>TachePreemptive2</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>jeu. juin 18 2015</echeance>
-    <dureeInitiale heure="6" minute="0"/>
-    <dureeRestante heure="3" minute="0"/>
+    <dureeInitiale minute="0" heure="6"/>
+    <dureeRestante minute="0" heure="3"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire3</identifiant>
     <titre>Test</titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>lun. juin 15 2015</echeance>
-    <duree heure="3" minute="0"/>
+    <duree minute="0" heure="3"/>
    </tache>
-   <tache etat="0" type="unitaire">
+   <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire4</identifiant>
     <titre></titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>jeu. juin 18 2015</echeance>
-    <duree heure="3" minute="0"/>
+    <duree minute="0" heure="3"/>
    </tache>
    <tache type="composite">
     <identifiant>TacheComposite1</identifiant>
@@ -56,12 +56,12 @@
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>jeu. juin 25 2015</echeance>
     <soustaches>
-     <tache etat="1" type="unitaire">
+     <tache type="unitaire" etat="1">
       <identifiant>SousTacheUnitaire</identifiant>
       <titre></titre>
       <disponibilite>mer. juin 10 2015</disponibilite>
       <echeance>jeu. juin 25 2015</echeance>
-      <duree heure="5" minute="0"/>
+      <duree minute="0" heure="5"/>
      </tache>
      <tache type="composite">
       <identifiant>SousTacheComposite</identifiant>
@@ -69,12 +69,12 @@
       <disponibilite>mer. juin 10 2015</disponibilite>
       <echeance>jeu. juin 18 2015</echeance>
       <soustaches>
-       <tache etat="0" type="unitaire">
+       <tache type="unitaire" etat="0">
         <identifiant>SousSousTacheUnitaire</identifiant>
         <titre></titre>
         <disponibilite>mer. juin 10 2015</disponibilite>
         <echeance>jeu. juin 18 2015</echeance>
-        <duree heure="6" minute="0"/>
+        <duree minute="0" heure="6"/>
        </tache>
       </soustaches>
      </tache>
@@ -86,6 +86,21 @@
     <disponibilite>mer. juin 10 2015</disponibilite>
     <echeance>mer. juin 10 2015</echeance>
     <soustaches/>
+   </tache>
+  </taches>
+ </projet>
+ <projet>
+  <nom>Projet2</nom>
+  <description>Test export</description>
+  <dateDebut></dateDebut>
+  <dateEcheance></dateEcheance>
+  <taches>
+   <tache type="unitaire" etat="0">
+    <identifiant>TacheU</identifiant>
+    <titre></titre>
+    <disponibilite>jeu. juin 11 2015</disponibilite>
+    <echeance>lun. juin 15 2015</echeance>
+    <duree minute="0" heure="4"/>
    </tache>
   </taches>
  </projet>

@@ -24,8 +24,8 @@ public:
         if(hour == 0 && minute == 0)
             etat = (Etat)2;
     }
-    void setEtat(const int& e){ etat = (Etat)e; }
-    const int& getEtat() const { return (int)etat;}
+    void setEtat(unsigned int e){ etat = (Etat)e; }
+    unsigned int getEtat() const { return (unsigned int)etat;}
     void setDateEcheance(const QDate& e){}
 
 private:
@@ -33,7 +33,7 @@ private:
     QTime dureeRestante;
 
     friend class TacheFactory;
-    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& durInit, const QTime& durRest, const int& e = 1):
+    TacheUnitairePreemptive(const QString& id, const QString& t, const QDate& dispo, const QDate& deadline, const QTime& durInit, const QTime& durRest, unsigned int e = 1):
             TacheUnitaire(id, t, dispo, deadline,QTime(0,0), e),dureeInitiale(durInit),dureeRestante(durRest){}
     TacheUnitairePreemptive(const TacheUnitairePreemptive& t);
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);

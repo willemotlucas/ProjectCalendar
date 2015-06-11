@@ -66,7 +66,6 @@ private:
     QDate currentDate;/*!< Date courante de la semaine en cours*/
     QFileDialog* saveWindow;/*!< Fenetre de sauvegarde*/
     QAction* actionExporterSemaine;/*!< Export des programmations de la semaine*/
-    QAction* actionExporterProjet;/*!< Export des programmations du projet en cours*/
 
     /*!
          *  \brief effacerAffichageTaches

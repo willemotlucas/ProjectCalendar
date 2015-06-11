@@ -48,13 +48,12 @@ ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 void ProjectWindow::creerActions(){
     actionNouveauProjet = new QAction("Nouveau",this);
     connect(actionNouveauProjet,SIGNAL(triggered()),this,SLOT(nouveauProjet()));
-
     actionChargerProjet = new QAction("Charger",this);
     connect(actionChargerProjet, SIGNAL(triggered()), this, SLOT(chargerProjet()));
     actionFermerProjet = new QAction("Fermer",this);
     connect(actionFermerProjet,SIGNAL(triggered()),this,SLOT(fermerProjet()));
-    actionImprimer = new QAction("Imprimer",this);
-
+    actionImprimer = new QAction("Exporter le projet ouvert en XML",this);
+    connect(actionImprimer,SIGNAL(triggered()),this,SLOT(openQFileDialog()));
 }
 
 void ProjectWindow::creerBarreOutils(){
@@ -501,6 +500,16 @@ void ProjectWindow::supprimerTache(){
 //    tacheSelectionnee = NULL;
 //    projectTree->clear();
 //    chargerTreeView();
+}
+
+void ProjectWindow::openQFileDialog(){
+    if(projetOuvert == NULL)
+        QMessageBox::warning(this, "Attention", "Veuillez ouvrir un projet avant d'exporter en XML");
+    else{
+        QString filename = QFileDialog::getSaveFileName(this, "Export en XML","",tr("Fichier XML (*.xml)"));
+        ProgrammationManager& pm = ProgrammationManager::getInstance();
+        pm.exportProjectXML(projetOuvert->getNom() ,filename);
+    }
 }
 
 
