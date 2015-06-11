@@ -25,7 +25,6 @@
 #include <QMessageBox>
 #include <typeinfo>
 
-
 ProjectWindow::ProjectWindow(QWidget *parent) : QMainWindow(parent)
 {
     //Generation des widgets de la fenetre agenda
@@ -494,13 +493,29 @@ void ProjectWindow::chargerTreeView(){
 }
 
 void ProjectWindow::supprimerTache(){
-    // on appelle le destructeur de notre tache selectionnee
-//    Tache* tmp = tacheSelectionnee;
-//    delete tmp;
-//    projetOuvert->
-//    tacheSelectionnee = NULL;
-//    projectTree->clear();
-//    chargerTreeView();
+    QTreeWidgetItem* item = projectTree->currentItem();
+    if(item->parent()->text(0)==projetOuvert->getNom()){
+        projetOuvert->supprimerTache(*tacheSelectionnee);
+    }
+    else{
+        QTreeWidgetItem* papa = item->parent();
+        if(papa->parent()->text(0)==projetOuvert->getNom()){
+            TacheComposite* tmp = dynamic_cast<TacheComposite*>(projetOuvert->getTache(papa->text(0)));
+            tmp->supprimerSousTache(*tacheSelectionnee);
+        }
+        else {
+            QTreeWidgetItem* Grandpapa = papa->parent();
+            if(Grandpapa->parent()->text(0)==projetOuvert->getNom()){
+                TacheComposite* tmp2 = dynamic_cast<TacheComposite*>(projetOuvert->getTache(Grandpapa->text(0)));
+                TacheComposite* tmp =dynamic_cast<TacheComposite*>(tmp2->getSousTache(papa->text(0)));
+                tmp->supprimerSousTache(*tacheSelectionnee);
+           }
+        }
+
+    }
+    tacheSelectionnee = NULL;
+    projectTree->clear();
+    chargerTreeView();
 }
 
 

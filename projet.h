@@ -68,6 +68,13 @@ private:
          */
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
 
+    /*!
+         *  \brief trouverTache
+         *
+         *  Retrouver une tache dans le projet
+         *
+         *  \param id : identificateur de la tache a retrouver
+         */
     Tache* trouverTache(const QString& id) const;
 public:
     /*!
@@ -112,14 +119,41 @@ public:
          *
          *  \param t : tache a ajouter au projet
          */
-
     void ajouterTache(Tache& t);
+
+    /*!
+         *  \brief isTacheExistante
+         *
+         *  Fonction booleenne permettant de savoir
+         *  si une tache existe deja avec le meme identificateur
+         *
+         *  \param id : identificateur de la tache
+         */
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
 //    const Tache& getTache(const QString& code) const;
 //    Tache& getTache(const QString& id);
     Tache* getTache(const QString& id);
 
+    /*!
+         *  \brief supprimerTache
+         *
+         *  Fonction permettant de supprimer une tache dans le vector
+         *
+         *  \param tache : tache a supprimer au projet
+         */
+    void supprimerTache(const Tache &tache);
+    /*!
+         *  \brief begin
+         *
+         *  Permet d'itérer sur le vector de taches du projet
+         */
     contTache::iterator begin(){return taches.begin();}
+
+    /*!
+         *  \brief end
+         *
+         *  Permet d'itérer sur le vector de taches du projet
+         */
     contTache::iterator end(){return taches.end();}
 };
 

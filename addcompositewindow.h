@@ -4,7 +4,7 @@
 
 /*!
  * \file AddCompositeWindow.h
- * \brief Fenetre d ajout d'une tache composite
+ * \brief Fenetre d'ajout d'une tache composite
  * \author Lucas WILLEMOT et Valentin PAUL
  * \version 0.1
  */

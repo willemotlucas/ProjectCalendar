@@ -1,5 +1,7 @@
 #include "projet.h"
 #include <QDebug>
+#include <algorithm>
+
 
 void Projet::ajouterTache(Tache& t){
     if (trouverTache(t.getId())) throw CalendarException("La tache " + t.getId() + " existe déjà. Veuillez modifier son identificateur.");
@@ -26,5 +28,12 @@ Tache* Projet::getTache(const QString &id){
     Tache* t=trouverTache(id);
     if(!t) throw CalendarException("La tache " + id + " est inexistante.");
     return t;
+}
+
+void Projet::supprimerTache(const Tache &tache){
+    std::vector<Tache*>::iterator it = find(taches.begin(),taches.end(),&tache);
+    if(it != taches.end()){
+    taches.erase(it);
+    }
 }
 
