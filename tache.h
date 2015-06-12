@@ -15,7 +15,6 @@
 #include <QTreeWidget>
 
 #include "calendarexception.h"
-#include "duree.h"
 
 /*! \class Tache
    * \brief classe virtuelle pure representant les taches
@@ -93,7 +92,7 @@ protected:
          *
          *  \param tree : arborescence de notre treeview
          */
-    virtual QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree)=0;
+    virtual QTreeWidgetItem& chargerTreeTache()=0;
 
 public:
     /*!
@@ -112,7 +111,7 @@ public:
          *
          *  \param tree : arborescence de notre treeview
          */
-    QTreeWidgetItem& chargerTree(QTreeWidget* tree){return chargerTreeTache(tree);}
+    QTreeWidgetItem& chargerTree(){return chargerTreeTache();}
     //DESTRUCTOR
 
     /*!

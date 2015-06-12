@@ -2,7 +2,6 @@
 #include <QTextCodec>
 #include <QtXml>
 #include <QMessageBox>
-#include <QDebug>
 #include <typeinfo>
 #include "global.h"
 
@@ -98,7 +97,7 @@ void ProjetManager::load(const QString& f){
         QDate dispo;
         QDate echeance;
         //On parcourt toutes les caracteristiques d'un projet pour construire l'objet
-        for(unsigned int i = 0; i < childrens.length(); i++){
+        for(int i = 0; i < childrens.length(); i++){
             QDomNode children = childrens.at(i);
             if(children.nodeName() == "nom")
                 nom = children.toElement().text();

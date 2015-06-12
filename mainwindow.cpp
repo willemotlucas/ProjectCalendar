@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QHBoxLayout>

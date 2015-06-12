@@ -20,7 +20,6 @@
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QDebug>
 #include <QMessageBox>
 #include <typeinfo>
 
@@ -492,7 +491,7 @@ void ProjectWindow::chargerTreeView(){
         //Ajout de la racine
         rootTree->setText(0,projetOuvert->getNom());
         for(std::vector<Tache*>::iterator i = projetOuvert->begin(); i != projetOuvert->end(); ++i){
-            QTreeWidgetItem& m = (*i)->chargerTree(projectTree) ;
+            QTreeWidgetItem& m = (*i)->chargerTree() ;
             rootTree->addChild(&m);
         }
 }

@@ -1,6 +1,5 @@
 #include "projet.h"
 #include "tachecomposite.h"
-#include <QDebug>
 #include <algorithm>
 
 

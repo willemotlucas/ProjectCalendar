@@ -6,7 +6,6 @@
 #include "mainwindow.h"
 #include "tache.h"
 #include "global.h"
-#include <QDebug>
 #include <QtXml>
 #include <typeinfo>
 #include <QMessageBox>
@@ -180,7 +179,7 @@ void ProgrammationManager::save(){
     QDomNode progs = dom->createElement("programmations");
 
     //On parcourt toutes les programmations du vector
-    for(int i=0; i < programmations.size(); i++){
+    for(unsigned int i=0; i < programmations.size(); i++){
         //A chaque programmation, on créé un noeud <programmation> contenant la tache programmée, la date et l'horaire
         QDomElement prog = writeProgrammation(programmations[i],dom);
         progs.appendChild(prog);

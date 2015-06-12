@@ -5,7 +5,6 @@
 #include "tacheunitairepreemptive.h"
 #include "programmationmanager.h"
 
-#include <QDebug>
 #include <QDate>
 #include "typeinfo"
 

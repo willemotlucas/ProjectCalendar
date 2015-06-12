@@ -23,8 +23,8 @@
    *  avec une date et un horaire precis.
    */
 class Programmation {
-    const Tache* tache;/*!< Pointeur sur la tache a programmer*/
     const Projet* projet;/*!< Pointeur sur le projet dont la tache correpond*/
+    const Tache* tache;/*!< Pointeur sur la tache a programmer*/
     QDate date;/*!< Date de la programmation*/
     QTime horaire;/*!< Horaire de la programmation*/
     QTime duree;/*!< Duree de la programmation*/

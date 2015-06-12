@@ -1,7 +1,6 @@
 #include <QFile>
 #include <QTextCodec>
 #include <QtXml>
-#include <QDebug>
 
 #include "tacheunitairepreemptive.h"
 #include "global.h"
@@ -47,7 +46,7 @@ QDomElement& TacheUnitairePreemptive::write(QDomDocument* dom){
     return *tache;
 }
 
-QTreeWidgetItem& TacheUnitairePreemptive::chargerTreeTache(QTreeWidget* tree){
+QTreeWidgetItem& TacheUnitairePreemptive::chargerTreeTache(){
     QTreeWidgetItem* tache = new QTreeWidgetItem();
     tache->setText(0,this->getId());
     if(this->getEtat()==1)

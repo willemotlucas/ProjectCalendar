@@ -6,7 +6,6 @@
 #include "mainwindow.h"
 
 #include <QLabel>
-#include <QDebug>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QTime>
