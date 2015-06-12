@@ -76,10 +76,8 @@ Projet* ProjetManager::trouverProjet(const QString& nom)const{
 void ProjetManager::load(const QString& f){
     //Utilisation de la STL
     projets.clear();
-    //delete[] projets;
-    file=f;
     QDomDocument* dom = new QDomDocument("projets");
-    QFile fin(file);
+    QFile fin(f);
     // If we can't open it, let's show an error message.
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
         throw CalendarException("Erreur ouverture fichier projets");

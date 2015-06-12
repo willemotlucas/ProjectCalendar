@@ -1,33 +1,3 @@
 <!DOCTYPE programmations>
 <programmations>
- <programmation tache="TacheUnitaire2" projet="Projet1">
-  <date>jeu. juin 11 2015</date>
-  <horaire minute="0" heure="15"/>
-  <duree minute="0" heure="6"/>
- </programmation>
- <programmation tache="TacheUnitaire3" projet="Projet1">
-  <date>jeu. juin 11 2015</date>
-  <horaire minute="0" heure="7"/>
-  <duree minute="0" heure="3"/>
- </programmation>
- <programmation tache="TacheUnitaire4" projet="Projet1">
-  <date>sam. juin 13 2015</date>
-  <horaire minute="0" heure="7"/>
-  <duree minute="0" heure="3"/>
- </programmation>
- <programmation tache="TacheU" projet="Projet2">
-  <date>jeu. juin 11 2015</date>
-  <horaire minute="0" heure="10"/>
-  <duree minute="0" heure="4"/>
- </programmation>
- <programmation tache="dsfes" projet="Projet3">
-  <date>mer. juin 17 2015</date>
-  <horaire minute="0" heure="22"/>
-  <duree minute="0" heure="6"/>
- </programmation>
- <programmation tache="Uniiit" projet="Projet1">
-  <date>ven. juin 12 2015</date>
-  <horaire minute="0" heure="5"/>
-  <duree minute="0" heure="2"/>
- </programmation>
 </programmations>

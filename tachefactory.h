@@ -39,7 +39,7 @@ private:
          *
          *  Constructeur de recopie de la classe TacheFactory
          *
-         *  \param um : ProjetManager a recopie
+         *  \param um : TacheFactory a recopie
          */
     TacheFactory(const TacheFactory& um);
 

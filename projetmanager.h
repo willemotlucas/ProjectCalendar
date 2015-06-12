@@ -121,6 +121,13 @@ public:
          */
     contProjet::iterator end(){return projets.end();}
 
+    /*!
+         *  \brief Destructeur
+         *
+         *  Destructeur de la classe ProjetManager
+         */
+    ~ProjetManager();
+
 private:
     contProjet projets;/*!< Vector contenant les projets*/
 
@@ -141,7 +148,7 @@ private:
          *  \param nom : nom du projet recherche
          */
     Projet* trouverProjet(const QString& nom) const;
-    QString file;/*!< Nom du fichier XML*/
+//    QString file;/*!< Nom du fichier XML*/
 
     /*!
          *  \brief Constructeur
@@ -149,13 +156,6 @@ private:
          *  Constructeur de la classe ProjetManager
          */
     ProjetManager();
-
-    /*!
-         *  \brief Destructeur
-         *
-         *  Destructeur de la classe ProjetManager
-         */
-    ~ProjetManager();
 
     /*!
          *  \brief Constructeur de recopie
