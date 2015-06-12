@@ -14,7 +14,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTextEdit>
-
+#include "projetmanager.h"
 
 /*! \class NewProjectWindow
    * \brief Classe representant la fenetre de creation d'un projet

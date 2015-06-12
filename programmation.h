@@ -12,7 +12,7 @@
 #include <QDate>
 #include <QTime>
 
-
+#include "calendarexception.h"
 #include "tache.h"
 #include "projet.h"
 

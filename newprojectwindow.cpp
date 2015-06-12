@@ -4,7 +4,9 @@
 #include <QLabel>
 #include <QMessageBox>
 #include "mainwindow.h"
+#include "projectwindow.h"
 #include "newprojectwindow.h"
+#include "global.h"
 
 NewProjectWindow::NewProjectWindow(QWidget *parent) : QDialog(parent)
 {

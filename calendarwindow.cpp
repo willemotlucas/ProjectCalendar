@@ -5,9 +5,9 @@
 #include "tacheunitairepreemptive.h"
 #include "programmationmanager.h"
 
-
-#include <typeinfo>
-
+#include <QDebug>
+#include <QDate>
+#include "typeinfo"
 
 CalendarWindow::CalendarWindow(QWidget *parent) :
     QMainWindow(parent),

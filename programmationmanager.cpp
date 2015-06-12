@@ -1,18 +1,17 @@
 #include "programmationmanager.h"
-#include "mainwindow.h"
 #include "projetmanager.h"
+#include "tachefactory.h"
+#include "tacheunitaire.h"
+#include "tacheunitairepreemptive.h"
+#include "mainwindow.h"
+#include "tache.h"
 #include "global.h"
 #include <QDebug>
 #include <QtXml>
 #include <typeinfo>
 #include <QMessageBox>
 #include <algorithm>
-#include "tachefactory.h"
-#include "tache.h"
-#include "tacheunitaire.h"
-#include "tacheunitairepreemptive.h"
 #include "tachecomposite.h"
-#include "calendarexception.h"
 
 ProgrammationManager::Handler ProgrammationManager::handler=ProgrammationManager::Handler();
 

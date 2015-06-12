@@ -21,7 +21,6 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QDebug>
-#include <QObject>
 
 #include "projet.h"
 #include "programmationmanager.h"
