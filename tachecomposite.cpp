@@ -1,7 +1,6 @@
 #include <QFile>
 #include <QTextCodec>
 #include <QtXml>
-#include <QDebug>
 #include <QMetaEnum>
 #include <typeinfo>
 
@@ -10,7 +9,6 @@
 #include "tache.h"
 
 void TacheComposite::ajouterSousTaches(Tache& tache){
-   qDebug()<<trouverTache(tache);
     if(!(trouverTache(tache))){
         soustaches.push_back(&tache);
         if(tache.getDateEcheance() > echeance){
@@ -32,8 +30,6 @@ void TacheComposite::supprimerSousTache(const Tache &tache){
 
 bool TacheComposite::trouverTache(const Tache& tache){
     for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
-        qDebug()<<"id tache ajoutée:"<<tache.getId();
-        qDebug()<<"id tache parcourue:"<<(*it)->getId();
         if((*it)->getId() == tache.getId())
             return true;
     }
@@ -87,12 +83,12 @@ QDomElement& TacheComposite::write(QDomDocument* dom) {
 }
 
 
-QTreeWidgetItem& TacheComposite::chargerTreeTache(QTreeWidget* tree){
+QTreeWidgetItem& TacheComposite::chargerTreeTache(){
     QTreeWidgetItem* tache = new QTreeWidgetItem();
     tache->setText(0,this->getId());
 
     for(std::vector<Tache*>::const_iterator it = soustaches.begin(); it != soustaches.end(); ++it){
-        QTreeWidgetItem& sousTache = (*it)->chargerTree(tree);
+        QTreeWidgetItem& sousTache = (*it)->chargerTree();
         tache->addChild(&sousTache);
     }
     return *tache;

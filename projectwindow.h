@@ -20,7 +20,6 @@
 #include <QGroupBox>
 #include <QSpinBox>
 #include <QCheckBox>
-#include <QDebug>
 
 #include "projet.h"
 #include "programmationmanager.h"

@@ -84,7 +84,7 @@ class TacheComposite : public Tache
          *
          *  \param tree : arborescence de notre treeview
          */
-    QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
+    QTreeWidgetItem& chargerTreeTache();
     void setEtat(unsigned int e){}
     unsigned int getEtat() const{return (unsigned int)etat;}
 

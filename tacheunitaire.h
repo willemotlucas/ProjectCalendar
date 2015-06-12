@@ -9,7 +9,6 @@
  */
 
 #include <QTime>
-#include <QDebug>
 #include "tache.h"
 
 /*! \class TacheUnitaire
@@ -40,10 +39,8 @@ private:
          *  \brief chargerTreeTache
          *
          *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
-         *
-         *  \param tree : arborescence de notre treeview
          */
-    virtual QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
+    virtual QTreeWidgetItem& chargerTreeTache();
 
     TacheUnitaire(const TacheUnitaire& t);
 

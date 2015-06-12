@@ -1,7 +1,6 @@
 #include <QFile>
 #include <QTextCodec>
 #include <QtXml>
-#include <QDebug>
 #include <QMetaEnum>
 
 #include "tacheunitaire.h"
@@ -42,7 +41,7 @@ QDomElement& TacheUnitaire::write(QDomDocument* dom) {
     return *tache;
 }
 
-QTreeWidgetItem& TacheUnitaire::chargerTreeTache(QTreeWidget* tree){
+QTreeWidgetItem& TacheUnitaire::chargerTreeTache(){
     QTreeWidgetItem* tache = new QTreeWidgetItem();
     tache->setText(0,this->getId());
     //Si la tache est programmable, on l'affiche en vert pour l'utilisateur

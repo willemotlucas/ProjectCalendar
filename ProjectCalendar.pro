@@ -16,12 +16,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    duree.cpp \
     tache.cpp \
-    programmation.cpp \
     programmationmanager.cpp \
-    evenement.cpp \
-    evenementduree.cpp \
     projet.cpp \
     projetmanager.cpp \
     addtachewindow.cpp \
@@ -43,13 +39,11 @@ SOURCES += main.cpp\
     addpreemtivewindow.cpp
 
 HEADERS  += mainwindow.h \
-    duree.h \
     tache.h \
     programmation.h \
     calendarexception.h \
     programmationmanager.h \
     evenement.h \
-    evenementduree.h \
     projet.h \
     projetmanager.h \
     addtachewindow.h \
