@@ -12,6 +12,7 @@
 #include <QDate>
 #include <vector>
 #include "tache.h"
+#include "tachecomposite.h"
 
 /*! \class Projet
    * \brief classe representant les projets.
@@ -68,6 +69,8 @@ private:
          */
     Projet(const QString& n, const QString& desc, const QDate& disp):nom(n), description(desc), disponibilite(disp), echeance(QDate()){}
 
+
+public:
     /*!
          *  \brief trouverTache
          *
@@ -76,7 +79,7 @@ private:
          *  \param id : identificateur de la tache a retrouver
          */
     Tache* trouverTache(const QString& id) const;
-public:
+
     /*!
          *  \brief Destructeur
          *
@@ -131,6 +134,8 @@ public:
          */
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
 
+    std::vector<TacheComposite*> getTacheCompo()const;
+
     Tache* getTache(const QString& id);
 
     /*!
@@ -141,6 +146,7 @@ public:
          *  \param tache : tache a supprimer au projet
          */
     void supprimerTache(const Tache &tache);
+
     /*!
          *  \brief begin
          *

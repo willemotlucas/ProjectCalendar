@@ -1,4 +1,5 @@
 #include "projet.h"
+#include "tachecomposite.h"
 #include <QDebug>
 #include <algorithm>
 
@@ -17,16 +18,6 @@ Tache* Projet::trouverTache(const QString& id)const{
     return 0;
 }
 
-//Tache& Projet::getTache(const QString& id){
-//    Tache* t=trouverTache(id);
-//    if (!t) throw CalendarException("La tache " + id + " est inexistante.");
-//    return *t;
-//}
-
-//const Tache& Projet::getTache(const QString& id)const{
-//    return const_cast<Projet*>(this)->getTache(id);
-//}
-
 Tache* Projet::getTache(const QString &id){
     Tache* t=trouverTache(id);
     if(!t) throw CalendarException("La tache " + id + " est inexistante.");
@@ -40,3 +31,12 @@ void Projet::supprimerTache(const Tache &tache){
     }
 }
 
+std::vector<TacheComposite*> Projet::getTacheCompo()const{
+    std::vector<TacheComposite*> tacheCompo;
+    for(std::vector<Tache*>::const_iterator it = taches.begin(); it !=taches.end();++it){
+        TacheComposite* tmp =dynamic_cast<TacheComposite*>(*it);
+        if(tmp!=0)
+            tacheCompo.push_back(tmp);
+    }
+    return tacheCompo;
+}
