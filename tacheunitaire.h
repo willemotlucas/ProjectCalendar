@@ -33,14 +33,29 @@ private:
          *
          *  \param dom : arborescence de notre fichier XML
          */
-    QDomElement& write(QDomDocument* dom);
+    virtual QDomElement& write(QDomDocument* dom);
 
     /*!
          *  \brief chargerTreeTache
          *
          *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
          */
+<<<<<<< HEAD
     QTreeWidgetItem& chargerTreeTache();
+=======
+    virtual QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
+
+    TacheUnitaire(const TacheUnitaire& t);
+
+    /*!
+         *  \brief Operateur d'affectation
+         *
+         *  Operateur d'affectation de la classe TacheUnitaire
+         *
+         *  \param t : tache que l'on veut recopier
+         */
+    const TacheUnitaire& operator=(const TacheUnitaire& f);
+>>>>>>> 2f03d0151f03963cdb97370d8f7665d928c5f5f2
 
 protected :
     /*!
@@ -57,17 +72,6 @@ protected :
          */
             TacheUnitaire(const QString& id, const QString& desc, const QDate& dispo, const QDate& deadline, const QTime& dur, unsigned int e = 1):Tache(id, desc, dispo, deadline,e){if(duree < QTime(DUREE_MAX,0)) duree = dur; else throw CalendarException("La durée d'une tâche unitaire ne peut être supérieur à 12h."); }
 
-//    TacheUnitaire(const TacheUnitaire& t);
-
-      /*!
-           *  \brief Operateur d'affectation
-           *
-           *  Operateur d'affectation de la classe TacheUnitaire
-           *
-           *  \param t : tache que l'on veut recopier
-           */
-      const TacheUnitaire& operator=(const TacheUnitaire& f);
-
 public:
         /*!
              *  \brief Destructeur
@@ -76,25 +80,29 @@ public:
              */
     virtual ~TacheUnitaire(){}
 
-    //GETTERS AND SETTERS
-
       /*!
            *  \brief getDuree
            *
            *  Accesseur en lecture de la duree de la Tache Unitaire
            */
     const QTime& getDuree() const { return duree; }
-    virtual void setEtat(unsigned int e) { etat = (Etat)e; }
-    virtual unsigned int getEtat() const { return (unsigned int)etat; }
 
-    //STATES METHODS
     /*!
-         *  \brief isProgrammee
+         *  \brief setEtat
          *
-         *  Fonction booleenne permettant de savoir
-         *  si la tache est deja programmée
+         *  Accesseur en écriture de l'état de la Tache Unitaire
+         *
+         *  \parem e : nouvel etat de la tache
          */
-    virtual bool isProgrammee() const { return etat == PROGRAMMEE; }
+    virtual void setEtat(unsigned int e) { etat = (Etat)e; }
+
+    /*!
+         *  \brief getEtat
+         *
+         *  Accesseur en écriture de l'état de la Tache Unitaire
+         *
+         */
+    virtual unsigned int getEtat() const { return (unsigned int)etat; }
 
     /*!
          *  \brief setDateEcheance

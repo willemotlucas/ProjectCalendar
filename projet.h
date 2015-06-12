@@ -133,8 +133,7 @@ public:
          *  \param id : identificateur de la tache
          */
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
-//    const Tache& getTache(const QString& code) const;
-//    Tache& getTache(const QString& id);
+
     std::vector<TacheComposite*> getTacheCompo()const;
 
     Tache* getTache(const QString& id);
@@ -147,6 +146,7 @@ public:
          *  \param tache : tache a supprimer au projet
          */
     void supprimerTache(const Tache &tache);
+
     /*!
          *  \brief begin
          *

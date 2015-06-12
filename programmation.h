@@ -23,20 +23,27 @@
    *  avec une date et un horaire precis.
    */
 class Programmation {
-    const Projet* projet;/*!< Pointeur sur le projet dont la tache correpond*/
+
+private:
+    const Projet* projet;/*!< Pointeur sur le projet auquel appartient la tâche*/
     const Tache* tache;/*!< Pointeur sur la tache a programmer*/
     QDate date;/*!< Date de la programmation*/
     QTime horaire;/*!< Horaire de la programmation*/
     QTime duree;/*!< Duree de la programmation*/
+
+    Programmation& operator=(const Programmation& p);
+    Programmation(const Programmation& p);
+
 public:
     /*!
          *  \brief Constructeur
          *
          *  Constructeur de la classe Programmation
          *
-         *  \param t : pointeur de la tache a programmer
+         *  \param t : pointeur de la tache à programmer
          *  \param d : date de programmation de la tache
          *  \param h : horaire de programmation de la tache
+         *  \param dur : durée de programmation de la tache
          */
     Programmation(const Projet& p, const Tache& t, const QDate& d, const QTime& h, const QTime& dur):projet(&p), tache(&t), date(d), horaire(h), duree(dur){}
 

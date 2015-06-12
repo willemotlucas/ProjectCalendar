@@ -44,18 +44,7 @@ public:
          */
     QTreeWidgetItem& chargerTreeTache();
 
-    //STATES METHODS
-    /*!
-         *  \brief isProgrammee
-         *
-         *  Fonction booleenne permettant de savoir
-         *  si la tache est deja programmée
-         */
-    bool isProgrammee() const { return etat == PROGRAMMEE; }
-
-    //GETTERS AND SETTERS
-    /*!
-         *  \brief getDureeInit
+        /*!  \brief getDureeInit
          *
          *  Accesseur en lecture de duree initiale de la Tache
          */
@@ -125,6 +114,24 @@ private:
          *  \param t : tache que l'on veut recopier
          */
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);
+
+    /*!
+         *  \brief write
+         *
+         *  Ecriture de la tache a l'interieur de notre arborescence
+         *
+         *  \param dom : arborescence de notre fichier XML
+         */
+    QDomElement& write(QDomDocument* dom);
+
+    /*!
+         *  \brief chargerTreeTache
+         *
+         *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
+         *
+         *  \param tree : arborescence de notre treeview
+         */
+    QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
 
 };
 
