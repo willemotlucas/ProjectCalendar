@@ -12,6 +12,7 @@
 #include <QTime>
 #include <QMessageBox>
 
+
 AddCompositeWindow::AddCompositeWindow(QWidget* parent):QDialog(parent){
     this->setWindowTitle("Nouvelle Tache Composite");
 

@@ -25,4 +25,9 @@
   <horaire minute="0" heure="22"/>
   <duree minute="0" heure="6"/>
  </programmation>
+ <programmation tache="Uniiit" projet="Projet1">
+  <date>ven. juin 12 2015</date>
+  <horaire minute="0" heure="5"/>
+  <duree minute="0" heure="2"/>
+ </programmation>
 </programmations>

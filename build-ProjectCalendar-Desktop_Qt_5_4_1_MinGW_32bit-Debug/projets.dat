@@ -4,7 +4,7 @@
   <nom>Projet1</nom>
   <description>Projet de test</description>
   <dateDebut>mer. juin 10 2015</dateDebut>
-  <dateEcheance>ven. juin 19 2015</dateEcheance>
+  <dateEcheance>sam. juin 20 2015</dateEcheance>
   <taches>
    <tache type="unitaire" etat="0">
     <identifiant>TacheUnitaire2</identifiant>
@@ -31,7 +31,7 @@
     <identifiant>TacheComposite2</identifiant>
     <titre>Test</titre>
     <disponibilite>mer. juin 10 2015</disponibilite>
-    <echeance>jeu. juin 11 2015</echeance>
+    <echeance>sam. juin 20 2015</echeance>
     <soustaches>
      <tache type="unitaire" etat="1">
       <identifiant>body</identifiant>
@@ -40,7 +40,22 @@
       <echeance>jeu. juin 11 2015</echeance>
       <duree minute="0" heure="2"/>
      </tache>
+     <tache type="preemtive" etat="1">
+      <identifiant>rgerg</identifiant>
+      <titre>grreg</titre>
+      <disponibilite>ven. juin 12 2015</disponibilite>
+      <echeance>sam. juin 20 2015</echeance>
+      <dureeInitiale minute="0" heure="7"/>
+      <dureeRestante minute="0" heure="7"/>
+     </tache>
     </soustaches>
+   </tache>
+   <tache type="unitaire" etat="0">
+    <identifiant>Uniiit</identifiant>
+    <titre></titre>
+    <disponibilite>ven. juin 12 2015</disponibilite>
+    <echeance>ven. juin 19 2015</echeance>
+    <duree minute="0" heure="2"/>
    </tache>
   </taches>
  </projet>

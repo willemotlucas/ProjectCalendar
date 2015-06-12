@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.3.1, 2015-06-11T21:27:37. -->
+<!-- Written by QtCreator 3.3.1, 2015-06-12T13:53:33. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{e958c1c0-d49d-409e-b844-9ab57754d3ee}</value>
+  <value type="QByteArray">{afe255ae-db0b-43f2-80dc-3d4d5c1c5952}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">-1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -40,10 +40,10 @@
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
    <value type="bool" key="EditorConfiguration.ShowMargin">false</value>
    <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
-   <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
+   <value type="bool" key="EditorConfiguration.SpacesForTabs">false</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
-   <value type="int" key="EditorConfiguration.TabSize">8</value>
-   <value type="bool" key="EditorConfiguration.UseGlobal">true</value>
+   <value type="int" key="EditorConfiguration.TabSize">4</value>
+   <value type="bool" key="EditorConfiguration.UseGlobal">false</value>
    <value type="int" key="EditorConfiguration.Utf8BomBehavior">1</value>
    <value type="bool" key="EditorConfiguration.addFinalNewLine">true</value>
    <value type="bool" key="EditorConfiguration.cleanIndentation">true</value>
@@ -225,8 +225,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">ProjectCalendar</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ProjectCalendar2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Valentin/Documents/GitHub/ProjectCalendar/ProjectCalendar.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Lucas/Documents/GitHub/LO21/ProjectCalendar/ProjectCalendar.pro</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">ProjectCalendar.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>

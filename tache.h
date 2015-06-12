@@ -26,6 +26,18 @@
    */
 class Tache {
 
+private:
+    Tache(const Tache& t);
+
+    /*!
+         *  \brief Operateur d'affectation
+         *
+         *  Operateur d'affectation de la classe Tache
+         *
+         *  \param t : tache que l'on veut recopier
+         */
+    Tache& operator=(const Tache& t);
+
 protected:
     enum Etat{
         PROGRAMMEE,
@@ -66,17 +78,6 @@ protected:
          */
     Tache(const QString& id, const QString& t, const QDate& dispo, unsigned int e):identificateur(id),titre(t),disponibilite(dispo),etat((Etat)e){}
 
-//    Tache(const Tache& t);
-
-    /*!
-         *  \brief Operateur d'affectation
-         *
-         *  Operateur d'affectation de la classe Tache
-         *
-         *  \param t : tache que l'on veut recopier
-         */
-    Tache& operator=(const Tache& t);
-
     /*!
          *  \brief write : fonction virtuelle pure
          *
@@ -97,32 +98,11 @@ protected:
 
 public:
     /*!
-         *  \brief save
-         *
-         *  Sauvegarde de la tache a l'interieur de notre arborescence TreeWidget
-         *
-         *  \param tree : arborescence de notre fichier XML
-         */
-    QDomElement& save(QDomDocument* dom) {return write(dom);}
-
-    /*!
-         *  \brief chargerTree
-         *
-         *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
-         *
-         *  \param tree : arborescence de notre treeview
-         */
-    QTreeWidgetItem& chargerTree(QTreeWidget* tree){return chargerTreeTache(tree);}
-    //DESTRUCTOR
-
-    /*!
          *  \brief Destructeur
          *
          *  Destructeur de la classe Tache
          */
-    virtual ~Tache(){};
-
-    //GETTERS et SETTERS
+    virtual ~Tache(){}
 
     /*!
          *  \brief getId
@@ -179,15 +159,21 @@ public:
          */
     QDate getDateEcheance() const {  return echeance; }
 
+    /*!
+         *  \brief getEtat : virtuelle pure
+         *
+         *  Accesseur en écriture de l'état de la tache
+         *
+         */
     virtual void setEtat(unsigned int e) = 0;
+
+    /*!
+         *  \brief getEtat : virtuelle pure
+         *
+         *  Accesseur en lecture de l'état de la tache
+         *
+         */
     virtual unsigned int getEtat() const = 0;
-
-    //ABSTRACT METHODS
-
-    //Peut-être mettre en privée pour que seul le TacheManager puisse gérer la date d'échéance d'une tache composite en fonction
-    //De ses sous-taches. Mettre en abstrait pour changer le fonctionnement en fonction de la classe fille
-//        if (e<disp) throw CalendarException("erreur T�che : date ech�ance < date disponibilit�");
-//        disponibilite=disp; echeance=e;
 
     /*!
          *  \brief setDateEcheance : virtuelle pure
@@ -198,7 +184,23 @@ public:
          */
     virtual void setDateEcheance(const QDate& e) = 0;
 
+    /*!
+         *  \brief save
+         *
+         *  Sauvegarde de la tache a l'interieur de notre arborescence TreeWidget
+         *
+         *  \param tree : arborescence de notre fichier XML
+         */
+    QDomElement& save(QDomDocument* dom) {return write(dom);}
 
+    /*!
+         *  \brief chargerTree
+         *
+         *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
+         *
+         *  \param tree : arborescence de notre treeview
+         */
+    QTreeWidgetItem& chargerTree(QTreeWidget* tree){return chargerTreeTache(tree);}
 };
 
 QTextStream& operator<<(QTextStream& f, const Tache& t);

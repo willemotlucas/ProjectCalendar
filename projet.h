@@ -130,8 +130,7 @@ public:
          *  \param id : identificateur de la tache
          */
     bool isTacheExistante(const QString& id) const { return trouverTache(id)!=0; }
-//    const Tache& getTache(const QString& code) const;
-//    Tache& getTache(const QString& id);
+
     Tache* getTache(const QString& id);
 
     /*!
