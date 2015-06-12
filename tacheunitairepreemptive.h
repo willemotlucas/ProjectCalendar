@@ -115,24 +115,6 @@ private:
          */
     const TacheUnitairePreemptive& operator=(const TacheUnitairePreemptive& t);
 
-    /*!
-         *  \brief write
-         *
-         *  Ecriture de la tache a l'interieur de notre arborescence
-         *
-         *  \param dom : arborescence de notre fichier XML
-         */
-    QDomElement& write(QDomDocument* dom);
-
-    /*!
-         *  \brief chargerTreeTache
-         *
-         *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
-         *
-         *  \param tree : arborescence de notre treeview
-         */
-    QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
-
 };
 
 #endif // TACHEUNITAIREPREEMPTIVE_H

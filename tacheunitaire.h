@@ -40,10 +40,7 @@ private:
          *
          *  Chargement de la tache a l'interieur de notre arborescence TreeWidget
          */
-<<<<<<< HEAD
-    QTreeWidgetItem& chargerTreeTache();
-=======
-    virtual QTreeWidgetItem& chargerTreeTache(QTreeWidget* tree);
+    virtual QTreeWidgetItem& chargerTreeTache();
 
     TacheUnitaire(const TacheUnitaire& t);
 
@@ -55,7 +52,6 @@ private:
          *  \param t : tache que l'on veut recopier
          */
     const TacheUnitaire& operator=(const TacheUnitaire& f);
->>>>>>> 2f03d0151f03963cdb97370d8f7665d928c5f5f2
 
 protected :
     /*!
