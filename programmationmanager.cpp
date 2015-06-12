@@ -11,6 +11,7 @@
 #include <typeinfo>
 #include <QMessageBox>
 #include <algorithm>
+#include "tachecomposite.h"
 
 ProgrammationManager::Handler ProgrammationManager::handler=ProgrammationManager::Handler();
 
@@ -225,17 +226,39 @@ void ProgrammationManager::load(){
         for(QDomNode prog = dom_element.firstChildElement("programmation"); !prog.isNull(); prog = prog.nextSiblingElement("programmation")){
             //On recrée tous les objets nécessaires à la construction d'un objet programmation
             Projet* p = pm.getProjet(prog.toElement().attribute("projet"));
-            Tache* t = p->getTache(prog.toElement().attribute("tache"));
-            QDate date = QDate::fromString(prog.firstChildElement("date").toElement().text(), Qt::TextDate);
-            int heure = prog.firstChildElement("horaire").toElement().attribute("heure").toInt();
-            int minute = prog.firstChildElement("horaire").toElement().attribute("minute").toInt();
-            QTime horaire(heure,minute);
-            int hDuree = prog.firstChildElement("duree").toElement().attribute("heure").toInt();
-            int mDuree = prog.firstChildElement("duree").toElement().attribute("minute").toInt();
-            QTime duree(hDuree,mDuree);
+            Tache* tache = p->trouverTache(prog.toElement().attribute("tache"));
+            if (tache!=0){
+                Tache* t = p->getTache(prog.toElement().attribute("tache"));
+                QDate date = QDate::fromString(prog.firstChildElement("date").toElement().text(), Qt::TextDate);
+                int heure = prog.firstChildElement("horaire").toElement().attribute("heure").toInt();
+                int minute = prog.firstChildElement("horaire").toElement().attribute("minute").toInt();
+                QTime horaire(heure,minute);
+                int hDuree = prog.firstChildElement("duree").toElement().attribute("heure").toInt();
+                int mDuree = prog.firstChildElement("duree").toElement().attribute("minute").toInt();
+                QTime duree(hDuree,mDuree);
 
-            //On ajoute la programmation dans le vector
-            addItem(new Programmation(*p,*t,date,horaire,duree));
+                //On ajoute la programmation dans le vector
+                addItem(new Programmation(*p,*t,date,horaire,duree));
+            }
+            else{
+                    std::vector<TacheComposite*> compo = p->getTacheCompo();
+                    for(std::vector<TacheComposite*>::iterator it = compo.begin();it!=compo.end();++it){
+                        tache = (*it)->getSousTache(prog.toElement().attribute("tache"));
+                        if(tache!=0){
+                           Tache* t = (*it)->getSousTache(prog.toElement().attribute("tache"));
+                           QDate date = QDate::fromString(prog.firstChildElement("date").toElement().text(), Qt::TextDate);
+                           int heure = prog.firstChildElement("horaire").toElement().attribute("heure").toInt();
+                           int minute = prog.firstChildElement("horaire").toElement().attribute("minute").toInt();
+                           QTime horaire(heure,minute);
+                           int hDuree = prog.firstChildElement("duree").toElement().attribute("heure").toInt();
+                           int mDuree = prog.firstChildElement("duree").toElement().attribute("minute").toInt();
+                           QTime duree(hDuree,mDuree);
+
+                           //On ajoute la programmation dans le vector
+                           addItem(new Programmation(*p,*t,date,horaire,duree));
+                       }
+                    }
+                }
         }
     }
 }

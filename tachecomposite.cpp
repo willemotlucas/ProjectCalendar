@@ -10,12 +10,15 @@
 #include "tache.h"
 
 void TacheComposite::ajouterSousTaches(Tache& tache){
-    if(!trouverTache(tache)){
+   qDebug()<<trouverTache(tache);
+    if(!(trouverTache(tache))){
         soustaches.push_back(&tache);
         if(tache.getDateEcheance() > echeance){
             setDateEcheance(tache.getDateEcheance());
         }
     }
+    else
+        throw CalendarException("La tache " + tache.getId() + " existe deja.");
 }
 
 void TacheComposite::supprimerSousTache(const Tache &tache){
