@@ -2,7 +2,7 @@
 #define AJOUTERPROGPREEMPTIVEWINDOW_H
 
 /*!
- * \file AjouterProgPreemptiveWIndow.h
+ * \file AjouterProgPreemptiveWindow.h
  * \brief Onglet de programmation d'une tache preemptive dans l'agenda
  * \author Lucas WILLEMOT et Valentin PAUL
  * \version 0.1

@@ -13,7 +13,6 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QCheckBox>
 #include <QDateEdit>
 #include <QTextEdit>
 #include <QSpinBox>

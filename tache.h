@@ -15,7 +15,6 @@
 #include <QTreeWidget>
 
 #include "calendarexception.h"
-#include "duree.h"
 
 /*! \class Tache
    * \brief classe virtuelle pure representant les taches

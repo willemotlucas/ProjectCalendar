@@ -1,7 +1,6 @@
 #include "addcompositewindow.h"
 #include "tachefactory.h"
 #include "tache.h"
-#include "tachecomposite.h"
 #include "projectwindow.h"
 #include "mainwindow.h"
 

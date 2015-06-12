@@ -1,9 +1,8 @@
 #include "addtachewindow.h"
 #include "tachefactory.h"
 #include "tache.h"
-#include "tacheunitaire.h"
-#include "projectwindow.h"
 #include "mainwindow.h"
+#include "projectwindow.h"
 
 #include <QLabel>
 #include <QDebug>

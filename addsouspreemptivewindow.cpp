@@ -2,7 +2,6 @@
 #include "projectwindow.h"
 #include "tachefactory.h"
 #include "tache.h"
-#include "tacheunitairepreemptive.h"
 #include "mainwindow.h"
 
 #include <QLabel>

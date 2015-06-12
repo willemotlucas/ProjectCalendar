@@ -8,10 +8,9 @@
  * \version 0.1
  */
 
-#include "calendarexception.h"
+
 #include "tache.h"
 #include "programmation.h"
-#include "global.h"
 #include <QTime>
 #include <QDate>
 

@@ -10,7 +10,6 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <QKeySequence>
 #include <QTabWidget>
 #include <QAction>
 #include "projectwindow.h"

@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QHBoxLayout>
@@ -6,9 +5,9 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "projetmanager.h"
-#include "calendarwindow.h"
 #include "global.h"
 #include "programmationmanager.h"
+
 
 ProjectWindow* MainWindow::projet= 0;
 

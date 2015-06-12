@@ -13,10 +13,9 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QCheckBox>
 #include <QDateEdit>
 #include <QTextEdit>
-#include <QSpinBox>
+
 
 /*! \class AddSousCompositeWindow
    * \brief classe representant la fenetre d'ajout d'une sous-tache composite
